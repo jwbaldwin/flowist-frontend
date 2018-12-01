@@ -1,32 +1,27 @@
-.App {
-  text-align: center;
-}
+/* 
+ *   Application Colors 
+ */
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-}
+.color-primary-0 { color: rgba( 35,106, 98,1) }	/* Main Primary color */
+.color-primary-1 { color: rgba(  6, 13, 12,1) }
+.color-primary-2 { color: rgba( 24, 59, 55,1) }
+.color-primary-3 { color: rgba( 39,152,140,1) }
+.color-primary-4 { color: rgba( 40,232,212,1) }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
+.color-secondary-1-0 { color: rgba(170,130, 57,1) }	/* Main Secondary color (1) */
+.color-secondary-1-1 { color: rgba( 20, 17, 10,1) }
+.color-secondary-1-2 { color: rgba( 95, 76, 39,1) }
+.color-secondary-1-3 { color: rgba(245,181, 62,1) }
+.color-secondary-1-4 { color: rgba(255,181, 44,1) }
 
-.App-link {
-  color: #61dafb;
-}
+.color-secondary-2-0 { color: rgba(166, 55, 63,1) }	/* Main Secondary color (2) */
+.color-secondary-2-1 { color: rgba( 20, 10, 10,1) }
+.color-secondary-2-2 { color: rgba( 93, 38, 42,1) }
+.color-secondary-2-3 { color: rgba(239, 61, 74,1) }
+.color-secondary-2-4 { color: rgba(253, 44, 60,1) }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+.color-complement-0 { color: rgba(170,105, 57,1) }	/* Main Complement color */
+.color-complement-1 { color: rgba( 20, 14, 10,1) }
+.color-complement-2 { color: rgba( 95, 63, 39,1) }
+.color-complement-3 { color: rgba(245,140, 62,1) }
+.color-complement-4 { color: rgba(255,134, 44,1) }

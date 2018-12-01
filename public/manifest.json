@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Novu Frontend",
+  "name": "The frontend to the Novu application",
   "icons": [
     {
       "src": "favicon.ico",
