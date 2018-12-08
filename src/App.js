@@ -1,15 +1,106 @@
 import React, { Component } from 'react';
-import './App.css';
-import Header from './components/Header';
-import Main from './components/Main';
+import {
+  Box,
+  Button,
+  Collapsible,
+  Heading,
+  Grommet,
+  Layer,
+  ResponsiveContext,
+} from 'grommet';
+import { FormClose, Notification } from 'grommet-icons';
+
+const theme = {
+  global: {
+    colors: {
+      brand: '#2EC59F',
+    },
+    font: {
+      family: 'Montserrat',
+      size: '14px',
+      height: '20px',
+    },
+  },
+};
+
+const AppBar = (props) => (
+  <Box
+    tag='header'
+    direction='row'
+    align='center'
+    justify='between'
+    background='brand'
+    pad={{ left: 'medium', right: 'small', vertical: 'small' }}
+    elevation='medium'
+    style={{ zIndex: '1' }}
+    {...props}
+  />
+);
 
 class App extends Component {
+  state = {
+    showSidebar: false,
+  }
   render() {
+    const { showSidebar } = this.state;
     return (
-      <div className="App">
-        <Header></Header>
-        <Main></Main>
-      </div>
+      <Grommet theme={theme} full>
+        <ResponsiveContext.Consumer>
+          {size => (
+            <Box fill>
+              <AppBar>
+                <Heading level='3' margin='none'>My App</Heading>
+                <Button
+                  icon={<Notification color='plain'/>}
+                  onClick={() => this.setState({ showSidebar: !this.state.showSidebar })}
+                />
+              </AppBar>
+              <Box direction='row' flex>
+                <Box flex align='center' justify='center'>
+                  app body
+                </Box>
+                {(!showSidebar || size !== 'small') ? (
+                  <Collapsible direction="horizontal" open={showSidebar}>
+                    <Box
+                      flex
+                      width='medium'
+                      background='light-2'
+                      elevation='small'
+                      align='center'
+                      justify='center'
+                    >
+                      sidebar
+                    </Box>
+                  </Collapsible>
+                ): (
+                  <Layer>
+                    <Box
+                      background='light-2'
+                      tag='header'
+                      justify='end'
+                      align='center'
+                      direction='row'
+                    >
+                      <Button
+                        icon={<FormClose />}
+                        onClick={() => this.setState({ showSidebar: false })}
+                      />
+                    </Box>
+                    <Box
+                      fill
+                      background='light-2'
+                      align='center'
+                      justify='center'
+                    >
+                      sidebar
+                    </Box>
+                  </Layer>
+                )}
+              </Box>
+            </Box>
+          )}
+        </ResponsiveContext.Consumer>
+      </Grommet>
     );
   }
 }
