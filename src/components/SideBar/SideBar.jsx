@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 
-export class Header extends Component {
-  
+export class SideBar extends Component {
+
   render() {
     return (
       <div>
-        Header
+        This is main
       </div>
     )
   }
 }
 
-export default Header
+export default SideBar
