@@ -1,19 +1,20 @@
 import React, { Component } from 'react';
 import { Box } from 'grommet';
+import LoginForm from './LoginForm';
 
 export class Login extends Component {
 	render() {
 		return (
 			<Box
+                flex
 				tag="login"
 				direction="row"
 				align="center"
-				justify="between"
+				justify="center"
 				background="brand"
-				pad={{ left: 'medium', right: 'small', vertical: 'medium' }}
-				elevation="medium"
-				style={{ zIndex: '1' }}
-			/>
+			>
+                <LoginForm></LoginForm>
+            </Box>
 		);
 	}
 }
