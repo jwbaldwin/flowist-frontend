@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Sidebar from '../Sidebar';
 import { Box } from 'grommet';
 
-export class AppMain extends Component {
+export class OverviewPage extends Component {
 	constructor(props) {
 		super(props);
 
@@ -31,12 +31,11 @@ export class AppMain extends Component {
 			<Box direction="row" flex>
 				<Sidebar></Sidebar>
 				<Box flex align="center" justify="center">
-					app body
-					{this.state.isLoading ? <p>Loading...</p> : <p>{this.state.users}</p>}
+					This is the overview page. It will hold their current flow and extra information.
 				</Box>
 			</Box>
 		);
 	}
 }
 
-export default AppMain;
+export default OverviewPage;

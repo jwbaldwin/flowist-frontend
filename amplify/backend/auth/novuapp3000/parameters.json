@@ -1,0 +1,63 @@
+{
+    "identityPoolName": "novuusers3000",
+    "allowUnauthenticatedIdentities": false,
+    "thirdPartyAuth": true,
+    "lambdaLogPolicy": "novuapp3000_lambda_log_policy",
+    "openIdLambdaRoleName": "novuapp3000_openid_lambda_role",
+    "openIdRolePolicy": "novuapp3000_openid_pass_role_policy",
+    "openIdLambdaIAMPolicy": "novuapp3000_openid_lambda_iam_policy",
+    "openIdLogPolicy": "novuapp3000_openid_lambda_log_policy",
+    "userPoolName": "novugoogle3000",
+    "autoVerifiedAttributes": [
+        "email"
+    ],
+    "mfaConfiguration": "OFF",
+    "mfaTypes": [
+        "SMS Text Message"
+    ],
+    "roleName": "novuapp3000_sns-role",
+    "roleExternalId": "novuapp3000_role_external_id",
+    "policyName": "novuapp3000-sns-policy",
+    "smsAuthenticationMessage": "Your authentication code is {####}",
+    "smsVerificationMessage": "Your verification code is {####}",
+    "emailVerificationSubject": "Your email verification",
+    "emailVerificationMessage": "Your verification code is {####}",
+    "defaultPasswordPolicy": false,
+    "passwordPolicyMinLength": 8,
+    "passwordPolicyCharacters": [
+        "Requires Lowercase",
+        "Requires Uppercase",
+        "Requires Numbers",
+        "Requires Symbols"
+    ],
+    "requiredAttributes": [
+        "name",
+        "email"
+    ],
+    "userpoolClientName": "novuapp3000_app_client",
+    "userpoolClientGenerateSecret": true,
+    "userpoolClientRefreshTokenValidity": 30,
+    "userpoolClientReadAttributes": [
+        "email"
+    ],
+    "mfaLambdaRole": "novuapp3000_totp_lambda_role",
+    "mfaLambdaLogPolicy": "novuapp3000_totp_lambda_log_policy",
+    "mfaPassRolePolicy": "novuapp3000_totp_pass_role_policy",
+    "mfaLambdaIAMPolicy": "novuapp3000_totp_lambda_iam_policy",
+    "userpoolClientLambdaRole": "novuapp3000_userpoolclient_lambda_role",
+    "userpoolClientLogPolicy": "novuapp3000_userpoolclient_lambda_log_policy",
+    "userpoolClientLambdaPolicy": "novuapp3000_userpoolclient_lambda_iam_policy",
+    "userpoolClientSetAttributes": false,
+    "useDefault": "manual",
+    "authSelections": "identityPoolAndUserPool",
+    "resourceName": "novuapp3000",
+    "authProviders": [
+        "accounts.google.com"
+    ],
+    "googleClientId": "350192196698-57pjv8tqcpnceaaich7dfhk90jamscj9.apps.googleusercontent.com",
+    "selectedParties": "{\"accounts.google.com\":\"350192196698-57pjv8tqcpnceaaich7dfhk90jamscj9.apps.googleusercontent.com\"}",
+    "unAuthRoleName": "novufrontend-20181216134745-unauthRole",
+    "authRoleName": "novufrontend-20181216134745-authRole",
+    "unAuthRoleArn": "arn:aws:iam::176245496211:role/novufrontend-20181216134745-unauthRole",
+    "authRoleArn": "arn:aws:iam::176245496211:role/novufrontend-20181216134745-authRole"
+}

@@ -1,0 +1,20 @@
+.login-btn {
+    font-weight: bold
+}
+
+.app-bar-btn {
+    font-weight: bold !important;
+    display: inline-flex !important;
+    vertical-align: left !important;
+    width: 100% !important;
+    height: 40px !important;
+}
+
+.app-bar-btn:hover {
+    border-bottom: 3px solid rgb(125, 76, 219);
+    color: rgb(125, 76, 219);
+}
+
+.app-bar-btn:hover .icon path{
+    stroke: rgb(125, 76, 219);
+}

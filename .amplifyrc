@@ -1,0 +1,14 @@
+{
+    "providers": {
+        "awscloudformation": {
+            "AuthRoleName": "novufrontend-20181216134745-authRole",
+            "UnauthRoleArn": "arn:aws:iam::176245496211:role/novufrontend-20181216134745-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::176245496211:role/novufrontend-20181216134745-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "novufrontend-20181216134745-deployment",
+            "UnauthRoleName": "novufrontend-20181216134745-unauthRole",
+            "StackName": "novufrontend-20181216134745",
+            "StackId": "arn:aws:cloudformation:us-east-1:176245496211:stack/novufrontend-20181216134745/13aac6e0-0163-11e9-84ee-0a456a010dd4"
+        }
+    }
+}
