@@ -1,3 +1,3 @@
-import Appbar from './Appbar.jsx';
+import Sidebar from './Sidebar.jsx';
 
-export default Appbar;
+export default Sidebar;
