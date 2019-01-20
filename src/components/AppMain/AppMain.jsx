@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Sidebar from '../Sidebar';
 import { Box } from 'grommet';
+import FlowItem from '../FlowItem/FlowItem';
 
 export class AppMain extends Component {
 	constructor(props) {
@@ -30,10 +31,7 @@ export class AppMain extends Component {
 		return (
 			<Box direction="row" flex>
 				<Sidebar></Sidebar>
-				<Box flex align="center" justify="center">
-					app body
-					{this.state.isLoading ? <p>Loading...</p> : <p>{this.state.users}</p>}
-				</Box>
+				<FlowItem></FlowItem>
 			</Box>
 		);
 	}
