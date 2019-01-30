@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Sidebar from '../Sidebar';
-import { Box } from 'grommet';
 
 export class SettingsPage extends Component {
 	constructor(props) {
@@ -28,12 +27,10 @@ export class SettingsPage extends Component {
 
 	render() {
 		return (
-			<Box direction="row" flex>
-				<Sidebar></Sidebar>
-				<Box flex align="center" justify="center">
-					This is the settings page. It will have the users settings.
-				</Box>
-			</Box>
+		<div>
+			<Sidebar></Sidebar>
+			<p>This is the Settings page. It will hold their current flow and extra information.</p>
+		</div>
 		);
 	}
 }

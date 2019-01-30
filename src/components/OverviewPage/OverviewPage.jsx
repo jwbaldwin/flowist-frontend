@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Sidebar from '../Sidebar';
-import { Box } from 'grommet';
 
 export class OverviewPage extends Component {
 	constructor(props) {
@@ -28,12 +27,10 @@ export class OverviewPage extends Component {
 
 	render() {
 		return (
-			<Box direction="row" flex>
-				<Sidebar></Sidebar>
-				<Box flex align="center" justify="center">
-					This is the overview page. It will hold their current flow and extra information.
-				</Box>
-			</Box>
+		<div>
+			<Sidebar></Sidebar>
+			<p>This is the overview page. It will hold their current flow and extra information.</p>
+		</div>
 		);
 	}
 }

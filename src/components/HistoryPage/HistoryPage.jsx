@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Sidebar from '../Sidebar';
-import { Box } from 'grommet';
 
 export class HistoryPage extends Component {
 	constructor(props) {
@@ -28,12 +27,10 @@ export class HistoryPage extends Component {
 
 	render() {
 		return (
-			<Box direction="row" flex>
+			<div>
 				<Sidebar></Sidebar>
-				<Box flex align="center" justify="center">
-					This is the history page. It will hold a mapping of the past flows.
-				</Box>
-			</Box>
+				<p>This is the history page. It will hold a mapping of the past flows.</p>
+			</div>
 		);
 	}
 }
