@@ -5,7 +5,7 @@ export class Login extends Component {
     
 	render() {
 		return (
-			<div><LoginForm></LoginForm></div>
+			<div>test</div>
 		);
 	}
 }

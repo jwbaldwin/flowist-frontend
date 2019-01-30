@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
-import Sidebar from '../Sidebar';
-import { Layout, Menu, Breadcrumb } from 'antd';
-import FlowItem from '../FlowItem/FlowItem';
+import { Layout } from 'antd';
 
 const { Content, Footer } = Layout;
-const SubMenu = Menu.SubMenu;
 
 export class AppMain extends Component {
 	constructor(props) {
@@ -32,14 +29,11 @@ export class AppMain extends Component {
 
 	render() {
 		return (
-			<Layout style={{ minHeight: '100vh' }}>
-				<Sidebar></Sidebar>
-				<Layout>
-					<Content style={{ margin: '16px 16px' }}>
-						<div style={{ padding: 24, background: '#fff', minHeight: '100vh' }}>This is content.</div>
-					</Content>
-					<Footer style={{ textAlign: 'center' }}>Novu Note ©2019 Created by James Baldwin</Footer>
-				</Layout>
+			<Layout>
+				<Content style={{ margin: '16px 16px' }}>
+					<div style={{ padding: 24, background: '#fff', minHeight: '100vh' }}>This is content.</div>
+				</Content>
+				<Footer style={{ textAlign: 'center' }}>Novu Note ©2019 Created by James Baldwin</Footer>
 			</Layout>
 		);
 	}
