@@ -1,5 +1,11 @@
 #app-sidebar-logo {
-    height: 128px;
-    background: rgba(0,0,0,.2);
-    margin: 16px 16px 32px 16px;
-  }
+	height: 128px;
+	background: rgba(0, 0, 0, .4);
+	margin: 16px 16px 32px 16px;
+}
+
+.sider {
+	-moz-box-shadow: -3px 0 10px 0 #999;
+	-webkit-box-shadow: -3px 0 10px 0 #999;
+	box-shadow: -3px 0 10px 0 #999;
+}
