@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router';
 import { Link } from 'react-router-dom';
-import { Layout, Menu, Icon, Switch } from 'antd';
+import { Layout, Menu, Icon } from 'antd';
 import './Sidebar.css';
 
 const { Sider } = Layout;
