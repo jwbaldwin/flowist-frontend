@@ -19,7 +19,7 @@ export class AppMain extends Component {
 					<Route exact path="/tags" component={Tags} />
 					<Route exact path="/archive" component={Archive} />
 					<Route exact path="/settings" component={Settings} />
-					<Layout style={{ textAlign: 'center' }}>Novu ©2019 Created by James Baldwin</Layout>
+					<Footer style={{ textAlign: 'center' }}>Novu ©2019 Created by James Baldwin</Footer>
 				</Layout>
 			</Layout>
 		);

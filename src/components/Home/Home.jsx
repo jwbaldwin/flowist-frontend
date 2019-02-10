@@ -1,17 +1,38 @@
 import React, { Component } from 'react';
 import { Layout } from 'antd';
+import EmptyHome from './EmptyHome';
 
 const { Content } = Layout;
 
 export class Home extends Component {
+	constructor(props) {
+		super(props);
+
+		this.state = {};
+	}
+	    
+    componentWillMount() {
+		document.addEventListener('keydown', this.handleKeyPress.bind(this));
+	}
+
+	componentWillUnmount() {
+		document.removeEventListener('keydown', this.handleKeyPress.bind(this));
+	}
+
+	handleKeyPress = (event) => {
+		//TODO: IMPLEMENT
+		console.log(event); 
+	};
 
 	render() {
 		return (
-				<Content style={{ padding: 24, minHeight: '100vh' }}>
-					<div>
-					This is content.
-					</div>
-				</Content>
+			<Content
+				className="centered"
+				style={{ padding: 24, minHeight: '100vh' }}
+				onKeyPress={() => this.handleKeyPress}
+			>
+				<EmptyHome />
+			</Content>
 		);
 	}
 }
