@@ -28,7 +28,7 @@ export class FinalStep extends Component {
 
 	handleInputConfirm = () => {
 		const state = this.state;
-		const inputValue = state.inputValue;
+		const inputValue = "#" + state.inputValue;
 		let tags = state.tags;
 		if (inputValue && tags.indexOf(inputValue) === -1) {
 			tags = [ ...tags, inputValue ];
