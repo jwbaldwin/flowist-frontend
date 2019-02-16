@@ -19,10 +19,7 @@ export class Home extends Component {
 		document.removeEventListener('keydown', this.handleKeyPress.bind(this));
 	}
 
-	handleKeyPress = (event) => {
-		//TODO: IMPLEMENT
-		console.log(event); 
-	};
+	handleKeyPress = () => {}
 
 	render() {
 		return (

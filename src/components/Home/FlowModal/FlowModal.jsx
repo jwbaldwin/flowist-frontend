@@ -1,24 +1,23 @@
 import React, { Component } from 'react';
-import { Steps, Button, Icon, Input, Modal, message } from 'antd';
+import { Steps, Button, Icon, Modal, message } from 'antd';
+import FinalStep from './FinalStep';
+import MainStep from './MainStep';
+import InfoStep from './InfoStep';
 import './FlowModal.css';
 
-const { TextArea } = Input;
 const Step = Steps.Step;
 
 const steps = [
 	{
 		title: 'Info',
-		content: <Input size="large" placeholder="Gimmie the deets..." />,
 		icon: <Icon type="form" />
 	},
 	{
 		title: 'Dump',
-		content: <TextArea placeholder="Error dump" autosize={{ minRows: 5, maxRows: 25 }} />,
 		icon: <Icon type="code" />
 	},
 	{
 		title: 'Go!',
-		content: 'Last-content',
 		icon: <Icon type="smile" />
 	}
 ];
@@ -30,7 +29,11 @@ export class FlowModal extends Component {
 		this.state = {
 			visible: false,
 			confirmLoading: false,
-			current: 0
+			current: 0,
+            activity: '',
+			title: '',             
+			content: '',
+			tags: []
 		};
 	}
 
@@ -45,7 +48,8 @@ export class FlowModal extends Component {
 			confirmLoading: true
 		});
 		setTimeout(() => {
-			message.success('Your flow is saved!');
+            message.success('Your flow is saved!');
+            console.log(this.state)
 
 			this.setState({
 				visible: false,
@@ -60,6 +64,14 @@ export class FlowModal extends Component {
 		});
 	};
 
+	handleChange = (input) => (event) => {
+        this.setState({ [input]: event.target.value });
+    };
+
+    handleTagsChange = (tags) => {
+        this.setState({ tags: tags });
+	};
+
 	next() {
 		this.setState({ current: this.state.current + 1 });
 	}
@@ -70,6 +82,8 @@ export class FlowModal extends Component {
 
 	render() {
 		const { current } = this.state;
+		const { activity, title, content, extra } = this.state;
+		const flowData = { activity, title, content, extra };
 
 		return (
 			<div>
@@ -115,7 +129,13 @@ export class FlowModal extends Component {
 								/>
 							))}
 						</Steps>
-						<div className="steps-content">{steps[current].content}</div>
+						<div className="steps-content">
+							{current === 0 && <InfoStep handleChange={this.handleChange} flowData={flowData} />}
+							{current === 1 && <MainStep handleChange={this.handleChange} flowData={flowData} />}
+                            {current === 2 && <FinalStep handleChange={this.handleChange} 
+                                                         handleTagsChange={this.handleTagsChange} 
+                                                         flowData={flowData} />}
+						</div>
 					</div>
 				</Modal>
 			</div>
