@@ -11,6 +11,7 @@ export class MainStep extends Component {
 			<TextArea 
 				id='content'
 				placeholder="> Error dump" 
+				value={this.props.flowData.content}
 				autosize={{ minRows: 7 }} 
 				onChange={this.props.handleChange('content')}
 				onPressEnter={this.props.handleChange('content')} />

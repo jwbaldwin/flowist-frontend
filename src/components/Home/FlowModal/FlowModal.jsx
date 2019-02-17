@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import { Steps, Button, Icon, Modal, message } from 'antd';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import PropTypes from 'prop-types';
+import * as flowActions from '../../../actions/flowActions';
 import FinalStep from './FinalStep';
 import MainStep from './MainStep';
 import InfoStep from './InfoStep';
@@ -30,10 +34,12 @@ export class FlowModal extends Component {
 			visible: false,
 			confirmLoading: false,
 			current: 0,
-            activity: '',
-			title: '',             
-			content: '',
-			tags: []
+			flow: {
+				activity: '',
+				title: '',
+				content: '',
+				tags: []
+			}
 		};
 	}
 
@@ -48,9 +54,9 @@ export class FlowModal extends Component {
 			confirmLoading: true
 		});
 		setTimeout(() => {
-            message.success('Your flow is saved!');
-            console.log(this.state)
-
+			message.success('Your flow is saved!');
+			console.log(this.state);
+			this.props.flowActions.addFlow(this.state.flow);
 			this.setState({
 				visible: false,
 				confirmLoading: false
@@ -65,11 +71,11 @@ export class FlowModal extends Component {
 	};
 
 	handleChange = (input) => (event) => {
-        this.setState({ [input]: event.target.value });
-    };
+		this.setState({ flow: { [input]: event.target.value }});
+	};
 
-    handleTagsChange = (tags) => {
-        this.setState({ tags: tags });
+	handleTagsChange = (tags) => {
+		this.setState({ tags: tags });
 	};
 
 	next() {
@@ -82,8 +88,6 @@ export class FlowModal extends Component {
 
 	render() {
 		const { current } = this.state;
-		const { activity, title, content, extra } = this.state;
-		const flowData = { activity, title, content, extra };
 
 		return (
 			<div>
@@ -130,11 +134,15 @@ export class FlowModal extends Component {
 							))}
 						</Steps>
 						<div className="steps-content">
-							{current === 0 && <InfoStep handleChange={this.handleChange} flowData={flowData} />}
-							{current === 1 && <MainStep handleChange={this.handleChange} flowData={flowData} />}
-                            {current === 2 && <FinalStep handleChange={this.handleChange} 
-                                                         handleTagsChange={this.handleTagsChange} 
-                                                         flowData={flowData} />}
+							{current === 0 && <InfoStep handleChange={this.handleChange} flowData={this.state.flow} />}
+							{current === 1 && <MainStep handleChange={this.handleChange} flowData={this.state.flow} />}
+							{current === 2 && (
+								<FinalStep
+									handleChange={this.handleChange}
+									handleTagsChange={this.handleTagsChange}
+									flowData={this.state.flow}
+								/>
+							)}
 						</div>
 					</div>
 				</Modal>
@@ -143,4 +151,20 @@ export class FlowModal extends Component {
 	}
 }
 
-export default FlowModal;
+FlowModal.propTypes = {
+	flowActions: PropTypes.object
+};
+
+function mapStateToProps(state) {
+	return {
+		flow: state.flow
+	};
+}
+
+function mapDispatchToProps(dispatch) {
+	return {
+		flowActions: bindActionCreators(flowActions, dispatch)
+	};
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(FlowModal);

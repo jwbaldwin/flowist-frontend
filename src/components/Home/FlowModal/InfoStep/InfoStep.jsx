@@ -8,7 +8,7 @@ export class InfoStep extends Component {
 			<div>
 				<div id='activity-group'>
 					<label htmlFor="activity-group">What where you doing?</label>
-					<Radio.Group id="activity-group" onChange={this.props.handleChange('activity')}>
+					<Radio.Group id="activity-group" onChange={this.props.handleChange('activity')} value={this.props.flowData.activity} >
 						<Radio.Button value='coding'>
 							<Icon type="laptop" /> Coding
 						</Radio.Button>
@@ -25,6 +25,7 @@ export class InfoStep extends Component {
 					<Input
 						id="title"
 						placeholder="Gimmie the deets..."
+						value={this.props.flowData.title}
 						onChange={this.props.handleChange('title')}
 						onPressEnter={this.props.handleChange('title')} />
 				</div>
