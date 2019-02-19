@@ -71,11 +71,15 @@ export class FlowModal extends Component {
 	};
 
 	handleChange = (input) => (event) => {
-		this.setState({ flow: { [input]: event.target.value }});
+		this.setState({
+			flow: Object.assign({}, this.state.flow, { [input]: event.target.value })
+		});
 	};
 
 	handleTagsChange = (tags) => {
-		this.setState({ tags: tags });
+		this.setState({
+			flow: Object.assign({}, this.state.flow, { tags: tags })
+		});
 	};
 
 	next() {
