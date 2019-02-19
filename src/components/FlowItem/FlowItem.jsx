@@ -1,38 +1,59 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import PropTypes from 'prop-types';
+import * as flowActions from '../../actions/flowActions';
+import { Skeleton, Switch, Card, Icon, Layout } from 'antd';
 import './FlowItem.css';
-import createMarkdownPlugin from 'draft-js-markdown-plugin';
-import createPrismPlugin from 'draft-js-prism-plugin';
-import Editor from 'draft-js-plugins-editor';
-import { EditorState } from 'draft-js';
-import Prism from 'prismjs';
 
-export class FlowItem extends Component {
-	state = {
-		editorState: EditorState.createEmpty(),
-		plugins: [ 
-			createPrismPlugin({
-				prism: Prism
-			  }),
-			createMarkdownPlugin() ]
-	};
+const { Meta } = Card;
 
-	onChange = (editorState) => {
-		this.setState({
-			editorState
-		});
-	};
+const iconMap = {
+	coding: 'laptop',
+	research: 'search',
+	debugging: 'alert'
+};
+
+class FlowItem extends Component {
+	// state = {
+	// 	loading: true
+	// };
+
+	// onChange = (checked) => {
+	// 	this.setState({ loading: !checked });
+	// };
 
 	render() {
-		return (
-						<Editor
-							editorState={this.state.editorState}
-							onChange={this.onChange}
-							plugins={this.state.plugins}
-							autoFocus
-							placeholder="Start writing your thoughts. We support Markdown!"
-						/>
+		// const { loading } = this.state;
+		const flowCards = this.props.flow.map((flow, index) =>
+			<Card
+				key={index}
+				style={{ width: 500, marginTop: 16 }}
+				actions={[ <Icon type="setting" />, <Icon type="edit" />, <Icon type="ellipsis" /> ]}>
+				<Meta avatar={<Icon type={iconMap[flow.activity]} />} title={flow.title} description={flow.content} />
+				{flow.tags.map((tag, index) => <span key={index} >{tag}</span>)}
+			</Card>
 		);
+
+		return <div>{flowCards}</div>;
 	}
 }
 
-export default FlowItem;
+FlowItem.propTypes = {
+	flowActions: PropTypes.object,
+	flow: PropTypes.array
+};
+
+function mapStateToProps(state) {
+	return {
+		flow: state.flow
+	};
+}
+
+function mapDispatchToProps(dispatch) {
+	return {
+		flowActions: bindActionCreators(flowActions, dispatch)
+	};
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(FlowItem);

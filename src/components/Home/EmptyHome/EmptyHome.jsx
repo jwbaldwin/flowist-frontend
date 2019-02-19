@@ -3,22 +3,18 @@ import { Button, Icon } from 'antd';
 import FlowModal from '../FlowModal';
 
 export class EmptyHome extends Component {
-    constructor(props) {
-		super(props);
-
-		this.state = {
-            visible: false
-        };
-	}
+		state = {
+			visible: false
+		};
 
 	showModal = () => {
-        this.setState({visible: !this.state.visible});
-      }
+		this.setState({ visible: !this.state.visible });
+	};
 
 	render() {
 		return (
 			<div>
-                <FlowModal visible={this.state.visible} />
+				<FlowModal visible={this.state.visible} />
 				<div style={{ color: '#bbb', marginBottom: '3em' }}>
 					No active flows. Add one here!
 					<span>

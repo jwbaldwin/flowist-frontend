@@ -27,21 +27,17 @@ const steps = [
 ];
 
 export class FlowModal extends Component {
-	constructor(props) {
-		super(props);
-
-		this.state = {
-			visible: false,
-			confirmLoading: false,
-			current: 0,
-			flow: {
-				activity: '',
-				title: '',
-				content: '',
-				tags: []
-			}
-		};
-	}
+	state = {
+		visible: false,
+		confirmLoading: false,
+		current: 0,
+		flow: {
+			activity: '',
+			title: '',
+			content: '',
+			tags: []
+		}
+	};
 
 	componentDidUpdate(prevProps) {
 		if (this.props.visible !== prevProps.visible) {
@@ -49,19 +45,18 @@ export class FlowModal extends Component {
 		}
 	}
 
+	saveFlowMessage = () => {
+		message.loading('Saving your flow..', 1.0)
+		  .then(() => message.success('Your flow is saved!', 1.5));
+	  };
+
 	handleOk = () => {
 		this.setState({
 			confirmLoading: true
 		});
-		setTimeout(() => {
-			message.success('Your flow is saved!');
-			console.log(this.state);
-			this.props.flowActions.addFlow(this.state.flow);
-			this.setState({
-				visible: false,
-				confirmLoading: false
-			});
-		}, 2000);
+		this.saveFlowMessage();
+		this.props.flowActions.addFlow(this.state.flow);
+		this.setState({ visible: false, confirmLoading: false });
 	};
 
 	handleCancel = () => {
@@ -159,16 +154,10 @@ FlowModal.propTypes = {
 	flowActions: PropTypes.object
 };
 
-function mapStateToProps(state) {
-	return {
-		flow: state.flow
-	};
-}
-
 function mapDispatchToProps(dispatch) {
 	return {
 		flowActions: bindActionCreators(flowActions, dispatch)
 	};
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(FlowModal);
+export default connect(null, mapDispatchToProps)(FlowModal);
