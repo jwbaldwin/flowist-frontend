@@ -77,6 +77,12 @@ export class FlowModal extends Component {
 		});
 	};
 
+	handleKeyPress = (event) => {
+		if(event.key == 'Enter'){
+		  this.next();
+		}
+	  }
+
 	next() {
 		this.setState({ current: this.state.current + 1 });
 	}
@@ -89,7 +95,7 @@ export class FlowModal extends Component {
 		const { current } = this.state;
 
 		return (
-			<div>
+			<div onKeyPress={this.handleKeyPress}>
 				<Modal
 					title="Record your flow!"
 					visible={this.state.visible}

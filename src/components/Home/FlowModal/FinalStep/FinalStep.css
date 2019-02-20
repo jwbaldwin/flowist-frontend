@@ -1,3 +1,7 @@
 .tags {
     padding: 15px;
 }
+
+div.ant-tag {
+    margin: 5px;
+}
