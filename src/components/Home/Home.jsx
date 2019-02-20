@@ -30,7 +30,7 @@ class Home extends Component {
 				style={{ padding: 24, minHeight: '100vh' }}
 				onKeyPress={() => this.handleKeyPress}
 			>
-				{this.props.flow.length > 0 ? <FlowItem /> : <EmptyHome />}
+				{ (this.props.flow.length > 0) ? <FlowItem /> : <EmptyHome />}
 			</Content>
 		);
 	}
