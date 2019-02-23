@@ -3,15 +3,14 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import * as flowActions from '../../actions/flowActions';
-import { Layout } from 'antd';
+import { Layout, Icon } from 'antd';
 import EmptyHome from './EmptyHome';
 import FlowItem from '../FlowItem';
-
+import './Home.css';
 
 const { Content } = Layout;
 
 class Home extends Component {
-
 	componentWillMount() {
 		this.props.flowActions.fetchFlow();
 		document.addEventListener('keydown', this.handleKeyPress.bind(this));
@@ -30,7 +29,7 @@ class Home extends Component {
 				style={{ padding: 24, minHeight: '100vh' }}
 				onKeyPress={() => this.handleKeyPress}
 			>
-				{ (this.props.flow.length > 0) ? <FlowItem /> : <EmptyHome />}
+				{this.props.isLoading ? <Icon id='home-loading-icon' type="loading" /> : (Object.getOwnPropertyNames(this.props.flow).length > 0 ? <FlowItem /> : <EmptyHome />)}
 			</Content>
 		);
 	}
@@ -38,12 +37,13 @@ class Home extends Component {
 
 Home.propTypes = {
 	flowActions: PropTypes.object,
-	flow: PropTypes.array
+	flow: PropTypes.object
 };
 
 function mapStateToProps(state) {
 	return {
-		flow: state.flow
+		flow: state.flow.data,
+		isLoading: state.flow.isLoading
 	};
 }
 

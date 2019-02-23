@@ -3,6 +3,16 @@ div.ant-card-body {
     padding-bottom: 4px;
 }
 
+div.ant-card-head-title {
+    flex: none;
+    font-weight: 800;
+}
+
+div.ant-card-extra  {
+    font-weight: 200;
+    font-size: 8pt;
+}
+
 div.ant-card-meta {
     padding: 24px 24px 20px 24px;
     margin-bottom: 4px;
@@ -35,6 +45,6 @@ div.ant-skeleton-header, div.ant-skeleton-content {
 }
 
 #flow-icon > svg {
-    height: 30px;
-    width: 30px;
+    height: 24px;
+    width: 24px;
 }

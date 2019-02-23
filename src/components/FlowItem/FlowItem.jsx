@@ -16,51 +16,43 @@ const iconMap = {
 };
 
 class FlowItem extends Component {
-	state = {
-		loading: false
-	};
-
-	onChange = (checked) => {
-		this.setState({ loading: !checked });
-	};
-
 	render() {
-		const { loading } = this.state;
+		const { flow } = this.props;
+		const created= new Date(flow.created);
 		return (
-			<div>
-				<Switch checked={!loading} onChange={this.onChange} />
-				{this.props.flow.map((flow, index) => {
-					return (
-						<Card
-							key={index}
-							style={{ width: 500, marginTop: 16 }}
-							actions={[ <Icon type="setting" />, <Icon type="edit" />, <Icon type="check" /> ]}
-							extra={flow.timestamp}
-							title={flow.title}
-						>
-							<Skeleton loading={loading} avatar active>
-								<Meta
-									avatar={<Icon id='flow-icon' type={iconMap[flow.activity]} />}
-									description={flow.content}
-								/>
-								<FlowTagsFooter tags={flow.tags} />
-							</Skeleton>
-						</Card>
-					);
-				})}
-			</div>
+			<Card
+				style={{ width: 500, marginTop: 16 }}
+				actions={[ <Icon type="ellipsis" />, <Icon type="edit" />, <Icon type="check" /> ]}
+				extra={
+					created.toLocaleTimeString().toLocaleLowerCase() +
+					' - ' +
+					created.toDateString().toLocaleLowerCase()
+				}
+				title={'You were: ' + flow.activity}
+			>
+				<Skeleton loading={this.props.isLoading} avatar title paragraph={{ rows: 4 }} active>
+					<Meta
+						avatar={<Icon id="flow-icon" type={iconMap[flow.activity]} />}
+						title={flow.title}
+						description={flow.content}
+					/>
+					<FlowTagsFooter tags={flow.tags} />
+				</Skeleton>
+			</Card>
 		);
 	}
 }
 
 FlowItem.propTypes = {
 	flowActions: PropTypes.object,
-	flow: PropTypes.array
+	flow: PropTypes.object,
+	isLoading: PropTypes.bool
 };
 
 function mapStateToProps(state) {
 	return {
-		flow: state.flow
+		flow: state.flow.data,
+		isLoading: state.flow.isLoading
 	};
 }
 
