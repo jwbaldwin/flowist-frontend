@@ -1,0 +1,7 @@
+export const FETCH_FLOW = 'FETCH_FLOW';
+export const FETCH_FLOW_SUCCESS = 'FETCH_FLOW_SUCCESS';
+export const FETCH_FLOW_ERROR = 'FETCH_FLOW_ERROR';
+
+export const ADD_FLOW = 'ADD_FLOW';
+export const ADD_FLOW_SUCCESS = 'ADD_FLOW_SUCCESS';
+export const ADD_FLOW_ERROR = 'ADD_FLOW_ERROR';

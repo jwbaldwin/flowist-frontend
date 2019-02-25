@@ -1,0 +1,14 @@
+#flow-tags-footer {
+    background: none !important;
+    display: inline-block;
+    padding: 0px 12px;
+    float: left;
+}
+
+#tags-icon {
+    padding: 0 16px;
+}
+
+div.ant-tag {
+    margin: 3px;
+}
