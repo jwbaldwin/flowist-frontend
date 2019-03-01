@@ -1,6 +1,6 @@
 {
-  "short_name": "Novu Frontend",
-  "name": "The frontend to the Novu application",
+  "short_name": "Flowist Frontend",
+  "name": "The frontend to the Flowist application",
   "icons": [
     {
       "src": "favicon.ico",

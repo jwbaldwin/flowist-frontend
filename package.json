@@ -27,7 +27,8 @@
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
     "eject": "react-scripts eject",
-    "deploy": "react-app-rewired build && aws s3 sync build/ s3://novu-frontend"
+    "deploy": "react-app-rewired build && aws s3 sync build/ s3://dev.flowist.frontend",
+    "prodDeploy": "react-app-rewired build && aws s3 sync build/ s3://prod.flowist.frontend"
   },
   "eslintConfig": {
     "extends": "react-app"
