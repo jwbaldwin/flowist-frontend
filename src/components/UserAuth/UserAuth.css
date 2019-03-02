@@ -1,0 +1,24 @@
+#main-panel {
+    margin-top: 15vh;
+}
+
+#social-login > Button {
+    margin-top: 12px;
+    text-align: left;
+}
+
+.ant-btn > .anticon + span, .ant-btn > span + .anticon {
+    margin-left: 15px;
+}
+
+.green-btn {
+    background-color: #1bb15a;
+    border-color: #168f48;
+    color: #fff;
+}
+
+.green-btn:hover {
+    background-color: #1dc060;
+    border-color: #1bb15a;
+    color: #fff;
+}
