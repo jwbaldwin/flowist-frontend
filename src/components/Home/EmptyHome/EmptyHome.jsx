@@ -10,7 +10,7 @@ export class EmptyHome extends Component {
 	showModal = () => {
 		this.setState({ visible: !this.state.visible });
 	};
-	// TODO USE EMPTY ANTD TAG
+	
 	render() {
 		return (
 			<div>

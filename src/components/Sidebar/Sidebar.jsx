@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router';
 import { Link } from 'react-router-dom';
 import { Layout, Menu, Icon } from 'antd';
+import logo from '../../images/flowist.png';
 import './Sidebar.css';
 
 const { Sider } = Layout;
@@ -28,8 +29,16 @@ export class Sidebar extends Component {
 
 	render() {
 		return (
-			<Sider className="sider" theme={this.state.theme} collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
-				<div id="app-sidebar-logo" />
+			<Sider
+				className="sider"
+				theme={this.state.theme}
+				collapsible
+				collapsed={this.state.collapsed}
+				onCollapse={this.onCollapse}
+			>
+				<div id="app-sidebar-logo-div">
+					<img src={logo} id="app-sidebar-logo" alt="Flowist Logo" />
+				</div>
 				<Menu theme={this.state.theme} defaultSelectedKeys={[ this.props.location.pathname ]} mode="inline">
 					<Menu.Item key="/">
 						<Link to="/">
