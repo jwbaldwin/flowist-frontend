@@ -10,11 +10,11 @@ export class EmptyHome extends Component {
 	showModal = () => {
 		this.setState({ visible: !this.state.visible });
 	};
-
+ // TODO USE EMPTY ANTD TAG
 	render() {
 		return (
 			<div>
-				<FlowModal visible={this.state.visible} />
+				<FlowModal visible={this.state.visible} /> 
 				<div style={{ color: '#bbb', marginBottom: '3em' }}>
 					No active flows. Add one here!
 					<span>

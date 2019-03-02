@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import AppMain from './components/AppMain';
-import Login from './components/Login';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import UserAuth from './components/UserAuth';
 import './App.css';
 
 class App extends Component {
@@ -9,7 +9,7 @@ class App extends Component {
 		return (
 			<BrowserRouter>
 				<Switch>
-					<Route exact path="/login" component={Login} />
+					<Route exact path="/user" component={UserAuth} />
 					<Route component={AppMain} />
 				</Switch>
 			</BrowserRouter>

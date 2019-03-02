@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import * as flowActions from '../../actions/flowActions';
-import { Skeleton, Switch, Card, Icon } from 'antd';
+import { Skeleton, Card, Icon } from 'antd';
 import './FlowItem.css';
 import FlowTagsFooter from './FlowTagsFooter';
 
