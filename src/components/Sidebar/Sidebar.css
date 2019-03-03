@@ -1,7 +1,8 @@
 #app-sidebar-logo {
 	height: 50%;
 	width: 50%;
-	margin: 32px;
+	margin: 15px auto;
+	display: block;
 }
 
 .sider {
