@@ -1,4 +1,5 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Frontend repo for [flowist.io](https://flowist.io)
+Backend API can be found [here](https://github.com/jwbaldwin/flowist)
 
 ## Available Scripts
 
