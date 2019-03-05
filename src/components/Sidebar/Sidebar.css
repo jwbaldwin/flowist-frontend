@@ -5,6 +5,12 @@
 	display: block;
 }
 
+#signin-login-btn {
+	width: 80%;
+	margin-left: 10%;
+	margin-top: 10%;
+}
+
 .sider {
 	-moz-box-shadow: -3px 0 10px 0 #999;
 	-webkit-box-shadow: -3px 0 10px 0 #999;

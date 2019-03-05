@@ -19,3 +19,15 @@
     
     text-align: center;
 }
+
+.green-btn {
+	background-color: #1bb15a;
+	border-color: #168f48;
+	color: #fff;
+}
+
+.green-btn:hover {
+	background-color: #1dc060;
+	border-color: #1bb15a;
+	color: #fff;
+}

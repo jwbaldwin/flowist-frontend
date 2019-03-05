@@ -73,7 +73,7 @@ export class SignUpFormNormal extends Component {
 								message: 'Please input your E-mail!'
 							}
 						]
-					})(<Input />)}
+					})(<Input size='large'/>)}
 				</Form.Item>
 				<Form.Item {...formItemLayout} label="Password">
 					{getFieldDecorator('password', {
@@ -86,7 +86,7 @@ export class SignUpFormNormal extends Component {
 								validator: this.validateToNextPassword
 							}
 						]
-					})(<Input type="password" />)}
+					})(<Input size='large' type="password" />)}
 				</Form.Item>
 				<Form.Item {...formItemLayout} label="Confirm Password">
 					{getFieldDecorator('confirm', {
@@ -99,7 +99,7 @@ export class SignUpFormNormal extends Component {
 								validator: this.compareToFirstPassword
 							}
 						]
-					})(<Input type="password" onBlur={this.handleConfirmBlur} />)}
+					})(<Input size='large' type="password" onBlur={this.handleConfirmBlur} />)}
 				</Form.Item>
 				<Form.Item {...tailFormItemLayout}>
 					{getFieldDecorator('agreement', {
@@ -111,7 +111,7 @@ export class SignUpFormNormal extends Component {
 					)}
 				</Form.Item>
 				<Form.Item {...tailFormItemLayout}>
-					<Button type="primary" className="green-btn" block htmlType="submit">
+					<Button size='large' type="primary" className="green-btn" block htmlType="submit">
 						Register
 					</Button>
 				</Form.Item>

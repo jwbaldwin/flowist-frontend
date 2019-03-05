@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router';
 import { Link } from 'react-router-dom';
-import { Layout, Menu, Icon } from 'antd';
+import { Layout, Menu, Icon, Button } from 'antd';
 import logo from '../../images/flowist.png';
 import './Sidebar.css';
 
@@ -37,7 +37,9 @@ export class Sidebar extends Component {
 				onCollapse={this.onCollapse}
 			>
 				<div id="app-sidebar-logo-div">
-					<img src={logo} id="app-sidebar-logo" alt="Flowist Logo" />
+					<Link to="/">
+						<img src={logo} id="app-sidebar-logo" alt="Flowist Logo" />
+					</Link>
 				</div>
 				<Menu theme={this.state.theme} defaultSelectedKeys={[ this.props.location.pathname ]} mode="inline">
 					<Menu.Item key="/">
@@ -64,6 +66,11 @@ export class Sidebar extends Component {
 							<span>#settings</span>
 						</Link>
 					</Menu.Item>
+					<Link to="/user">
+						<Button size="large" type="primary" id='signin-login-btn'>
+							login
+						</Button>
+					</Link>
 				</Menu>
 			</Sider>
 		);

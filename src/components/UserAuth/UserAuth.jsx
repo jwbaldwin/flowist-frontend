@@ -3,6 +3,7 @@ import { Tabs, Col, Divider, Button, Icon } from 'antd';
 import LoginForm from './LoginForm';
 import SignUpForm from './SignUpForm';
 import './UserAuth.css';
+import logo from '../../images/flowist.png';
 
 const TabPane = Tabs.TabPane;
 
@@ -14,20 +15,25 @@ export class UserAuth extends Component {
 	render() {
 		return (
 			<div id="main-panel" className="centered">
-				<Col xs={2} sm={7} md={8} lg={9} xl={9} />
-				<Col xs={20} sm={10} md={8} lg={6} xl={6} id="main-panel-user-auth">
-					<Tabs onChange={callback} type="card" style={{ 'text-align': 'left' }}>
-						<TabPane tab="Login" key="1">
-							<div className="gutter-box">
-								<LoginForm />
-							</div>
-						</TabPane>
-						<TabPane tab="Sign Up" key="2">
-							<div className="gutter-box">
-								<SignUpForm />
-							</div>
-						</TabPane>
-					</Tabs>
+				<Col xs={2} sm={7} md={8} lg={8} xl={9} />
+				<Col xs={20} sm={10} md={8} lg={8} xl={6} id="main-panel-user-auth">
+					<div className="card-container">
+						<div id="app-logo-div">
+							<img src={logo} id="app-logo" alt="Flowist Logo" />
+						</div>
+						<Tabs onChange={callback} type="card" style={{ 'text-align': 'left' }}>
+							<TabPane tab="Login" key="1">
+								<div className="gutter-box">
+									<LoginForm />
+								</div>
+							</TabPane>
+							<TabPane tab="Sign Up" key="2">
+								<div className="gutter-box">
+									<SignUpForm />
+								</div>
+							</TabPane>
+						</Tabs>
+					</div>
 					<Divider style={{ color: '#ccc' }}>or</Divider>
 					<div id="social-login">
 						<Button type="default" block>
@@ -41,7 +47,7 @@ export class UserAuth extends Component {
 						</Button>
 					</div>
 				</Col>
-				<Col xs={2} sm={7} md={8} lg={9} xl={9} />
+				<Col xs={2} sm={7} md={8} lg={8} xl={9} />
 			</div>
 		);
 	}
