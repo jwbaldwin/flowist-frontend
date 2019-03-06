@@ -48,6 +48,7 @@ export class Sidebar extends Component {
 				<div id="app-sidebar-logo-div">
 					<Link to="/">
 						<img src={logo} id="app-sidebar-logo" alt="Flowist Logo" />
+                        <h1 id="app-sidebar-logo-title">flowist</h1>
 					</Link>
 				</div>
 				<Menu theme={this.state.theme} defaultSelectedKeys={[ this.props.location.pathname ]} mode="inline">

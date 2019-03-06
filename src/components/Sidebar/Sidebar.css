@@ -1,8 +1,26 @@
+#app-sidebar-logo-div {
+    position: relative;
+    height: 64px;
+    padding-left: 24px;
+    overflow: hidden;
+    line-height: 64px;
+    background: #002140;
+    transition: all .3s;
+}
+
 #app-sidebar-logo {
-	height: 50%;
-	width: 50%;
-	margin: 15px auto;
-	display: block;
+    display: inline-block;
+    height: 32px;
+    vertical-align: middle;
+}
+
+#app-sidebar-logo-title {
+    display: inline-block;
+    margin: 0 0 0 12px;
+    color: #fff;
+    font-weight: 800;
+    font-size: 20px;
+    vertical-align: middle;
 }
 
 #signin-login-btn {
