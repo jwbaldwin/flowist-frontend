@@ -13,12 +13,22 @@ export class Sidebar extends Component {
 
 		this.state = {
 			collapsed: false,
+            width: 80,
 			theme: 'light'
 		};
 	}
 
 	onCollapse = (collapsed) => {
 		this.setState({ collapsed });
+	};
+
+    onBreakpoint = (broken) => {
+        if(broken) {
+            this.setState({ width: 0 });
+        } else {
+            this.setState({ width: 80 });
+        }
+
 	};
 
 	changeTheme = (value) => {
@@ -32,9 +42,12 @@ export class Sidebar extends Component {
 			<Sider
 				className="sider"
 				theme={this.state.theme}
+                breakpoint='md'
+                collapsedWidth={this.state.width}
 				collapsible
 				collapsed={this.state.collapsed}
 				onCollapse={this.onCollapse}
+                onBreakpoint={this.onBreakpoint}
 			>
 				<div id="app-sidebar-logo-div">
 					<Link to="/">
