@@ -18,13 +18,13 @@ export class HeaderNav extends Component {
 
 	render() {
 		return (
-			<Header style={{ background: '#fff', padding: 0 }}>
-            <Icon
-              className="trigger"
-              type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
-              onClick={this.toggle}
-            />
-          </Header>
+		    <Header style={{ background: '#fff', paddingLeft: '16px' }}>
+                <Icon
+                className="trigger"
+                type={this.props.collapsed ? 'menu-unfold' : 'menu-fold'}
+                onClick={this.props.toggle}
+                />
+            </Header>
 		);
 	}
 }
