@@ -16,13 +16,6 @@ export class LoginFormNormal extends Component {
 	render() {
 		const { getFieldDecorator } = this.props.form;
 
-		const formItemLayout = {
-			wrapperCol: {
-			  xs: { span: 24 },
-			  sm: { span: 16 },
-			},
-		  };
-
 		return (
 			<Form onSubmit={this.handleSubmit} id="login-form">
 				<Form.Item>
@@ -53,7 +46,7 @@ export class LoginFormNormal extends Component {
 						valuePropName: 'checked',
 						initialValue: true
 					})(<Checkbox className="login-form-remember-me">Remember me</Checkbox>)}
-					<a className="login-form-forgot" href="">
+					<a className="login-form-forgot" href="/">
 						Forgot password
 					</a>
 					<Button block size='large' type="primary" htmlType="submit" className="login-form-button green-btn">

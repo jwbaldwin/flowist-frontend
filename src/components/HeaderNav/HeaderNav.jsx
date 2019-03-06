@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router';
 import { Link } from 'react-router-dom';
-import { Avatar, Layout, Menu, Dropdown, Icon, Button } from 'antd';
-import logo from '../../images/flowist.png';
+import { Avatar, Layout, Menu, Dropdown, Icon } from 'antd';
+//import logo from '../../images/flowist.png';
 import './HeaderNav.css';
 
 const { Header } = Layout;

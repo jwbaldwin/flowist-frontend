@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Input, Tooltip, Icon, Checkbox, Button } from 'antd';
+import { Form, Input, Checkbox, Button } from 'antd';
 import '../UserAuth.css';
 
 export class SignUpFormNormal extends Component {
@@ -106,7 +106,7 @@ export class SignUpFormNormal extends Component {
 						valuePropName: 'checked'
 					})(
 						<Checkbox>
-							I have read the <a href="">agreement</a>
+							I have read the <a href="/">agreement</a>
 						</Checkbox>
 					)}
 				</Form.Item>

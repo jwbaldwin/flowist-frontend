@@ -5,3 +5,7 @@ export const FETCH_FLOW_ERROR = 'FETCH_FLOW_ERROR';
 export const ADD_FLOW = 'ADD_FLOW';
 export const ADD_FLOW_SUCCESS = 'ADD_FLOW_SUCCESS';
 export const ADD_FLOW_ERROR = 'ADD_FLOW_ERROR';
+
+export const FETCH_USER = 'FETCH_USER'
+export const FETCH_USER_SUCCESS = 'FETCH_USER_SUCCESS'
+export const FETCH_USER_ERROR = 'FETCH_USER_ERROR'
