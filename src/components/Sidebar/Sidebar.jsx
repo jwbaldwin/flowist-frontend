@@ -45,7 +45,7 @@ export class Sidebar extends Component {
 				collapsed={this.props.collapsed}
                 onBreakpoint={this.onBreakpoint}
 			>
-				<div id="app-sidebar-logo-div">
+				<div id="app-sidebar-logo-div" className={this.state.theme == 'light' ? 'light' : 'dark'}>
 					<Link to="/">
 						<img src={logo} id="app-sidebar-logo" alt="Flowist Logo" />
                         <h1 id="app-sidebar-logo-title">flowist</h1>

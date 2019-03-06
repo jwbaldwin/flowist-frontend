@@ -4,9 +4,9 @@
     padding-left: 24px;
     overflow: hidden;
     line-height: 64px;
-    background: #002140;
     transition: all .3s;
 }
+
 
 #app-sidebar-logo {
     display: inline-block;
@@ -27,6 +27,14 @@
 	width: 80%;
 	margin-left: 10%;
 	margin-top: 10%;
+}
+
+.light {
+	background: #fff;
+}
+
+.dark {
+	background: #1f2a2e;
 }
 
 .sider {
