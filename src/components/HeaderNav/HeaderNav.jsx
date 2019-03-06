@@ -46,7 +46,7 @@ export class HeaderNav extends Component {
                 onClick={this.props.toggle}
                 />
                 <div className='header-right'>
-                    <Dropdown overlay={userMenu} placement="bottomRight">
+                    <Dropdown trigger={['hover', 'click']} overlay={userMenu} placement="bottomRight">
                         <Avatar icon="user" />
                     </Dropdown>
                 </div>

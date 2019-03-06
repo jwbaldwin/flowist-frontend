@@ -17,7 +17,6 @@
 #app-sidebar-logo-title {
     display: inline-block;
     margin: 0 0 0 12px;
-    color: #fff;
     font-weight: 800;
     font-size: 20px;
     vertical-align: middle;
@@ -31,10 +30,12 @@
 
 .light {
 	background: #fff;
+	color: rgba(0, 0, 0, 0.64)
 }
 
 .dark {
 	background: #1f2a2e;
+	color: #fff;
 }
 
 .sider {
