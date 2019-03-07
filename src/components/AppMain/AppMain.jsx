@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import { Route, withRouter } from 'react-router-dom';
 import Sidebar from '../Sidebar';
+import AppFooter from '../AppFooter';
 import HeaderNav from '../HeaderNav';
 import Home from '../Home';
 import Tags from '../Tags';
 import Archive from '../Archive';
 import Settings from '../Settings';
 import { Layout } from 'antd';
-
-const { Footer } = Layout;
 
 export class AppMain extends Component {
     state = {
@@ -31,7 +30,7 @@ export class AppMain extends Component {
 					<Route exact path="/tags" component={Tags} />
 					<Route exact path="/archive" component={Archive} />
 					<Route exact path="/settings" component={Settings} />
-					<Footer style={{ textAlign: 'center' }}>Flowist ©2019 Created by James Baldwin</Footer>
+					<AppFooter />
 				</Layout>
 			</Layout>
 		);
