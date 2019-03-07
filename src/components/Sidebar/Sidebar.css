@@ -4,9 +4,9 @@
     padding-left: 24px;
     overflow: hidden;
     line-height: 64px;
-    background: #002140;
     transition: all .3s;
 }
+
 
 #app-sidebar-logo {
     display: inline-block;
@@ -17,7 +17,6 @@
 #app-sidebar-logo-title {
     display: inline-block;
     margin: 0 0 0 12px;
-    color: #fff;
     font-weight: 800;
     font-size: 20px;
     vertical-align: middle;
@@ -27,6 +26,16 @@
 	width: 80%;
 	margin-left: 10%;
 	margin-top: 10%;
+}
+
+.light {
+	background: #fff;
+	color: rgba(0, 0, 0, 0.64)
+}
+
+.dark {
+	background: #1f2a2e;
+	color: #fff;
 }
 
 .sider {
