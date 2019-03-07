@@ -6,7 +6,7 @@ const { Content } = Layout;
 export class Settings extends Component {
 	render() {
 		return (
-			<Content style={{ padding: 24, minHeight: '100vh' }}>
+			<Content style={{ padding: 24 }}>
 				<div>This is settings content.</div>
 			</Content>
 		);

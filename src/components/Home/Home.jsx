@@ -26,7 +26,7 @@ class Home extends Component {
 		return (
 			<Content
 				className="centered"
-				style={{ padding: 24, minHeight: '100vh' }}
+				style={{ padding: 24 }}
 				onKeyPress={() => this.handleKeyPress}
 			>
 				{this.props.isLoading ? <Icon id='home-loading-icon' type="loading" /> : (Object.getOwnPropertyNames(this.props.flow).length > 0 ? <FlowItem /> : <EmptyHome />)}

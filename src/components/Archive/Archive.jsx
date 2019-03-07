@@ -6,7 +6,7 @@ const { Content } = Layout;
 export class Archive extends Component {
 	render() {
 		return (
-			<Content style={{ padding: 24, minHeight: '100vh' }}>
+			<Content style={{ padding: 24 }}>
 				<div>This is archive content.</div>
 			</Content>
 		);

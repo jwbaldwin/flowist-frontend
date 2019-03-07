@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router';
 import { Link } from 'react-router-dom';
-import { Layout, Menu, Icon } from 'antd';
+import { Layout, Menu, Icon, Switch } from 'antd';
 import logo from '../../images/flowist.png';
 import './Sidebar.css';
 
@@ -45,10 +45,10 @@ export class Sidebar extends Component {
 				collapsed={this.props.collapsed}
                 onBreakpoint={this.onBreakpoint}
 			>
-				<div id="app-sidebar-logo-div" className={this.state.theme === 'light' ? 'light' : 'dark'}>
+				<div id="app-sidebar-logo-div" className={this.state.theme}>
 					<Link to="/">
 						<img src={logo} id="app-sidebar-logo" alt="Flowist Logo" />
-                        <h1 id="app-sidebar-logo-title">flowist</h1>
+                        <h1 id="app-sidebar-logo-title" className={this.state.theme}> flowist</h1>
 					</Link>
 				</div>
 				<Menu theme={this.state.theme} defaultSelectedKeys={[ this.props.location.pathname ]} mode="inline">
@@ -76,6 +76,12 @@ export class Sidebar extends Component {
 							<span>#settings</span>
 						</Link>
 					</Menu.Item>
+                    <Switch
+                id='sider-theme-switch'
+                checkedChildren={<Icon type="rocket" />} unCheckedChildren={<Icon type="bulb" />}
+                checked={this.state.theme === 'dark'}
+                onChange={this.changeTheme}
+            />
 				</Menu>
 			</Sider>
 		);

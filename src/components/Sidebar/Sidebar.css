@@ -22,20 +22,23 @@
     vertical-align: middle;
 }
 
-#signin-login-btn {
-	width: 80%;
-	margin-left: 10%;
-	margin-top: 10%;
+#sider-theme-switch {
+    position: absolute;
+    bottom: 0;
+    margin: 10%;
+    width: 80%;
 }
 
 .light {
 	background: #fff;
-	color: rgba(0, 0, 0, 0.64)
+	color: rgba(0, 0, 0, 0.64);
+    transition: all .5s;
 }
 
-.dark {
-	background: #1f2a2e;
-	color: #fff;
+.dark  {
+    background: inherit;
+	color: #d9d9d9 !important;
+    transition: all .01s;
 }
 
 .sider {
