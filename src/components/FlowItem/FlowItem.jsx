@@ -40,7 +40,7 @@ class FlowItem extends Component {
 			<Card
 				actions={[ <Icon type="ellipsis" />, <Icon type="edit" />, <Icon type="check" /> ]}
 				extra={flow.flowStatus}
-				title={flow.activity.toUpperCase() + ': ' + flow.title }
+				title={flow.title}
 			>
 				<Skeleton loading={this.props.isLoading} avatar title paragraph={{ rows: 4 }} active>
 					<Card.Grid style={contentStyle} className="flow-card-content">
