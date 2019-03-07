@@ -3,45 +3,31 @@ div.ant-card-body {
     padding-bottom: 4px;
 }
 
-div.ant-card-head-title {
-    flex: none;
-    font-weight: 800;
+div.ant-card-grid {
+    box-shadow: none;
+    border: none;
+    padding: 8px;
 }
 
-div.ant-card-extra  {
+div.ant-card-grid:hover {
+    box-shadow: none;
+    z-index: inherit !important;
+    position: inherit !important;
+}
+
+.flow-card-timestamp  {
+    padding-top: 5% !important;
+    padding-bottom: 0 !important;
     font-weight: 200;
     font-size: 8pt;
 }
 
-div.ant-card-meta {
-    padding: 24px 24px 20px 24px;
-    margin-bottom: 4px;
-    border-bottom: 1px dashed rgb(230, 230, 230);
-}
-
-div.ant-card-meta-title {
+.flow-card-content {
     text-align: left;
-}
-
-div.ant-card-meta-description {
-    font-family: monospace;
-    text-align: left;
-    width: 100%;
-    padding: 8px;
-    color: rgba(81, 250, 123, 1);
-    background-color: rgba(31, 31, 41, .9);
-    border: 1.5px solid rgba(45, 45, 58, 0.9);
-    border-radius: 4px;
 }
 
 div.ant-skeleton-header, div.ant-skeleton-content {
     padding: 24px 24px 20px 24px;
-}
-#flow-icon {
-    /* padding: 10px;
-    border: 1px solid rgba(200, 200, 200, 0.8);;
-    border-radius: 50px;
-    background-color: rgba(255, 255, 255, 0.8); */
 }
 
 #flow-icon > svg {

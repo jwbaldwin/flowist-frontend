@@ -7,36 +7,49 @@ import { Skeleton, Card, Icon } from 'antd';
 import './FlowItem.css';
 import FlowTagsFooter from './FlowTagsFooter';
 
-const { Meta } = Card;
-
 const iconMap = {
 	coding: 'laptop',
 	researching: 'search',
 	debugging: 'alert'
 };
 
+const contentStyle = {
+  width: '100%',
+  textAlign: 'left',
+};
+
+const tagsFooterStyle = {
+  width: '80%',
+  textAlign: 'left',
+};
+
+const timestampStyle = {
+  width: '20%',
+  textAlign: 'right',
+  justify: 'bottom',
+};
+
 class FlowItem extends Component {
 	render() {
 		const { flow } = this.props;
 		const created= new Date(flow.created);
+
 		return (
 			<Card
-				style={{ width: 500, marginTop: 16 }}
 				actions={[ <Icon type="ellipsis" />, <Icon type="edit" />, <Icon type="check" /> ]}
-				extra={
-					created.toLocaleTimeString().toLocaleLowerCase() +
-					' - ' +
-					created.toDateString().toLocaleLowerCase()
-				}
+				extra="here"
 				title={'You were: ' + flow.activity}
 			>
 				<Skeleton loading={this.props.isLoading} avatar title paragraph={{ rows: 4 }} active>
-					<Meta
-						avatar={<Icon id="flow-icon" type={iconMap[flow.activity]} />}
-						title={flow.title}
-						description={flow.content}
-					/>
-					<FlowTagsFooter tags={flow.tags} />
+					<Card.Grid style={contentStyle} className="flow-card-content">
+                        {flow.content}
+                    </Card.Grid>
+                    <Card.Grid style={tagsFooterStyle} className="flow-card-tags">
+                        <FlowTagsFooter tags={flow.tags} />
+                    </Card.Grid>
+                    <Card.Grid style={timestampStyle} className="flow-card-timestamp">
+                        { created.toDateString().toLocaleLowerCase() }
+                    </Card.Grid>
 				</Skeleton>
 			</Card>
 		);
