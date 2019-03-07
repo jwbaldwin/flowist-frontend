@@ -6,6 +6,33 @@
     transition: all .3s,padding 0s;
 }
 
+#app-headernav-logo-div {
+    position: relative;
+    height: 64px;
+    line-height: 64px;
+    transition: all .3s;
+}
+
+#app-headernav-logo {
+    display: inline-block;
+    height: 40px;
+    vertical-align: middle;
+}
+
+@media all and (min-width: 768px) {
+  #app-headernav-logo-div {
+    display: none !important;
+  }
+  #app-headernav-logo {
+    display: none !important;
+  }
+}
+
+
+.header-left {
+    float: left;
+}
+
 .header-right {
     float: right;
 }

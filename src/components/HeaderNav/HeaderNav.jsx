@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router';
 import { Link } from 'react-router-dom';
 import { Avatar, Layout, Menu, Dropdown, Icon } from 'antd';
-//import logo from '../../images/flowist.png';
+import logo from '../../images/flowist.png';
 import './HeaderNav.css';
 
 const { Header } = Layout;
@@ -40,6 +40,13 @@ export class HeaderNav extends Component {
 	render() {
 		return (
 		    <Header style={{ background: '#fff', paddingLeft: '16px' }}>
+                <div className='header-left'>
+                    <div id="app-headernav-logo-div">
+                        <Link to="/">
+                            <img src={logo} id="app-headernav-logo" alt="Flowist Logo" />
+                        </Link>
+                    </div>
+                </div>
                 <Icon
                 className="header-trigger"
                 type={this.props.collapsed ? 'menu-unfold' : 'menu-fold'}
