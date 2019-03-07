@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "antd": "^3.13.0",
+    "antd": "^3.14.1",
     "babel-plugin-import": "^1.11.0",
     "customize-cra": "^0.2.11",
     "draft-js-markdown-plugin": "^3.0.5",

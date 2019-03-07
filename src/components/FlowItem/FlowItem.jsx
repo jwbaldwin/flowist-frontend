@@ -3,9 +3,11 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import * as flowActions from '../../actions/flowActions';
-import { Skeleton, Card, Icon } from 'antd';
+import { Skeleton, Card, Icon, Typography } from 'antd';
 import './FlowItem.css';
 import FlowTagsFooter from './FlowTagsFooter';
+
+const { Text } = Typography;
 
 const iconMap = {
 	coding: 'laptop',
@@ -37,12 +39,12 @@ class FlowItem extends Component {
 		return (
 			<Card
 				actions={[ <Icon type="ellipsis" />, <Icon type="edit" />, <Icon type="check" /> ]}
-				extra="here"
-				title={'You were: ' + flow.activity}
+				extra={flow.flowStatus}
+				title={flow.activity.toUpperCase() + ': ' + flow.title }
 			>
 				<Skeleton loading={this.props.isLoading} avatar title paragraph={{ rows: 4 }} active>
 					<Card.Grid style={contentStyle} className="flow-card-content">
-                        {flow.content}
+                        <Icon id="flow-activity-icon" type={iconMap[flow.activity]} /><Text code>{flow.content}</Text>
                     </Card.Grid>
                     <Card.Grid style={tagsFooterStyle} className="flow-card-tags">
                         <FlowTagsFooter tags={flow.tags} />

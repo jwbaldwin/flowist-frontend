@@ -25,7 +25,7 @@ class Home extends Component {
 	render() {
 		return (
 			<Content
-				className="centered"
+				className="centered home"
 				style={{ padding: 24 }}
 				onKeyPress={() => this.handleKeyPress}
 			>
