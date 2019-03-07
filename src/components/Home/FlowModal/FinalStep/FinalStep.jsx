@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Icon, Input, Tag } from 'antd';
+import { Icon, Input, Tag, Tooltip } from 'antd';
 import './FinalStep.css';
 
 export class FinalStep extends Component {
@@ -53,32 +53,38 @@ export class FinalStep extends Component {
 		const { tags, inputVisible, inputValue } = this.state;
 
 		return (
-			<div className="tags">
-				{tags.map((tag, index) => {
-					return (
-						<Tag closable color={this.applyColor(index)} key={tag} afterClose={() => this.handleClose(tag)}>
-							{tag}
-						</Tag>
-					);
-				})}
-				{inputVisible && (
-					<Input
-						ref={this.saveInputRef}
-						type="text"
-						size="small"
-						style={{ width: 78 }}
-						value={inputValue}
-						onChange={this.handleInputChange}
-						onBlur={this.handleInputConfirm}
-						onPressEnter={this.handleInputConfirm}
-					/>
-				)}
-				{!inputVisible && (
-					<Tag onClick={this.showInput} style={{ background: '#fff', borderStyle: 'dashed' }}>
-						<Icon type="plus" /> New Tag
-					</Tag>
-				)}
-			</div>
+            <div>
+                <Tooltip title="Add tags to categorize and filter your flows!">
+                    <Icon type='info-circle' style={{ float: 'right', margin: 5, color: 'rgba(0,0,0,.45)' }}/>
+                </Tooltip>
+                <label htmlFor='tags'>Tag your flow!</label>
+                <div className="tags">
+                    {tags.map((tag, index) => {
+                        return (
+                            <Tag closable color={this.applyColor(index)} key={tag} afterClose={() => this.handleClose(tag)}>
+                                {tag}
+                            </Tag>
+                        );
+                    })}
+                    {inputVisible && (
+                        <Input
+                            ref={this.saveInputRef}
+                            type="text"
+                            size="small"
+                            style={{ width: 78 }}
+                            value={inputValue}
+                            onChange={this.handleInputChange}
+                            onBlur={this.handleInputConfirm}
+                            onPressEnter={this.handleInputConfirm}
+                        />
+                    )}
+                    {!inputVisible && (
+                        <Tag onClick={this.showInput} style={{ background: '#fff', borderStyle: 'dashed' }}>
+                            <Icon type="plus" /> New Tag
+                        </Tag>
+                    )}
+                </div>
+            </div>
 		);
 	}
 }

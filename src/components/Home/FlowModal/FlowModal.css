@@ -1,8 +1,7 @@
 .steps-content {
 	margin-top: 10px;
-	border: 1px dashed rgb(202, 202, 202);
 	border-radius: 6px;
-	text-align: center;
+	text-align: left;
 }
 
 .steps-action {

@@ -78,7 +78,7 @@ export class FlowModal extends Component {
 	};
 
 	handleKeyPress = (event) => {
-		if(event.key === 'Enter'){
+		if(event.key === 'Enter' && this.state.current === 0){
 		  this.next();
 		}
 	  }
@@ -128,7 +128,7 @@ export class FlowModal extends Component {
 					}
 				>
 					<div>
-						<Steps current={current}>
+						<Steps size="small" current={current}>
 							{steps.map((item) => (
 								<Step
 									key={item.title}
