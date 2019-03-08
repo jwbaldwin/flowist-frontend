@@ -71,6 +71,12 @@ export class FlowModal extends Component {
 		});
 	};
 
+    handleContentChange = (content) => {
+		this.setState({
+			flow: Object.assign({}, this.state.flow, { content: content })
+		});
+	};
+
 	handleTagsChange = (tags) => {
 		this.setState({
 			flow: Object.assign({}, this.state.flow, { tags: tags })
@@ -140,7 +146,7 @@ export class FlowModal extends Component {
 						</Steps>
 						<div className="steps-content">
 							{current === 0 && <InfoStep handleChange={this.handleChange} flowData={this.state.flow} />}
-							{current === 1 && <MainStep handleChange={this.handleChange} flowData={this.state.flow} />}
+							{current === 1 && <MainStep handleContentChange={this.handleContentChange} flowData={this.state.flow} />}
 							{current === 2 && (
 								<FinalStep
 									handleChange={this.handleChange}

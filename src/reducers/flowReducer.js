@@ -8,7 +8,7 @@ import {
 	ADD_FLOW_ERROR
 } from '../actions/actionTypes';
 
-export default function flow(state = initialState.flowDebug, action) {
+export default function flow(state = initialState.flow, action) {
 	switch (action.type) {
 		case FETCH_FLOW:
 			console.log('FETCH_FLOW');
