@@ -10,7 +10,7 @@ import { stateFromMarkdown } from "draft-js-import-markdown";
 import './MainStep.css';
 import 'draft-js-hashtag-plugin/lib/plugin.css';
 
-const tooltipHelpText = "Enter any extra information about what you're working on! P.S. Supports: Inline markdown, tags, and links!";
+const tooltipHelpText = "Enter any extra information about what you're working on! Supports: Inline markdown, tags, and links!";
 
 const hashtagPlugin = createHashtagPlugin();
 const linkifyPlugin = createLinkifyPlugin();

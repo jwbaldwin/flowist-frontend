@@ -46,9 +46,8 @@ export class FlowModal extends Component {
 	}
 
 	saveFlowMessage = () => {
-		message.loading('Saving your flow..', 1.0)
-		  .then(() => message.success('Your flow is saved!', 1.5));
-	  };
+		message.loading('Saving your flow..', 1.0).then(() => message.success('Your flow is saved!', 1.5));
+	};
 
 	handleOk = () => {
 		this.setState({
@@ -71,7 +70,7 @@ export class FlowModal extends Component {
 		});
 	};
 
-    handleContentChange = (content) => {
+	handleContentChange = (content) => {
 		this.setState({
 			flow: Object.assign({}, this.state.flow, { content: content })
 		});
@@ -84,10 +83,10 @@ export class FlowModal extends Component {
 	};
 
 	handleKeyPress = (event) => {
-		if(event.key === 'Enter' && this.state.current === 0){
-		  this.next();
+		if (event.key === 'Enter' && this.state.current === 0) {
+			this.next();
 		}
-	  }
+	};
 
 	next() {
 		this.setState({ current: this.state.current + 1 });
@@ -146,7 +145,9 @@ export class FlowModal extends Component {
 						</Steps>
 						<div className="steps-content">
 							{current === 0 && <InfoStep handleChange={this.handleChange} flowData={this.state.flow} />}
-							{current === 1 && <MainStep handleContentChange={this.handleContentChange} flowData={this.state.flow} />}
+							{current === 1 && (
+								<MainStep handleContentChange={this.handleContentChange} flowData={this.state.flow} />
+							)}
 							{current === 2 && (
 								<FinalStep
 									handleChange={this.handleChange}
