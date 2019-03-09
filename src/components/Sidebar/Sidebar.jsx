@@ -13,10 +13,10 @@ const { Sider } = Layout;
 
 class Sidebar extends Component {
 	constructor(props) {
-		super(props)
+		super(props);
 
 		this.state = {
-			width: 80,
+			width: 80
 		};
 	}
 
@@ -32,15 +32,9 @@ class Sidebar extends Component {
 		}
 	};
 
-	updateCollapsed = () => {
-		this.props.settingsActions.updateSettings(
-			Object.assign({}, this.props.settings, { collapsed: !this.props.settings.collapsed })
-		);
-	};
-
 	updateTheme = () => {
 		this.props.settingsActions.updateSettings(
-			Object.assign({}, this.props.settings, { theme: this.props.settings.theme ? 'dark' : 'light'})
+			Object.assign({}, this.props.settings, { theme: this.props.settings.theme === 'light' ? 'dark' : 'light' })
 		);
 	};
 
@@ -53,8 +47,8 @@ class Sidebar extends Component {
 				breakpoint="md"
 				collapsedWidth={this.state.width}
 				collapsible
-				onCollapse={this.props.updateCollapsed}
-				collapsed={this.props.settings.collapsed}
+				onCollapse={this.props.toggle}
+				collapsed={this.props.collapsed}
 				onBreakpoint={this.onBreakpoint}
 			>
 				<div id="app-sidebar-logo-div" className={this.props.settings.theme}>
@@ -66,7 +60,11 @@ class Sidebar extends Component {
 						</h1>
 					</Link>
 				</div>
-				<Menu theme={this.props.settings.theme} defaultSelectedKeys={[ this.props.location.pathname ]} mode="inline">
+				<Menu
+					theme={this.props.settings.theme}
+					defaultSelectedKeys={[ this.props.location.pathname ]}
+					mode="inline"
+				>
 					<Menu.Item key="/">
 						<Link to="/">
 							<Icon type="coffee" />

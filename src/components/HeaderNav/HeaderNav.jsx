@@ -37,12 +37,6 @@ export class HeaderNav extends Component {
 		this.props.settingsActions.fetchSettings();
 	}
 
-	update = () => {
-		this.props.settingsActions.updateSettings(
-			Object.assign({}, this.props.settings, { collapsed: !this.props.settings.collapsed })
-		);
-	};
-
 	render() {
 		return (
 			<Header style={{ background: '#fff', paddingLeft: '16px' }}>
@@ -55,8 +49,8 @@ export class HeaderNav extends Component {
 				</div>
 				<Icon
 					className="header-trigger"
-					type={this.props.settings.collapsed ? 'menu-unfold' : 'menu-fold'}
-					onClick={this.update}
+					type={this.props.collapsed ? 'menu-unfold' : 'menu-fold'}
+					onClick={this.props.toggle}
 				/>
 				<div className="header-right">
 					<Dropdown trigger={[ 'hover', 'click' ]} overlay={userMenu} placement="bottomRight">

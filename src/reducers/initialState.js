@@ -11,7 +11,6 @@ export default {
         isLoading: true
     },
     settings: {
-        theme: 'light',
-        collapsed: false
+        theme: 'light'
     }
 };
