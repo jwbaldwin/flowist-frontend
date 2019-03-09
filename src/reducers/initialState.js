@@ -9,5 +9,9 @@ export default {
 	user: {
         data: {},
         isLoading: true
+    },
+    settings: {
+        theme: 'light',
+        collapsed: false
     }
 };

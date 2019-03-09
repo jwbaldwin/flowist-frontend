@@ -10,22 +10,12 @@ import Settings from '../Settings';
 import { Layout } from 'antd';
 
 export class AppMain extends Component {
-    state = {
-        collapsed: false,
-    };
-
-    toggleCollapse = () => {
-        this.setState({
-        collapsed: !this.state.collapsed,
-        });
-    }
-
 	render() {
 		return (
 			<Layout style={{ minHeight: '100vh' }}>
-				<Sidebar toggle={this.toggleCollapse} collapsed={this.state.collapsed}/>
+				<Sidebar/>
 				<Layout>
-                    <HeaderNav toggle={this.toggleCollapse} collapsed={this.state.collapsed}/>
+                    <HeaderNav/>
 					<Route exact path="/" component={Home} />
 					<Route exact path="/tags" component={Tags} />
 					<Route exact path="/archive" component={Archive} />

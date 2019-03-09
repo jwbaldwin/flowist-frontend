@@ -1,12 +1,12 @@
 import { FETCH_USER, FETCH_USER_SUCCESS, FETCH_USER_ERROR } from './actionTypes';
 
-const USER_API_URL = '/api/user';
+const USER_API_URL = '/api/user/profile';
 
 /*
 * FETCH USER ACTIONS
 */
 
-export function fetchFlow() {
+export function fetchUser() {
 	return (dispatch) => {
 		return fetch(USER_API_URL, {
 			method: 'GET'
