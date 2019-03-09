@@ -39,7 +39,7 @@ export class HeaderNav extends Component {
 
 	render() {
 		return (
-			<Header style={{ background: '#fff', paddingLeft: '16px' }}>
+			<Header style={{ paddingLeft: '16px' }} className={this.props.settings.theme}>
 				<div className="header-left">
 					<div id="app-headernav-logo-div">
 						<Link to="/">

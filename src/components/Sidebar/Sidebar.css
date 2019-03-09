@@ -41,8 +41,14 @@
     transition: all .01s;
 }
 
-.sider {
+.sider-shadow-light {
 	-moz-box-shadow: -3px 0 10px 0 #999;
 	-webkit-box-shadow: -3px 0 10px 0 #999;
 	box-shadow: -3px 0 10px 0 #999;
+}
+
+.sider-shadow-dark {
+	-moz-box-shadow: -3px 0 10px 0 #1f2d3a;
+	-webkit-box-shadow: -3px 0 10px 0 #1f2d3a;
+	box-shadow: -3px 0 10px 0 #1f2d3a;
 }

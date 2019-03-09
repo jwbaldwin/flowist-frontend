@@ -1,42 +1,53 @@
 .header-trigger {
-    height: 64px;
-    padding: 22px 16px;
-    font-size: 20px;
-    cursor: pointer;
-    transition: all .3s,padding 0s;
+	height: 64px;
+	padding: 22px 16px;
+	font-size: 20px;
+	cursor: pointer;
+	transition: all .3s, padding 0s;
 }
 
 #app-headernav-logo-div {
-    position: relative;
-    height: 64px;
-    line-height: 64px;
-    transition: all .3s;
+	position: relative;
+	height: 64px;
+	line-height: 64px;
+	transition: all .3s;
 }
 
 #app-headernav-logo {
-    display: inline-block;
-    height: 40px;
-    vertical-align: middle;
+	display: inline-block;
+	height: 40px;
+	vertical-align: middle;
 }
 
 @media all and (min-width: 768px) {
-  #app-headernav-logo-div {
-    display: none !important;
-  }
-  #app-headernav-logo {
-    display: none !important;
-  }
+	#app-headernav-logo-div {
+		display: none !important;
+	}
+	#app-headernav-logo {
+		display: none !important;
+	}
 }
 
-
 .header-left {
-    float: left;
+	float: left;
 }
 
 .header-right {
-    float: right;
+	float: right;
 }
 
 .ant-layout-header {
-    padding-right: 16px;
+	padding-right: 16px;
+}
+
+.light {
+	background: #fff;
+	color: rgba(0, 0, 0, 0.64);
+	transition: all .3s;
+}
+
+.dark {
+	background: #001529;
+	color: #d9d9d9 !important;
+	transition: all .3s;
 }

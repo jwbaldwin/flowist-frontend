@@ -41,7 +41,7 @@ class Sidebar extends Component {
 	render() {
 		return (
 			<Sider
-				className="sider"
+				className={"sider-shadow-" + this.props.settings.theme}
 				theme={this.props.settings.theme}
 				trigger={null}
 				breakpoint="md"
