@@ -5,7 +5,10 @@ import {
 	FETCH_FLOW_ERROR,
 	ADD_FLOW,
 	ADD_FLOW_SUCCESS,
-	ADD_FLOW_ERROR
+	ADD_FLOW_ERROR,
+	DELETE_FLOW,
+	DELETE_FLOW_SUCCESS,
+	DELETE_FLOW_ERROR
 } from '../actions/actionTypes';
 
 export default function flow(state = initialState.flow, action) {
@@ -27,6 +30,15 @@ export default function flow(state = initialState.flow, action) {
 			return { ...state, data: action.data, isLoading: false };
 		case ADD_FLOW_ERROR:
 			console.log('ADD_FLOW_ERROR: ' + action.error);
+			return { ...state, isLoading: false };
+		case DELETE_FLOW:
+			console.log('DELETE_FLOW');
+			return { ...state, isLoading: true };
+		case DELETE_FLOW_SUCCESS:
+			console.log('DELETE_FLOW_SUCCESS');
+			return { ...state, isLoading: false };
+		case DELETE_FLOW_ERROR:
+			console.log('DELETE_FLOW_ERROR: ' + action.error);
 			return { ...state, isLoading: false };
 		default:
 			return state;

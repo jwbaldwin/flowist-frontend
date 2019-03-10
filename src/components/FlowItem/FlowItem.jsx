@@ -38,7 +38,7 @@ class FlowItem extends Component {
 
 		return (
 			<Card
-				actions={[ <Icon type="ellipsis" />, <Icon type="edit" />, <Icon type="check" /> ]}
+				actions={[ <Icon type="delete" onClick={this.props.flowActions.deleteFlow(flow.id)}/>, <Icon type="edit" />, <Icon type="check" /> ]}
 				extra={flow.flowStatus}
 				title={flow.title}
 			>
