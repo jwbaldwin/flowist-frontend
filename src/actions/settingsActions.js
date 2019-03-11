@@ -15,6 +15,7 @@ const SETTINGS_API_URL = '/api/user/settings';
 
 export function fetchSettings() {
 	return (dispatch) => {
+        dispatch(fetchSettingsRequest())
 		return fetch(SETTINGS_API_URL, {
 			method: 'GET'
 		})
@@ -23,6 +24,12 @@ export function fetchSettings() {
 					dispatch(fetchSettingsSuccess(json));
 			})
 			.catch((error) => dispatch(fetchSettingsError(error)));
+	};
+}
+
+function fetchSettingsRequest() {
+	return {
+		type: FETCH_SETTINGS
 	};
 }
 
@@ -46,7 +53,7 @@ export function fetchSettingsError(error) {
 
 export function updateSettings(data) {
 	return {
-		type: UPDATE_SETTINGS_SUCCESS,
+		type: UPDATE_SETTINGS,
 		data: data
 	};
 }

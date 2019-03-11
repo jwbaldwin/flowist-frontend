@@ -30,7 +30,6 @@ export class FlowModal extends Component {
 	state = {
 		visible: false,
 		confirmLoading: false,
-		current: 0,
 		flow: {
 			activity: '',
 			title: '',
@@ -65,9 +64,16 @@ export class FlowModal extends Component {
 	};
 
 	handleChange = (input) => (event) => {
-		this.setState({
-			flow: Object.assign({}, this.state.flow, { [input]: event.target.value })
-		});
+        if (event === undefined || event.target === undefined) {
+            this.setState({
+			    flow: Object.assign({}, this.state.flow, { [input]: event })
+		    });
+        } else {
+            this.setState({
+			    flow: Object.assign({}, this.state.flow, { [input]: event.target.value })
+		    });
+        }
+
 	};
 
 	handleContentChange = (content) => {
@@ -88,17 +94,7 @@ export class FlowModal extends Component {
 		}
 	};
 
-	next() {
-		this.setState({ current: this.state.current + 1 });
-	}
-
-	prev() {
-		this.setState({ current: this.state.current - 1 });
-	}
-
 	render() {
-		const { current } = this.state;
-
 		return (
 			<div onKeyPress={this.handleKeyPress}>
 				<Modal
@@ -107,54 +103,27 @@ export class FlowModal extends Component {
 					onOk={this.handleOk}
 					confirmLoading={this.state.confirmLoading}
 					onCancel={this.handleCancel}
-					footer={
-						<div className="steps-action">
-							{current > 0 && (
-								<Button style={{ marginLeft: 8 }} onClick={() => this.prev()}>
-									Previous
-								</Button>
-							)}
-							{current < steps.length - 1 && (
-								<Button style={{ textAlign: 'right' }} type="primary" onClick={() => this.next()}>
-									Next
-								</Button>
-							)}
-							{current === steps.length - 1 && (
-								<Button
+					footer={[
+                            <Button key="back" onClick={this.handleCancel}>Cancel</Button>,
+                            <Button
 									style={{ textAlign: 'right' }}
 									type="primary"
 									loading={this.state.confirmLoading}
 									onClick={() => this.handleOk()}
 								>
-									Done
+									Save
 								</Button>
-							)}
-						</div>
-					}
+                    ]}
 				>
 					<div>
-						<Steps size="small" current={current}>
-							{steps.map((item) => (
-								<Step
-									key={item.title}
-									title={item.title}
-									icon={item.icon}
-									description={item.description}
-								/>
-							))}
-						</Steps>
 						<div className="steps-content">
-							{current === 0 && <InfoStep handleChange={this.handleChange} flowData={this.state.flow} />}
-							{current === 1 && (
-								<MainStep handleContentChange={this.handleContentChange} flowData={this.state.flow} />
-							)}
-							{current === 2 && (
-								<FinalStep
+							<InfoStep handleChange={this.handleChange} flowData={this.state.flow} />
+							<MainStep handleContentChange={this.handleContentChange} flowData={this.state.flow} />
+							<FinalStep
 									handleChange={this.handleChange}
 									handleTagsChange={this.handleTagsChange}
 									flowData={this.state.flow}
 								/>
-							)}
 						</div>
 					</div>
 				</Modal>

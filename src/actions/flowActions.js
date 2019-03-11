@@ -1,6 +1,8 @@
 import {
+    FETCH_FLOW,
 	FETCH_FLOW_SUCCESS,
 	FETCH_FLOW_ERROR,
+    ADD_FLOW,
 	ADD_FLOW_SUCCESS,
 	ADD_FLOW_ERROR,
 	DELETE_FLOW,
@@ -16,6 +18,7 @@ const FLOW_API_URL = '/api/flow';
 
 export function fetchFlow() {
 	return (dispatch) => {
+        dispatch(fetchFlowRequest())
 		return fetch(FLOW_API_URL, {
 			method: 'GET'
 		})
@@ -28,6 +31,12 @@ export function fetchFlow() {
 				}
 			})
 			.catch((error) => dispatch(fetchFlowError(error)));
+	};
+}
+
+function fetchFlowRequest() {
+	return {
+		type: FETCH_FLOW
 	};
 }
 
@@ -51,6 +60,7 @@ export function fetchFlowError(error) {
 
 export function addFlow(flow) {
 	return (dispatch) => {
+        dispatch(addFlowRequest())
 		return fetch(FLOW_API_URL, {
 			method: 'POST',
 			headers: {
@@ -63,6 +73,10 @@ export function addFlow(flow) {
 			.then((json) => dispatch(addFlowSuccess(json)))
 			.catch((error) => dispatch(addFlowError(error)));
 	};
+}
+
+function addFlowRequest() {
+	return { type: ADD_FLOW };
 }
 
 export function addFlowSuccess(data) {
@@ -95,7 +109,7 @@ export function deleteFlow(id) {
 		})
 			.then((response) => {
 				if (response.status === 200) {
-					dispatch(deleteFlowSuccess());
+					dispatch(deleteFlowSuccess(id));
 				}
 			})
 			.catch((error) => dispatch(deleteFlowError(error)));
@@ -108,9 +122,10 @@ export function deleteFlowRequest() {
 	};
 }
 
-export function deleteFlowSuccess() {
+export function deleteFlowSuccess(id) {
 	return {
-		type: DELETE_FLOW_SUCCESS
+		type: DELETE_FLOW_SUCCESS,
+        data: id
 	};
 }
 

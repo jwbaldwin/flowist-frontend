@@ -2,10 +2,3 @@
     height: 56px;
     width: 56px;
 }
-
-@media all and (max-width: 667px) {
-    .home {
-        padding: 0 !important;
-        transition: all .3s;
-    }
-}

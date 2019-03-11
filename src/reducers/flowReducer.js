@@ -36,7 +36,10 @@ export default function flow(state = initialState.flow, action) {
 			return { ...state, isLoading: true };
 		case DELETE_FLOW_SUCCESS:
 			console.log('DELETE_FLOW_SUCCESS');
-			return { ...state, isLoading: false };
+			return {
+                ...state.filter(flow => flow.id !== action.data),
+                isLoading: false
+                };
 		case DELETE_FLOW_ERROR:
 			console.log('DELETE_FLOW_ERROR: ' + action.error);
 			return { ...state, isLoading: false };

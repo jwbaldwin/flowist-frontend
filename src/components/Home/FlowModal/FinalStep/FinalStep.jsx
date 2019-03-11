@@ -55,7 +55,7 @@ export class FinalStep extends Component {
 		return (
             <div>
                 <Tooltip title="Add tags to categorize and filter your flows!">
-                    <Icon type='info-circle' style={{ float: 'right', margin: 5, color: 'rgba(0,0,0,.45)' }}/>
+                    <Icon type='info-circle' style={{ float: 'right', margin: 10, color: 'rgba(0,0,0,.45)' }}/>
                 </Tooltip>
                 <label htmlFor='tags'>Tag your flow!</label>
                 <div className="tags">
