@@ -52,9 +52,30 @@ export function fetchSettingsError(error) {
 */
 
 export function updateSettings(data) {
+    // return (dispatch) => {
+    //     dispatch(updateSettingsRequest())
+	// 	return fetch(SETTINGS_API_URL, {
+	// 		method: 'POST',
+    //         headers: {
+	// 			Accept: 'application/json, text/plain, */*',
+	// 			'Content-Type': 'application/json'
+	// 		},
+	// 		body: JSON.stringify(data)
+	// 	})
+	// 		.then((response) => response.json())
+	// 		.then((json) => { dispatch(updateSettingsSuccess(json)); })
+	// 		.catch((error) => dispatch(updateSettingsError(error)));
+	// };
+
+        return {
+            type: UPDATE_SETTINGS_SUCCESS,
+            data: data
+        }
+}
+
+export function updateSettingsRequest() {
 	return {
-		type: UPDATE_SETTINGS,
-		data: data
+		type: UPDATE_SETTINGS
 	};
 }
 
