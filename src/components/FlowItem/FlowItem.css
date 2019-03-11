@@ -1,5 +1,6 @@
 div.ant-card {
     border-radius:8px;
+    padding: 8px;
 }
 
 .ant-card-actions {

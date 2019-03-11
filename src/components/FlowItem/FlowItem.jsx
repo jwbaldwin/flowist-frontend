@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import * as flowActions from '../../actions/flowActions';
-import { Badge, Skeleton, Card, Icon, Typography } from 'antd';
+import { Badge, Skeleton, Card, Icon, Typography, message, Popconfirm } from 'antd';
 import { EditorState } from 'draft-js';
 import Editor from 'draft-js-plugins-editor';
 import createHashtagPlugin from 'draft-js-hashtag-plugin';
@@ -66,6 +66,19 @@ class FlowItem extends Component {
         }
     }
 
+    deleteItem = (id) => {
+        this.showMessage("Flow deleted!");
+        this.props.flowActions.deleteFlow(id);
+    }
+
+    completeItem = (id) => {
+        this.showMessage("Flow completed! Congrats!🎉");
+    }
+
+    showMessage = (message) => {
+		message.success(message);
+	};
+
 	render() {
 		const { flow } = this.props;
 		const created= new Date(flow.created);
@@ -73,9 +86,11 @@ class FlowItem extends Component {
 		return (
 			<Card
 				actions={[
-                    <Icon type="delete" onClick={this.props.flowActions.deleteFlow(flow.id)} theme="twoTone" twoToneColor="#f5222d" style={{fontSize: 18}}/>,
+                    <Popconfirm placement="topLeft" arrowPointAtCenter title="Are you sure delete this flow?" onConfirm={() => this.deleteItem(flow.id)} okText="Yep" cancelText="Cancel">
+                        <Icon type="delete" theme="twoTone" twoToneColor="#f5222d" style={{fontSize: 18}}/>
+                    </Popconfirm>,
                     <Icon type="ellipsis" style={{fontSize: 18}}/>,
-                    <Icon type="check-circle" theme="twoTone" twoToneColor="#52c41a" style={{fontSize: 18}}/>
+                    <Icon type="check-circle" onClick={() => this.completeItem(flow.id)} theme="twoTone" twoToneColor="#52c41a" style={{fontSize: 18}}/>
                   ]}
 				extra={this.getFlowStatusIcon(flow.flowStatus)}
 				title={<span><Icon type={iconMap[flow.activity]} id="flow-activity-icon"/> {flow.title} </span>}
