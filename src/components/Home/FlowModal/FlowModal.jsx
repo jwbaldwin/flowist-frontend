@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Steps, Button, Icon, Modal, message } from 'antd';
+import { Button, Modal, message } from 'antd';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
@@ -8,23 +8,6 @@ import FinalStep from './FinalStep';
 import MainStep from './MainStep';
 import InfoStep from './InfoStep';
 import './FlowModal.css';
-
-const Step = Steps.Step;
-
-const steps = [
-	{
-		title: 'Info',
-		icon: <Icon type="form" />
-	},
-	{
-		title: 'Dump',
-		icon: <Icon type="code" />
-	},
-	{
-		title: 'Go!',
-		icon: <Icon type="smile" />
-	}
-];
 
 export class FlowModal extends Component {
 	state = {
