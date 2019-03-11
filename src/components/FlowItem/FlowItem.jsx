@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import * as flowActions from '../../actions/flowActions';
-import { Badge, Skeleton, Card, Icon, Typography, message, Popconfirm } from 'antd';
+import { Badge, Skeleton, Card, Icon, Typography, message, Popconfirm, Dropdown, Menu } from 'antd';
 import { EditorState } from 'draft-js';
 import Editor from 'draft-js-plugins-editor';
 import createHashtagPlugin from 'draft-js-hashtag-plugin';
@@ -32,6 +32,24 @@ const iconMap = {
 	debugging: 'alert',
     planning: 'schedule'
 };
+
+const optionsMenu = (
+	<Menu>
+        <Menu.Item key="0">
+            <Icon type="edit" /> Edit
+		</Menu.Item>
+        <Menu.Divider />
+		<Menu.Item key="1">
+			<Icon type="pause-circle" /> Pause
+		</Menu.Item>
+		<Menu.Item key="2">
+			<Icon type="share-alt" /> Link to flow
+		</Menu.Item>
+        <Menu.Item key="3">
+			<Icon type="link" /> Add files
+		</Menu.Item>
+	</Menu>
+);
 
 const contentStyle = {
   width: '100%',
@@ -89,7 +107,9 @@ class FlowItem extends Component {
                     <Popconfirm placement="topLeft" arrowPointAtCenter title="Are you sure delete this flow?" onConfirm={() => this.deleteItem(flow.id)} okText="Yep" cancelText="Cancel">
                         <Icon type="delete" theme="twoTone" twoToneColor="#f5222d" style={{fontSize: 18}}/>
                     </Popconfirm>,
-                    <Icon type="ellipsis" style={{fontSize: 18}}/>,
+                    <Dropdown trigger={[ 'hover', 'click' ]} overlay={optionsMenu} placement="bottomCenter">
+                        <Icon type="ellipsis" style={{fontSize: 18}}/>
+                    </Dropdown>,
                     <Icon type="check-circle" onClick={() => this.completeItem(flow.id)} theme="twoTone" twoToneColor="#52c41a" style={{fontSize: 18}}/>
                   ]}
 				extra={this.getFlowStatusIcon(flow.flowStatus)}
