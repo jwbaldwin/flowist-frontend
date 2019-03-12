@@ -18,7 +18,7 @@ export class InfoStep extends Component {
 		return (
 			<div>
 				<div>
-					<label htmlFor="activity-group">What where you up to?</label>
+					<label htmlFor="activity-group"><Icon type='desktop'/> What where you up to?</label>
                     <Select
                         id="activity-group"
                         showSearch
@@ -38,7 +38,7 @@ export class InfoStep extends Component {
                     </Select>
 				</div>
 				<div>
-					<label htmlFor="title">Brief description</label>
+					<label htmlFor="title"><Icon type="notification" /> Brief description</label>
 					<Input
 						id="title"
 						placeholder="Need to stop infinite while loop..."

@@ -50,7 +50,7 @@ export class MainStep extends Component {
                 <Tooltip title={tooltipHelpText}>
                     <Icon type='info-circle' style={{ float: 'right', margin: 10, color: 'rgba(0,0,0,.45)' }}/>
                 </Tooltip>
-                <label htmlFor='editor-content'>Notes</label>
+                <label htmlFor='editor-content'><Icon type='code'/> Notes</label>
                 <div className='editor' id='editor-content' onClick={this.focus}>
                     <Editor
                         editorState={this.state.editorState}
