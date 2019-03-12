@@ -48,6 +48,24 @@ div.ant-card-grid:hover {
     width: 8px;
 }
 
+.flow-enter {
+  opacity: 0.01;
+}
+
+.flow-enter.flow-enter-active {
+  opacity: 1;
+  transition: 10000ms;
+}
+
+.flow-leave {
+  opacity: 1;
+}
+
+.flow-leave.flow-leave-active {
+  opacity: 0.01;
+  transition: 10000ms;
+}
+
 .flow-card-content {
     text-align: left;
     font-size: 14px;

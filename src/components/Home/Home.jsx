@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import * as flowActions from '../../actions/flowActions';
-import { Layout, Icon } from 'antd';
+import { Layout, Spin } from 'antd';
 import EmptyHome from './EmptyHome';
-import FlowItem from '../FlowItem';
+import FlowHome from '../FlowHome';
 import './Home.css';
 
 const { Content } = Layout;
@@ -29,7 +29,9 @@ class Home extends Component {
 				style={{ padding: 24 }}
 				onKeyPress={() => this.handleKeyPress}
 			>
-				{this.props.isLoading ? <Icon id='home-loading-icon' type="loading" /> : (Object.getOwnPropertyNames(this.props.flow).length > 0 ? <FlowItem /> : <EmptyHome />)}
+				{this.props.isLoading ?
+                <Spin size="large" />
+                : (Object.getOwnPropertyNames(this.props.flow).length > 0 ? <FlowHome /> : <EmptyHome />)}
 			</Content>
 		);
 	}

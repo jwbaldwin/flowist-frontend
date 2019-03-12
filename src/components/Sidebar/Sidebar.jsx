@@ -89,13 +89,15 @@ class Sidebar extends Component {
 							<span>#settings</span>
 						</Link>
 					</Menu.Item>
-					<Switch
+                    <Menu.ItemGroup>
+                        <Switch
 						id="sider-theme-switch"
 						checkedChildren={<Icon type="rocket" />}
 						unCheckedChildren={<Icon type="bulb" />}
 						checked={this.props.settings.theme === 'dark'}
 						onChange={this.updateTheme}
 					/>
+                    </Menu.ItemGroup>
 				</Menu>
 			</Sider>
 		);

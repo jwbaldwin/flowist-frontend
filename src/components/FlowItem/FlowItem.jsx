@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import * as flowActions from '../../actions/flowActions';
-import { Badge, Skeleton, Card, Icon, Typography, message, Popconfirm, Dropdown, Menu } from 'antd';
+import { Badge, Card, Icon, message, Popconfirm, Dropdown, Menu } from 'antd';
 import { EditorState } from 'draft-js';
 import Editor from 'draft-js-plugins-editor';
 import createHashtagPlugin from 'draft-js-hashtag-plugin';
@@ -14,7 +14,6 @@ import './FlowItem.css';
 import FlowTagsFooter from './FlowTagsFooter';
 import 'draft-js-hashtag-plugin/lib/plugin.css';
 
-const { Title } = Typography;
 
 const hashtagPlugin = createHashtagPlugin();
 const linkifyPlugin = createLinkifyPlugin();
@@ -81,6 +80,8 @@ class FlowItem extends Component {
                 return  <Badge status="warning" />
             case 'COMPLETED':
                 return  <Badge status="success" />
+            default:
+                return  <Badge status="processing"/>
         }
     }
 
@@ -93,8 +94,8 @@ class FlowItem extends Component {
         this.showMessage("Flow completed! Congrats!🎉");
     }
 
-    showMessage = (message) => {
-		message.success(message);
+    showMessage = (msg) => {
+		message.success(msg);
 	};
 
 	render() {
@@ -102,38 +103,36 @@ class FlowItem extends Component {
 		const created= new Date(flow.created);
 
 		return (
-			<Card
-				actions={[
-                    <Popconfirm placement="topLeft" arrowPointAtCenter title="Are you sure delete this flow?" onConfirm={() => this.deleteItem(flow.id)} okText="Yep" cancelText="Cancel">
-                        <Icon type="delete" theme="twoTone" twoToneColor="#f5222d" style={{fontSize: 18}}/>
-                    </Popconfirm>,
-                    <Dropdown trigger={[ 'hover', 'click' ]} overlay={optionsMenu} placement="bottomCenter">
-                        <Icon type="ellipsis" style={{fontSize: 18}}/>
-                    </Dropdown>,
-                    <Icon type="check-circle" onClick={() => this.completeItem(flow.id)} theme="twoTone" twoToneColor="#52c41a" style={{fontSize: 18}}/>
-                  ]}
-				extra={this.getFlowStatusIcon(flow.flowStatus)}
-				title={<span><Icon type={iconMap[flow.activity]} id="flow-activity-icon"/> {flow.title} </span>}
-			>
-				<Skeleton loading={this.props.isLoading} avatar title paragraph={{ rows: 4 }} active>
-					<Card.Grid style={contentStyle} className="flow-card-content">
-                        <div className='editor' id='editor-content' onClick={this.focus}>
-                            <Editor
-                                editorState={EditorState.createWithContent(stateFromMarkdown(flow.content))}
-                                onChange={this.onChange}
-                                plugins={plugins}
-                                ref={(element) => { this.editor = element; }}
-                            />
-                        </div>
-                    </Card.Grid>
-                    <Card.Grid style={tagsFooterStyle} className="flow-card-tags">
-                        <FlowTagsFooter tags={flow.tags} />
-                    </Card.Grid>
-                    <Card.Grid style={timestampStyle} className="flow-card-timestamp">
-                        { created.toDateString().toLocaleLowerCase() }
-                    </Card.Grid>
-				</Skeleton>
-			</Card>
+                <Card
+                    actions={[
+                        <Popconfirm placement="topLeft" arrowPointAtCenter title="Are you sure delete this flow?" onConfirm={() => this.deleteItem(flow.id)} okText="Yep" cancelText="Cancel">
+                            <Icon type="delete" theme="twoTone" twoToneColor="#f5222d" style={{fontSize: 18}}/>
+                        </Popconfirm>,
+                        <Dropdown trigger={[ 'hover', 'click' ]} overlay={optionsMenu} placement="bottomCenter">
+                            <Icon type="ellipsis" style={{fontSize: 18}}/>
+                        </Dropdown>,
+                        <Icon type="check-circle" onClick={() => this.completeItem(flow.id)} theme="twoTone" twoToneColor="#52c41a" style={{fontSize: 18}}/>
+                    ]}
+                    extra={this.getFlowStatusIcon(flow.flowStatus)}
+                    title={<span><Icon type={iconMap[flow.activity]} id="flow-activity-icon"/> {flow.title} </span>}
+                >
+                        <Card.Grid style={contentStyle} className="flow-card-content">
+                            <div className='editor' id='editor-content' onClick={this.focus}>
+                                <Editor
+                                    readOnly={true}
+                                    editorState={EditorState.createWithContent(stateFromMarkdown(flow.content))}
+                                    plugins={plugins}
+                                    ref={(element) => { this.editor = element; }}
+                                />
+                            </div>
+                        </Card.Grid>
+                        <Card.Grid style={tagsFooterStyle} className="flow-card-tags">
+                            <FlowTagsFooter tags={flow.tags} />
+                        </Card.Grid>
+                        <Card.Grid style={timestampStyle} className="flow-card-timestamp">
+                            { created.toDateString().toLocaleLowerCase() }
+                        </Card.Grid>
+                </Card>
 		);
 	}
 }
