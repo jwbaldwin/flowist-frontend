@@ -22,13 +22,6 @@
     vertical-align: middle;
 }
 
-#sider-theme-switch {
-    position: absolute;
-    bottom: 0;
-    margin: 10%;
-    width: 80%;
-}
-
 .light {
 	background: #fff;
 	color: rgba(0, 0, 0, 0.64);

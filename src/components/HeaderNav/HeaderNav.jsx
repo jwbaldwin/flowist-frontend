@@ -1,10 +1,5 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import * as settingsActions from '../../actions/settingsActions';
 import { Avatar, Layout, Menu, Dropdown, Icon } from 'antd';
 import logo from '../../images/flowist.png';
 import './HeaderNav.css';
@@ -33,9 +28,6 @@ const userMenu = (
 );
 
 export class HeaderNav extends Component {
-	componentWillMount() {
-		this.props.settingsActions.fetchSettings();
-	}
 
 	render() {
 		return (
@@ -62,21 +54,4 @@ export class HeaderNav extends Component {
 	}
 }
 
-HeaderNav.propTypes = {
-	settingsActions: PropTypes.object,
-	settings: PropTypes.object
-};
-
-function mapStateToProps(state) {
-	return {
-		settings: state.settings
-	};
-}
-
-function mapDispatchToProps(dispatch) {
-	return {
-		settingsActions: bindActionCreators(settingsActions, dispatch)
-	};
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(HeaderNav);
+export default HeaderNav;

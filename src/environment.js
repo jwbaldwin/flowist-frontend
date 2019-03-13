@@ -38,6 +38,5 @@ const environment = process.env.REACT_APP_STAGE === 'prod'
 
 export default {
   // Add common config values here
-  MAX_ATTACHMENT_SIZE: 5000000,
   ...environment
 };

@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import * as settingsActions from '../../actions/settingsActions';
-import { Layout, Menu, Icon, Switch } from 'antd';
+import { Layout, Menu, Icon } from 'antd';
 import logo from '../../images/flowist.png';
+import ThemeSwitch from './ThemeSwitch';
 import './Sidebar.css';
 
 const { Sider } = Layout;
@@ -18,10 +15,6 @@ class Sidebar extends Component {
 		this.state = {
 			width: 80
 		};
-	}
-
-	componentWillMount() {
-		this.props.settingsActions.fetchSettings();
 	}
 
 	onBreakpoint = (broken) => {
@@ -90,13 +83,7 @@ class Sidebar extends Component {
 						</Link>
 					</Menu.Item>
                     <Menu.ItemGroup>
-                        <Switch
-						id="sider-theme-switch"
-						checkedChildren={<Icon type="rocket" />}
-						unCheckedChildren={<Icon type="bulb" />}
-						checked={this.props.settings.theme === 'dark'}
-						onChange={this.updateTheme}
-					/>
+                       <ThemeSwitch updateTheme={this.updateTheme} theme={this.props.settings.theme}/>
                     </Menu.ItemGroup>
 				</Menu>
 			</Sider>
@@ -104,21 +91,4 @@ class Sidebar extends Component {
 	}
 }
 
-Sidebar.propTypes = {
-	settingsActions: PropTypes.object,
-	settings: PropTypes.object
-};
-
-function mapStateToProps(state) {
-	return {
-		settings: state.settings
-	};
-}
-
-function mapDispatchToProps(dispatch) {
-	return {
-		settingsActions: bindActionCreators(settingsActions, dispatch)
-	};
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Sidebar));
+export default withRouter(Sidebar);
