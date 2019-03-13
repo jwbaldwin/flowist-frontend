@@ -6,8 +6,9 @@ import {
 	UPDATE_SETTINGS_SUCCESS,
 	UPDATE_SETTINGS_ERROR
 } from './actionTypes';
+import environment from "../environment";
 
-const SETTINGS_API_URL = '/api/user/settings';
+const SETTINGS_API_URL = environment.api.SETTINGS_ENDPOINT;
 
 /*
 * FETCH SETTINGS ACTIONS

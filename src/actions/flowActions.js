@@ -9,9 +9,9 @@ import {
 	DELETE_FLOW_SUCCESS,
 	DELETE_FLOW_ERROR
 } from './actionTypes';
+import environment from "../environment";
 
-const FLOW_API_URL = '/api/flow';
-
+const FLOW_API_URL = environment.api.FLOWS_ENDPOINT;
 /*
 * FETCH FLOW ACTIONS
 */

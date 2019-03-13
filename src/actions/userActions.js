@@ -1,6 +1,7 @@
 import { FETCH_USER, FETCH_USER_SUCCESS, FETCH_USER_ERROR } from './actionTypes';
+import environment from "../environment";
 
-const USER_API_URL = '/api/user/profile';
+const USER_API_URL = environment.api.USER_ENDPOINT;
 
 /*
 * FETCH USER ACTIONS
