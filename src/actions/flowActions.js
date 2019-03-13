@@ -5,6 +5,9 @@ import {
     ADD_FLOW,
 	ADD_FLOW_SUCCESS,
 	ADD_FLOW_ERROR,
+    UPDATE_FLOW,
+	UPDATE_FLOW_SUCCESS,
+	UPDATE_FLOW_ERROR,
 	DELETE_FLOW,
 	DELETE_FLOW_SUCCESS,
 	DELETE_FLOW_ERROR
@@ -69,8 +72,11 @@ export function addFlow(flow) {
 			},
 			body: JSON.stringify(flow)
 		})
-			.then((response) => response.json())
-			.then((json) => dispatch(addFlowSuccess(json)))
+			.then((response) => {
+				response.status === 200 ?
+				dispatch(addFlowSuccess(response.json()))
+				: dispatch(addFlowError(response.status + ': Could not add flow. '))
+			})
 			.catch((error) => dispatch(addFlowError(error)));
 	};
 }
@@ -94,13 +100,55 @@ export function addFlowError(error) {
 }
 
 /*
+* UPDATE FLOW ACTIONS
+*/
+
+export function updateFlow(flow) {
+	return (dispatch) => {
+        dispatch(updateFlowRequest())
+		return fetch(FLOW_API_URL, {
+			method: 'POST',
+			headers: {
+				Accept: 'application/json, text/plain, */*',
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(flow)
+		})
+			.then((response) => {
+				response.status === 200 ?
+				dispatch(updateFlowSuccess(response.json()))
+				: dispatch(updateFlowError(response.status + ': Could not update flow. '))
+			})
+			.catch((error) => dispatch(updateFlowError(error)));
+	};
+}
+
+function updateFlowRequest() {
+	return { type: UPDATE_FLOW };
+}
+
+export function updateFlowSuccess(data) {
+	return {
+		type: UPDATE_FLOW_SUCCESS,
+		data: data
+	};
+}
+
+export function updateFlowError(error) {
+	return {
+		type: UPDATE_FLOW_ERROR,
+		error: error
+	};
+}
+
+/*
 * DELETE FLOW ACTIONS
 */
 
 export function deleteFlow(id) {
 	return (dispatch) => {
-		dispatch(deleteFlowRequest);
-		return fetch(FLOW_API_URL + '/' + id, {
+        dispatch(deleteFlowRequest());
+		return fetch(FLOW_API_URL + '?id=' + id, {
 			method: 'DELETE',
 			headers: {
 				Accept: 'application/json, text/plain, */*',
@@ -108,18 +156,16 @@ export function deleteFlow(id) {
 			}
 		})
 			.then((response) => {
-				if (response.status === 200) {
-					dispatch(deleteFlowSuccess(id));
-				}
+				response.status === 200 ?
+				dispatch(deleteFlowSuccess(id))
+				: dispatch(deleteFlowError(response.status + ': Could not delete flow. '))
 			})
 			.catch((error) => dispatch(deleteFlowError(error)));
 	};
 }
 
-export function deleteFlowRequest() {
-	return {
-		type: DELETE_FLOW
-	};
+function deleteFlowRequest() {
+	return { type: DELETE_FLOW };
 }
 
 export function deleteFlowSuccess(id) {

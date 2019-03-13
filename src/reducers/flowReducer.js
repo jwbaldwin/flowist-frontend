@@ -1,11 +1,14 @@
 import initialState from './initialState';
 import {
+    ADD_FLOW,
+	ADD_FLOW_SUCCESS,
+	ADD_FLOW_ERROR,
 	FETCH_FLOW,
 	FETCH_FLOW_SUCCESS,
 	FETCH_FLOW_ERROR,
-	ADD_FLOW,
-	ADD_FLOW_SUCCESS,
-	ADD_FLOW_ERROR,
+    UPDATE_FLOW,
+	UPDATE_FLOW_SUCCESS,
+	UPDATE_FLOW_ERROR,
 	DELETE_FLOW,
 	DELETE_FLOW_SUCCESS,
 	DELETE_FLOW_ERROR
@@ -13,24 +16,33 @@ import {
 
 export default function flow(state = initialState.flowDebug, action) {
 	switch (action.type) {
-		case FETCH_FLOW:
-			console.log('FETCH_FLOW');
-			return { ...state, isLoading: true };
-		case FETCH_FLOW_SUCCESS:
-			console.log('FETCH_FLOW_SUCCESS');
-			return { ...state, data: action.data, isLoading: false };
-		case FETCH_FLOW_ERROR:
-			console.log('FETCH_FLOW_ERROR: ' + action.error);
-			return { ...state, isLoading: false };
 		case ADD_FLOW:
 			console.log('ADD_FLOW');
 			return { ...state, isLoading: true };
 		case ADD_FLOW_SUCCESS:
 			console.log('ADD_FLOW_SUCCESS');
-			return { ...state, data: action.data, isLoading: false };
+			return { ...state, data: action.data, addError: false, isLoading: false };
 		case ADD_FLOW_ERROR:
 			console.log('ADD_FLOW_ERROR: ' + action.error);
-			return { ...state, isLoading: false };
+			return { ...state, addError: true, isLoading: false };
+        case FETCH_FLOW:
+			console.log('FETCH_FLOW');
+			return { ...state, isLoading: true };
+		case FETCH_FLOW_SUCCESS:
+			console.log('FETCH_FLOW_SUCCESS');
+			return { ...state, data: action.data, fetchError: false, isLoading: false };
+		case FETCH_FLOW_ERROR:
+			console.log('FETCH_FLOW_ERROR: ' + action.error);
+			return { ...state, fetchError: true, isLoading: false };
+        case UPDATE_FLOW:
+			console.log('UPDATE_FLOW');
+			return { ...state, isLoading: true };
+		case UPDATE_FLOW_SUCCESS:
+			console.log('UPDATE_FLOW_SUCCESS');
+			return { ...state, data: action.data, updateError: false, isLoading: false };
+		case UPDATE_FLOW_ERROR:
+			console.log('UPDATE_FLOW_ERROR: ' + action.error);
+			return { ...state, updateError: true, isLoading: false };
 		case DELETE_FLOW:
 			console.log('DELETE_FLOW');
 			return { ...state, isLoading: true };
@@ -38,11 +50,12 @@ export default function flow(state = initialState.flowDebug, action) {
 			console.log('DELETE_FLOW_SUCCESS');
 			return {
                 ...state.filter(flow => flow.id !== action.data),
+                deleteError: false,
                 isLoading: false
                 };
 		case DELETE_FLOW_ERROR:
 			console.log('DELETE_FLOW_ERROR: ' + action.error);
-			return { ...state, isLoading: false };
+			return { ...state, deleteError: true, isLoading: false };
 		default:
 			return state;
 	}

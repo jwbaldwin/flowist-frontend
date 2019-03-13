@@ -86,12 +86,18 @@ class FlowItem extends Component {
     }
 
     deleteItem = (id) => {
-        this.showMessage("Flow deleted!");
         this.props.flowActions.deleteFlow(id);
+        this.props.deleteError ?
+            message.error("Uhoh. We couldn't delete the message 👾")
+            : this.showMessage("Flow deleted!")
+
     }
 
-    completeItem = (id) => {
-        this.showMessage("Flow completed! Congrats!🎉");
+    completeItem = () => {
+        this.props.flowActions.updateFlow({ ...this.props.flow, flowStatus: 'COMPLETED' });
+        this.props.updateError ?
+             message.error("Uhoh. We couldn't add the message 👾")
+            : this.showMessage("Flow completed! Congrats! 🎉");
     }
 
     showMessage = (msg) => {
@@ -140,12 +146,19 @@ class FlowItem extends Component {
 FlowItem.propTypes = {
 	flowActions: PropTypes.object,
 	flow: PropTypes.object,
+    addError: PropTypes.bool,
+    fetchError: PropTypes.bool,
+    updateError: PropTypes.bool,
+    deleteError: PropTypes.bool,
 	isLoading: PropTypes.bool
 };
 
 function mapStateToProps(state) {
 	return {
 		flow: state.flow.data,
+        addError: state.flow.addError,
+        updateError: state.flow.updateError,
+        deleteError: state.flow.deleteError,
 		isLoading: state.flow.isLoading
 	};
 }
