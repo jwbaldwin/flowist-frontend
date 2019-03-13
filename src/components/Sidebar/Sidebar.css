@@ -35,13 +35,13 @@
 }
 
 .sider-shadow-light {
-	-moz-box-shadow: -3px 0 10px 0 #999;
-	-webkit-box-shadow: -3px 0 10px 0 #999;
-	box-shadow: -3px 0 10px 0 #999;
+     box-shadow: 2px 0 6px rgba(0,21,41,.1);
+	-moz-box-shadow: 2px 0 6px rgba(0,21,41,.1);
+	-webkit-box-shadow: 2px 0 6px rgba(0,21,41,.1);
 }
 
 .sider-shadow-dark {
-	-moz-box-shadow: -3px 0 10px 0 #1f2d3a;
-	-webkit-box-shadow: -3px 0 10px 0 #1f2d3a;
-	box-shadow: -3px 0 10px 0 #1f2d3a;
+     box-shadow: 2px 0 6px rgba(0,21,41,.35);
+	-moz-box-shadow: 2px 0 6px rgba(0,21,41,.35);
+	-webkit-box-shadow: 2px 0 6px rgba(0,21,41,.35);
 }

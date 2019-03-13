@@ -11,6 +11,7 @@ import Home from '../Home';
 import Tags from '../Tags';
 import Archive from '../Archive';
 import Settings from '../Settings';
+import Profile from '../Profile';
 import { Layout } from 'antd';
 
 export class AppMain extends Component {
@@ -38,6 +39,7 @@ export class AppMain extends Component {
 					<Route exact path="/tags" component={Tags} />
 					<Route exact path="/archive" component={Archive} />
 					<Route exact path="/settings" component={Settings} />
+                    <Route exact path="/profile" component={Profile} />
 					<AppFooter />
 				</Layout>
 			</Layout>

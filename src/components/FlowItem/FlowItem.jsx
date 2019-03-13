@@ -108,7 +108,7 @@ class FlowItem extends Component {
                     title={<span><Icon type={iconMap[flow.activity]} id="flow-activity-icon"/> {flow.title} </span>}
                 >
                         <Card.Grid style={contentStyle} className="flow-card-content">
-                            <div className='editor' id='editor-content'>
+                            <div id='content'>
                                 <Editor
                                     readOnly={true}
                                     editorState={EditorState.createWithContent(stateFromMarkdown(flow.content))}

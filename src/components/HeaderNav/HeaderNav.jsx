@@ -9,18 +9,18 @@ const { Header } = Layout;
 const userMenu = (
 	<Menu>
 		<Menu.Item key="0">
-			<Link to="/">
+			<Link to="/profile">
 				<Icon type="user" /> Profile
 			</Link>
 		</Menu.Item>
 		<Menu.Item key="1">
-			<Link to="/">
+			<Link to="/settings">
 				<Icon type="setting" /> User Settings
 			</Link>
 		</Menu.Item>
 		<Menu.Divider />
 		<Menu.Item key="2">
-			<Link to="/user">
+			<Link to="/auth">
 				<Icon type="logout" /> Log out
 			</Link>
 		</Menu.Item>

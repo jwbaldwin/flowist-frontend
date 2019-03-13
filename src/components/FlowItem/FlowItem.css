@@ -85,3 +85,12 @@ div.ant-card-grid:hover {
 div.ant-skeleton-header, div.ant-skeleton-content {
     padding: 24px 24px 20px 24px;
 }
+
+#content {
+    border-left: 3px solid #e1e1e1;
+    cursor: text;
+    padding: 8px;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    background: #fefefe;
+}
