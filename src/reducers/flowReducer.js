@@ -21,28 +21,28 @@ export default function flow(state = initialState.flowDebug, action) {
 			return { ...state, isLoading: true };
 		case ADD_FLOW_SUCCESS:
 			console.log('ADD_FLOW_SUCCESS');
-			return { ...state, data: action.data, addError: false, isLoading: false };
+			return { ...state, data: action.data, isLoading: false };
 		case ADD_FLOW_ERROR:
 			console.log('ADD_FLOW_ERROR: ' + action.error);
-			return { ...state, addError: true, isLoading: false };
+			return { ...state, isLoading: false };
         case FETCH_FLOW:
 			console.log('FETCH_FLOW');
 			return { ...state, isLoading: true };
 		case FETCH_FLOW_SUCCESS:
 			console.log('FETCH_FLOW_SUCCESS');
-			return { ...state, data: action.data, fetchError: false, isLoading: false };
+			return { ...state, data: action.data, isLoading: false };
 		case FETCH_FLOW_ERROR:
 			console.log('FETCH_FLOW_ERROR: ' + action.error);
-			return { ...state, fetchError: true, isLoading: false };
+			return { ...state, isLoading: false };
         case UPDATE_FLOW:
 			console.log('UPDATE_FLOW');
 			return { ...state, isLoading: true };
 		case UPDATE_FLOW_SUCCESS:
 			console.log('UPDATE_FLOW_SUCCESS');
-			return { ...state, data: action.data, updateError: false, isLoading: false };
+			return { ...state, data: action.data, isLoading: false };
 		case UPDATE_FLOW_ERROR:
 			console.log('UPDATE_FLOW_ERROR: ' + action.error);
-			return { ...state, updateError: true, isLoading: false };
+			return { ...state, isLoading: false };
 		case DELETE_FLOW:
 			console.log('DELETE_FLOW');
 			return { ...state, isLoading: true };
@@ -50,12 +50,11 @@ export default function flow(state = initialState.flowDebug, action) {
 			console.log('DELETE_FLOW_SUCCESS');
 			return {
                 ...state.filter(flow => flow.id !== action.data),
-                deleteError: false,
                 isLoading: false
                 };
 		case DELETE_FLOW_ERROR:
 			console.log('DELETE_FLOW_ERROR: ' + action.error);
-			return { ...state, deleteError: true, isLoading: false };
+			return { ...state, isLoading: false };
 		default:
 			return state;
 	}

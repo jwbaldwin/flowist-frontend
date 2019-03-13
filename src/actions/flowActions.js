@@ -12,6 +12,7 @@ import {
 	DELETE_FLOW_SUCCESS,
 	DELETE_FLOW_ERROR
 } from './actionTypes';
+import { message } from 'antd';
 import environment from "../environment";
 
 const FLOW_API_URL = environment.api.FLOWS_ENDPOINT;
@@ -128,6 +129,7 @@ function updateFlowRequest() {
 }
 
 export function updateFlowSuccess(data) {
+    this.showMessage("Flow completed! Congrats! 🎉");
 	return {
 		type: UPDATE_FLOW_SUCCESS,
 		data: data
@@ -135,6 +137,7 @@ export function updateFlowSuccess(data) {
 }
 
 export function updateFlowError(error) {
+    message.error("Uhoh. We couldn't add the message 👾")
 	return {
 		type: UPDATE_FLOW_ERROR,
 		error: error
@@ -169,6 +172,7 @@ function deleteFlowRequest() {
 }
 
 export function deleteFlowSuccess(id) {
+    message.success("Flow deleted!")
 	return {
 		type: DELETE_FLOW_SUCCESS,
         data: id
@@ -176,6 +180,7 @@ export function deleteFlowSuccess(id) {
 }
 
 export function deleteFlowError(error) {
+    message.error("Uhoh. We couldn't delete the message 👾")
 	return {
 		type: DELETE_FLOW_ERROR,
 		error: error

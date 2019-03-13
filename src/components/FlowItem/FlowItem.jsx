@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import * as flowActions from '../../actions/flowActions';
-import { Badge, Card, Icon, message, Popconfirm, Dropdown, Menu } from 'antd';
+import { Badge, Card, Icon, Popconfirm, Dropdown, Menu } from 'antd';
 import { EditorState } from 'draft-js';
 import Editor from 'draft-js-plugins-editor';
 import createHashtagPlugin from 'draft-js-hashtag-plugin';
@@ -68,10 +68,6 @@ const timestampStyle = {
 
 class FlowItem extends Component {
 
-    focus = () => {
-        this.editor.focus();
-    };
-
     getFlowStatusIcon = (flowStatus) => {
         switch(flowStatus) {
             case 'ACTIVE':
@@ -87,22 +83,11 @@ class FlowItem extends Component {
 
     deleteItem = (id) => {
         this.props.flowActions.deleteFlow(id);
-        this.props.deleteError ?
-            message.error("Uhoh. We couldn't delete the message 👾")
-            : this.showMessage("Flow deleted!")
-
     }
 
     completeItem = () => {
         this.props.flowActions.updateFlow({ ...this.props.flow, flowStatus: 'COMPLETED' });
-        this.props.updateError ?
-             message.error("Uhoh. We couldn't add the message 👾")
-            : this.showMessage("Flow completed! Congrats! 🎉");
     }
-
-    showMessage = (msg) => {
-		message.success(msg);
-	};
 
 	render() {
 		const { flow } = this.props;
@@ -123,7 +108,7 @@ class FlowItem extends Component {
                     title={<span><Icon type={iconMap[flow.activity]} id="flow-activity-icon"/> {flow.title} </span>}
                 >
                         <Card.Grid style={contentStyle} className="flow-card-content">
-                            <div className='editor' id='editor-content' onClick={this.focus}>
+                            <div className='editor' id='editor-content'>
                                 <Editor
                                     readOnly={true}
                                     editorState={EditorState.createWithContent(stateFromMarkdown(flow.content))}
@@ -146,19 +131,12 @@ class FlowItem extends Component {
 FlowItem.propTypes = {
 	flowActions: PropTypes.object,
 	flow: PropTypes.object,
-    addError: PropTypes.bool,
-    fetchError: PropTypes.bool,
-    updateError: PropTypes.bool,
-    deleteError: PropTypes.bool,
 	isLoading: PropTypes.bool
 };
 
 function mapStateToProps(state) {
 	return {
 		flow: state.flow.data,
-        addError: state.flow.addError,
-        updateError: state.flow.updateError,
-        deleteError: state.flow.deleteError,
 		isLoading: state.flow.isLoading
 	};
 }
