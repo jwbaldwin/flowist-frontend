@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Avatar, Layout, Dropdown, Icon } from 'antd';
+import {Layout, Icon } from 'antd';
 import logo from '../../images/flowist.png';
 import UserMenu from './UserMenu';
 import './HeaderNav.css';
@@ -25,9 +25,7 @@ export class HeaderNav extends Component {
 					onClick={this.props.toggle}
 				/>
 				<div className="header-right">
-					<Dropdown trigger={[ 'hover', 'click' ]} overlay={<UserMenu {...this.props}/>} placement="bottomRight">
-						<Avatar icon="user" />
-					</Dropdown>
+					<UserMenu {...this.props}/>
 				</div>
 			</Header>
 		);

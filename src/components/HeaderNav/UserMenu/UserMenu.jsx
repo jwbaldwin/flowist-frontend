@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Icon, Menu, message } from 'antd';
+import { Icon, Menu, message, Avatar, Dropdown } from 'antd';
 import { Auth } from "aws-amplify";
 import '../HeaderNav.css';
 
@@ -18,7 +18,7 @@ export class UserMenu extends Component {
     }
 
 	render() {
-		return (
+        const menuItems =
             <Menu>
                 <Menu.Item key="0">
                     <Link to="/profile">
@@ -37,6 +37,10 @@ export class UserMenu extends Component {
                     </Link>
                 </Menu.Item>
             </Menu>
+		return (
+            <Dropdown trigger={[ 'hover', 'click' ]} overlay={menuItems} placement="bottomRight">
+						<Avatar icon="user" />
+			</Dropdown>
 		);
 	}
 }
