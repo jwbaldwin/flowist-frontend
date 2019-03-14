@@ -23,7 +23,7 @@ const FLOW_API_URL = environment.api.FLOWS_ENDPOINT;
 export function fetchFlow() {
 	return (dispatch) => {
         dispatch(fetchFlowRequest())
-		return fetch(FLOW_API_URL, {
+		return fetch(FLOW_API_URL + '/all', {
 			method: 'GET'
 		})
 			.then((response) => response.json())
@@ -107,7 +107,7 @@ export function addFlowError(error) {
 export function updateFlow(flow) {
 	return (dispatch) => {
         dispatch(updateFlowRequest())
-		return fetch(FLOW_API_URL, {
+		return fetch(FLOW_API_URL + '?id=' + flow.id, {
 			method: 'POST',
 			headers: {
 				Accept: 'application/json, text/plain, */*',
@@ -129,6 +129,7 @@ function updateFlowRequest() {
 }
 
 export function updateFlowSuccess(data) {
+	console.log(data);
     this.showMessage("Flow completed! Congrats! 🎉");
 	return {
 		type: UPDATE_FLOW_SUCCESS,
@@ -137,7 +138,7 @@ export function updateFlowSuccess(data) {
 }
 
 export function updateFlowError(error) {
-    message.error("Uhoh. We couldn't add the message 👾")
+    message.error("Uhoh :( We couldn't complete the flow 👾")
 	return {
 		type: UPDATE_FLOW_ERROR,
 		error: error
@@ -180,7 +181,7 @@ export function deleteFlowSuccess(id) {
 }
 
 export function deleteFlowError(error) {
-    message.error("Uhoh. We couldn't delete the message 👾")
+    message.error("Uhoh :( We couldn't delete the flow 👾")
 	return {
 		type: DELETE_FLOW_ERROR,
 		error: error
