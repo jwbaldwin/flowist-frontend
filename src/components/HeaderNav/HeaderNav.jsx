@@ -1,31 +1,11 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Avatar, Layout, Menu, Dropdown, Icon } from 'antd';
+import { Avatar, Layout, Dropdown, Icon } from 'antd';
 import logo from '../../images/flowist.png';
+import UserMenu from './UserMenu';
 import './HeaderNav.css';
 
 const { Header } = Layout;
-
-const userMenu = (
-	<Menu>
-		<Menu.Item key="0">
-			<Link to="/profile">
-				<Icon type="user" /> Profile
-			</Link>
-		</Menu.Item>
-		<Menu.Item key="1">
-			<Link to="/settings">
-				<Icon type="setting" /> User Settings
-			</Link>
-		</Menu.Item>
-		<Menu.Divider />
-		<Menu.Item key="2">
-			<Link to="/auth">
-				<Icon type="logout" /> Log out
-			</Link>
-		</Menu.Item>
-	</Menu>
-);
 
 export class HeaderNav extends Component {
 
@@ -45,7 +25,7 @@ export class HeaderNav extends Component {
 					onClick={this.props.toggle}
 				/>
 				<div className="header-right">
-					<Dropdown trigger={[ 'hover', 'click' ]} overlay={userMenu} placement="bottomRight">
+					<Dropdown trigger={[ 'hover', 'click' ]} overlay={<UserMenu {...this.props}/>} placement="bottomRight">
 						<Avatar icon="user" />
 					</Dropdown>
 				</div>

@@ -1,4 +1,4 @@
-import { FETCH_USER, FETCH_USER_SUCCESS, FETCH_USER_ERROR } from './actionTypes';
+import { FETCH_USER, FETCH_USER_SUCCESS, FETCH_USER_ERROR, UPDATE_USER } from './actionTypes';
 import environment from "../environment";
 
 const USER_API_URL = environment.api.USER_ENDPOINT;
@@ -37,3 +37,15 @@ export function fetchUserError(error) {
 		error: error
 	};
 }
+
+/*
+* update USER ACTIONS
+*/
+
+export function updateUser(data) {
+	return {
+		type: UPDATE_USER,
+		data: data
+	};
+}
+

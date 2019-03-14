@@ -2,7 +2,8 @@ import initialState from './initialState';
 import {
 	FETCH_USER,
     FETCH_USER_SUCCESS,
-    FETCH_USER_ERROR
+    FETCH_USER_ERROR,
+    UPDATE_USER
 } from '../actions/actionTypes';
 
 export default function user(state = initialState.user, action) {
@@ -16,6 +17,9 @@ export default function user(state = initialState.user, action) {
 		case FETCH_USER_ERROR:
 			console.log('FETCH_USER_ERROR: ' + action.error);
 			return { ...state, isLoading: false };
+        case UPDATE_USER:
+			console.log('UPDATE_USER');
+			return { ...action.data};
 		default:
 			return state;
 	}

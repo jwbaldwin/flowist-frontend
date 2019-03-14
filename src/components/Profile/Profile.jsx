@@ -6,7 +6,7 @@ const { Content } = Layout;
 export class Settings extends Component {
 	render() {
 		return (
-			<Content style={{ margin: 24 }}>
+			<Content style={{ margin: 48 }}>
 				<Row gutter={32}>
                     <Col span={8}>
                         <Content style={{backgroundColor: '#fff', padding: 16}}>

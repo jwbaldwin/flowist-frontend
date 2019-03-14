@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import * as settingsActions from '../../actions/settingsActions';
+import * as userActions from '../../actions/userActions';
 import Sidebar from '../Sidebar';
 import AppFooter from '../AppFooter';
 import HeaderNav from '../HeaderNav';
@@ -49,18 +50,22 @@ export class AppMain extends Component {
 
 AppMain.propTypes = {
 	settingsActions: PropTypes.object,
-	settings: PropTypes.object
+    userActions: PropTypes.object,
+	settings: PropTypes.object,
+    user: PropTypes.object,
 };
 
 function mapStateToProps(state) {
 	return {
-		settings: state.settings
+		settings: state.settings,
+        user: state.user
 	};
 }
 
 function mapDispatchToProps(dispatch) {
 	return {
-		settingsActions: bindActionCreators(settingsActions, dispatch)
+		settingsActions: bindActionCreators(settingsActions, dispatch),
+        userActions: bindActionCreators(userActions, dispatch)
 	};
 }
 

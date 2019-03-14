@@ -1,14 +1,28 @@
 import React, { Component } from 'react';
-import { Form, Icon, Input, Button, Checkbox } from 'antd';
+import { withRouter } from 'react-router-dom';
+import { Form, Icon, Input, Button, Checkbox, message } from 'antd';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import PropTypes from 'prop-types';
+import * as userActions from '../../../actions/userActions';
+import { Auth } from "aws-amplify";
 import './LoginForm.css';
 import '../UserAuth.css';
 
 export class LoginFormNormal extends Component {
-	handleSubmit = (e) => {
-		e.preventDefault();
-		this.props.form.validateFields((err, values) => {
+	handleSubmit = async event => {
+		event.preventDefault();
+		this.props.form.validateFields(async (err, values) => {
 			if (!err) {
-				console.log('Received values of form: ', values);
+				this.props.userActions.updateUser({...this.props.user, isLoading: true});
+                try {
+                    await Auth.signIn(values.email, values.password);
+                    this.props.userActions.updateUser({...this.props.user, isAuthenticated: true, isLoading: false});
+                    this.props.history.push("/");
+                    message.success("Logged in successfully!");
+                } catch (e) {
+                    message.error(e.message);
+                }
 			}
 		});
 	};
@@ -19,19 +33,19 @@ export class LoginFormNormal extends Component {
 		return (
 			<Form onSubmit={this.handleSubmit} id="login-form">
 				<Form.Item>
-					{getFieldDecorator('userName', {
-						rules: [ { required: true, message: 'Please input your username!' } ]
+					{getFieldDecorator('email', {
+						rules: [ { required: true, message: 'Please input your email!' } ]
 					})(
 						<Input
 							size='large'
 							prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-							placeholder="Username"
+							placeholder="Email"
 						/>
 					)}
 				</Form.Item>
 				<Form.Item>
 					{getFieldDecorator('password', {
-						rules: [ { required: true, message: 'Please input your Password!' } ]
+						rules: [ { required: true, message: 'Please input your password!' } ]
 					})(
 						<Input
 							size='large'
@@ -60,4 +74,21 @@ export class LoginFormNormal extends Component {
 
 const LoginForm = Form.create({ name: 'normal_login' })(LoginFormNormal);
 
-export default LoginForm;
+LoginForm.propTypes = {
+	userActions: PropTypes.object,
+	user: PropTypes.object
+};
+
+function mapStateToProps(state) {
+	return {
+		user: state.user
+	};
+}
+
+function mapDispatchToProps(dispatch) {
+	return {
+		userActions: bindActionCreators(userActions, dispatch)
+	};
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(LoginForm));

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Tabs, Col, Divider, Button, Icon } from 'antd';
+import { Tabs, Col, Divider, Button, Icon, Spin } from 'antd';
 import LoginForm from './LoginForm';
 import SignUpForm from './SignUpForm';
 import './UserAuth.css';
@@ -13,9 +13,13 @@ function callback(key) {
 
 export class UserAuth extends Component {
 	render() {
+        console.log(this.props)
 		return (
-			<div id="main-panel" className="centered">
+            <div id="main-panel" className="centered">
 				<Col xs={2} sm={7} md={8} lg={8} xl={9} />
+                { this.props.isLoading ?
+                <Spin size="large" className='centered'/>
+                :
 				<Col xs={20} sm={10} md={8} lg={8} xl={6} id="main-panel-user-auth">
 					<div className="card-container">
 						<div id="app-logo-div">
@@ -46,7 +50,7 @@ export class UserAuth extends Component {
 							<Icon type="google" />Login with Google
 						</Button>
 					</div>
-				</Col>
+				</Col>}
 				<Col xs={2} sm={7} md={8} lg={8} xl={9} />
 			</div>
 		);

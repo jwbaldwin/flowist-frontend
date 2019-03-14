@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import AppMain from './components/AppMain';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import UserAuth from './components/UserAuth';
 import './App.css';
 
@@ -9,7 +11,7 @@ class App extends Component {
 		return (
 			<BrowserRouter>
 				<Switch>
-					<Route exact path="/user" component={UserAuth} />
+					<Route exact path="/user" component={() => (<UserAuth isLoading={this.props.user.isLoading} />)} />
 					<Route component={AppMain} />
 				</Switch>
 			</BrowserRouter>
@@ -17,4 +19,14 @@ class App extends Component {
 	}
 }
 
-export default App;
+App.propTypes = {
+	user: PropTypes.object
+};
+
+function mapStateToProps(state) {
+	return {
+		user: state.user
+	};
+}
+
+export default connect(mapStateToProps, null)(App);
