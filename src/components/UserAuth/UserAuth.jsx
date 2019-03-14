@@ -3,6 +3,7 @@ import { Tabs, Col, Divider, Button, Icon, Spin } from 'antd';
 import LoginForm from './LoginForm';
 import SignUpForm from './SignUpForm';
 import './UserAuth.css';
+import '../AppMain/AppMain.css';
 import logo from '../../images/flowist.png';
 
 const TabPane = Tabs.TabPane;
@@ -13,7 +14,6 @@ function callback(key) {
 
 export class UserAuth extends Component {
 	render() {
-        console.log(this.props)
 		return (
             <div id="main-panel" className="centered">
 				<Col xs={2} sm={7} md={8} lg={8} xl={9} />
