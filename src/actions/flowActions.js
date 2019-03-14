@@ -108,7 +108,7 @@ export function updateFlow(flow) {
 	return (dispatch) => {
         dispatch(updateFlowRequest())
 		return fetch(FLOW_API_URL + '?id=' + flow.id, {
-			method: 'POST',
+			method: 'PUT',
 			headers: {
 				Accept: 'application/json, text/plain, */*',
 				'Content-Type': 'application/json'

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-import { Form, Input, Icon, Checkbox, Button } from 'antd';
+import { Form, Input, Icon, Checkbox, Button, message } from 'antd';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
@@ -16,18 +16,38 @@ export class SignUpFormNormal extends Component {
 
     handleSubmit = async (e) => {
         e.preventDefault();
-        this.props.form.validateFieldsAndScroll((err, values) => {
+        this.props.form.validateFieldsAndScroll(async (err, values) => {
             if (!err) {
-                console.log('Received values of form: ', values);
+                console.log('Received values of form signup: ', values);
+                this.props.userActions.updateUser({...this.props.user, isLoading: true});
+                try {
+                    const user = await Auth.signUp(values.email, values.password);
+                    this.props.userActions.updateUser({...this.props.user, data: user, isLoading: false});
+                    message.success("Signing up...check for a verification code!");
+                } catch (e) {
+                    message.error(e.message);
+                    this.props.userActions.updateUser({...this.props.user, isLoading: false});
+                }
             }
         });
     };
 
     handleConfirmationSubmit = async (e) => {
         e.preventDefault();
-        this.props.form.validateFieldsAndScroll((err, values) => {
+        this.props.form.validateFieldsAndScroll(async (err, values) => {
             if (!err) {
-                console.log('Received values of form: ', values);
+                console.log('Received values of form confirmation: ', values);
+                try {
+                    await Auth.confirmSignUp(values.email, values.confirmationCode);
+                    await Auth.signIn(values.email, values.password);
+                
+                    this.props.userActions.updateUser({...this.props.user, isAuthenticated: true, isLoading: false});
+                    message.success("Done signing up! Welcome!");
+                    // this.props.history.push("/");
+                  } catch (e) {
+                    message.error(e.message);
+                    this.props.userActions.updateUser({...this.props.user, isLoading: false});
+                  }
             }
         });
     };
@@ -53,11 +73,6 @@ export class SignUpFormNormal extends Component {
         }
         callback();
     };
-
-    validateConfirmationForm = (rule, value, callback) => {
-        console.log(value === undefined);
-        return (value === undefined);
-    }
 
     renderSignUp() {
         const { getFieldDecorator } = this.props.form;
@@ -139,7 +154,7 @@ export class SignUpFormNormal extends Component {
     }
 
     renderSignUpConfirmation() {
-        const { getFieldDecorator } = this.props.form;
+        const { getFieldDecorator, getFieldError } = this.props.form;
 
         const formItemLayout = {
             labelCol: { span: 24 },
@@ -153,7 +168,7 @@ export class SignUpFormNormal extends Component {
                         rules: [
                             {
                                 required: true,
-                                min: 1,
+                                min: 4,
                                 message: 'Input the confirmation code found in the email.'
                             }
                         ]
@@ -169,7 +184,7 @@ export class SignUpFormNormal extends Component {
                         className="green-btn"
                         block
                         htmlType="submit"
-                        disabled={this.hasErrors}
+                        disabled={!this.props.form.isFieldTouched('confirmation-code')}
                         loading={this.props.user.isLoading}>
                         Confirm
                     </Button>
@@ -181,7 +196,7 @@ export class SignUpFormNormal extends Component {
     render() {
         return (
             <div>
-                {this.props.user.data !== undefined ?
+                {this.props.user.data === undefined ?
                 this.renderSignUp()
                 : this.renderSignUpConfirmation()}
             </div>

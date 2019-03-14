@@ -21,7 +21,8 @@ export class LoginFormNormal extends Component {
                     this.props.history.push("/");
                     message.success("Logged in successfully!");
                 } catch (e) {
-                    message.error(e.message);
+					message.error(e.message);
+                    this.props.userActions.updateUser({...this.props.user, isLoading: false});					
                 }
 			}
 		});
