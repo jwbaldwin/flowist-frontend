@@ -21,8 +21,8 @@ export class LoginFormNormal extends Component {
                     this.props.history.push("/");
                     message.success("Logged in successfully!");
                 } catch (e) {
-					message.error(e.message);
-                    this.props.userActions.updateUser({...this.props.user, isLoading: false});					
+                    this.props.showLoginError(e.message);
+                    this.props.userActions.updateUser({...this.props.user, isLoading: false});
                 }
 			}
 		});
@@ -64,7 +64,13 @@ export class LoginFormNormal extends Component {
 					<a className="login-form-forgot" href="/">
 						Forgot password
 					</a>
-					<Button block size='large' type="primary" htmlType="submit" className="login-form-button green-btn">
+					<Button
+                        block
+                        loading={this.props.user.isLoading}
+                        size='large'
+                        type="primary"
+                        htmlType="submit"
+                        className="login-form-button green-btn">
 						Log in
 					</Button>
 				</Form.Item>

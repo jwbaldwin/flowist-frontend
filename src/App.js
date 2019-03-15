@@ -11,7 +11,7 @@ class App extends Component {
 		return (
 			<BrowserRouter>
 				<Switch>
-					<Route exact path="/user" component={() => (<UserAuth isLoading={this.props.user.isLoading} />)} />
+					<Route exact path="/user" component={UserAuth} />
 					<Route component={AppMain} />
 				</Switch>
 			</BrowserRouter>

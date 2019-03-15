@@ -16,11 +16,11 @@
 	-ms-flex-pack: center;
 	-webkit-justify-content: center;
     justify-content: center;
-    
+
     text-align: center;
 }
 
-.green-btn {
+.green-btn, .green-btn:focus {
 	background-color: #1bb15a;
 	border-color: #168f48;
 	color: #fff;

@@ -10,6 +10,8 @@ import '../UserAuth.css';
 
 export class SignUpFormNormal extends Component {
     state = {
+        email: '',
+        password: '',
         confirmDirty: false,
         autoCompleteResult: [],
     };
@@ -18,14 +20,20 @@ export class SignUpFormNormal extends Component {
         e.preventDefault();
         this.props.form.validateFieldsAndScroll(async (err, values) => {
             if (!err) {
-                console.log('Received values of form signup: ', values);
                 this.props.userActions.updateUser({...this.props.user, isLoading: true});
                 try {
-                    const user = await Auth.signUp(values.email, values.password);
+                    const user = await Auth.signUp({
+                        username: values.email,
+                        password: values.password,
+                        attributes: {
+                            name: values.name,
+                            family_name: values.lastname
+                        }});
                     this.props.userActions.updateUser({...this.props.user, data: user, isLoading: false});
+                    this.setState({email: values.email, password: values.password })
                     message.success("Signing up...check for a verification code!");
                 } catch (e) {
-                    message.error(e.message);
+                    this.props.showSignUpError(e.message);
                     this.props.userActions.updateUser({...this.props.user, isLoading: false});
                 }
             }
@@ -38,14 +46,13 @@ export class SignUpFormNormal extends Component {
             if (!err) {
                 console.log('Received values of form confirmation: ', values);
                 try {
-                    await Auth.confirmSignUp(values.email, values.confirmationCode);
-                    await Auth.signIn(values.email, values.password);
-                
+                    await Auth.confirmSignUp(this.state.email, values.confirmationCode);
+                    await Auth.signIn(this.state.email, this.state.password);
+
                     this.props.userActions.updateUser({...this.props.user, isAuthenticated: true, isLoading: false});
-                    message.success("Done signing up! Welcome!");
-                    // this.props.history.push("/");
+                    this.props.history.push("/");
                   } catch (e) {
-                    message.error(e.message);
+                    this.props.showSignUpError(e.message);
                     this.props.userActions.updateUser({...this.props.user, isLoading: false});
                   }
             }
@@ -95,6 +102,26 @@ export class SignUpFormNormal extends Component {
         };
         return (
             <Form onSubmit={this.handleSubmit}>
+                <Form.Item {...formItemLayout} label="First Name">
+                    {getFieldDecorator('name', {
+                        rules: [{
+                        required: true,
+                        message: 'Please input your first name',
+                        }],
+                    })(
+                        <Input size='large'/>
+                    )}
+                </Form.Item>
+                <Form.Item {...formItemLayout} label="Last Name">
+                    {getFieldDecorator('lastname', {
+                        rules: [{
+                        required: true,
+                        message: 'Please input your last name',
+                        }],
+                    })(
+                        <Input size='large'/>
+                    )}
+                </Form.Item>
                 <Form.Item {...formItemLayout} label="E-mail">
                     {getFieldDecorator('email', {
                         rules: [
@@ -107,7 +134,7 @@ export class SignUpFormNormal extends Component {
                                 message: 'Please input your E-mail!'
                             }
                         ]
-                    })(<Input size='large' />)}
+                    })(<Input size='large'/>)}
                 </Form.Item>
                 <Form.Item {...formItemLayout} label="Password">
                     {getFieldDecorator('password', {
@@ -120,7 +147,7 @@ export class SignUpFormNormal extends Component {
                                 validator: this.validateToNextPassword
                             }
                         ]
-                    })(<Input size='large' type="password" />)}
+                    })(<Input size='large' type="password"/>)}
                 </Form.Item>
                 <Form.Item {...formItemLayout} label="Confirm Password">
                     {getFieldDecorator('confirm', {
@@ -133,7 +160,7 @@ export class SignUpFormNormal extends Component {
                                 validator: this.compareToFirstPassword
                             }
                         ]
-                    })(<Input size='large' type="password" onBlur={this.handleConfirmBlur} />)}
+                    })(<Input size='large' type="password" onBlur={this.handleConfirmBlur}/>)}
                 </Form.Item>
                 <Form.Item {...tailFormItemLayout}>
                     {getFieldDecorator('agreement', {
@@ -145,7 +172,13 @@ export class SignUpFormNormal extends Component {
                     )}
                 </Form.Item>
                 <Form.Item {...tailFormItemLayout}>
-                    <Button size='large' type="primary" className="green-btn" block htmlType="submit">
+                    <Button
+                        size='large'
+                        loading={this.props.user.isLoading}
+                        type="primary"
+                        className="green-btn"
+                        block
+                        htmlType="submit">
                         Register
 					</Button>
                 </Form.Item>
@@ -154,7 +187,7 @@ export class SignUpFormNormal extends Component {
     }
 
     renderSignUpConfirmation() {
-        const { getFieldDecorator, getFieldError } = this.props.form;
+        const { getFieldDecorator } = this.props.form;
 
         const formItemLayout = {
             labelCol: { span: 24 },
@@ -164,7 +197,7 @@ export class SignUpFormNormal extends Component {
         return (
             <Form onSubmit={this.handleConfirmationSubmit}>
                 <Form.Item {...formItemLayout} label="Confirmation Code">
-                    {getFieldDecorator('confirmation-code', {
+                    {getFieldDecorator('confirmationCode', {
                         rules: [
                             {
                                 required: true,
@@ -184,7 +217,7 @@ export class SignUpFormNormal extends Component {
                         className="green-btn"
                         block
                         htmlType="submit"
-                        disabled={!this.props.form.isFieldTouched('confirmation-code')}
+                        disabled={!this.props.form.isFieldTouched('confirmationCode')}
                         loading={this.props.user.isLoading}>
                         Confirm
                     </Button>
