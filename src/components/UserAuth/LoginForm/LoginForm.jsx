@@ -19,7 +19,7 @@ export class LoginFormNormal extends Component {
 					await Auth.signIn(values.email, values.password);
 					this.handleSuccessfulLogin();
 				} catch (e) {
-					this.handleErrorLogin();
+					this.handleErrorLogin(e);
 				}
 			}
 		});
@@ -37,7 +37,7 @@ export class LoginFormNormal extends Component {
 		message.success('Logged in successfully!');
 	};
 
-	handleErrorLogin = async () => {
+	handleErrorLogin = async (e) => {
 		this.props.showLoginError(e.message);
 		this.props.userActions.updateUser({ ...this.props.user, isLoading: false });
 	};
