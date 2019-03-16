@@ -130,7 +130,7 @@ function updateFlowRequest() {
 
 export function updateFlowSuccess(data) {
 	console.log(data);
-    this.showMessage("Flow completed! Congrats! 🎉");
+    message.success("Flow completed! Congrats! 🎉");
 	return {
 		type: UPDATE_FLOW_SUCCESS,
 		data: data

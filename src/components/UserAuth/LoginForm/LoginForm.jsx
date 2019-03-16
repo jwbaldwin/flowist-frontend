@@ -5,27 +5,41 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import * as userActions from '../../../actions/userActions';
-import { Auth } from "aws-amplify";
+import { Auth } from 'aws-amplify';
 import './LoginForm.css';
 import '../UserAuth.css';
 
 export class LoginFormNormal extends Component {
-	handleSubmit = async event => {
+	handleSubmit = async (event) => {
 		event.preventDefault();
 		this.props.form.validateFields(async (err, values) => {
 			if (!err) {
-				this.props.userActions.updateUser({...this.props.user, isLoading: true});
-                try {
-                    await Auth.signIn(values.email, values.password);
-                    this.props.userActions.updateUser({...this.props.user, isAuthenticated: true, isLoading: false});
-                    this.props.history.push("/");
-                    message.success("Logged in successfully!");
-                } catch (e) {
-                    this.props.showLoginError(e.message);
-                    this.props.userActions.updateUser({...this.props.user, isLoading: false});
-                }
+				this.props.userActions.updateUser({ ...this.props.user, isLoading: true });
+				try {
+					await Auth.signIn(values.email, values.password);
+					this.handleSuccessfulLogin();
+				} catch (e) {
+					this.handleErrorLogin();
+				}
 			}
 		});
+	};
+
+	handleSuccessfulLogin = async () => {
+		const userDetails = await Auth.currentAuthenticatedUser();
+		this.props.userActions.updateUser({
+			...this.props.user,
+			user: userDetails,
+			isAuthenticated: true,
+			isLoading: false
+		});
+		this.props.history.push('/');
+		message.success('Logged in successfully!');
+	};
+
+	handleErrorLogin = async () => {
+		this.props.showLoginError(e.message);
+		this.props.userActions.updateUser({ ...this.props.user, isLoading: false });
 	};
 
 	render() {
@@ -38,7 +52,7 @@ export class LoginFormNormal extends Component {
 						rules: [ { required: true, message: 'Please input your email!' } ]
 					})(
 						<Input
-							size='large'
+							size="large"
 							prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
 							placeholder="Email"
 						/>
@@ -49,7 +63,7 @@ export class LoginFormNormal extends Component {
 						rules: [ { required: true, message: 'Please input your password!' } ]
 					})(
 						<Input
-							size='large'
+							size="large"
 							prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
 							type="password"
 							placeholder="Password"
@@ -65,12 +79,13 @@ export class LoginFormNormal extends Component {
 						Forgot password
 					</a>
 					<Button
-                        block
-                        loading={this.props.user.isLoading}
-                        size='large'
-                        type="primary"
-                        htmlType="submit"
-                        className="login-form-button green-btn">
+						block
+						loading={this.props.user.isLoading}
+						size="large"
+						type="primary"
+						htmlType="submit"
+						className="login-form-button green-btn"
+					>
 						Log in
 					</Button>
 				</Form.Item>
