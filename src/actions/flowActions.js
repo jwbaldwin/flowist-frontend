@@ -22,10 +22,11 @@ const FLOW_API_URL = environment.api.FLOWS_ENDPOINT;
 */
 
 export function fetchFlow() {
-	return (dispatch) => {
+	return async (dispatch) => {
 		dispatch(fetchFlowRequest())
 		const headers = new Headers();
-		headers.append('Authorization', 'Bearer ' + getIdToken());
+		const token = await getIdToken();
+		headers.append('Authorization', 'Bearer ' + token);
 		headers.append('Content-Type', 'application/json');
 
 		return fetch(FLOW_API_URL + '/all', {
@@ -198,6 +199,6 @@ export function deleteFlowError(error) {
 }
 
 async function getIdToken() {
-	const session =  await Auth.currentSession();
-	return session.getIdToken();
+	const session = await Auth.currentSession();
+	return session.getIdToken().getJwtToken();
 }
