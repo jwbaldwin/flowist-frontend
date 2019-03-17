@@ -12,6 +12,7 @@ import {
 	DELETE_FLOW_SUCCESS,
 	DELETE_FLOW_ERROR
 } from './actionTypes';
+import { Auth } from 'aws-amplify';
 import { message } from 'antd';
 import environment from "../environment";
 
@@ -22,9 +23,14 @@ const FLOW_API_URL = environment.api.FLOWS_ENDPOINT;
 
 export function fetchFlow() {
 	return (dispatch) => {
-        dispatch(fetchFlowRequest())
+		dispatch(fetchFlowRequest())
+		const headers = new Headers();
+		headers.append('Authorization', 'Bearer ' + getIdToken());
+		headers.append('Content-Type', 'application/json');
+
 		return fetch(FLOW_API_URL + '/all', {
-			method: 'GET'
+			method: 'GET',
+			headers: headers
 		})
 			.then((response) => response.json())
 			.then((json) => {
@@ -69,7 +75,8 @@ export function addFlow(flow) {
 			method: 'POST',
 			headers: {
 				Accept: 'application/json, text/plain, */*',
-				'Content-Type': 'application/json'
+				'Content-Type': 'application/json',
+				'Authorization': 'Bearer ' + getIdToken(),
 			},
 			body: JSON.stringify(flow)
 		})
@@ -111,7 +118,8 @@ export function updateFlow(flow) {
 			method: 'PUT',
 			headers: {
 				Accept: 'application/json, text/plain, */*',
-				'Content-Type': 'application/json'
+				'Content-Type': 'application/json',
+				'Authorization': 'Bearer ' + getIdToken(),
 			},
 			body: JSON.stringify(flow)
 		})
@@ -156,7 +164,8 @@ export function deleteFlow(id) {
 			method: 'DELETE',
 			headers: {
 				Accept: 'application/json, text/plain, */*',
-				'Content-Type': 'application/json'
+				'Content-Type': 'application/json',
+				'Authorization': 'Bearer ' + getIdToken(),
 			}
 		})
 			.then((response) => {
@@ -186,4 +195,9 @@ export function deleteFlowError(error) {
 		type: DELETE_FLOW_ERROR,
 		error: error
 	};
+}
+
+async function getIdToken() {
+	const session =  await Auth.currentSession();
+	return session.getIdToken();
 }
