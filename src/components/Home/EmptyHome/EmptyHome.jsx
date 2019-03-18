@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Icon, Empty } from 'antd';
 import FlowModal from '../FlowModal';
+import './EmptyHome.css';
 
 export class EmptyHome extends Component {
 	state = {
@@ -10,21 +11,21 @@ export class EmptyHome extends Component {
 	showModal = () => {
 		this.setState({ visible: !this.state.visible });
 	};
-	
+
 	render() {
 		return (
 			<div>
 				<FlowModal visible={this.state.visible} />
 				<Empty
-					// image="https://gw.alipayobjects.com/mdn/miniapp_social/afts/img/A*pevERLJC9v0AAAAAAAAAAABjAQAAAQ/original"
+                    image={<Icon type="coffee" style={{fontSize: 64, color: "#ccc"}}/>}
 					description={
-						<div style={{ color: '#bbb', marginBottom: '3em' }}>
+						<span style={{ color: '#bbb', marginBottom: '3em' }}>
 							No active flows. Add one here!
 							<span>
 								<br />
 								<Icon type="bulb" /> Tip: use `⌘ + S`
 							</span>
-						</div>
+						</span>
 					}
 				>
 					<Button icon="thunderbolt" size="large" type="primary" onClick={this.showModal}>
