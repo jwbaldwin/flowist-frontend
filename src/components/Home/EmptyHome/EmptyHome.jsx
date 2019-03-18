@@ -16,7 +16,7 @@ export class EmptyHome extends Component {
 			<div>
 				<FlowModal visible={this.state.visible} />
 				<Empty
-                    image={<Icon type="coffee" style={{fontSize: 64, color: "#bbb"}}/>}
+                    image={<Icon type="coffee" style={{fontSize: 64, color: "#ccc"}}/>}
 					description={
 						<span style={{ color: '#bbb', marginBottom: '3em' }}>
 							No active flows. Add one here!
