@@ -24,10 +24,7 @@ const FLOW_API_URL = environment.api.FLOWS_ENDPOINT;
 export function fetchFlow() {
 	return async (dispatch) => {
 		dispatch(fetchFlowRequest())
-		const headers = new Headers();
-		const token = await getIdToken();
-		headers.append('Authorization', 'Bearer ' + token);
-		headers.append('Content-Type', 'application/json');
+		const headers = await getHeaders();
 
 		return fetch(FLOW_API_URL + '/all', {
 			method: 'GET',
@@ -70,15 +67,13 @@ export function fetchFlowError(error) {
 */
 
 export function addFlow(flow) {
-	return (dispatch) => {
-        dispatch(addFlowRequest())
+	return async (dispatch) => {
+		dispatch(addFlowRequest())
+		const headers = await getHeaders();
+
 		return fetch(FLOW_API_URL, {
 			method: 'POST',
-			headers: {
-				Accept: 'application/json, text/plain, */*',
-				'Content-Type': 'application/json',
-				'Authorization': 'Bearer ' + getIdToken(),
-			},
+			headers: headers,
 			body: JSON.stringify(flow)
 		})
 			.then((response) => {
@@ -113,15 +108,13 @@ export function addFlowError(error) {
 */
 
 export function updateFlow(flow) {
-	return (dispatch) => {
-        dispatch(updateFlowRequest())
+	return async (dispatch) => {
+		dispatch(updateFlowRequest())
+		const headers = await getHeaders();
+
 		return fetch(FLOW_API_URL + '?id=' + flow.id, {
 			method: 'PUT',
-			headers: {
-				Accept: 'application/json, text/plain, */*',
-				'Content-Type': 'application/json',
-				'Authorization': 'Bearer ' + getIdToken(),
-			},
+			headers: headers,
 			body: JSON.stringify(flow)
 		})
 			.then((response) => {
@@ -159,15 +152,13 @@ export function updateFlowError(error) {
 */
 
 export function deleteFlow(id) {
-	return (dispatch) => {
-        dispatch(deleteFlowRequest());
+	return async (dispatch) => {
+		dispatch(deleteFlowRequest());
+		const headers = await getHeaders();
+
 		return fetch(FLOW_API_URL + '?id=' + id, {
 			method: 'DELETE',
-			headers: {
-				Accept: 'application/json, text/plain, */*',
-				'Content-Type': 'application/json',
-				'Authorization': 'Bearer ' + getIdToken(),
-			}
+			headers: headers,
 		})
 			.then((response) => {
 				response.status === 200 ?
@@ -196,6 +187,15 @@ export function deleteFlowError(error) {
 		type: DELETE_FLOW_ERROR,
 		error: error
 	};
+}
+
+async function getHeaders() {
+	const headers = new Headers();
+	const token = await getIdToken();
+	headers.append('Authorization', 'Bearer ' + token);
+	headers.append('Content-Type', 'application/json');
+	headers.append('Accept', 'application/json, text/plain, */*');
+	return headers;
 }
 
 async function getIdToken() {
