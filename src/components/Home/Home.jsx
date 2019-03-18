@@ -12,7 +12,7 @@ const { Content } = Layout;
 
 class Home extends Component {
 	componentWillMount() {
-		this.props.flowActions.fetchFlow();
+		this.props.flowActions.fetchFlows();
 		document.addEventListener('keydown', this.handleKeyPress.bind(this));
 	}
 
@@ -31,7 +31,7 @@ class Home extends Component {
 			>
 				{this.props.isLoading ?
                 <Spin size="large" />
-                : (Object.getOwnPropertyNames(this.props.flow).length > 0 ? <FlowHome /> : <EmptyHome />)}
+                : (this.props.flows.length > 0 ? <FlowHome flows={this.props.flows} /> : <EmptyHome />)}
 			</Content>
 		);
 	}
@@ -39,12 +39,12 @@ class Home extends Component {
 
 Home.propTypes = {
 	flowActions: PropTypes.object,
-	flow: PropTypes.object
+	flows: PropTypes.array
 };
 
 function mapStateToProps(state) {
 	return {
-		flow: state.flow.data,
+		flows: state.flow.data,
 		isLoading: state.flow.isLoading
 	};
 }

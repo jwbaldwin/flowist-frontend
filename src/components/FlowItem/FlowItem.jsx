@@ -130,13 +130,11 @@ class FlowItem extends Component {
 
 FlowItem.propTypes = {
 	flowActions: PropTypes.object,
-	flow: PropTypes.object,
 	isLoading: PropTypes.bool
 };
 
 function mapStateToProps(state) {
 	return {
-		flow: state.flow.data,
 		isLoading: state.flow.isLoading
 	};
 }

@@ -21,7 +21,7 @@ const FLOW_API_URL = environment.api.FLOWS_ENDPOINT;
 * FETCH FLOW ACTIONS
 */
 
-export function fetchFlow() {
+export function fetchFlows() {
 	return async (dispatch) => {
 		dispatch(fetchFlowRequest())
 		const headers = new Headers();
@@ -54,7 +54,7 @@ function fetchFlowRequest() {
 export function fetchFlowSuccess(data) {
 	return {
 		type: FETCH_FLOW_SUCCESS,
-		data: data[0]
+		data: data
 	};
 }
 
