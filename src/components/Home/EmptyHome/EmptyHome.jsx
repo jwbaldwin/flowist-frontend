@@ -10,13 +10,13 @@ export class EmptyHome extends Component {
 	showModal = () => {
 		this.setState({ visible: !this.state.visible });
 	};
-	
+
 	render() {
 		return (
 			<div>
 				<FlowModal visible={this.state.visible} />
 				<Empty
-					// image="https://gw.alipayobjects.com/mdn/miniapp_social/afts/img/A*pevERLJC9v0AAAAAAAAAAABjAQAAAQ/original"
+                    image={<Icon type="coffee" style={{fontSize: 64, color: "#bbb"}}/>}
 					description={
 						<div style={{ color: '#bbb', marginBottom: '3em' }}>
 							No active flows. Add one here!

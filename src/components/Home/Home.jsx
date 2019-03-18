@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import PropTypes from 'prop-types';
-import * as flowActions from '../../actions/flowActions';
 import { Layout, Spin } from 'antd';
 import EmptyHome from './EmptyHome';
 import FlowHome from '../FlowHome';
@@ -12,7 +9,6 @@ const { Content } = Layout;
 
 class Home extends Component {
 	componentWillMount() {
-		this.props.flowActions.fetchFlows();
 		document.addEventListener('keydown', this.handleKeyPress.bind(this));
 	}
 
@@ -37,22 +33,11 @@ class Home extends Component {
 	}
 }
 
-Home.propTypes = {
-	flowActions: PropTypes.object,
-	flows: PropTypes.array
-};
 
 function mapStateToProps(state) {
 	return {
-		flows: state.flow.data,
 		isLoading: state.flow.isLoading
 	};
 }
 
-function mapDispatchToProps(dispatch) {
-	return {
-		flowActions: bindActionCreators(flowActions, dispatch)
-	};
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(mapStateToProps, null)(Home);

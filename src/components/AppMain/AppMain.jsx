@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import * as settingsActions from '../../actions/settingsActions';
+import * as flowActions from '../../actions/flowActions';
 import * as userActions from '../../actions/userActions';
 import Sidebar from '../Sidebar';
 import AppFooter from '../AppFooter';
@@ -22,6 +23,7 @@ export class AppMain extends Component {
 
 	componentWillMount() {
 		this.props.settingsActions.fetchSettings();
+		this.props.flowActions.fetchFlows();
 	}
 
 	toggleCollapse = () => {
@@ -31,16 +33,19 @@ export class AppMain extends Component {
 	};
 
 	render() {
+        const archivedFlows = this.props.flows.filter(flow => flow.flowStatus === 'COMPLETED');
+        const activeFlows = this.props.flows.filter(flow => flow.flowStatus !== 'COMPLETED');
+
 		return (
 			<Layout style={{ minHeight: '100vh' }}>
 				<Sidebar toggle={this.toggleCollapse} collapsed={this.state.collapsed} {...this.props} />
 				<Layout>
 					<HeaderNav toggle={this.toggleCollapse} collapsed={this.state.collapsed} {...this.props}/>
-					<Route exact path="/" component={Home} />
+					<Route exact path="/" component={() => <Home flows={activeFlows} />} />
 					<Route exact path="/tags" component={Tags} />
-					<Route exact path="/archive" component={Archive} />
+					<Route exact path="/archive" component={() => <Archive flows={archivedFlows} />} />
 					<Route exact path="/settings" component={Settings} />
-                    <Route exact path="/profile" component={Profile} />
+                    <Route exact path="/profile" component={() => <Profile flows={this.props.flows} user={this.props.user} />} />
 					<AppFooter />
 				</Layout>
 			</Layout>
@@ -51,12 +56,14 @@ export class AppMain extends Component {
 AppMain.propTypes = {
 	settingsActions: PropTypes.object,
     userActions: PropTypes.object,
+    flows: PropTypes.array,
 	settings: PropTypes.object,
     user: PropTypes.object,
 };
 
 function mapStateToProps(state) {
 	return {
+        flows: state.flow.data,
 		settings: state.settings,
         user: state.user
 	};
@@ -64,6 +71,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
 	return {
+        flowActions: bindActionCreators(flowActions, dispatch),
 		settingsActions: bindActionCreators(settingsActions, dispatch),
         userActions: bindActionCreators(userActions, dispatch)
 	};
