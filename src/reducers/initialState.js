@@ -1,6 +1,6 @@
 export default {
 	flow: {
-		data: {},
+		data: [],
 		isLoading: true
 	},
     flowDebug: {

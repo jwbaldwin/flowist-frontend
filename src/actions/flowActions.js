@@ -35,11 +35,7 @@ export function fetchFlows() {
 		})
 			.then((response) => response.json())
 			.then((json) => {
-				if (json.length !== 0) {
 					dispatch(fetchFlowSuccess(json));
-				} else {
-					dispatch(fetchFlowError('Empty JSON returned from API'));
-				}
 			})
 			.catch((error) => dispatch(fetchFlowError(error)));
 	};

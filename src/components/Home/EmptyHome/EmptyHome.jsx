@@ -18,13 +18,13 @@ export class EmptyHome extends Component {
 				<Empty
                     image={<Icon type="coffee" style={{fontSize: 64, color: "#bbb"}}/>}
 					description={
-						<div style={{ color: '#bbb', marginBottom: '3em' }}>
+						<span style={{ color: '#bbb', marginBottom: '3em' }}>
 							No active flows. Add one here!
 							<span>
 								<br />
 								<Icon type="bulb" /> Tip: use `⌘ + S`
 							</span>
-						</div>
+						</span>
 					}
 				>
 					<Button icon="thunderbolt" size="large" type="primary" onClick={this.showModal}>

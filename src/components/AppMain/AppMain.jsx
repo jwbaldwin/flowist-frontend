@@ -33,8 +33,9 @@ export class AppMain extends Component {
 	};
 
 	render() {
-        const archivedFlows = this.props.flows.filter(flow => flow.flowStatus === 'COMPLETED');
-        const activeFlows = this.props.flows.filter(flow => flow.flowStatus !== 'COMPLETED');
+           const archivedFlows = this.props.flows.filter(flow => flow.flowStatus === 'COMPLETED');
+           const activeFlows = this.props.flows.filter(flow => flow.flowStatus !== 'COMPLETED');
+
 
 		return (
 			<Layout style={{ minHeight: '100vh' }}>

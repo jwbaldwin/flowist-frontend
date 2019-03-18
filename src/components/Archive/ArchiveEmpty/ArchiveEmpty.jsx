@@ -8,9 +8,9 @@ export class ArchiveEmpty extends Component {
 			<div>
 				<Empty
 					description={
-						<div style={{ color: '#bbb', marginBottom: '3em' }}>
+						<span style={{ color: '#bbb', marginBottom: '3em' }}>
 							No archived flows!
-						</div>
+						</span>
 					}
 				>
 				</Empty>
