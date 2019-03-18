@@ -64,16 +64,16 @@ class Sidebar extends Component {
 							<span>#flows</span>
 						</Link>
 					</Menu.Item>
+                    <Menu.Item key="/archive">
+						<Link to="/archive">
+							<Icon type="inbox" />
+							<span>#archive</span>
+						</Link>
+					</Menu.Item>
 					<Menu.Item key="/tags">
 						<Link to="/tags">
 							<Icon type="tags" />
 							<span>#tags</span>
-						</Link>
-					</Menu.Item>
-					<Menu.Item key="/archive">
-						<Link to="/archive">
-							<Icon type="inbox" />
-							<span>#archive</span>
 						</Link>
 					</Menu.Item>
 					<Menu.Item key="/settings">
