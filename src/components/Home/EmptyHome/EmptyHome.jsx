@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Icon, Empty } from 'antd';
 import FlowModal from '../FlowModal';
+import './EmptyHome.css';
 
 export class EmptyHome extends Component {
 	state = {

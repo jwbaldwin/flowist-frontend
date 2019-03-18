@@ -46,7 +46,7 @@ export class AppMain extends Component {
 					<Route exact path="/tags" component={Tags} />
 					<Route exact path="/archive" component={() => <Archive flows={archivedFlows} />} />
 					<Route exact path="/settings" component={Settings} />
-                    <Route exact path="/profile" component={() => <Profile flows={this.props.flows} user={this.props.user} />} />
+                    <Route exact path="/profile" component={() => <Profile flows={this.props.flows} user={this.props.user.user} />} />
 					<AppFooter />
 				</Layout>
 			</Layout>
