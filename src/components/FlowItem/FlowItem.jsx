@@ -99,7 +99,7 @@ class FlowItem extends Component {
                         <Popconfirm placement="topLeft" arrowPointAtCenter title="Are you sure delete this flow?" onConfirm={() => this.deleteItem(flow.id)} okText="Yep" cancelText="Cancel">
                             <Icon type="delete" theme="twoTone" twoToneColor="#f5222d" style={{fontSize: 18}}/>
                         </Popconfirm>,
-                        <Dropdown trigger={[ 'hover', 'click' ]} overlay={optionsMenu} placement="bottomCenter">
+                        <Dropdown trigger={[ 'hover', 'click' ]} overlay={optionsMenu} placement="topCenter">
                             <Icon type="ellipsis" style={{fontSize: 18}}/>
                         </Dropdown>,
                         <Icon type="check-circle" onClick={() => this.completeItem(flow.id)} theme="twoTone" twoToneColor="#52c41a" style={{fontSize: 18}}/>
