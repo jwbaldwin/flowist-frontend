@@ -43,6 +43,7 @@ class Sidebar extends Component {
 				onCollapse={this.props.toggle}
 				collapsed={this.props.collapsed}
 				onBreakpoint={this.onBreakpoint}
+                width={256}
 			>
 				<div id="app-sidebar-logo-div" className={this.props.settings.theme}>
 					<Link to="/">

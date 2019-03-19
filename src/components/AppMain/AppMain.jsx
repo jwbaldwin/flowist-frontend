@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import * as settingsActions from '../../actions/settingsActions';
 import * as flowActions from '../../actions/flowActions';
 import * as userActions from '../../actions/userActions';
-import Sidebar from '../Sidebar';
+import SidebarWrapper from '../SidebarWrapper';
 import AppFooter from '../AppFooter';
 import HeaderNav from '../HeaderNav';
 import Home from '../Home';
@@ -15,6 +15,7 @@ import Archive from '../Archive';
 import Settings from '../Settings';
 import Profile from '../Profile';
 import { Layout } from 'antd';
+import { isMobile } from "react-device-detect";
 
 export class AppMain extends Component {
 	state = {
@@ -39,7 +40,7 @@ export class AppMain extends Component {
 
 		return (
 			<Layout style={{ minHeight: '100vh' }}>
-				<Sidebar toggle={this.toggleCollapse} collapsed={this.state.collapsed} {...this.props} />
+				<SidebarWrapper toggle={this.toggleCollapse} collapsed={this.state.collapsed} isMobile={ isMobile } {...this.props} />
 				<Layout>
 					<HeaderNav toggle={this.toggleCollapse} collapsed={this.state.collapsed} {...this.props}/>
 					<Route exact path="/" component={() => <Home flows={activeFlows} />} />
