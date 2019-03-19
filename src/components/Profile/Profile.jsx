@@ -9,7 +9,7 @@ export class Settings extends Component {
         const user = this.props.user.attributes;
         const { flows } = this.props.flows;
         return (
-            <Content style={{ margin: 48 }}>
+            <Content style={{ margin: 24 }}>
                 <Row type="flex" justify="space-around" align="top">
                     <Col xs={24} sm={24} md={24} lg={8}>
                         <Card
