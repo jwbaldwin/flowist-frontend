@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component, Suspense } from 'react';
 import { Link } from 'react-router-dom';
-import {Layout, Icon } from 'antd';
+import {Layout, Icon, Spin } from 'antd';
 import logo from '../../images/flowist.png';
-import UserMenu from './UserMenu';
 import './HeaderNav.css';
 
+const UserMenu = React.lazy(() => import('./UserMenu'));
 const { Header } = Layout;
 
 export class HeaderNav extends Component {
@@ -25,7 +25,9 @@ export class HeaderNav extends Component {
 					onClick={this.props.toggle}
 				/>
 				<div className="header-right">
-					<UserMenu {...this.props}/>
+					<Suspense fallback={<Spin />}>
+						<UserMenu {...this.props}/>
+					</Suspense>
 				</div>
 			</Header>
 		);

@@ -1,6 +1,6 @@
-import React, { Component, Suspense } from 'react';
+import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-import { Form, Input, Icon, Checkbox, Button, message, Spin } from 'antd';
+import { Form, Input, Icon, Checkbox, Button, message } from 'antd';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
@@ -9,8 +9,6 @@ import { Auth } from "aws-amplify";
 import '../UserAuth.css';
 
 import { PasswordInput } from 'antd-password-input-strength';
-
-// const PasswordInput = React.lazy(() => import('antd-password-input-strength'));
 
 export class SignUpFormNormal extends Component {
     state = {
@@ -166,7 +164,7 @@ export class SignUpFormNormal extends Component {
                                 validator: this.compareToFirstPassword
                             }
                         ]
-                    })(<Input size='large' type="password" onBlur={this.handleConfirmBlur}/>)}
+                    })(<Input.Password size='large' type="password" onBlur={this.handleConfirmBlur}/>)}
                 </Form.Item>
                 <Form.Item {...tailFormItemLayout}>
                     {getFieldDecorator('agreement', {

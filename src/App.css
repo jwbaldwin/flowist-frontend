@@ -15,12 +15,13 @@
 	-moz-box-pack: center;
 	-ms-flex-pack: center;
 	-webkit-justify-content: center;
-    justify-content: center;
+	justify-content: center;
 
-    text-align: center;
+	text-align: center;
 }
 
-.green-btn, .green-btn:focus {
+.green-btn,
+.green-btn:focus {
 	background-color: #1bb15a;
 	border-color: #168f48;
 	color: #fff;
@@ -30,4 +31,12 @@
 	background-color: #1dc060;
 	border-color: #1bb15a;
 	color: #fff;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+	select,
+	textarea,
+	input {
+		font-size: 16px !important;
+	}
 }
