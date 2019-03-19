@@ -1,12 +1,16 @@
-import React, { Component } from 'react';
+import React, { Component, Suspense } from 'react';
 import { withRouter } from 'react-router-dom';
-import { Form, Input, Icon, Checkbox, Button, message } from 'antd';
+import { Form, Input, Icon, Checkbox, Button, message, Spin } from 'antd';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import * as userActions from '../../../actions/userActions';
 import { Auth } from "aws-amplify";
 import '../UserAuth.css';
+
+import { PasswordInput } from 'antd-password-input-strength';
+
+// const PasswordInput = React.lazy(() => import('antd-password-input-strength'));
 
 export class SignUpFormNormal extends Component {
     state = {
@@ -127,34 +131,36 @@ export class SignUpFormNormal extends Component {
                         rules: [
                             {
                                 type: 'email',
-                                message: 'The input is not valid E-mail!'
+                                message: 'The input is not valid E-mail'
                             },
                             {
                                 required: true,
-                                message: 'Please input your E-mail!'
+                                message: 'Please input your E-mail'
                             }
                         ]
                     })(<Input size='large'/>)}
                 </Form.Item>
                 <Form.Item {...formItemLayout} label="Password">
                     {getFieldDecorator('password', {
-                        rules: [
-                            {
-                                required: true,
-                                message: 'Please input your password!'
-                            },
-                            {
-                                validator: this.validateToNextPassword
-                            }
-                        ]
-                    })(<Input size='large' type="password"/>)}
+						rules: [{
+							required: true,
+							message: "Please input your password"
+                        },
+                        {
+                            min: 8,
+                            message: "Password must be more than 8 characters in length"
+                        }
+                    ]
+                })(
+                        <PasswordInput inputProps={{ size:"large" }}/>
+                    )}
                 </Form.Item>
                 <Form.Item {...formItemLayout} label="Confirm Password">
                     {getFieldDecorator('confirm', {
                         rules: [
                             {
                                 required: true,
-                                message: 'Please confirm your password!'
+                                message: 'Please confirm your password'
                             },
                             {
                                 validator: this.compareToFirstPassword
