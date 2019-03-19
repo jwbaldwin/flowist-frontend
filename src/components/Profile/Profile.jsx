@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
-import { Layout, Row, Col, Avatar, Icon, Statistic, Card, Menu } from 'antd';
+import { Layout, Row, Col, Icon, Statistic, Card, Menu } from 'antd';
 import './Profile.css';
 const { Content } = Layout;
 
 export class Settings extends Component {
     render() {
         console.log(this.props.user.attributes)
-        const user = this.props.user.attributes;
-        const { flows } = this.props.flows;
+        // const user = this.props.user.attributes;
+        // const { flows } = this.props.flows;
         return (
-            <Content style={{ margin: 48 }}>
+            <Content style={{ margin: 24 }}>
                 <Row type="flex" justify="space-around" align="top">
-                    <Col sm={24} md={24} lg={8}>
+                    <Col xs={24} sm={24} md={24} lg={8}>
                         <Card
                             id="personal-settings"
                             title="Personal Settings"
@@ -36,9 +36,9 @@ export class Settings extends Component {
                             </Menu>
                         </Card>
                     </Col>
-                    <Col sm={24} md={24} lg={16}>
+                    <Col xs={24} sm={24} md={24} lg={16}>
                         <Row type="flex" justify="space-around" align="top">
-                            <Col sm={24} md={24} lg={22} style={{ marginBottom: '1em' }}>
+                            <Col xs={24} sm={24} md={24} lg={22} style={{ marginBottom: '1em' }}>
                                 <Card
                                     id="stats"
                                     title="Stats"
@@ -49,7 +49,7 @@ export class Settings extends Component {
                                     <Statistic title="Unmerged" value={93} suffix="/ 100" />
                                 </Card>
                             </Col>
-                            <Col sm={24} md={24} lg={22}>
+                            <Col xs={24} sm={24} md={24} lg={22}>
                                 <Card
                                     id="account-info"
                                     title="Personal Settings"
