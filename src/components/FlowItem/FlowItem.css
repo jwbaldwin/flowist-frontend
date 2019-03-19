@@ -15,6 +15,7 @@ div.ant-card {
 
 div.ant-card-head {
     text-align: left;
+    font-weight: bold;
     padding: 0 8px;
 }
 

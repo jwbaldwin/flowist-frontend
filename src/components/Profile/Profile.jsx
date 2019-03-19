@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import { Layout, Row, Col, Avatar, Icon, Statistic, Card, Menu } from 'antd';
+import { Layout, Row, Col, Icon, Statistic, Card, Menu } from 'antd';
 import './Profile.css';
 const { Content } = Layout;
 
 export class Settings extends Component {
     render() {
         console.log(this.props.user.attributes)
-        const user = this.props.user.attributes;
-        const { flows } = this.props.flows;
+        // const user = this.props.user.attributes;
+        // const { flows } = this.props.flows;
         return (
             <Content style={{ margin: 24 }}>
                 <Row type="flex" justify="space-around" align="top">
