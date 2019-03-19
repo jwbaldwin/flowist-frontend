@@ -12,20 +12,21 @@ const { Content } = Layout;
 export class Archive extends Component {
 	render() {
 		return (
-		    <Content
-            className="centered"
-            style={{ padding: 24 }}
-            >
-                {this.props.isLoading ?
-                    <Spin size="large" />
-                    : (this.props.flows.length > 0 ? <ArchiveContent flows={this.props.flows} /> : <ArchiveEmpty />)}
-            </Content>
+			<Content style={{ padding: 24 }}>
+				{this.props.isLoading ? (
+					<Spin size="large" />
+				) : this.props.flows.length > 0 ? (
+					<ArchiveContent flows={this.props.flows} isLoading={this.props.isLoading} />
+				) : (
+					<ArchiveEmpty />
+				)}
+			</Content>
 		);
 	}
 }
 
 Archive.propTypes = {
-	flowActions: PropTypes.object,
+	flowActions: PropTypes.object
 };
 
 function mapStateToProps(state) {

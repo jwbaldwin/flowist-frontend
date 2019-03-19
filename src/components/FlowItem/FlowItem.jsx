@@ -10,9 +10,10 @@ import createHashtagPlugin from 'draft-js-hashtag-plugin';
 import createLinkifyPlugin from 'draft-js-linkify-plugin';
 import createMarkdownShortcutsPlugin from 'draft-js-markdown-shortcuts-plugin';
 import { stateFromMarkdown } from "draft-js-import-markdown";
-import './FlowItem.css';
+import mapIcon from '../../common';
 import FlowTagsFooter from './FlowTagsFooter';
 import 'draft-js-hashtag-plugin/lib/plugin.css';
+import './FlowItem.css';
 
 const confirm = Modal.confirm;
 
@@ -25,13 +26,6 @@ const plugins = [
     hashtagPlugin,
     markdownPlugin,
 ];
-
-const iconMap = {
-    coding: 'laptop',
-    researching: 'search',
-    debugging: 'alert',
-    planning: 'schedule'
-};
 
 const contentStyle = {
     width: '100%',
@@ -122,7 +116,7 @@ class FlowItem extends Component {
                     <Icon type="check-circle" onClick={() => this.completeItem(flow.id)} theme="twoTone" twoToneColor="#52c41a" style={{ fontSize: 18 }} />
                 ]}
                 extra={this.getFlowStatusIcon(flow.flowStatus)}
-                title={<span><Icon type={iconMap[flow.activity]} id="flow-activity-icon" /> {flow.title} </span>}
+                title={<span><Icon type={mapIcon(flow.activity)} id="flow-activity-icon" /> {flow.title} </span>}
             >
                 <Card.Grid style={contentStyle} className="flow-card-content">
                     <div id='content'>
