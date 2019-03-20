@@ -17,9 +17,15 @@ export class UserMenu extends Component {
         }
     }
 
-	render() {
+	render() { 
         const menuItems =
             <Menu>
+                <Menu.Item key="0">
+                    <span style={{fontWeight: 600}}>{this.props.user.user.attributes.name} {this.props.user.user.attributes.family_name}</span>
+                    <br/>
+                    <span style={{fontWeight: 300, fontSize: 12, color: '#777'}}>{this.props.user.user.attributes.email}</span>
+                </Menu.Item>
+                <Menu.Divider />
                 <Menu.Item key="0">
                     <Link to="/profile">
                         <Icon type="user" /> Profile
@@ -40,7 +46,7 @@ export class UserMenu extends Component {
 		return (
             <Dropdown id="profile-dropdown" trigger={[ 'hover', 'click' ]} overlay={menuItems} placement="bottomRight">
                 <span className="ant-dropdown-link" style={{display: 'inline-block'}}>
-                  {this.props.user.user.attributes.name} <Avatar icon='user'/>
+                  <Avatar icon='user'/>
                 </span>
 			</Dropdown>
 		);

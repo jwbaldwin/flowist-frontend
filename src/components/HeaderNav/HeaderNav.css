@@ -19,6 +19,10 @@
 	vertical-align: middle;
 }
 
+#ant-dropdown-link {
+	padding: 6px 0;
+}
+
 
 .header-left {
 	float: left;

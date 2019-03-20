@@ -1,6 +1,6 @@
 import React, { Component, Suspense } from 'react';
 import { Link } from 'react-router-dom';
-import {Layout, Icon, Spin } from 'antd';
+import { Layout, Icon, Spin, Menu } from 'antd';
 import logo from '../../images/flowist.png';
 import './HeaderNav.css';
 
@@ -8,6 +8,16 @@ const UserMenu = React.lazy(() => import('./UserMenu'));
 const { Header } = Layout;
 
 export class HeaderNav extends Component {
+	state = {
+		current: 'mail'
+	};
+
+	handleClick = (e) => {
+		console.log('click ', e);
+		this.setState({
+			current: e.key
+		});
+	};
 
 	render() {
 		return (
@@ -26,7 +36,7 @@ export class HeaderNav extends Component {
 				/>
 				<div className="header-right">
 					<Suspense fallback={<Spin />}>
-						<UserMenu {...this.props}/>
+						<UserMenu {...this.props} />
 					</Suspense>
 				</div>
 			</Header>
