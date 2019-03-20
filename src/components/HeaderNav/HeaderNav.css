@@ -57,8 +57,8 @@
 
 @media all and (max-width: 768px) {
 	.ant-dropdown {
-        width: 100vw !important;
-        left: 0 !important;
+        width: 87vw !important;
+        left: 6.5vw !important;
     }
     .ant-dropdown-menu {
         border-radius: 0 !important;
