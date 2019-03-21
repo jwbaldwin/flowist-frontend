@@ -10,7 +10,7 @@ import createHashtagPlugin from 'draft-js-hashtag-plugin';
 import createLinkifyPlugin from 'draft-js-linkify-plugin';
 import createMarkdownShortcutsPlugin from 'draft-js-markdown-shortcuts-plugin';
 import { stateFromMarkdown } from "draft-js-import-markdown";
-import mapIcon from '../../common';
+import { mapIcon, mapFlowStatusToBadge } from '../../common';
 import FlowTagsFooter from './FlowTagsFooter';
 import 'draft-js-hashtag-plugin/lib/plugin.css';
 import './FlowItem.css';
@@ -44,19 +44,6 @@ const timestampStyle = {
 };
 
 class FlowItem extends Component {
-    getFlowStatusIcon = (flowStatus) => {
-        switch (flowStatus) {
-            case 'ACTIVE':
-                return <Badge status="processing" />
-            case 'PAUSED':
-                return <Badge status="warning" />
-            case 'COMPLETED':
-                return <Badge status="success" />
-            default:
-                return <Badge status="processing" />
-        }
-    }
-
     deleteItem = (id) => {
          this.props.flowActions.deleteFlow(id);
     }
@@ -115,7 +102,7 @@ class FlowItem extends Component {
                     </Dropdown>,
                     <Icon type="check-circle" onClick={() => this.completeItem(flow.id)} theme="twoTone" twoToneColor="#52c41a" style={{ fontSize: 18 }} />
                 ]}
-                extra={this.getFlowStatusIcon(flow.flowStatus)}
+                extra={<Badge status={mapFlowStatusToBadge(flow.flowStatus)} />}
                 title={<span><Icon type={mapIcon(flow.activity)} id="flow-activity-icon" /> {flow.title} </span>}
             >
                 <Card.Grid style={contentStyle} className="flow-card-content">
