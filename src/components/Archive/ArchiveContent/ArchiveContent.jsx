@@ -62,7 +62,7 @@ export class ArchiveContent extends Component {
                 <Drawer
                     height="60%"
                     placement="bottom"
-                    closable={true}
+                    title="Your archived flow"
                     onClose={() => this.handleClose()}
                     visible={this.state.visible}
                 >
