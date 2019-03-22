@@ -1,5 +1,5 @@
 {
-  "name": "app",
+  "name": "flowist",
   "version": "0.2.1",
   "private": true,
   "proxy": "http://localhost:8080",
