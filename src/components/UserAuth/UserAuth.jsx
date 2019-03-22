@@ -40,7 +40,7 @@ class UserAuth extends Component {
 		);
 
 		return (
-			<div id="main-panel" className="centered">
+			<div id="main-panel">
 				<Col xs={2} sm={7} md={8} lg={8} xl={9} />
 				<Col xs={20} sm={10} md={8} lg={8} xl={6} id="main-panel-user-auth">
 					<div className="card-container">

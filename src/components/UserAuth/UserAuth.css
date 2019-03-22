@@ -1,3 +1,11 @@
+#main-panel {
+    /* Use a trianglify.io bakcground? */
+    background-image: url("https://gw.alipayobjects.com/zos/rmsportal/TVYTbAXWheQpRcWDaDMu.svg");
+    background-color: #fbfbfb;
+    background-size: 100%;
+    height: 100vh;
+}
+
 #social-login {
     background-color: #fff;
     border-radius: 4px;
@@ -22,9 +30,10 @@
 	margin-left: 15px;
 }
 
-/* 
+/*
 * Makes the card style around a tab
 */
+
 .card-container > .ant-tabs-card > .ant-tabs-content {
     margin-top: -16px;
     border-radius: 4px;
@@ -44,9 +53,6 @@
     margin-right: 0;
 }
 
-/* .card-container > .ant-tabs-card > .ant-tabs-bar {
-	border-color: #fff;
-} */
 .card-container > div > div.ant-tabs-bar.ant-tabs-top-bar.ant-tabs-card-bar > div > div > div > div {
     width: 100%;
 }
@@ -54,8 +60,3 @@
 .card-container > .ant-tabs-card > .ant-tabs-bar .ant-tabs-tab {
 	width: 50%;
 }
-
-/* .card-container > .ant-tabs-card > .ant-tabs-bar .ant-tabs-tab-active {
-	border-color: #fff;
-	background: #fff;
-} */
