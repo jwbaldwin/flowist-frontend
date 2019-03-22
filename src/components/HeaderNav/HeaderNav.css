@@ -19,10 +19,15 @@
 	vertical-align: middle;
 }
 
-#ant-dropdown-link {
-	padding: 6px 0;
+.ant-avatar:focus, .ant-avatar:active, .ant-avatar:hover {
+    border: 1px solid #DA0C79;
 }
 
+.ant-avatar {
+    border: 1px solid rgb(246, 246, 246);
+    border-radius: 50px;
+    transition: all 0.2s
+}
 
 .header-left {
 	float: left;

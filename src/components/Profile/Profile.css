@@ -1,3 +1,9 @@
+.profile {
+    background: #fff;
+    border-radius: 4px;
+    margin: 16px;
+}
+
 #personal-settings.ant-card, #stats.ant-card, #account-info.ant-card {
     border-radius: 4px;
     padding: inherit;

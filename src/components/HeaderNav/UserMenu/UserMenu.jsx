@@ -17,11 +17,13 @@ export class UserMenu extends Component {
         }
     }
 
-	render() { 
+	render() {
+        const username = this.props.user.user.attributes.name + " " + this.props.user.user.attributes.family_name;
+        
         const menuItems =
             <Menu>
                 <Menu.Item key="0">
-                    <span style={{fontWeight: 600}}>{this.props.user.user.attributes.name} {this.props.user.user.attributes.family_name}</span>
+                    <span style={{fontWeight: 600}}>{username}</span>
                     <br/>
                     <span style={{fontWeight: 300, fontSize: 12, color: '#777'}}>{this.props.user.user.attributes.email}</span>
                 </Menu.Item>
@@ -44,9 +46,9 @@ export class UserMenu extends Component {
                 </Menu.Item>
             </Menu>
 		return (
-            <Dropdown id="profile-dropdown" trigger={[ 'hover', 'click' ]} overlay={menuItems} placement="bottomRight">
+            <Dropdown id="profile-dropdown" trigger={['click' ]} overlay={menuItems} placement="bottomRight">
                 <span className="ant-dropdown-link" style={{display: 'inline-block'}}>
-                  <Avatar icon='user'/>
+                  <Avatar icon='user'/>   <Icon type="down" />
                 </span>
 			</Dropdown>
 		);
