@@ -2,6 +2,7 @@
   "name": "flowist",
   "version": "0.2.1",
   "private": true,
+  "proxy":"http://localhost:8080",
   "dependencies": {
     "antd": "^3.14.1",
     "antd-password-input-strength": "^1.1.0",

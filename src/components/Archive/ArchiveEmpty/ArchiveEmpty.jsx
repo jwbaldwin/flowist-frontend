@@ -5,7 +5,7 @@ export class ArchiveEmpty extends Component {
 
 	render() {
 		return (
-			<div>
+			<div className="centered" style={{height: '100%'}}>
 				<Empty
 					description={
 						<span style={{ color: '#bbb', marginBottom: '3em' }}>
