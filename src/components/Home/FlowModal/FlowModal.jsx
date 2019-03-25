@@ -49,7 +49,7 @@ export class FlowModal extends Component {
 	handleChange = (input) => (event) => {
         if (event === undefined || event.target === undefined) {
             this.setState({
-			    flow: Object.assign({}, this.state.flow, { [input]: event })
+			    flow: Object.assign({}, this.state.flow, { [input]: event }),
 		    });
         } else {
             this.setState({

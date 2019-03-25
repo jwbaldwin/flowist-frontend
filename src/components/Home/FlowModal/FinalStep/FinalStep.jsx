@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Icon, Input, Tag, Tooltip } from 'antd';
-import { mapStringToColor } from '../../../../common';
+import { mapStringToColor, extractTags } from '../../../../common';
 import './FinalStep.css';
 
 export class FinalStep extends Component {
@@ -13,6 +13,10 @@ export class FinalStep extends Component {
 			inputValue: ''
 		};
 	}
+
+    componentWillReceiveProps(nextProps, prevProps) {
+        this.setState({tags: extractTags(nextProps)})
+    }
 
 	handleClose = (removedTag) => {
 		const tags = this.state.tags.filter((tag) => tag !== removedTag);
