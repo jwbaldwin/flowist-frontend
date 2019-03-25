@@ -10,11 +10,19 @@ import './LoginForm.css';
 import '../UserAuth.css';
 
 export class LoginFormNormal extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            isLoading: false
+        }
+    }
+
 	handleSubmit = async (event) => {
 		event.preventDefault();
 		this.props.form.validateFields(async (err, values) => {
 			if (!err) {
-				this.props.userActions.updateUser({ ...this.props.user, isLoading: true });
+				this.setState({isLoading: true})
 				try {
 					await Auth.signIn(values.email, values.password);
 					this.handleSuccessfulLogin();
@@ -30,16 +38,16 @@ export class LoginFormNormal extends Component {
 		this.props.userActions.updateUser({
 			...this.props.user,
 			user: userDetails,
-			isAuthenticated: true,
-			isLoading: false
+			isAuthenticated: true
 		});
+        this.setState({isLoading: false})
 		this.props.history.push('/');
 		message.success('Logged in successfully!');
 	};
 
 	handleErrorLogin = async (e) => {
 		this.props.showLoginError(e.message);
-		this.props.userActions.updateUser({ ...this.props.user, isLoading: false });
+		this.setState({isLoading: false})
 	};
 
 	render() {
@@ -80,7 +88,7 @@ export class LoginFormNormal extends Component {
 					</a>
 					<Button
 						block
-						loading={this.props.user.isLoading}
+						loading={this.state.isLoading}
 						size="large"
 						type="primary"
 						htmlType="submit"

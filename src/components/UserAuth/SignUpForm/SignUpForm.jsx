@@ -12,6 +12,7 @@ import { PasswordInput } from 'antd-password-input-strength';
 
 export class SignUpFormNormal extends Component {
     state = {
+        isLoading: false,
         email: '',
         password: '',
         confirmDirty: false,
@@ -22,7 +23,7 @@ export class SignUpFormNormal extends Component {
         e.preventDefault();
         this.props.form.validateFieldsAndScroll(async (err, values) => {
             if (!err) {
-                this.props.userActions.updateUser({...this.props.user, isLoading: true});
+                this.setState({isLoading: true});
                 try {
                     const user = await Auth.signUp({
                         username: values.email,
@@ -31,12 +32,12 @@ export class SignUpFormNormal extends Component {
                             name: values.name,
                             family_name: values.lastname
                         }});
-                    this.props.userActions.updateUser({...this.props.user, data: user, isLoading: false});
-                    this.setState({email: values.email, password: values.password })
+                    this.props.userActions.updateUser({...this.props.user, data: user});
+                    this.setState({email: values.email, password: values.password, isLoading: false })
                     message.success("Signing up...check for a verification code!");
                 } catch (e) {
                     this.props.showSignUpError(e.message);
-                    this.props.userActions.updateUser({...this.props.user, isLoading: false});
+                     this.setState({isLoading: false});
                 }
             }
         });
@@ -51,11 +52,12 @@ export class SignUpFormNormal extends Component {
                     await Auth.confirmSignUp(this.state.email, values.confirmationCode);
                     await Auth.signIn(this.state.email, this.state.password);
 
-                    this.props.userActions.updateUser({...this.props.user, isAuthenticated: true, isLoading: false});
+                    this.props.userActions.updateUser({...this.props.user, isAuthenticated: true});
+                    this.setState({isLoading: false});
                     this.props.history.push("/");
                   } catch (e) {
+                    this.setState({isLoading: false});
                     this.props.showSignUpError(e.message);
-                    this.props.userActions.updateUser({...this.props.user, isLoading: false});
                   }
             }
         });
@@ -178,7 +180,7 @@ export class SignUpFormNormal extends Component {
                 <Form.Item {...tailFormItemLayout}>
                     <Button
                         size='large'
-                        loading={this.props.user.isLoading}
+                        loading={this.state.isLoading}
                         type="primary"
                         className="green-btn"
                         block
@@ -222,7 +224,7 @@ export class SignUpFormNormal extends Component {
                         block
                         htmlType="submit"
                         disabled={!this.props.form.isFieldTouched('confirmationCode')}
-                        loading={this.props.user.isLoading}>
+                        loading={this.state.isLoading}>
                         Confirm
                     </Button>
                 </Form.Item>
