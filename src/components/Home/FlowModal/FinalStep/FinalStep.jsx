@@ -14,9 +14,12 @@ export class FinalStep extends Component {
 		};
 	}
 
-    componentWillReceiveProps(nextProps, prevProps) {
-        this.setState({tags: extractTags(nextProps)})
-    }
+	static getDerivedStateFromProps(nextProps, prevState){
+		if(nextProps.flowData.tags !== prevState.tags){
+		  return { tags: extractTags(nextProps)};
+	   }
+	   else return null;
+	 }
 
 	handleClose = (removedTag) => {
 		const tags = this.state.tags.filter((tag) => tag !== removedTag);
@@ -38,12 +41,14 @@ export class FinalStep extends Component {
 		if (inputValue && tags.indexOf(inputValue) === -1) {
 			tags = [ ...tags, inputValue ];
 		}
+
 		this.props.handleTagsChange(tags);
 		this.setState({
 			tags,
 			inputVisible: false,
 			inputValue: ''
 		});
+
 	};
 
 	saveInputRef = (input) => (this.input = input);
