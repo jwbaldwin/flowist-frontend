@@ -43,11 +43,11 @@ export class AppMain extends Component {
 				<SidebarWrapper toggle={this.toggleCollapse} collapsed={this.state.collapsed} isMobile={ isMobile } {...this.props} />
 				<Layout>
 					<HeaderNav toggle={this.toggleCollapse} collapsed={this.state.collapsed} {...this.props}/>
-					<Route exact path="/" component={() => <Home flows={activeFlows} />} />
-					<Route exact path="/tags" component={Tags} />
-					<Route exact path="/archive" component={() => <Archive flows={archivedFlows} />} />
-					<Route exact path="/settings" component={Settings} />
-                    <Route exact path="/profile" component={() => <Profile flows={this.props.flows} user={this.props.user.user} />} />
+					<Route exact path="/app" component={() => <Home flows={activeFlows} />} />
+					<Route exact path="/app/tags" component={Tags} />
+					<Route exact path="/app/archive" component={() => <Archive flows={archivedFlows} />} />
+					<Route exact path="/app/settings" component={Settings} />
+                    <Route exact path="/app/profile" component={() => <Profile flows={this.props.flows} user={this.props.user.user} />} />
 					<AppFooter />
 				</Layout>
 			</Layout>

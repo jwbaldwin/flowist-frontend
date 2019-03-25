@@ -54,7 +54,7 @@ export class SignUpFormNormal extends Component {
 
                     this.props.userActions.updateUser({...this.props.user, isAuthenticated: true});
                     this.setState({isLoading: false});
-                    this.props.history.push("/");
+                    this.props.history.push("/app");
                   } catch (e) {
                     this.setState({isLoading: false});
                     this.props.showSignUpError(e.message);

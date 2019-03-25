@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { Layout, List, Icon, Skeleton, Typography, Tag, Badge, Collapse, Drawer, Col } from 'antd';
-import { mapIcon, mapFlowStatusToBadge } from '../../../common';
+import { Layout, List, Icon, Skeleton, Typography, Tag, Badge, Drawer, Col } from 'antd';
+import { mapIcon, mapFlowStatusToBadge, mapStringToColor } from '../../../common';
 import FlowItem from '../../FlowItem';
 
 const { Content } = Layout;
-const Panel = Collapse.Panel;
 const { Text } = Typography;
 
 const IconText = ({ type, text }) => (
@@ -52,7 +51,7 @@ export class ArchiveContent extends Component {
                                         </Badge>
                                     }
                                     title={<Text strong>{item.title}</Text>}
-                                    description={item.tags.map(tag => <Tag>{tag}</Tag>)}
+                                    description={item.tags.map(tag => <Tag color={mapStringToColor(tag)}>{tag}</Tag>)}
                                 />
                             </Skeleton>
                         </List.Item>

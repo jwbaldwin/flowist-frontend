@@ -46,7 +46,7 @@ class Sidebar extends Component {
                 width={256}
 			>
 				<div id="app-sidebar-logo-div" className={this.props.settings.theme}>
-					<Link to="/">
+					<Link to="/app">
 						<img src={logo} id="app-sidebar-logo" alt="Flowist Logo" />
 						<h1 id="app-sidebar-logo-title" className={this.props.settings.theme}>
 							{' '}
@@ -59,26 +59,26 @@ class Sidebar extends Component {
 					defaultSelectedKeys={[ this.props.location.pathname ]}
 					mode="inline"
 				>
-					<Menu.Item key="/">
-						<Link to="/">
+					<Menu.Item key="/app">
+						<Link to="/app">
 							<Icon type="coffee" />
 							<span>#flows</span>
 						</Link>
 					</Menu.Item>
-                    <Menu.Item key="/archive">
-						<Link to="/archive">
+                    <Menu.Item key="/app/archive">
+						<Link to="/app/archive">
 							<Icon type="inbox" />
 							<span>#archive</span>
 						</Link>
 					</Menu.Item>
-					<Menu.Item key="/tags" disabled>
-						<Link to="/tags">
+					<Menu.Item key="/app/tags" disabled>
+						<Link to="/app/tags">
 							<Icon type="tags" />
 							<span>#tags (beta)</span>
 						</Link>
 					</Menu.Item>
-					<Menu.Item key="/settings" disabled>
-						<Link to="/settings">
+					<Menu.Item key="/app/settings" disabled>
+						<Link to="/app/settings">
 							<Icon type="share-alt" />
 							<span>#insights (beta)</span>
 						</Link>

@@ -19,7 +19,7 @@ export class UserMenu extends Component {
 
 	render() {
         const username = this.props.user.user.attributes.name + " " + this.props.user.user.attributes.family_name;
-        
+
         const menuItems =
             <Menu>
                 <Menu.Item key="0">
@@ -29,12 +29,12 @@ export class UserMenu extends Component {
                 </Menu.Item>
                 <Menu.Divider />
                 <Menu.Item key="0">
-                    <Link to="/profile">
+                    <Link to="/app/profile">
                         <Icon type="user" /> Profile
                     </Link>
                 </Menu.Item>
                 <Menu.Item key="1">
-                    <Link to="/settings">
+                    <Link to="/app/settings">
                         <Icon type="setting" /> User Settings
                     </Link>
                 </Menu.Item>

@@ -41,7 +41,7 @@ export class LoginFormNormal extends Component {
 			isAuthenticated: true
 		});
         this.setState({isLoading: false})
-		this.props.history.push('/');
+		this.props.history.push('/app');
 		message.success('Logged in successfully!');
 	};
 

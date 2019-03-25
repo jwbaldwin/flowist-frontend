@@ -7,6 +7,7 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import { Spin } from 'antd'
 import { Auth } from 'aws-amplify';
+import NotFound from './components/NotFound';
 import './App.css';
 
 const UserAuth = React.lazy(() => import('./components/UserAuth'));
@@ -41,7 +42,8 @@ class App extends Component {
 								</Suspense>
 							)}
 						/>
-						<ProtectedRoute authed={this.props.user.isAuthenticated} component={AppMain} />
+						<ProtectedRoute path="/app" authed={this.props.user.isAuthenticated} component={AppMain} />
+                        <Route component={NotFound} />
 					</Switch>
 				</BrowserRouter>
 			)

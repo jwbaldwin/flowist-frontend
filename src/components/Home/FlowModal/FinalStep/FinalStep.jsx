@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Icon, Input, Tag, Tooltip } from 'antd';
+import { mapStringToColor } from '../../../../common';
 import './FinalStep.css';
 
 export class FinalStep extends Component {
@@ -43,12 +44,6 @@ export class FinalStep extends Component {
 
 	saveInputRef = (input) => (this.input = input);
 
-	applyColor = (index) => {
-		const colors = ["magenta", "red", "volcano", "orange", "lime", "green", "cyan", "blue", "geekblue", "purple"];
-		// const randomSelection = Math.floor(Math.random() * Math.floor(colors.length));
-		return colors[index];
-	}
-
 	render() {
 		const { tags, inputVisible, inputValue } = this.state;
 
@@ -61,7 +56,7 @@ export class FinalStep extends Component {
                 <div className="tags">
                     {tags.map((tag, index) => {
                         return (
-                            <Tag closable color={this.applyColor(index)} key={tag} afterClose={() => this.handleClose(tag)}>
+                            <Tag closable color={mapStringToColor(tag)} key={tag} afterClose={() => this.handleClose(tag)}>
                                 {tag}
                             </Tag>
                         );

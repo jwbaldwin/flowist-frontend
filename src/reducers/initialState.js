@@ -32,8 +32,7 @@ export default {
         isLoading: true
     },
 	user: {
-        isAuthenticated: false,
-        isLoading: false
+        isAuthenticated: false
     },
     settings: {
         theme: 'light'

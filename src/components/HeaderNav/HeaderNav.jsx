@@ -1,6 +1,6 @@
 import React, { Component, Suspense } from 'react';
 import { Link } from 'react-router-dom';
-import { Layout, Icon, Spin, Menu } from 'antd';
+import { Layout, Icon, Spin } from 'antd';
 import logo from '../../images/flowist.png';
 import './HeaderNav.css';
 
@@ -24,7 +24,7 @@ export class HeaderNav extends Component {
 			<Header style={{ paddingLeft: '16px' }} className={this.props.settings.theme}>
 				<div className="header-left">
 					<div id="app-headernav-logo-div">
-						<Link to="/">
+						<Link to="/app">
 							<img src={logo} id="app-headernav-logo" alt="Flowist Logo" />
 						</Link>
 					</div>
