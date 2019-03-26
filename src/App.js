@@ -8,6 +8,7 @@ import PropTypes from 'prop-types';
 import { Spin } from 'antd'
 import { Auth } from 'aws-amplify';
 import NotFound from './components/NotFound';
+import ComingSoon from './components/ComingSoon';
 import './App.css';
 
 const UserAuth = React.lazy(() => import('./components/UserAuth'));
@@ -43,6 +44,7 @@ class App extends Component {
 							)}
 						/>
 						<ProtectedRoute path="/app" authed={this.props.user.isAuthenticated} component={AppMain} />
+                        <Route exact path="/" component={ComingSoon} />
                         <Route component={NotFound} />
 					</Switch>
 				</BrowserRouter>
