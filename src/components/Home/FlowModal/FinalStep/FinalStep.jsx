@@ -69,7 +69,6 @@ export class FinalStep extends Component {
                         <Input
                             ref={this.saveInputRef}
                             type="text"
-                            size="small"
                             style={{ width: 78 }}
                             value={inputValue}
                             onChange={this.handleInputChange}
