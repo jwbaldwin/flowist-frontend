@@ -23,13 +23,14 @@
 .green-btn,
 .green-btn:focus {
 	background-color: #1bb15a;
-	border-color: #168f48;
+	border-color: #1bb15a;
 	color: #fff;
+    box-shadow: 0 2px 4px 0 rgba(62,80,104,0.32);
 }
 
 .green-btn:hover {
 	background-color: #1dc060;
-	border-color: #1bb15a;
+	border-color: #1dc060;
 	color: #fff;
 }
 

@@ -64,14 +64,14 @@ class UserAuth extends Component {
 					</div>
 					<Divider style={{ color: '#ccc' }}>or</Divider>
 					<div id="social-login">
-						<Button type="default" block>
-							<Icon type="github" />Login with Github
+						<Button type="default" block size="large" icon='github' style={{background: '#3a3a3a', borderColor: '#3a3a3a', color: 'rgba(255,255,255,0.95)'}}>
+							Github
 						</Button>
-						<Button type="default" block>
-							<Icon type="gitlab" />Login with Gitlab
+						<Button type="default" block size="large" icon='gitlab' style={{background: '#e24329', borderColor: '#e24329', color: 'rgba(255,255,255,0.95)'}}>
+							Gitlab
 						</Button>
-						<Button type="default" block>
-							<Icon type="google" />Login with Google
+						<Button type="default" block size="large" icon='facebook' style={{background: '#3b5998', borderColor: '#3b5998', color: 'rgba(255,255,255,0.95)'}}>
+							Facebook
 						</Button>
 					</div>
 				</Col>

@@ -28,7 +28,7 @@ export class EmptyHome extends Component {
 						</span>
 					}
 				>
-					<Button icon="thunderbolt" size="large" type="primary" onClick={this.showModal}>
+					<Button icon="thunderbolt" size="large" type="primary" onClick={this.showModal} style={{ boxShadow: '0 2px 4px 0 rgba(62,80,104,0.32)'}}>
 						Add Flow!
 					</Button>
 				</Empty>
