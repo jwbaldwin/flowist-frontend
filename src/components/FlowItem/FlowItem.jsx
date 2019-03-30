@@ -96,9 +96,10 @@ class FlowItem extends Component {
 
         return (
             <Card
+                bordered={false}
                 actions={[
-                    <Dropdown trigger={['hover', 'click']} overlay={optionsMenu(flow.id)} placement="topCenter">
-                        <Icon type="ellipsis" style={{ fontSize: 18 }} />
+                    <Dropdown trigger={['click']} overlay={optionsMenu(flow.id)} placement="topCenter">
+                        <Icon type="more" style={{ fontSize: 18 }} />
                     </Dropdown>,
                     <Icon type="check-circle" onClick={() => this.completeItem(flow.id)} theme="twoTone" twoToneColor="#52c41a" style={{ fontSize: 18 }} />
                 ]}

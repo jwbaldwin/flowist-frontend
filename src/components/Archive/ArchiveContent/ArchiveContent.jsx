@@ -3,6 +3,7 @@ import { Layout, List, Icon, Skeleton, Typography, Tag, Badge, Drawer, Col } fro
 import { mapIcon, mapFlowStatusToBadge, mapStringToColor } from '../../../common';
 import TimeAgo from 'react-timeago'
 import FlowItem from '../../FlowItem';
+import './ArchiveContent.css';
 
 const { Content } = Layout;
 const { Text } = Typography;
@@ -42,8 +43,7 @@ export class ArchiveContent extends Component {
                     style={{ background: '#fff' }}
                     dataSource={this.props.flows}
                     renderItem={(item) => (
-                        <List.Item actions={[<a onClick={() => this.showItem(item.id)}><IconText type="plus-circle" text="more" /></a>,
-                                             <IconText type="edit" text="edit" />, <IconText type="star-o" text="0 " />]}
+                        <List.Item actions={[<a onClick={() => this.showItem(item.id)}><IconText type="plus-circle" text="more" /></a>,]}
                                     extra={<TimeAgo date={item.created} />}>
                             <Skeleton avatar title={false} loading={this.props.isLoading} active>
                                 <List.Item.Meta
@@ -61,19 +61,14 @@ export class ArchiveContent extends Component {
                 />
 
                 <Drawer
-                    height="60%"
                     placement="bottom"
-                    title="Your archived flow"
                     onClose={() => this.handleClose()}
                     visible={this.state.visible}
                 >
-                    <Col xs={0} sm={0} md={3} lg={4} xl={6} />
-                    <Col xs={24} sm={24} md={18} lg={16} xl={12} style={{marginTop: '1vh', marginBottom: '1vh'}}>
                         <FlowItem
                             flow={this.props.flows.filter(flow => flow.id === this.state.drawerContentId)[0]}
                             key={this.drawerContentId}
                             />
-                    </Col>
                 </Drawer>
             </Content>
         );
