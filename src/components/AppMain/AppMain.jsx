@@ -15,16 +15,43 @@ import Archive from '../Archive';
 import Settings from '../Settings';
 import Profile from '../Profile';
 import { Layout } from 'antd';
-import { isMobile } from "react-device-detect";
+import { isMobile } from 'react-device-detect';
 
 export class AppMain extends Component {
 	state = {
-		collapsed: false
+		collapsed: false,
+		archivedFlows: [],
+		activeFlows: [],
+		pausedFlows: []
 	};
 
-	componentWillMount() {
+	componentDidMount() {
+		console.log('object')
 		this.props.settingsActions.fetchSettings();
 		this.props.flowActions.fetchFlows();
+	}
+	
+	// componentDidUpdate(prevProps){
+	// 	if(prevProps.flows !== this.props.flows){
+	// 		this.setState({          
+	// 			flows: this.props.flows,
+	// 			activeFlows: this.props.flows.filter((flow) => flow.flowStatus === 'ACTIVE'),
+	// 			archivedFlows: this.props.flows.filter((flow) => flow.flowStatus === 'COMPLETED'),
+	// 			pausedFlows: this.props.flows.filter((flow) => flow.flowStatus === 'PAUSED')
+	// 		});
+	// 	}
+	// }
+
+	static getDerivedStateFromProps(nextProps, prevState) {
+		console.log(nextProps)
+		if (nextProps.flows !== prevState.flows) {
+			return {
+				flows: nextProps.flows,
+				activeFlows: nextProps.flows.filter((flow) => flow.flowStatus === 'ACTIVE'),
+				archivedFlows: nextProps.flows.filter((flow) => flow.flowStatus === 'COMPLETED'),
+				pausedFlows: nextProps.flows.filter((flow) => flow.flowStatus === 'PAUSED')
+			};
+		} else return null;
 	}
 
 	toggleCollapse = () => {
@@ -34,20 +61,26 @@ export class AppMain extends Component {
 	};
 
 	render() {
-           const archivedFlows = this.props.flows.filter(flow => flow.flowStatus === 'COMPLETED');
-           const activeFlows = this.props.flows.filter(flow => flow.flowStatus !== 'COMPLETED');
-
 
 		return (
 			<Layout style={{ minHeight: '100vh' }}>
-				<SidebarWrapper toggle={this.toggleCollapse} collapsed={this.state.collapsed} isMobile={ isMobile } {...this.props} />
+				<SidebarWrapper
+					toggle={this.toggleCollapse}
+					collapsed={this.state.collapsed}
+					isMobile={isMobile}
+					{...this.props}
+				/>
 				<Layout>
-					<HeaderNav toggle={this.toggleCollapse} collapsed={this.state.collapsed} {...this.props}/>
-					<Route exact path="/app" component={() => <Home flows={activeFlows} />} />
+					<HeaderNav toggle={this.toggleCollapse} collapsed={this.state.collapsed} {...this.props} />
+					<Route exact path="/app" component={() => <Home flows={this.state.activeFlows} />} />
 					<Route exact path="/app/tags" component={Tags} />
-					<Route exact path="/app/archive" component={() => <Archive flows={archivedFlows} />} />
+					<Route exact path="/app/archive" component={() => <Archive flows={this.state.archivedFlows} />} />
 					<Route exact path="/app/settings" component={Settings} />
-                    <Route exact path="/app/profile" component={() => <Profile flows={this.props.flows} user={this.props.user.user} />} />
+					<Route
+						exact
+						path="/app/profile"
+						component={() => <Profile flows={this.props.flows} user={this.props.user.user} />}
+					/>
 					<AppFooter />
 				</Layout>
 			</Layout>
@@ -57,25 +90,25 @@ export class AppMain extends Component {
 
 AppMain.propTypes = {
 	settingsActions: PropTypes.object,
-    userActions: PropTypes.object,
-    flows: PropTypes.array,
+	userActions: PropTypes.object,
+	flows: PropTypes.array,
 	settings: PropTypes.object,
-    user: PropTypes.object,
+	user: PropTypes.object
 };
 
 function mapStateToProps(state) {
 	return {
-        flows: state.flow.data,
+		flows: state.flow.data,
 		settings: state.settings,
-        user: state.user
+		user: state.user
 	};
 }
 
 function mapDispatchToProps(dispatch) {
 	return {
-        flowActions: bindActionCreators(flowActions, dispatch),
+		flowActions: bindActionCreators(flowActions, dispatch),
 		settingsActions: bindActionCreators(settingsActions, dispatch),
-        userActions: bindActionCreators(userActions, dispatch)
+		userActions: bindActionCreators(userActions, dispatch)
 	};
 }
 
