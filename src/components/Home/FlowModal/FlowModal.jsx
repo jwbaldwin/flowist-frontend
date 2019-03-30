@@ -27,15 +27,10 @@ export class FlowModal extends Component {
 		}
 	}
 
-	saveFlowMessage = () => {
-		message.loading('Saving your flow..', 1.0).then(() => message.success('Your flow is saved!', 1.5));
-	};
-
 	handleOk = () => {
 		this.setState({
 			confirmLoading: true
 		});
-		this.saveFlowMessage();
 		this.props.flowActions.addFlow(this.state.flow);
 		this.setState({ visible: false, confirmLoading: false });
 	};
@@ -72,8 +67,8 @@ export class FlowModal extends Component {
 	};
 
 	handleKeyPress = (event) => {
-		if (event.key === 'Enter' && this.state.current === 0) {
-			this.next();
+		if (event.key === 'Enter') {
+			this.handleOk();
 		}
 	};
 
@@ -89,6 +84,7 @@ export class FlowModal extends Component {
 					footer={[
                             <Button key="back" onClick={this.handleCancel}>Cancel</Button>,
                             <Button
+									key="submit"
 									style={{ textAlign: 'right' }}
 									type="primary"
 									loading={this.state.confirmLoading}

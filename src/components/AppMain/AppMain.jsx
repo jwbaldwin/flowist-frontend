@@ -26,32 +26,8 @@ export class AppMain extends Component {
 	};
 
 	componentDidMount() {
-		console.log('object')
 		this.props.settingsActions.fetchSettings();
 		this.props.flowActions.fetchFlows();
-	}
-	
-	// componentDidUpdate(prevProps){
-	// 	if(prevProps.flows !== this.props.flows){
-	// 		this.setState({          
-	// 			flows: this.props.flows,
-	// 			activeFlows: this.props.flows.filter((flow) => flow.flowStatus === 'ACTIVE'),
-	// 			archivedFlows: this.props.flows.filter((flow) => flow.flowStatus === 'COMPLETED'),
-	// 			pausedFlows: this.props.flows.filter((flow) => flow.flowStatus === 'PAUSED')
-	// 		});
-	// 	}
-	// }
-
-	static getDerivedStateFromProps(nextProps, prevState) {
-		console.log(nextProps)
-		if (nextProps.flows !== prevState.flows) {
-			return {
-				flows: nextProps.flows,
-				activeFlows: nextProps.flows.filter((flow) => flow.flowStatus === 'ACTIVE'),
-				archivedFlows: nextProps.flows.filter((flow) => flow.flowStatus === 'COMPLETED'),
-				pausedFlows: nextProps.flows.filter((flow) => flow.flowStatus === 'PAUSED')
-			};
-		} else return null;
 	}
 
 	toggleCollapse = () => {
@@ -72,9 +48,9 @@ export class AppMain extends Component {
 				/>
 				<Layout>
 					<HeaderNav toggle={this.toggleCollapse} collapsed={this.state.collapsed} {...this.props} />
-					<Route exact path="/app" component={() => <Home flows={this.state.activeFlows} />} />
+					<Route exact path="/app" component={() => <Home flows={this.props.flows} />} />
 					<Route exact path="/app/tags" component={Tags} />
-					<Route exact path="/app/archive" component={() => <Archive flows={this.state.archivedFlows} />} />
+					<Route exact path="/app/archive" component={() => <Archive flows={this.props.flows} />} />
 					<Route exact path="/app/settings" component={Settings} />
 					<Route
 						exact
