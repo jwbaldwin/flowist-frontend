@@ -17,44 +17,39 @@ import {
 export default function flow(state = initialState.flow, action) {
 	switch (action.type) {
 		case ADD_FLOW:
-			console.log('ADD_FLOW');
 			return { ...state, isLoading: true };
 		case ADD_FLOW_SUCCESS:
-			console.log('ADD_FLOW_SUCCESS');
-			return { ...state, data: action.data, isLoading: false };
+			return { ...state, data: [...state.data, action.data], isLoading: false };
 		case ADD_FLOW_ERROR:
-			console.log('ADD_FLOW_ERROR: ' + action.error);
 			return { ...state, isLoading: false };
         case FETCH_FLOW:
-			console.log('FETCH_FLOW');
 			return { ...state, isLoading: true };
 		case FETCH_FLOW_SUCCESS:
-			console.log('FETCH_FLOW_SUCCESS');
 			return { ...state, data: action.data, isLoading: false };
 		case FETCH_FLOW_ERROR:
-			console.log('FETCH_FLOW_ERROR: ' + action.error);
 			return { ...state, isLoading: false };
         case UPDATE_FLOW:
-			console.log('UPDATE_FLOW');
 			return { ...state, isLoading: true };
 		case UPDATE_FLOW_SUCCESS:
-			console.log('UPDATE_FLOW_SUCCESS');
-			return { ...state, data: action.data, isLoading: false };
+		const updatedData = state.data.map(flow => {
+			if(flow.id === action.data.id){
+			  return { ...flow, ...action.data }
+			}
+			return flow
+		  })
+			return { ...state, data: updatedData, isLoading: false };
 		case UPDATE_FLOW_ERROR:
-			console.log('UPDATE_FLOW_ERROR: ' + action.error);
 			return { ...state, isLoading: false };
 		case DELETE_FLOW:
-			console.log('DELETE_FLOW');
 			return { ...state, isLoading: true };
 		case DELETE_FLOW_SUCCESS:
-			console.log('DELETE_FLOW_SUCCESS');
+		console.log(action.data)
 			return {
 				...state,
-                data: {},
+                data: state.data.filter(item => item.id !== action.data),
                 isLoading: false
                 };
 		case DELETE_FLOW_ERROR:
-			console.log('DELETE_FLOW_ERROR: ' + action.error);
 			return { ...state, isLoading: false };
 		default:
 			return state;
