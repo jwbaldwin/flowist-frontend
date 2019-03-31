@@ -3,7 +3,7 @@ import { Layout, List, Icon, Skeleton, Typography, Tag, Badge, Drawer, Col } fro
 import { mapIcon, mapFlowStatusToBadge, mapStringToColor } from '../../../common';
 import TimeAgo from 'react-timeago'
 import FlowItem from '../../FlowItem';
-import './ArchiveContent.css';
+import './ArchiveContent.scss';
 
 const { Content } = Layout;
 const { Text } = Typography;

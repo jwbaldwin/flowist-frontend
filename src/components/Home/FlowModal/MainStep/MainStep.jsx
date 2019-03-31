@@ -7,7 +7,7 @@ import createLinkifyPlugin from 'draft-js-linkify-plugin';
 import createMarkdownShortcutsPlugin from 'draft-js-markdown-shortcuts-plugin';
 import { stateToMarkdown } from "draft-js-export-markdown";
 import { stateFromMarkdown } from "draft-js-import-markdown";
-import './MainStep.css';
+import './MainStep.scss';
 import 'draft-js-hashtag-plugin/lib/plugin.css';
 
 const tooltipHelpText = "Enter any extra information about what you're working on! Supports: Inline markdown, tags, and links!";

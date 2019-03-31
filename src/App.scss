@@ -1,0 +1,79 @@
+@import './assets/styles/shared.scss';
+
+
+// Center an Element
+.centered {
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+
+	-webkit-box-align: center;
+	-moz-box-align: center;
+	-ms-flex-align: center;
+	-webkit-align-items: center;
+	align-items: center;
+
+	-webkit-box-pack: center;
+	-moz-box-pack: center;
+	-ms-flex-pack: center;
+	-webkit-justify-content: center;
+	justify-content: center;
+
+	text-align: center;
+}
+
+// Light Theme
+.light {
+	background: $light-theme-color;
+	color: $light-theme-font-color;
+	transition: all .3s;
+}
+
+// Dark Theme
+.dark {
+	background: $dark-theme-color;
+	color: $dark-theme-font-color !important;
+	transition: all .3s;
+}
+
+// Icon Colors
+.primary-icon {
+	color: $primary-color;
+}
+.success-icon {
+	color: $success-color;
+}
+.warning-icon {
+	color: $warning-color;
+}
+.error-icon {
+	color: $error-color;
+}
+
+
+// Login/Signup Buttons
+.green-btn,
+.green-btn:focus {
+	background-color: $primary-color;
+	border-color: $primary-color;
+	color: $light-theme-color;
+    box-shadow: 0 2px 4px 0 rgba(62,80,104,0.32);
+}
+
+.green-btn:hover {
+	background-color: $primary-color-hover;
+	border-color: $primary-color-hover;
+	color: $light-theme-color;
+}
+
+
+// Mobile Form Font Size
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+	select,
+	textarea,
+	input {
+		font-size: 16px !important;
+	}
+}

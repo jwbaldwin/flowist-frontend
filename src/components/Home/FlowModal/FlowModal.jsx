@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Modal, message, Icon } from 'antd';
+import { Button, Modal, Icon } from 'antd';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
@@ -7,7 +7,7 @@ import * as flowActions from '../../../actions/flowActions';
 import FinalStep from './FinalStep';
 import MainStep from './MainStep';
 import InfoStep from './InfoStep';
-import './FlowModal.css';
+import './FlowModal.scss';
 
 export class FlowModal extends Component {
 	state = {
@@ -76,7 +76,7 @@ export class FlowModal extends Component {
 		return (
 			<div onKeyPress={this.handleKeyPress}>
 				<Modal
-					title={<span><Icon type='coffee' style={{color: '#DA0C79', fontSize:24}}/> Record your flow!</span> }
+					title={<span><Icon className='primary-icon' type='coffee' style={{fontSize:24}}/> Record your flow!</span> }
 					visible={this.state.visible}
 					onOk={this.handleOk}
 					confirmLoading={this.state.confirmLoading}

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Icon, Input, Select } from 'antd';
-import './InfoStep.css';
+import './InfoStep.scss';
 
 const Option = Select.Option;
 

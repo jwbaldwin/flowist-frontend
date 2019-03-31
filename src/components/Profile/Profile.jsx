@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Layout, Row, Col, Icon, Tabs } from 'antd';
 import ProfileHeader from './ProfileHeader';
 import Overview from './Overview';
-import './Profile.css';
+import './Profile.scss';
 
 const { Content } = Layout;
 const TabPane = Tabs.TabPane;

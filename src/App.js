@@ -9,7 +9,7 @@ import { Spin } from 'antd'
 import { Auth } from 'aws-amplify';
 import NotFound from './components/NotFound';
 import ComingSoon from './components/ComingSoon';
-import './App.css';
+import './App.scss';
 
 const UserAuth = React.lazy(() => import('./components/UserAuth'));
 

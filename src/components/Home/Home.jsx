@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Layout, Spin } from 'antd';
 import EmptyHome from './EmptyHome';
 import FlowHome from '../FlowHome';
-import './Home.css';
+import './Home.scss';
 
 const { Content } = Layout;
 

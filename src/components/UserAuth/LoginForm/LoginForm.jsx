@@ -6,8 +6,8 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import * as userActions from '../../../actions/userActions';
 import { Auth } from 'aws-amplify';
-import './LoginForm.css';
-import '../UserAuth.css';
+import './LoginForm.scss';
+import '../UserAuth.scss';
 
 export class LoginFormNormal extends Component {
     constructor(props) {

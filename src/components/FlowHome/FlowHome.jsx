@@ -6,7 +6,7 @@ import { Row, Col, Layout } from 'antd';
 // } from 'react-transition-group';
 import FlowItem from '../FlowItem';
 import FlowHomeHeader from './FlowHomeHeader';
-import './FlowHome.css';
+import './FlowHome.scss';
 
 const { Content } = Layout;
 

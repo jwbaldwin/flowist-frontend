@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router';
 import { Link } from 'react-router-dom';
 import { Layout, Menu, Icon } from 'antd';
-import logo from '../../images/flowist.png';
+import logo from '../../assets/images/flowist.png';
 import ThemeSwitch from './ThemeSwitch';
-import './Sidebar.css';
+import './Sidebar.scss';
 
 const { Sider } = Layout;
 

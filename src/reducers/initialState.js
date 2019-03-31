@@ -35,6 +35,6 @@ export default {
         isAuthenticated: false
     },
     settings: {
-        theme: 'light'
+        theme: 'dark'
     }
 };
