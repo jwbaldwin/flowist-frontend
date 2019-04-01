@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Tabs, Col, Divider, Button, Icon, Alert } from 'antd';
+import { Tabs, Col, Divider, Button, Alert } from 'antd';
 import LoginForm from './LoginForm';
 import SignUpForm from './SignUpForm';
 import './UserAuth.scss';

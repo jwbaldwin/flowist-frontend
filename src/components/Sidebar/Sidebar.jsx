@@ -4,9 +4,26 @@ import { Link } from 'react-router-dom';
 import { Layout, Menu, Icon } from 'antd';
 import logo from '../../assets/images/flowist.png';
 import ThemeSwitch from './ThemeSwitch';
+import styled from 'styled-components';
 import './Sidebar.scss';
 
 const { Sider } = Layout;
+
+const StyledSider = styled(Sider)`
+    color: ${({ theme }) => theme.textColor};
+    background: ${({ theme }) => theme.backgroundColor};
+    transiton: ${({ theme }) => theme.transiton};
+`;
+
+const StyledMenu = styled(Menu)`
+    color: ${({ theme }) => theme.textColor};
+    background: ${({ theme }) => theme.backgroundColor};
+    transiton: ${({ theme }) => theme.transiton};
+`;
+
+const LogoText = styled.h1`
+    color: ${({ theme }) => theme.textColor};
+`
 
 class Sidebar extends Component {
 	constructor(props) {
@@ -33,9 +50,7 @@ class Sidebar extends Component {
 
 	render() {
 		return (
-			<Sider
-				className={"sider-shadow-" + this.props.settings.theme}
-				theme={this.props.settings.theme}
+			<StyledSider
 				trigger={null}
 				breakpoint="md"
 				collapsedWidth={this.state.width}
@@ -45,17 +60,17 @@ class Sidebar extends Component {
 				onBreakpoint={this.onBreakpoint}
                 width={256}
 			>
-				<div id="app-sidebar-logo-div" className={this.props.settings.theme}>
+				<div id="app-sidebar-logo-div">
 					<Link to="/app">
 						<img src={logo} id="app-sidebar-logo" alt="Flowist Logo" />
-						<h1 id="app-sidebar-logo-title" className={this.props.settings.theme}>
+						<LogoText id="app-sidebar-logo-title">
 							{' '}
 							flowist
-						</h1>
+						</LogoText>
 					</Link>
 				</div>
-				<Menu
-					theme={this.props.settings.theme}
+				<StyledMenu
+                    theme={this.props.settings.theme}
 					defaultSelectedKeys={[ this.props.location.pathname ]}
 					mode="inline"
 				>
@@ -86,8 +101,8 @@ class Sidebar extends Component {
                     <Menu.ItemGroup>
                        <ThemeSwitch updateTheme={this.updateTheme} theme={this.props.settings.theme}/>
                     </Menu.ItemGroup>
-				</Menu>
-			</Sider>
+				</StyledMenu>
+			</StyledSider>
 		);
 	}
 }

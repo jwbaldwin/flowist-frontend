@@ -16,6 +16,14 @@ import Settings from '../Settings';
 import Profile from '../Profile';
 import { Layout } from 'antd';
 import { isMobile } from 'react-device-detect';
+import styled from 'styled-components';
+
+
+const StyledLayout = styled(Layout)`
+    color: ${({ theme }) => theme.textColor};
+    background: ${({ theme }) => theme.contentBackgroundColor};
+`;
+
 
 export class AppMain extends Component {
 	state = {
@@ -46,7 +54,7 @@ export class AppMain extends Component {
 					isMobile={isMobile}
 					{...this.props}
 				/>
-				<Layout>
+				<StyledLayout>
 					<HeaderNav toggle={this.toggleCollapse} collapsed={this.state.collapsed} {...this.props} />
 					<Route exact path="/app" component={() => <Home flows={this.props.flows} />} />
 					<Route exact path="/app/tags" component={Tags} />
@@ -58,7 +66,7 @@ export class AppMain extends Component {
 						component={() => <Profile flows={this.props.flows} user={this.props.user.user} />}
 					/>
 					<AppFooter />
-				</Layout>
+				</StyledLayout>
 			</Layout>
 		);
 	}

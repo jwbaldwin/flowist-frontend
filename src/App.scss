@@ -24,20 +24,6 @@
 	text-align: center;
 }
 
-// Light Theme
-.light {
-	background: $light-theme-color;
-	color: $light-theme-font-color;
-	transition: all .3s;
-}
-
-// Dark Theme
-.dark {
-	background: $dark-theme-color;
-	color: $dark-theme-font-color !important;
-	transition: all .3s;
-}
-
 // Icon Colors
 .primary-icon {
 	color: $primary-color;

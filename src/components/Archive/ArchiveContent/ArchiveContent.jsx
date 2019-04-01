@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Layout, List, Icon, Skeleton, Typography, Tag, Badge, Drawer, Col, Button } from 'antd';
+import { Layout, List, Icon, Skeleton, Typography, Tag, Badge, Drawer, Button } from 'antd';
 import { mapIcon, mapFlowStatusToBadge, mapStringToColor } from '../../../common';
 import TimeAgo from 'react-timeago'
 import FlowItem from '../../FlowItem';

@@ -10,10 +10,6 @@ const mainStyle = {
     background: 'linear-gradient(-45deg, #fe5196, #e6328c, #e6328c)',
 }
 
-const textStyle = {
-    height: '100vh',
-}
-
 export class ComingSoon extends Component {
     render() {
         return (

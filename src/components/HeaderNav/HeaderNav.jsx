@@ -2,10 +2,17 @@ import React, { Component, Suspense } from 'react';
 import { Link } from 'react-router-dom';
 import { Layout, Icon, Spin } from 'antd';
 import logo from '../../assets/images/flowist.png';
+import styled from 'styled-components';
 import './HeaderNav.scss';
 
 const UserMenu = React.lazy(() => import('./UserMenu'));
 const { Header } = Layout;
+
+const StyledHeader = styled(Header)`
+    color: ${({ theme }) => theme.textColor};
+    background: ${({ theme }) => theme.backgroundColor};
+    transiton: ${({ theme }) => theme.transiton};
+`;
 
 export class HeaderNav extends Component {
 	state = {
@@ -21,7 +28,7 @@ export class HeaderNav extends Component {
 
 	render() {
 		return (
-			<Header style={{ paddingLeft: '16px' }} className={this.props.settings.theme}>
+			<StyledHeader style={{ paddingLeft: '16px' }}>
 				<div className="header-left">
 					<div id="app-headernav-logo-div">
 						<Link to="/app">
@@ -39,7 +46,7 @@ export class HeaderNav extends Component {
 						<UserMenu {...this.props} />
 					</Suspense>
 				</div>
-			</Header>
+			</StyledHeader>
 		);
 	}
 }

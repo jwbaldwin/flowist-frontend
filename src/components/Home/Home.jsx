@@ -19,7 +19,6 @@ class Home extends Component {
 	handleKeyPress = () => {};
 
 	render() {
-		console.log(this.props.flows)
 		const activeFlows =  this.props.flows.filter((flow) => flow.flowStatus === 'ACTIVE')
 
 		return (
