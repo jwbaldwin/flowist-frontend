@@ -1,16 +1,12 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Layout, Button, Menu, Icon } from 'antd';
-import logo from '../../images/flowist.png';
 
 const { Content } = Layout;
 
 const mainStyle = {
     width: '100vw',
     height: '100vh',
-    background: '-webkit-linear-gradient(-45deg, #fe5196, #e6328c, #e6328c)',
-    background: '-o-linear-gradient(-45deg, #fe5196, #e6328c, #e6328c)',
-    background: '-moz-linear-gradient(-45deg, #fe5196, #e6328c, #e6328c)',
     background: 'linear-gradient(-45deg, #fe5196, #e6328c, #e6328c)',
 }
 

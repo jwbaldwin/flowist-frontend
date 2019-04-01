@@ -14,7 +14,7 @@ import {
 	DELETE_FLOW_ERROR
 } from '../actions/actionTypes';
 
-export default function flow(state = initialState.flow, action) {
+export default function flow(state = initialState.flowDebug, action) {
 	switch (action.type) {
 		case ADD_FLOW:
 			console.log('ADD_FLOW');

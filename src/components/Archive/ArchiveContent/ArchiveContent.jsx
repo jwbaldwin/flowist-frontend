@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Layout, List, Icon, Skeleton, Typography, Tag, Badge, Drawer, Col } from 'antd';
+import { Layout, List, Icon, Skeleton, Typography, Tag, Badge, Drawer, Col, Button } from 'antd';
 import { mapIcon, mapFlowStatusToBadge, mapStringToColor } from '../../../common';
 import TimeAgo from 'react-timeago'
 import FlowItem from '../../FlowItem';
@@ -42,7 +42,7 @@ export class ArchiveContent extends Component {
                     style={{ background: '#fff' }}
                     dataSource={this.props.flows}
                     renderItem={(item) => (
-                        <List.Item actions={[<a onClick={() => this.showItem(item.id)}><IconText type="plus-circle" text="more" /></a>,
+                        <List.Item actions={[<Button onClick={() => this.showItem(item.id)}><IconText type="plus-circle" text="more" /></Button>,
                                              <IconText type="edit" text="edit" />, <IconText type="star-o" text="0 " />]}
                                     extra={<TimeAgo date={item.created} />}>
                             <Skeleton avatar title={false} loading={this.props.isLoading} active>

@@ -9153,13 +9153,6 @@ rc@^1.2.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-react-apexcharts@^1.3.0:
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/react-apexcharts/-/react-apexcharts-1.3.0.tgz#3a343c871169c60305265ae9a370dbececc2cb2f"
-  integrity sha512-NkoAU6yZg1ilQSXunoL95wEIy3MWod/DEr2g9pdfN9SoAicgTixHgRyGEM75u7jCXq9uZxNSbnYuOPu+3MQC8Q==
-  dependencies:
-    prop-types "^15.5.7"
-
 react-app-polyfill@^0.2.2:
   version "0.2.2"
   resolved "https://registry.yarnpkg.com/react-app-polyfill/-/react-app-polyfill-0.2.2.tgz#a903b61a8bfd9c5e5f16fc63bebe44d6922a44fb"
