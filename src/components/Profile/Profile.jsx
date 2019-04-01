@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Layout, Row, Col, Icon, Tabs } from 'antd';
 import ProfileHeader from './ProfileHeader';
 import Overview from './Overview';
+import UserProfile from './UserProfile';
 import './Profile.scss';
 
 const { Content } = Layout;
@@ -21,7 +22,7 @@ export class Profile extends Component {
                                 <Overview flows={flows}/>
                             </TabPane>
                             <TabPane tab={<span><Icon type="user" />Profile</span>} key="2">
-                                Profile here
+                                <UserProfile user={user} />
                             </TabPane>
                             <TabPane tab={<span><Icon type="setting" />Account</span>} key="3">
                                 Tab 2
