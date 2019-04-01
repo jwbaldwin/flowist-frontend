@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Modal, message, Icon } from 'antd';
+import { Button, Modal, Icon } from 'antd';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
@@ -7,7 +7,7 @@ import * as flowActions from '../../../actions/flowActions';
 import FinalStep from './FinalStep';
 import MainStep from './MainStep';
 import InfoStep from './InfoStep';
-import './FlowModal.css';
+import './FlowModal.scss';
 
 export class FlowModal extends Component {
 	state = {
@@ -27,15 +27,10 @@ export class FlowModal extends Component {
 		}
 	}
 
-	saveFlowMessage = () => {
-		message.loading('Saving your flow..', 1.0).then(() => message.success('Your flow is saved!', 1.5));
-	};
-
 	handleOk = () => {
 		this.setState({
 			confirmLoading: true
 		});
-		this.saveFlowMessage();
 		this.props.flowActions.addFlow(this.state.flow);
 		this.setState({ visible: false, confirmLoading: false });
 	};
@@ -72,8 +67,8 @@ export class FlowModal extends Component {
 	};
 
 	handleKeyPress = (event) => {
-		if (event.key === 'Enter' && this.state.current === 0) {
-			this.next();
+		if (event.key === 'Enter') {
+			this.handleOk();
 		}
 	};
 
@@ -81,7 +76,7 @@ export class FlowModal extends Component {
 		return (
 			<div onKeyPress={this.handleKeyPress}>
 				<Modal
-					title={<span><Icon type='coffee' style={{color: '#DA0C79', fontSize:24}}/> Record your flow!</span> }
+					title={<span><Icon className='primary-icon' type='coffee' style={{fontSize:24}}/> Record your flow!</span> }
 					visible={this.state.visible}
 					onOk={this.handleOk}
 					confirmLoading={this.state.confirmLoading}
@@ -89,6 +84,7 @@ export class FlowModal extends Component {
 					footer={[
                             <Button key="back" onClick={this.handleCancel}>Cancel</Button>,
                             <Button
+									key="submit"
 									style={{ textAlign: 'right' }}
 									type="primary"
 									loading={this.state.confirmLoading}

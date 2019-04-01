@@ -13,7 +13,7 @@ import { stateFromMarkdown } from "draft-js-import-markdown";
 import { mapIcon, mapFlowStatusToBadge } from '../../common';
 import FlowTagsFooter from './FlowTagsFooter';
 import 'draft-js-hashtag-plugin/lib/plugin.css';
-import './FlowItem.css';
+import './FlowItem.scss';
 
 const confirm = Modal.confirm;
 
@@ -75,7 +75,7 @@ class FlowItem extends Component {
         const optionsMenu = (id) => (
             <Menu>
                 <Menu.Item key="0" onClick={() => this.showDeleteConfirm(id, this.deleteItem)}>
-                    <Icon type="delete" theme="twoTone" twoToneColor="#f5222d" style={{ fontSize: 18 }} /> Delete
+                    <Icon type="delete" theme="twoTone" twoToneColor="#F25F5C" style={{ fontSize: 18 }} /> Delete
                     </Menu.Item>
                 <Menu.Divider />
                 <Menu.Item key="1">
@@ -89,18 +89,19 @@ class FlowItem extends Component {
                     </Menu.Item>
                 <Menu.Divider />
                 <Menu.Item key="4">
-                    <Icon type="edit" theme="twoTone" twoToneColor="#faad14" /> Edit
+                    <Icon type="edit" theme="twoTone" twoToneColor="#FFE060" /> Edit
                     </Menu.Item>
             </Menu>
         );
 
         return (
             <Card
+                bordered={false}
                 actions={[
-                    <Dropdown trigger={['hover', 'click']} overlay={optionsMenu(flow.id)} placement="topCenter">
-                        <Icon type="ellipsis" style={{ fontSize: 18 }} />
+                    <Dropdown trigger={['click']} overlay={optionsMenu(flow.id)} placement="topCenter">
+                        <Icon type="more" style={{ fontSize: 18 }} />
                     </Dropdown>,
-                    <Icon type="check-circle" onClick={() => this.completeItem(flow.id)} theme="twoTone" twoToneColor="#52c41a" style={{ fontSize: 18 }} />
+                    <Icon type="check-circle" onClick={() => this.completeItem(flow.id)} theme="twoTone" twoToneColor="#1CCCA3" style={{ fontSize: 18 }} />
                 ]}
                 extra={<Badge status={mapFlowStatusToBadge(flow.flowStatus)} />}
                 title={<span><Icon type={mapIcon(flow.activity)} id="flow-activity-icon" /> {flow.title} </span>}

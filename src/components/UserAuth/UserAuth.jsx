@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { Tabs, Col, Divider, Button, Icon, Alert } from 'antd';
 import LoginForm from './LoginForm';
 import SignUpForm from './SignUpForm';
-import './UserAuth.css';
-import '../AppMain/AppMain.css';
-import logo from '../../images/flowist.png';
+import './UserAuth.scss';
+import '../AppMain/AppMain.scss';
+import logo from '../../assets/images/flowist.png';
 
 const TabPane = Tabs.TabPane;
 

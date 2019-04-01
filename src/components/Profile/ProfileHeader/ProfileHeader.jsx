@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Layout, Avatar, Typography } from 'antd';
-import './ProfileHeader.css';
+import './ProfileHeader.scss';
 
 const { Content } = Layout;
 const { Title, Text } = Typography;

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Layout, Spin } from 'antd';
 import EmptyHome from './EmptyHome';
 import FlowHome from '../FlowHome';
-import './Home.css';
+import './Home.scss';
 
 const { Content } = Layout;
 
@@ -19,6 +19,9 @@ class Home extends Component {
 	handleKeyPress = () => {};
 
 	render() {
+		console.log(this.props.flows)
+		const activeFlows =  this.props.flows.filter((flow) => flow.flowStatus === 'ACTIVE')
+
 		return (
 			<Content
 				className="centered home"
@@ -27,7 +30,7 @@ class Home extends Component {
 			>
 				{this.props.isLoading ?
                 <Spin size="large" />
-                : (this.props.flows.length > 0 ? <FlowHome flows={this.props.flows} /> : <EmptyHome />)}
+                : (activeFlows.length > 0 ? <FlowHome flows={activeFlows} /> : <EmptyHome />)}
 			</Content>
 		);
 	}

@@ -11,12 +11,14 @@ const { Content } = Layout;
 
 export class Archive extends Component {
 	render() {
+		const archivedFlows = this.props.flows.filter((flow) => flow.flowStatus === 'COMPLETED')
+
 		return (
 			<Content style={{ padding: 24 }}>
 				{this.props.isLoading ? (
-					<Spin size="large" />
-				) : this.props.flows.length > 0 ? (
-					<ArchiveContent flows={this.props.flows} isLoading={this.props.isLoading} />
+					<Spin className='centered' size="large" />
+				) : archivedFlows.length > 0 ? (
+					<ArchiveContent flows={archivedFlows} isLoading={this.props.isLoading} />
 				) : (
 					<ArchiveEmpty />
 				)}

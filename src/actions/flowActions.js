@@ -72,12 +72,9 @@ export function addFlow(flow) {
             headers: headers,
             body: JSON.stringify(flow)
         })
-            .then((response) => {
-                response.status === 200 ?
-                    dispatch(addFlowSuccess(response.json()))
-                    : dispatch(addFlowError(response.status + ': Could not add flow. '))
-            })
-            .catch((error) => dispatch(addFlowError(error)));
+            .then((response) => response.json())
+            .then((json) => dispatch(addFlowSuccess(json)))
+            .catch((error) => dispatch(addFlowError(error + ': Could not add flow. ')));
     };
 }
 
@@ -86,6 +83,7 @@ function addFlowRequest() {
 }
 
 export function addFlowSuccess(data) {
+    message.success("Flow added!")
     return {
         type: ADD_FLOW_SUCCESS,
         data: data
@@ -93,6 +91,7 @@ export function addFlowSuccess(data) {
 }
 
 export function addFlowError(error) {
+    message.error("Uhoh :( We couldn't add the flow 👾")
     return {
         type: ADD_FLOW_ERROR,
         error: error
@@ -113,12 +112,9 @@ export function updateFlow(flow) {
             headers: headers,
             body: JSON.stringify(flow)
         })
-            .then((response) => {
-                response.status === 200 ?
-                    dispatch(updateFlowSuccess(response.json()))
-                    : dispatch(updateFlowError(response.status + ': Could not update flow. '))
-            })
-            .catch((error) => dispatch(updateFlowError(error)));
+            .then((response) => response.json())
+            .then((json) => dispatch(updateFlowSuccess(json)))
+            .catch((error) => updateFlowError(error + ': Could not update flow. '));
     };
 }
 
@@ -127,7 +123,6 @@ function updateFlowRequest() {
 }
 
 export function updateFlowSuccess(data) {
-    console.log(data);
     message.success("Flow completed! Congrats! 🎉");
     return {
         type: UPDATE_FLOW_SUCCESS,

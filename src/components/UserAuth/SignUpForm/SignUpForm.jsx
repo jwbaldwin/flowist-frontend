@@ -6,7 +6,7 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import * as userActions from '../../../actions/userActions';
 import { Auth } from "aws-amplify";
-import '../UserAuth.css';
+import '../UserAuth.scss';
 
 import { PasswordInput } from 'antd-password-input-strength';
 

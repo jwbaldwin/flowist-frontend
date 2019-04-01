@@ -1,8 +1,8 @@
 import React, { Component, Suspense } from 'react';
 import { Link } from 'react-router-dom';
 import { Layout, Icon, Spin } from 'antd';
-import logo from '../../images/flowist.png';
-import './HeaderNav.css';
+import logo from '../../assets/images/flowist.png';
+import './HeaderNav.scss';
 
 const UserMenu = React.lazy(() => import('./UserMenu'));
 const { Header } = Layout;

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Tag, Layout, Icon } from 'antd';
 import { mapStringToColor } from '../../../common';
-import './FlowTagsFooter.css';
+import './FlowTagsFooter.scss';
 
 export default class FlowTagsFooter extends Component {
 	render() {

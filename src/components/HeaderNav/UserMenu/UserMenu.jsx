@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Icon, Menu, message, Avatar, Dropdown } from 'antd';
 import { Auth } from "aws-amplify";
-import '../HeaderNav.css';
+import '../HeaderNav.scss';
 
 export class UserMenu extends Component {
 

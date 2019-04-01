@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Layout, Button, Menu, Icon } from 'antd';
 
+import logo from '../../assets/images/flowist.png';
+
 const { Content } = Layout;
 
 const mainStyle = {

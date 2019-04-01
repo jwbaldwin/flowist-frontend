@@ -1,3 +1,5 @@
+@import '../../App.scss';
+
 .header-trigger {
 	height: 64px;
 	padding: 22px 16px;
@@ -20,13 +22,13 @@
 }
 
 .ant-avatar:focus, .ant-avatar:active, .ant-avatar:hover {
-    border: 1px solid #DA0C79;
+    border: 1px solid $primary-color;
 }
 
 .ant-avatar {
-    border: 1px solid rgb(246, 246, 246);
+	border: 1px solid rgb(246, 246, 246);
     border-radius: 50px;
-    transition: all 0.2s
+    transition: all 0.2sprimary
 }
 
 .header-left {
@@ -40,18 +42,6 @@
 .ant-layout-header {
 	padding-right: 16px;
     box-shadow: 0 1px 4px rgba(0,21,41,.08);
-}
-
-.light {
-	background: #fff;
-	color: rgba(0, 0, 0, 0.64);
-	transition: all .3s;
-}
-
-.dark {
-	background: #001529;
-	color: #d9d9d9 !important;
-	transition: all .3s;
 }
 
 
