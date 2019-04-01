@@ -3,14 +3,15 @@ import { Layout, List, Icon, Skeleton, Typography, Tag, Badge, Drawer, Button } 
 import { mapIcon, mapFlowStatusToBadge, mapStringToColor } from '../../../common';
 import TimeAgo from 'react-timeago'
 import FlowItem from '../../FlowItem';
+import { withTheme } from 'styled-components';
 import './ArchiveContent.scss';
 
 const { Content } = Layout;
 const { Text } = Typography;
 
-const IconText = ({ type, text }) => (
+const IconText = ({ type, text, color }) => (
     <span>
-        <Icon type={type} style={{ marginRight: 8 }} />
+        <Icon type={type} style={{ marginRight: 8, color: color }} />
         {text}
     </span>
 );
@@ -43,7 +44,7 @@ export class ArchiveContent extends Component {
                     style={{ background: '#fff' }}
                     dataSource={this.props.flows}
                     renderItem={(item) => (
-                        <List.Item actions={[<Button onClick={() => this.showItem(item.id)}><IconText type="plus-circle" text="more" /></Button>,]}
+                        <List.Item actions={[<Button onClick={() => this.showItem(item.id)}><IconText type="plus-circle" text="more" color={this.props.theme.successColor} /></Button>,]}
                                     extra={<TimeAgo date={item.created} />}>
                             <Skeleton avatar title={false} loading={this.props.isLoading} active>
                                 <List.Item.Meta
@@ -75,4 +76,4 @@ export class ArchiveContent extends Component {
     }
 }
 
-export default ArchiveContent;
+export default withTheme(ArchiveContent);

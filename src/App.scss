@@ -1,6 +1,5 @@
 @import './assets/styles/shared.scss';
 
-
 // Center an Element
 .centered {
 	display: -webkit-box;
@@ -23,21 +22,6 @@
 
 	text-align: center;
 }
-
-// Icon Colors
-.primary-icon {
-	color: $primary-color;
-}
-.success-icon {
-	color: $success-color;
-}
-.warning-icon {
-	color: $warning-color;
-}
-.error-icon {
-	color: $error-color;
-}
-
 
 // Login/Signup Buttons
 .green-btn,

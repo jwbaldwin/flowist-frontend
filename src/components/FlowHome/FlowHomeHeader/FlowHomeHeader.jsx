@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Card, Button, Typography, Row, Icon, Divider } from 'antd';
 import TimeAgo from 'react-timeago'
 import logo from '../../../assets/images/flowist.png';
+import { withTheme } from 'styled-components';
 import './FlowHomeHeader.scss';
 
 const { Text } = Typography;
@@ -18,7 +19,7 @@ export class FlowHomeHeader extends Component {
                 <Divider style={{ color: '#ccc' }}>quick actions</Divider>
                 <Row type="flex" justify="space-around" align="middle">
                     <Button className='header-btn' size='large'>
-                        <Icon className='success-icon' type='check-circle' style={{fontSize: '20px'}}/>
+                        <Icon type='check-circle' theme='twoTone' twoToneColor={this.props.theme.successColor} style={{fontSize: '20px'}}/>
                         <span className='btn-text'>I'm finished</span>
                     </Button>
                     <Button className='header-btn' size='large'>
@@ -31,4 +32,4 @@ export class FlowHomeHeader extends Component {
 	}
 }
 
-export default FlowHomeHeader;
+export default withTheme(FlowHomeHeader);

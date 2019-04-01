@@ -12,6 +12,7 @@ import createMarkdownShortcutsPlugin from 'draft-js-markdown-shortcuts-plugin';
 import { stateFromMarkdown } from "draft-js-import-markdown";
 import { mapIcon, mapFlowStatusToBadge } from '../../common';
 import FlowTagsFooter from './FlowTagsFooter';
+import { withTheme } from 'styled-components';
 import 'draft-js-hashtag-plugin/lib/plugin.css';
 import './FlowItem.scss';
 
@@ -43,6 +44,7 @@ const timestampStyle = {
     justify: 'bottom',
 };
 
+
 class FlowItem extends Component {
     deleteItem = (id) => {
          this.props.flowActions.deleteFlow(id);
@@ -71,11 +73,12 @@ class FlowItem extends Component {
     render() {
         const { flow } = this.props;
         const created = new Date(flow.created);
+        console.log(this.props.theme)
 
         const optionsMenu = (id) => (
             <Menu>
                 <Menu.Item key="0" onClick={() => this.showDeleteConfirm(id, this.deleteItem)}>
-                    <Icon type="delete" theme="twoTone" twoToneColor="#F25F5C" style={{ fontSize: 18 }} /> Delete
+                    <Icon type="delete" theme="twoTone" twoToneColor={this.props.theme.errorColor} style={{ fontSize: 18 }} /> Delete
                     </Menu.Item>
                 <Menu.Divider />
                 <Menu.Item key="1">
@@ -89,7 +92,7 @@ class FlowItem extends Component {
                     </Menu.Item>
                 <Menu.Divider />
                 <Menu.Item key="4">
-                    <Icon type="edit" theme="twoTone" twoToneColor="#FFE060" /> Edit
+                    <Icon type="edit" theme="twoTone" twoToneColor={this.props.theme.warningColor} /> Edit
                     </Menu.Item>
             </Menu>
         );
@@ -101,7 +104,7 @@ class FlowItem extends Component {
                     <Dropdown trigger={['click']} overlay={optionsMenu(flow.id)} placement="topCenter">
                         <Icon type="more" style={{ fontSize: 18 }} />
                     </Dropdown>,
-                    <Icon type="check-circle" onClick={() => this.completeItem(flow.id)} theme="twoTone" twoToneColor="#1CCCA3" style={{ fontSize: 18 }} />
+                    <Icon type="check-circle" onClick={() => this.completeItem(flow.id)} theme="twoTone" twoToneColor={this.props.theme.successColor} style={{ fontSize: 18 }} />
                 ]}
                 extra={<Badge status={mapFlowStatusToBadge(flow.flowStatus)} />}
                 title={<span><Icon type={mapIcon(flow.activity)} id="flow-activity-icon" /> {flow.title} </span>}
@@ -144,4 +147,4 @@ function mapDispatchToProps(dispatch) {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(FlowItem);
+export default connect(mapStateToProps, mapDispatchToProps)(withTheme(FlowItem));

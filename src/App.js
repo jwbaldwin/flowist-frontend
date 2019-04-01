@@ -34,7 +34,6 @@ class App extends Component {
 	}
 
 	render() {
-        console.log(themes)
 
 		return (
 			!this.state.isAuthenticating && (
