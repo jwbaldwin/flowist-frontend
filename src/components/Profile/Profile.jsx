@@ -22,7 +22,7 @@ export class Profile extends Component {
                                 <Overview flows={flows}/>
                             </TabPane>
                             <TabPane tab={<span><Icon type="user" />Profile</span>} key="2">
-                                <UserProfile user={user} />
+                                // <UserProfile user={user} />
                             </TabPane>
                             <TabPane tab={<span><Icon type="setting" />Account</span>} key="3">
                                 Tab 2

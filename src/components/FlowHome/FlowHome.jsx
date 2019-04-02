@@ -5,7 +5,7 @@ import { Row, Col, Layout } from 'antd';
 //   TransitionGroup,
 // } from 'react-transition-group';
 import FlowItem from '../FlowItem';
-import FlowHomeHeader from './FlowHomeHeader';
+import Work from '../Work';
 import './FlowHome.scss';
 
 const { Content } = Layout;
@@ -18,8 +18,8 @@ export class Settings extends Component {
                     { this.props.flows
                         .map((flow, key) =>
                             <Col xs={24} sm={24} md={18} lg={16} xl={11} style={{marginTop: '1vh', marginBottom: '1vh'}}>
-                                <FlowHomeHeader activity={flow.activity} created={flow.created}/>
                                 <FlowItem flow={flow} key={key} />
+                                <Work />
                             </Col>
                         )
                     }
@@ -30,3 +30,5 @@ export class Settings extends Component {
 }
 
 export default Settings;
+
+// <FlowHomeHeader activity={flow.activity} created={flow.created}/>
