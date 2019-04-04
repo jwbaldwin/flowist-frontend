@@ -18,11 +18,29 @@ const StyledTimeline = styled(Timeline)`
 `
 
 export class WorkTimeline extends Component {
+
+    getColor(type) {
+        switch (type) {
+            case 'update':
+                return this.props.theme.infoColor;
+            case 'info':
+                return this.props.theme.secondaryContentBackgroundColor;
+            case 'complete':
+                return this.props.theme.successColor;
+            case 'error':
+                return this.props.theme.errorColor;
+            case 'warning':
+                return this.props.theme.warningColor;
+            default:
+                return this.props.theme.infoColor;
+        }
+    }
+
     render() {
         return (
             <StyledTimeline>
                 {this.props.logs.map((log, key) =>
-                    <Timeline.Item key={key} color={this.props.theme.infoColor}>{log}</Timeline.Item>
+                    <Timeline.Item key={key} color={this.getColor(log.type)}>{log.data}</Timeline.Item>
                 )}
             </StyledTimeline>
         );

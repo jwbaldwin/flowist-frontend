@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Layout, Icon, Col } from 'antd';
+import { Layout, Icon, Col, Empty } from 'antd';
 import WorkTimeline from './WorkTimeline';
 import WorkInput from './WorkInput';
 
@@ -12,9 +12,8 @@ export class Work extends Component {
     }
 
     logWork = (work) => {
-        console.log(work)
         this.setState({
-            logs: {...this.state.logs, work}
+            logs: [...this.state.logs, work]
         })
     }
 
@@ -22,7 +21,7 @@ export class Work extends Component {
         return (
             <Content className="centered">
                 <Col span={24}>
-                    <WorkTimeline work={this.state.work} />
+                    <WorkTimeline logs={this.state.logs} />
                     <WorkInput log={this.logWork}/>
                 </Col>
             </Content>

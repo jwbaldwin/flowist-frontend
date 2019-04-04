@@ -31,6 +31,11 @@ export class WorkInput extends Component {
         });
     }
 
+    logWork = () => {
+        this.props.log(this.state.work)
+        this.setState({work: { type: 'update', data: ''}})
+    }
+
     render() {
         const selectBefore = (
             <Select defaultValue="update" style={{ minWidth: 110 }} onChange={this.updateType}>
@@ -49,7 +54,7 @@ export class WorkInput extends Component {
                     placeholder="Log your work"
                     value={this.state.work.data}
                     onChange={this.updateData}
-                    onPressEnter={() => this.props.log(this.state.work)} />
+                    onPressEnter={this.logWork} />
         );
     }
 }
