@@ -5,6 +5,7 @@ import styled, { withTheme } from 'styled-components';
 const StyledTimeline = styled(Timeline)`
     color: ${({ theme }) => theme.textColor};
     margin: 2em !important;
+    text-align: left;
     .ant-timeline-item-head-custom {
         background-color: ${({ theme }) => theme.contentBackgroundColor};
     }
@@ -16,16 +17,13 @@ const StyledTimeline = styled(Timeline)`
     }
 `
 
-
 export class WorkTimeline extends Component {
     render() {
         return (
             <StyledTimeline>
-                <Timeline.Item color={this.props.theme.infoColor}>Create a services site 2015-09-01</Timeline.Item>
-                <Timeline.Item color={this.props.theme.warningColor}>Solve initial networkTimeline problems 2015-09-01</Timeline.Item>
-                <Timeline.Item dot={<Icon type="clock-circle-o" style={{ fontSize: '16px' }} />} color="red">Technical testing 2015-09-01</Timeline.Item>
-                <Timeline.Item color={this.props.theme.errorColor}>NetworkTimeline problems being solved 2015-09-01</Timeline.Item>
-                <Timeline.Item color={this.props.theme.successColor}>Solve initial networkTimeline problems 2015-09-01</Timeline.Item>
+                {this.props.logs.map((log, key) =>
+                    <Timeline.Item key={key} color={this.props.theme.infoColor}>{log}</Timeline.Item>
+                )}
             </StyledTimeline>
         );
     }
