@@ -49,6 +49,7 @@ export class AppMain extends Component {
 		return (
 			<Layout style={{ minHeight: '100vh' }}>
 				<SidebarWrapper
+                    activeFlows={ this.props.flows.filter((flow) => flow.flowStatus === 'ACTIVE')}
 					toggle={this.toggleCollapse}
 					collapsed={this.state.collapsed}
 					isMobile={isMobile}
@@ -57,6 +58,7 @@ export class AppMain extends Component {
 				<StyledLayout>
 					<HeaderNav toggle={this.toggleCollapse} collapsed={this.state.collapsed} {...this.props} />
 					<Route exact path="/app" component={() => <Home flows={this.props.flows} />} />
+                    <Route exact path="/app/flows/:id" component={() => <Home flows={this.props.flows} />} />
 					<Route exact path="/app/tags" component={Tags} />
 					<Route exact path="/app/archive" component={() => <Archive flows={this.props.flows} />} />
 					<Route exact path="/app/settings" component={Settings} />

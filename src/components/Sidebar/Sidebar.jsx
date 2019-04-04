@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router';
 import { Link } from 'react-router-dom';
 import { Layout, Menu, Icon } from 'antd';
+import { mapIcon } from '../../common';
 import logo from '../../assets/images/flowist.png';
 import ThemeSwitch from './ThemeSwitch';
 import styled from 'styled-components';
@@ -74,6 +75,23 @@ class Sidebar extends Component {
 					defaultSelectedKeys={[ this.props.location.pathname ]}
 					mode="inline"
 				>
+                    <Menu.Divider />
+                    { this.props.activeFlows.length > 0
+                        ? (this.props.activeFlows.map((flow) =>
+                               <Menu.Item key={"/app/flows/" + flow.id}>
+                                    <Link to={"/app/flows/" + flow.id}>
+                                        <Icon type={mapIcon(flow.activity)} />
+                                        <span>{flow.title.replace(/^(.{15}[^\s]*).*/, "$1 ...")}</span>
+                                    </Link>
+                                </Menu.Item>
+                            ))
+                        : (
+                            <Menu.Item>
+                                    Add one!
+                            </Menu.Item>
+                        )
+                    }
+                    <Menu.Divider />
 					<Menu.Item key="/app">
 						<Link to="/app">
 							<Icon type="coffee" />
