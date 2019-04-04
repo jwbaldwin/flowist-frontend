@@ -12,6 +12,7 @@ import createMarkdownShortcutsPlugin from 'draft-js-markdown-shortcuts-plugin';
 import { stateFromMarkdown } from "draft-js-import-markdown";
 import { mapIcon, mapFlowStatusToBadge } from '../../common';
 import FlowTagsFooter from './FlowTagsFooter';
+import FlowModal from '../FlowModal';
 import { withTheme } from 'styled-components';
 import 'draft-js-hashtag-plugin/lib/plugin.css';
 import './FlowItem.scss';
@@ -46,6 +47,10 @@ const timestampStyle = {
 
 
 class FlowItem extends Component {
+    state = {
+        visible: false
+    }
+
     deleteItem = (id) => {
          this.props.flowActions.deleteFlow(id);
     }
@@ -53,6 +58,12 @@ class FlowItem extends Component {
     completeItem = () => {
         this.props.flowActions.updateFlow({ ...this.props.flow, flowStatus: 'COMPLETED' });
     }
+
+    editItem = (id) => {
+        console.log(id)
+    }
+
+    onChange = () => {return null;}
 
     showDeleteConfirm = (id, callback) => {
         confirm({
@@ -70,10 +81,13 @@ class FlowItem extends Component {
         });
     }
 
+    showEditModal = (id) => {
+        this.setState({visible: !this.state.visible})
+    }
+
     render() {
         const { flow } = this.props;
         const created = new Date(flow.created);
-        console.log(this.props.theme)
 
         const optionsMenu = (id) => (
             <Menu>
@@ -91,41 +105,45 @@ class FlowItem extends Component {
                     <Icon type="link" /> Add files
                     </Menu.Item>
                 <Menu.Divider />
-                <Menu.Item key="4">
+                <Menu.Item key="4" onClick={() => this.showEditModal(id)}>
                     <Icon type="edit" theme="twoTone" twoToneColor={this.props.theme.warningColor} /> Edit
                     </Menu.Item>
             </Menu>
         );
 
         return (
-            <Card
-                bordered={false}
-                actions={[
-                    <Dropdown trigger={['click']} overlay={optionsMenu(flow.id)} placement="topCenter">
-                        <Icon type="more" style={{ fontSize: 18 }} />
-                    </Dropdown>,
-                    <Icon type="check-circle" onClick={() => this.completeItem(flow.id)} theme="twoTone" twoToneColor={this.props.theme.successColor} style={{ fontSize: 18 }} />
-                ]}
-                extra={<Badge status={mapFlowStatusToBadge(flow.flowStatus)} />}
-                title={<span><Icon type={mapIcon(flow.activity)} id="flow-activity-icon" /> {flow.title} </span>}
-            >
-                <Card.Grid style={contentStyle} className="flow-card-content">
-                    <div id='content'>
-                        <Editor
-                            readOnly={true}
-                            editorState={EditorState.createWithContent(stateFromMarkdown(flow.content))}
-                            plugins={plugins}
-                            ref={(element) => { this.editor = element; }}
-                        />
-                    </div>
-                </Card.Grid>
-                <Card.Grid style={tagsFooterStyle} className="flow-card-tags">
-                    <FlowTagsFooter tags={flow.tags} />
-                </Card.Grid>
-                <Card.Grid style={timestampStyle} className="flow-card-timestamp">
-                    {created.toDateString().toLocaleLowerCase()}
-                </Card.Grid>
-            </Card>
+            <div>
+                <FlowModal visible={this.state.visible} flow={flow} type="update"/>
+                <Card
+                    bordered={false}
+                    actions={[
+                        <Dropdown trigger={['click']} overlay={optionsMenu(flow.id)} placement="topCenter">
+                            <Icon type="more" style={{ fontSize: 18 }} />
+                        </Dropdown>,
+                        <Icon type="check-circle" onClick={() => this.completeItem(flow.id)} theme="twoTone" twoToneColor={this.props.theme.successColor} style={{ fontSize: 18 }} />
+                    ]}
+                    extra={<Badge status={mapFlowStatusToBadge(flow.flowStatus)} />}
+                    title={<span><Icon type={mapIcon(flow.activity)} id="flow-activity-icon" /> {flow.title} </span>}
+                >
+                    <Card.Grid style={contentStyle} className="flow-card-content">
+                        <div id='content'>
+                            <Editor
+                                onChange={this.onChange}
+                                readOnly={true}
+                                editorState={EditorState.createWithContent(stateFromMarkdown(flow.content))}
+                                plugins={plugins}
+                                ref={(element) => { this.editor = element; }}
+                            />
+                        </div>
+                    </Card.Grid>
+                    <Card.Grid style={tagsFooterStyle} className="flow-card-tags">
+                        <FlowTagsFooter tags={flow.tags} />
+                    </Card.Grid>
+                    <Card.Grid style={timestampStyle} className="flow-card-timestamp">
+                        {created.toDateString().toLocaleLowerCase()}
+                    </Card.Grid>
+                </Card>
+            </div>
         );
     }
 }

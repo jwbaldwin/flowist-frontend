@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Icon, Empty } from 'antd';
-import FlowModal from '../FlowModal';
+import FlowModal from '../../FlowModal';
 import './EmptyHome.scss';
 
 export class EmptyHome extends Component {
@@ -15,7 +15,7 @@ export class EmptyHome extends Component {
 	render() {
 		return (
 			<div>
-				<FlowModal visible={this.state.visible} />
+				<FlowModal visible={this.state.visible} type="create"/>
 				<Empty
                     image={<Icon type="coffee" style={{fontSize: 64, color: "#ccc"}}/>}
 					description={

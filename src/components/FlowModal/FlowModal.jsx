@@ -3,7 +3,7 @@ import { Button, Modal, Icon } from 'antd';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
-import * as flowActions from '../../../actions/flowActions';
+import * as flowActions from '../../actions/flowActions';
 import FinalStep from './FinalStep';
 import MainStep from './MainStep';
 import InfoStep from './InfoStep';
@@ -21,6 +21,16 @@ export class FlowModal extends Component {
 		}
 	};
 
+
+	static getDerivedStateFromProps(nextProps, prevState){
+		if(nextProps.flow.title !== prevState.flow.title){
+            return {
+                flow: nextProps.flow
+            }
+	   }
+	   else return null;
+	 }
+
 	componentDidUpdate(prevProps) {
 		if (this.props.visible !== prevProps.visible) {
 			this.setState({ visible: !this.state.visible });
@@ -31,7 +41,9 @@ export class FlowModal extends Component {
 		this.setState({
 			confirmLoading: true
 		});
-		this.props.flowActions.addFlow(this.state.flow);
+        this.props.type === "create" ?
+            this.props.flowActions.addFlow(this.state.flow)
+            : this.props.flowActions.updateFlow(this.state.flow);
 		this.setState({ visible: false, confirmLoading: false });
 	};
 

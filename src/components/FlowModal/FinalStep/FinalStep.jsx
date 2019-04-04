@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Icon, Input, Tag, Tooltip } from 'antd';
-import { mapStringToColor, extractTags } from '../../../../common';
+import { mapStringToColor, extractTags } from '../../../common';
 import './FinalStep.scss';
 
 export class FinalStep extends Component {

@@ -4,14 +4,6 @@ import './InfoStep.scss';
 
 const Option = Select.Option;
 
-function handleBlur() {
-    console.log('blur');
-}
-
-function handleFocus() {
-    console.log('focus');
-}
-
 export class InfoStep extends Component {
 
 	render() {
@@ -24,11 +16,10 @@ export class InfoStep extends Component {
                         showSearch
                         style={{ width: '100%'}}
                         placeholder="Drinking coffee..."
+                        value={this.props.flowData.activity}
                         optionFilterProp="children"
                         allowClear={true}
                         onChange={this.props.handleChange('activity')}
-                        onFocus={handleFocus}
-                        onBlur={handleBlur}
                         filterOption={(input, option) => option.props.children.toString().toLowerCase().indexOf(input.toLowerCase()) >= 0 }
                     >
                         <Option value="coding"><Icon type="laptop" /> Programming</Option>

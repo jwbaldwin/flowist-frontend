@@ -26,7 +26,7 @@ export function fetchFlows() {
         dispatch(fetchFlowRequest())
         const headers = await getHeaders();
 
-        return fetch(FLOW_API_URL + '/all', {
+        return fetch(FLOW_API_URL, {
             method: 'GET',
             headers: headers
         })
@@ -107,7 +107,7 @@ export function updateFlow(flow) {
         dispatch(updateFlowRequest())
         const headers = await getHeaders();
 
-        return fetch(FLOW_API_URL + '?id=' + flow.id, {
+        return fetch(FLOW_API_URL + '/' + flow.id, {
             method: 'PUT',
             headers: headers,
             body: JSON.stringify(flow)
@@ -123,7 +123,9 @@ function updateFlowRequest() {
 }
 
 export function updateFlowSuccess(data) {
-    message.success("Flow completed! Congrats! 🎉");
+    (data.flowStatus === "COMPLETED") ?
+        message.success("Flow completed! Congrats! 🎉")
+        : message.info("Flow updated!");
     return {
         type: UPDATE_FLOW_SUCCESS,
         data: data
@@ -131,7 +133,7 @@ export function updateFlowSuccess(data) {
 }
 
 export function updateFlowError(error) {
-    message.error("Uhoh :( We couldn't complete the flow 👾")
+    message.error("Uhoh :( We couldn't update the flow 👾")
     return {
         type: UPDATE_FLOW_ERROR,
         error: error
@@ -147,7 +149,7 @@ export function deleteFlow(id) {
         dispatch(deleteFlowRequest());
         const headers = await getHeaders();
 
-        return fetch(FLOW_API_URL + '?id=' + id, {
+        return fetch(FLOW_API_URL + '/' + id, {
             method: 'DELETE',
             headers: headers,
         })
