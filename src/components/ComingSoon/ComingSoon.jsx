@@ -5,7 +5,6 @@ import { Layout, Button, Menu, Icon } from 'antd';
 const { Content } = Layout;
 
 const mainStyle = {
-    width: '100vw',
     height: '100vh',
     background: 'linear-gradient(-45deg, #fe5196, #e6328c, #e6328c)',
 }

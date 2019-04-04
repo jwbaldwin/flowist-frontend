@@ -10,7 +10,10 @@
 /coverage
 
 # production
-/build
+/build/*
+/dist/*
+.vscode
+/.theia
 
 # misc
 .DS_Store
