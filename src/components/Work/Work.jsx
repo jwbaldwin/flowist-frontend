@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Layout, Icon, Col, Empty } from 'antd';
 import WorkTimeline from './WorkTimeline';
 import WorkInput from './WorkInput';
+import { now } from 'moment';
 
 
 const { Content } = Layout;
@@ -12,6 +13,7 @@ export class Work extends Component {
     }
 
     logWork = (work) => {
+        work.created = now();
         this.setState({
             logs: [...this.state.logs, work]
         })

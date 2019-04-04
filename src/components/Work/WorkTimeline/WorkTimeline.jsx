@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Timeline, Icon } from 'antd';
 import styled, { withTheme } from 'styled-components';
+import moment from "moment"
 
 const StyledTimeline = styled(Timeline)`
     color: ${({ theme }) => theme.textColor};
@@ -40,7 +41,9 @@ export class WorkTimeline extends Component {
         return (
             <StyledTimeline>
                 {this.props.logs.map((log, key) =>
-                    <Timeline.Item key={key} color={this.getColor(log.type)}>{log.data}</Timeline.Item>
+                    <Timeline.Item key={key} color={this.getColor(log.type)}>
+                     {log.data} - {<span style={{color: this.props.theme.secondaryContentBackgroundColor}}>{moment().to(log.created)}</span>}
+                    </Timeline.Item>
                 )}
             </StyledTimeline>
         );
