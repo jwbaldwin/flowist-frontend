@@ -3,15 +3,18 @@ const dev = {
     BUCKET: "dev.flowist.frontend"
   },
   api: {
-    FLOWS_ENDPOINT: "/api/flows",
-    USER_ENDPOINT: "/api/user",
-    SETTINGS_ENDPOINT: "/api/settings"
+    FLOWS_ENDPOINT: "/api/v1/flows",
+    USER_ENDPOINT: "/api/v1/user",
+    SETTINGS_ENDPOINT: "/api/v1/settings"
   },
   cognito: {
     REGION: "us-east-1",
     USER_POOL_ID: "us-east-1_ovXfMEfAs",
     APP_CLIENT_ID: "3d1rvq32rr10gdbm6rpegfi7v1",
     IDENTITY_POOL_ID: ""
+  },
+  github: {
+      CLIENT_ID: "acaa664cb13654b710b7"
   }
 };
 
@@ -20,9 +23,9 @@ const prod = {
     BUCKET: "prod.flowist.frontend"
   },
   api: {
-    FLOWS_ENDPOINT: "/api/flows",
-    USER_ENDPOINT: "/api/user",
-    SETTINGS_ENDPOINT: "/api/settings"
+    FLOWS_ENDPOINT: "/api/v1/flows",
+    USER_ENDPOINT: "/api/v1/user",
+    SETTINGS_ENDPOINT: "/api/v1/settings"
   },
   cognito: {
     REGION: "YOUR_PROD_COGNITO_REGION",
