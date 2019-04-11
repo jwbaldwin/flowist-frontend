@@ -37,35 +37,29 @@ class Sidebar extends Component {
 		super(props);
 
 		this.state = {
-			width: 80
+			collapsed: false,
+			theme: 'light'
 		};
 	}
 
-	onBreakpoint = (broken) => {
-		if (broken) {
-			this.setState({ width: 0 });
-		} else {
-			this.setState({ width: 80 });
-		}
+	onCollapse = (collapsed) => {
+		this.setState({ collapsed });
 	};
 
-	updateTheme = () => {
-		this.props.settingsActions.updateSettings(
-			Object.assign({}, this.props.settings, { theme: this.props.settings.theme === 'light' ? 'dark' : 'light' })
-		);
+	changeTheme = (value) => {
+		this.setState({
+			theme: value ? 'dark' : 'light'
+		});
 	};
 
 	render() {
 		return (
-			<StyledSider
-				trigger={null}
-				breakpoint="md"
-				collapsedWidth={this.state.width}
+			<Sider
+				className="sider"
+				theme={this.state.theme}
 				collapsible
-				onCollapse={this.props.toggle}
-				collapsed={this.props.collapsed}
-				onBreakpoint={this.onBreakpoint}
-                width={256}
+				collapsed={this.state.collapsed}
+				onCollapse={this.onCollapse}
 			>
 				<div id="app-sidebar-logo-div">
 					<Link to="/app">
@@ -104,29 +98,31 @@ class Sidebar extends Component {
 							<span>#flows</span>
 						</Link>
 					</Menu.Item>
-                    <Menu.Item key="/app/archive">
-						<Link to="/app/archive">
+					<Menu.Item key="/tags">
+						<Link to="/tags">
+							<Icon type="tags" />
+							<span>#tags</span>
+						</Link>
+					</Menu.Item>
+					<Menu.Item key="/archive">
+						<Link to="/archive">
 							<Icon type="inbox" />
 							<span>#archive</span>
 						</Link>
 					</Menu.Item>
-					<Menu.Item key="/app/tags" disabled>
-						<Link to="/app/tags">
-							<Icon type="tags" />
-							<span>#tags (beta)</span>
+					<Menu.Item key="/settings">
+						<Link to="/settings">
+							<Icon type="setting" />
+							<span>#settings</span>
 						</Link>
 					</Menu.Item>
-					<Menu.Item key="/app/settings" disabled>
-						<Link to="/app/settings">
-							<Icon type="share-alt" />
-							<span>#insights (beta)</span>
-						</Link>
-					</Menu.Item>
-                    <Menu.ItemGroup>
-                       <ThemeSwitch updateTheme={this.updateTheme} theme={this.props.settings.theme}/>
-                    </Menu.ItemGroup>
-				</StyledMenu>
-			</StyledSider>
+					<Link to="/user">
+						<Button size="large" type="primary" id='signin-login-btn'>
+							login
+						</Button>
+					</Link>
+				</Menu>
+			</Sider>
 		);
 	}
 }
