@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router';
 import { Link } from 'react-router-dom';
-import { Layout, Menu, Icon } from 'antd';
+import { Layout, Menu, Icon, Button } from 'antd';
 import { mapIcon } from '../../common';
 import logo from '../../assets/images/flowist.png';
 import logoWhite from '../../assets/images/flowist-white.png';
@@ -33,61 +33,65 @@ const LogoText = styled.h1`
 `
 
 class Sidebar extends Component {
-	constructor(props) {
-		super(props);
+    constructor(props) {
+        super(props);
 
-		this.state = {
-			collapsed: false,
-			theme: 'light'
-		};
-	}
+        this.state = {
+            width: 80
+        };
+    }
 
-	onCollapse = (collapsed) => {
-		this.setState({ collapsed });
-	};
+    onBreakpoint = (broken) => {
+        if (broken) {
+            this.setState({ width: 0 });
+        } else {
+            this.setState({ width: 80 });
+        }
+    };
 
-	changeTheme = (value) => {
-		this.setState({
-			theme: value ? 'dark' : 'light'
-		});
-	};
+    updateTheme = () => {
+        this.props.settingsActions.updateSettings(
+            Object.assign({}, this.props.settings, { theme: this.props.settings.theme === 'light' ? 'dark' : 'light' })
+        );
+    };
 
-	render() {
-		return (
-			<Sider
-				className="sider"
-				theme={this.state.theme}
+    render() {
+        return (
+            <StyledSider
+				trigger={null}
+				breakpoint="md"
+				collapsedWidth={this.state.width}
 				collapsible
-				collapsed={this.state.collapsed}
-				onCollapse={this.onCollapse}
-			>
-				<div id="app-sidebar-logo-div">
-					<Link to="/app">
-						<img src={logoTeal} id="app-sidebar-logo" alt="Flowist Logo" />
-						<LogoText id="app-sidebar-logo-title">
-							{' '}
-							flowist
+				onCollapse={this.props.toggle}
+				collapsed={this.props.collapsed}
+				onBreakpoint={this.onBreakpoint}
+                width={256}>
+                <div id="app-sidebar-logo-div">
+                    <Link to="/app">
+                        <img src={logoTeal} id="app-sidebar-logo" alt="Flowist Logo" />
+                        <LogoText id="app-sidebar-logo-title">
+                            {' '}
+                            flowist
 						</LogoText>
-					</Link>
-				</div>
-				<StyledMenu
+                    </Link>
+                </div>
+                <StyledMenu
                     theme={this.props.settings.theme}
-					defaultSelectedKeys={[ this.props.location.pathname ]}
-					mode="inline"
-				>
-                    <ThemeDivider />
-                    { this.props.activeFlows.length > 0
+                    defaultSelectedKeys={[this.props.location.pathname]}
+                    mode="inline"
+                >
+                    {this.props.activeFlows.length > 0
                         ? (this.props.activeFlows.map((flow) =>
-                               <Menu.Item key={"/app/flows/" + flow.id}>
-                                    <Link to={"/app/flows/" + flow.id}>
-                                        <Icon type={mapIcon(flow.activity)} />
-                                        <span>{flow.title.replace(/^(.{15}[^\s]*).*/, "$1 ...")}</span>
-                                    </Link>
-                                </Menu.Item>
-                            ))
+                            <Menu.Item key={"/app/flows/" + flow.id}>
+                                <Link to={"/app/flows/" + flow.id}>
+                                    <Icon type={mapIcon(flow.activity)} />
+                                    <span>{flow.title.replace(/^(.{15}[^\s]*).*/, "$1 ...")}</span>
+                                </Link>
+                            </Menu.Item>
+                        ))
                         : (
                             <Menu.Item>
-                                    Add one!
+                                Add one!
                             </Menu.Item>
                         )
                     }
@@ -98,33 +102,31 @@ class Sidebar extends Component {
 							<span>#flows</span>
 						</Link>
 					</Menu.Item>
-					<Menu.Item key="/tags">
-						<Link to="/tags">
-							<Icon type="tags" />
-							<span>#tags</span>
-						</Link>
-					</Menu.Item>
-					<Menu.Item key="/archive">
-						<Link to="/archive">
+                    <Menu.Item key="/app/archive">
+						<Link to="/app/archive">
 							<Icon type="inbox" />
 							<span>#archive</span>
 						</Link>
 					</Menu.Item>
-					<Menu.Item key="/settings">
-						<Link to="/settings">
-							<Icon type="setting" />
-							<span>#settings</span>
+					<Menu.Item key="/app/tags" disabled>
+						<Link to="/app/tags">
+							<Icon type="tags" />
+							<span>#tags (beta)</span>
 						</Link>
 					</Menu.Item>
-					<Link to="/user">
-						<Button size="large" type="primary" id='signin-login-btn'>
-							login
-						</Button>
-					</Link>
-				</Menu>
-			</Sider>
-		);
-	}
+					<Menu.Item key="/app/settings" disabled>
+						<Link to="/app/settings">
+							<Icon type="share-alt" />
+							<span>#insights (beta)</span>
+						</Link>
+					</Menu.Item>
+                    <Menu.ItemGroup>
+                       <ThemeSwitch updateTheme={this.updateTheme} theme={this.props.settings.theme}/>
+                    </Menu.ItemGroup>
+				</StyledMenu>
+</StyledSider>
+        );
+    }
 }
 
 export default withRouter(Sidebar);
