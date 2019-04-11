@@ -4,7 +4,7 @@ import LoginForm from './LoginForm';
 import SignUpForm from './SignUpForm';
 import './UserAuth.scss';
 import '../AppMain/AppMain.scss';
-import logo from '../../assets/images/flowist.png';
+import logo from '../../assets/images/flowist-teal.png';
 
 const TabPane = Tabs.TabPane;
 

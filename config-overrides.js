@@ -13,7 +13,7 @@ module.exports = override(
 			// '@success-color': '#52c41a',                        // success state color
 			// '@warning-color': '#faad14',                      	// warning state color
 			// '@error-color': '#f5222d'                           // error state color
-			'@primary-color': '#DA0C79',
+			'@primary-color': '#35BFC1',
 			'@layout-header-background': '#1a1a1a',
 			'@success-color': '#52c41a',                        // success state color
 			'@warning-color': '#FFE060',                      	// warning state color

@@ -4,9 +4,10 @@ const light = {
     secondaryContentBackgroundColor: "#dadada",
     textColor: "rgba(0, 0, 0, 0.64)",
     transition: "all .5s",
-    primaryColor: "#DA0C79",
-    secondaryColor: "#1CCCA3",
-    primaryColorHover: "#45D5B3",
+    boxShadow: "box-shadow: 0 2px 4px 0 rgba(62,80,104,0.32)",
+    primaryColor: "#35BFC1",
+    secondaryColor: "#F33F47",
+    primaryColorHover: "#3ED9DC",
     infoColor: "#1890ff",                           // info state color
     successColor: "#52c41a",                        // success state color
     warningColor: "#FFE060",                      	// warning state color
@@ -19,9 +20,10 @@ const dark = {
     secondaryContentBackgroundColor: "#626262",
     textColor: "#d9d9d9 !important",
     transition: "all .03s",
-    primaryColor: "#DA0C79",
-    secondaryColor: "#1CCCA3",
-    primaryColorHover: "#45D5B3",
+    boxShadow: "box-shadow: 0 2px 4px 0 rgba(62,80,104,0.32)",
+    primaryColor: "#35BFC1",
+    secondaryColor: "#F33F47",
+    primaryColorHover: "#3ED9DC",
     infoColor: "#1890ff",                           // info state color
     successColor: "#52c41a",                        // success state color
     warningColor: "#faad14",                      	// warning state color

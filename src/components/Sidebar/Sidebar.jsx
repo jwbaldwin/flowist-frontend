@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import { Layout, Menu, Icon } from 'antd';
 import { mapIcon } from '../../common';
 import logo from '../../assets/images/flowist.png';
+import logoWhite from '../../assets/images/flowist-white.png';
+import logoTeal from '../../assets/images/flowist-teal.png';
 import ThemeSwitch from './ThemeSwitch';
 import styled from 'styled-components';
 import './Sidebar.scss';
@@ -20,6 +22,10 @@ const StyledMenu = styled(Menu)`
     color: ${({ theme }) => theme.textColor};
     background: ${({ theme }) => theme.backgroundColor};
     transiton: ${({ theme }) => theme.transiton};
+`;
+
+const ThemeDivider = styled(Menu.Divider)`
+    background-color: ${({ theme }) => theme.contentBackgroundColor} !important;
 `;
 
 const LogoText = styled.h1`
@@ -63,7 +69,7 @@ class Sidebar extends Component {
 			>
 				<div id="app-sidebar-logo-div">
 					<Link to="/app">
-						<img src={logo} id="app-sidebar-logo" alt="Flowist Logo" />
+						<img src={logoTeal} id="app-sidebar-logo" alt="Flowist Logo" />
 						<LogoText id="app-sidebar-logo-title">
 							{' '}
 							flowist
@@ -75,7 +81,7 @@ class Sidebar extends Component {
 					defaultSelectedKeys={[ this.props.location.pathname ]}
 					mode="inline"
 				>
-                    <Menu.Divider />
+                    <ThemeDivider />
                     { this.props.activeFlows.length > 0
                         ? (this.props.activeFlows.map((flow) =>
                                <Menu.Item key={"/app/flows/" + flow.id}>
@@ -91,7 +97,7 @@ class Sidebar extends Component {
                             </Menu.Item>
                         )
                     }
-                    <Menu.Divider />
+                    <ThemeDivider />
 					<Menu.Item key="/app">
 						<Link to="/app">
 							<Icon type="coffee" />

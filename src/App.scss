@@ -23,21 +23,6 @@
 	text-align: center;
 }
 
-// Login/Signup Buttons
-.green-btn,
-.green-btn:focus {
-	background-color: $primary-color;
-	border-color: $primary-color;
-	color: $light-theme-color;
-    box-shadow: 0 2px 4px 0 rgba(62,80,104,0.32);
-}
-
-.green-btn:hover {
-	background-color: $primary-color-hover;
-	border-color: $primary-color-hover;
-	color: $light-theme-color;
-}
-
 
 // Mobile Form Font Size
 @media screen and (-webkit-min-device-pixel-ratio: 0) {

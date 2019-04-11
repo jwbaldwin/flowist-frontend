@@ -1,7 +1,7 @@
 import React, { Component, Suspense } from 'react';
 import { Link } from 'react-router-dom';
 import { Layout, Icon, Spin } from 'antd';
-import logo from '../../assets/images/flowist.png';
+import logo from '../../assets/images/flowist-teal.png';
 import styled from 'styled-components';
 import './HeaderNav.scss';
 

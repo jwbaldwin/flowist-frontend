@@ -6,8 +6,15 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import * as userActions from '../../../actions/userActions';
 import { Auth } from 'aws-amplify';
+import styled from 'styled-components';
 import './LoginForm.scss';
 import '../UserAuth.scss';
+
+const LoginButton = styled(Button)`
+    background: ${({ theme }) => theme.primaryColor};
+    box-shadow: ${({ theme }) => theme.boxShadow};
+`;
+
 
 export class LoginFormNormal extends Component {
     constructor(props) {
@@ -86,7 +93,7 @@ export class LoginFormNormal extends Component {
 					<a className="login-form-forgot" href="/">
 						Forgot password
 					</a>
-					<Button
+					<LoginButton
 						block
 						loading={this.state.isLoading}
 						size="large"
@@ -95,7 +102,7 @@ export class LoginFormNormal extends Component {
 						className="login-form-button green-btn"
 					>
 						Log in
-					</Button>
+					</LoginButton>
 				</Form.Item>
 			</Form>
 		);
