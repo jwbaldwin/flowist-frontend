@@ -13,7 +13,7 @@ import { stateFromMarkdown } from "draft-js-import-markdown";
 import { mapIcon, mapFlowStatusToBadge } from '../../common';
 import FlowTagsFooter from './FlowTagsFooter';
 import FlowModal from '../FlowModal';
-import { withTheme } from 'styled-components';
+import styled, { withTheme } from 'styled-components';
 import 'draft-js-hashtag-plugin/lib/plugin.css';
 import './FlowItem.scss';
 
