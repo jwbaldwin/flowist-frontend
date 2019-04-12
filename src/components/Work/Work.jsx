@@ -29,7 +29,7 @@ const Logs = styled(List)`
     }
 
     .ant-comment-inner {
-        padding: 8px 0 !important;
+        padding: 8px 0px !important;
     }
 `;
 
