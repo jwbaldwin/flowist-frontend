@@ -23,12 +23,16 @@ export class FlowModal extends Component {
 
 
 	static getDerivedStateFromProps(nextProps, prevState){
-		if(nextProps.flow.title !== prevState.flow.title){
-            return {
-                flow: nextProps.flow
-            }
-	   }
-	   else return null;
+		try {
+			if(nextProps.flow.title !== prevState.flow.title){
+				return {
+					flow: nextProps.flow
+				}
+			}
+			else return null;
+		} catch  {
+			return null;
+		}
 	 }
 
 	componentDidUpdate(prevProps) {

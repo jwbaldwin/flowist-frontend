@@ -4,6 +4,7 @@
   "private": true,
   "main": "public/main.js",
   "homepage": "./",
+  "proxy": "http://localhost:8080/",
   "dependencies": {
     "antd": "^3.14.1",
     "antd-password-input-strength": "^1.1.0",
