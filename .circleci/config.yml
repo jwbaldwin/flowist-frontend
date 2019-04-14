@@ -5,6 +5,8 @@ workflows:
   build_and_publish_docker_image:
     jobs:
       - docker-publish/publish:
+          image: $DOCKER_LOGIN/$CIRCLE_PROJECT_REPONAME
+          tag: latest
           filters:
             branches:
               only: master
