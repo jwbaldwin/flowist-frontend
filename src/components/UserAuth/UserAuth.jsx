@@ -38,13 +38,7 @@ export class UserAuth extends Component {
 					</div>
 					<Divider style={{ color: '#ccc' }}>or</Divider>
 					<div id="social-login">
-						<Github />
-						<Button type="default" block>
-							<Icon type="gitlab" />Login with Gitlab
-						</Button>
-						<Button type="default" block>
-							<Icon type="google" />Login with Google
-						</Button>
+						<Github className="social-login-btn"/>
 					</div>
 				</Col>
 				<Col xs={2} sm={7} md={8} lg={8} xl={9} />
