@@ -31,6 +31,15 @@ export default {
 
         isLoading: true
     },
+    logsDebug: {
+        data: [{
+            "author": 'Han Solo',
+            "avatar": 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
+            "content": "This is a testing log that will be #used to #test edits and deletes and so on",
+            "datetime": "2019-02-25T03:57:38.244Z",
+           }],
+        isLoading: true
+    },
 	user: {
         isAuthenticated: false
     },

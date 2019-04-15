@@ -18,7 +18,7 @@ const dark = {
     backgroundColor: "#1e272c !important",
     contentBackgroundColor: "#263238 !important",
     secondaryContentBackgroundColor: "#626262 !important",
-    textColor: "#b0bec5 !important",
+    textColor: "#eff2f3 !important",
     transition: "all .03s !important",
     boxShadow: "box-shadow: 0 2px 4px 0 rgba(62,80,104,0.32) !important",
     primaryColor: "#35BFC1",

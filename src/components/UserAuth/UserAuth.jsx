@@ -23,7 +23,7 @@ export class UserAuth extends Component {
 						<div id="app-logo-div">
 							<img src={logo} id="app-logo" alt="Flowist Logo" />
 						</div>
-						<Tabs onChange={callback} type="card" style={{ 'text-align': 'left' }}>
+						<Tabs onChange={callback} type="card" style={{ textAlign: 'left' }}>
 							<TabPane tab="Login" key="1">
 								<div className="gutter-box">
 									<LoginForm />

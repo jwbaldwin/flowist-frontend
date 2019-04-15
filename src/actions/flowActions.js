@@ -13,7 +13,7 @@ import {
     DELETE_FLOW_ERROR
 } from './actionTypes';
 import { Auth } from 'aws-amplify';
-import { message } from 'antd';
+import { notification } from 'antd';
 import environment from "../environment";
 
 const FLOW_API_URL = environment.api.FLOWS_ENDPOINT;
@@ -83,7 +83,9 @@ function addFlowRequest() {
 }
 
 export function addFlowSuccess(data) {
-    message.success("Flow added!")
+    notification.success({
+        "message": "Flow added!"
+    });
     return {
         type: ADD_FLOW_SUCCESS,
         data: data
@@ -91,7 +93,10 @@ export function addFlowSuccess(data) {
 }
 
 export function addFlowError(error) {
-    message.error("Uhoh :( We couldn't add the flow 👾")
+    notification.error({
+        "message": "Uhoh :(",
+        "description": "We couldn't add the flow. The api might be under attack 👾"
+    });
     return {
         type: ADD_FLOW_ERROR,
         error: error
@@ -124,8 +129,14 @@ function updateFlowRequest() {
 
 export function updateFlowSuccess(data) {
     (data.flowStatus === "COMPLETED") ?
-        message.success("Flow completed! Congrats! 🎉")
-        : message.info("Flow updated!");
+        notification.success({
+            "message": "Flow completed!",
+            "description": "Congrats! We've stored your work if you ever want to review it 🎉"
+        })
+        : notification.info({
+            "message": "Flow updated!",
+            "description": "Flow: " + data.title + " has been updated."
+        });
     return {
         type: UPDATE_FLOW_SUCCESS,
         data: data
@@ -133,7 +144,10 @@ export function updateFlowSuccess(data) {
 }
 
 export function updateFlowError(error) {
-    message.error("Uhoh :( We couldn't update the flow 👾")
+    notification.error({
+        "message": "Uhoh :(",
+        "description": "We couldn't update the flow. The api might be under attack 👾"
+    });
     return {
         type: UPDATE_FLOW_ERROR,
         error: error
@@ -167,7 +181,9 @@ function deleteFlowRequest() {
 }
 
 export function deleteFlowSuccess(id) {
-    message.success("Flow deleted!")
+    notification.success({
+        "message": "Flow deleted!",
+    });
     return {
         type: DELETE_FLOW_SUCCESS,
         data: id
@@ -175,7 +191,10 @@ export function deleteFlowSuccess(id) {
 }
 
 export function deleteFlowError(error) {
-    message.error("Uhoh :( We couldn't delete the flow 👾")
+    notification.error({
+        "message": "Uhoh :(",
+        "description": "We couldn't delete the flow. The api might be under attack 👾"
+    });
     return {
         type: DELETE_FLOW_ERROR,
         error: error

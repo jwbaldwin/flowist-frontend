@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-import { Form, Input, Icon, Checkbox, Button, message } from 'antd';
+import { Form, Input, Icon, Checkbox, Button, notification } from 'antd';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
@@ -34,7 +34,10 @@ export class SignUpFormNormal extends Component {
                         }});
                     this.props.userActions.updateUser({...this.props.user, data: user});
                     this.setState({email: values.email, password: values.password, isLoading: false })
-                    message.success("Signing up...check for a verification code!");
+                    notification.success({ 
+                        "message": "Check your email!",
+                        "description": "We just sent a verification code to your email!"
+                    });
                 } catch (e) {
                     this.props.showSignUpError(e.message);
                      this.setState({isLoading: false});

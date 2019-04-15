@@ -16,17 +16,17 @@ import { Auth } from 'aws-amplify';
 import { message } from 'antd';
 import environment from "../environment";
 
-const LOG_API_URL = environment.api.FLOWS_ENDPOINT;
+const LOG_API_URL = environment.api.FLOWS_ENDPOINT + "/";
 /*
 * FETCH LOGS ACTIONS
 */
 
-export function fetchLogs() {
+export function fetchLogs(flow_id) {
     return async (dispatch) => {
         dispatch(fetchLogsRequest())
         const headers = await getHeaders();
 
-        return fetch(FLOW_API_URL, {
+        return fetch(LOG_API_URL + flow_id + "/logs", {
             method: 'GET',
             headers: headers
         })
@@ -62,12 +62,12 @@ export function fetchLogsError(error) {
 * ADD LOG ACTIONS
 */
 
-export function addLog(Log) {
+export function addLog(flow_id, log) {
     return async (dispatch) => {
         dispatch(addLogRequest())
         const headers = await getHeaders();
 
-        return fetch(LOG_API_URL, {
+        return fetch(LOG_API_URL + flow_id + "/logs", {
             method: 'POST',
             headers: headers,
             body: JSON.stringify(log)
@@ -100,12 +100,12 @@ export function addLogError(error) {
 * UPDATE LOG ACTIONS
 */
 
-export function updateLog(log) {
+export function updateLog(flow_id, log) {
     return async (dispatch) => {
         dispatch(updateLogRequest())
         const headers = await getHeaders();
 
-        return fetch(LOG_API_URL + '/' + log.id, {
+        return fetch(LOG_API_URL + flow_id + "/logs/" + log.id, {
             method: 'PUT',
             headers: headers,
             body: JSON.stringify(log)
@@ -138,12 +138,12 @@ export function updateLogError(error) {
 * DELETE LOG ACTIONS
 */
 
-export function deleteLog(id) {
+export function deleteLog(flow_id, id) {
     return async (dispatch) => {
         dispatch(deleteLogRequest());
         const headers = await getHeaders();
 
-        return fetch(LOG_API_URL + '/' + id, {
+        return fetch(LOG_API_URL + flow_id + "/logs/" + id, {
             method: 'DELETE',
             headers: headers,
         })

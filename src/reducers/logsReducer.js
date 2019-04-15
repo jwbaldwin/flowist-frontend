@@ -14,13 +14,15 @@ import {
 	DELETE_LOG_ERROR
 } from '../actions/actionTypes';
 
-export default function log(state = initialState.logDebug, action) {
+export default function logs(state = initialState.logsDebug, action) {
 	switch (action.type) {
 		case ADD_LOG:
+            console.log(action.type)
 			return { ...state, isLoading: true };
 		case ADD_LOG_SUCCESS:
 			return { ...state, data: [...state.data, action.data], isLoading: false };
 		case ADD_LOG_ERROR:
+            console.log(action.type + ": " + action.data)
 			return { ...state, isLoading: false };
         case FETCH_LOGS:
 			return { ...state, isLoading: true };
