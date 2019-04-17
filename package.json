@@ -8,7 +8,6 @@
   "dependencies": {
     "antd": "^3.14.1",
     "antd-password-input-strength": "^1.1.0",
-    "apexcharts": "^3.6.3",
     "aws-amplify": "^1.1.22",
     "babel-plugin-import": "^1.11.0",
     "customize-cra": "^0.2.11",
@@ -31,11 +30,9 @@
     "react-redux": "^6.0.0",
     "react-router-dom": "^4.3.1",
     "react-scripts": "^2.1.8",
-    "react-transition-group": "^2.6.0",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0",
-    "styled-components": "^4.2.0",
-    "styled-theming": "^2.2.0"
+    "styled-components": "^4.2.0"
   },
   "scripts": {
     "start": "REACT_APP_STAGE=dev react-app-rewired start",
