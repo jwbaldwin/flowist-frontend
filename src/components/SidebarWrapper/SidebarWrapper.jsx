@@ -6,7 +6,6 @@ import '../Sidebar/Sidebar.scss';
 export class SidebarWrapper extends Component {
     render() {
         const { isMobile, collapsed, toggle } = this.props;
-        console.log(isMobile)
         return (
             isMobile ? (
             <Drawer

@@ -8,16 +8,6 @@ import './Home.scss';
 const { Content } = Layout;
 
 class Home extends Component {
-	componentWillMount() {
-		document.addEventListener('keydown', this.handleKeyPress.bind(this));
-	}
-
-	componentWillUnmount() {
-		document.removeEventListener('keydown', this.handleKeyPress.bind(this));
-	}
-
-	handleKeyPress = () => {};
-
 	render() {
 		const activeFlows =  this.props.flows.filter((flow) => flow.flowStatus === 'ACTIVE')
 

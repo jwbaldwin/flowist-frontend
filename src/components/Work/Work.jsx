@@ -35,6 +35,13 @@ const Logs = styled(List)`
     .ant-comment-inner {
         padding: 8px 0px !important;
     }
+
+    .ant-comment-actions {
+        float: right;
+    }
+    .ant-comment-actions > li{
+        margin: 0 6px;
+    }
 `;
 
 const WorkLogger = styled(TextArea)`
@@ -104,12 +111,12 @@ export class Work extends Component {
                 dataSource={logs}
                 header={<span>{logs.length} <Icon type="book"/></span> }
                 itemLayout="horizontal"
-                renderItem={props => <Comment 
-                                        actions={[<span><Icon type="edit" style={{color: this.props.theme.warningColor, fontSize: 16}}/> Delete </span>,
-                                                <span><Icon type="delete" style={{color: this.props.theme.errorColor, fontSize: 16}}/> Edit</span>]}
-                                        author={props.author} 
-                                        avatar={props.avatar} 
-                                        content={props.content} 
+                renderItem={props => <Comment
+                                        actions={[<Icon type="edit" style={{color: this.props.theme.warningColor, fontSize: 16}}/>,
+                                                <Icon type="delete" style={{color: this.props.theme.errorColor, fontSize: 16}}/>]}
+                                        author={props.author}
+                                        avatar={props.avatar}
+                                        content={props.content}
                                         datetime={moment().to(props.created)} />}
             />
         );

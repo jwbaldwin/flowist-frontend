@@ -31,6 +31,10 @@ export default {
 
         isLoading: true
     },
+    logs: {
+        data: [],
+        isLoading: true
+    },
     logsDebug: {
         data: [{
             "author": 'Han Solo',
