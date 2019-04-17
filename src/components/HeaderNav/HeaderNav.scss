@@ -27,16 +27,27 @@
     transition: all 0.2sprimary
 }
 
+.searchbar {
+    width: 100%;
+    text-align: center;
+    margin:0 auto;
+}
+
 .header-left {
 	float: left;
 }
 
 .header-right {
+    width: 65px;
 	float: right;
 }
 
 .ant-layout-header {
 	padding-right: 16px;
+    display: flex;                  /* establish flex container */
+    flex-direction: row;            /* default value; can be omitted */
+    flex-wrap: nowrap;              /* default value; can be omitted */
+    justify-content: space-between; /* switched from default (flex-start, see below) */
     box-shadow: 0 1px 4px rgba(0,21,41,.08);
 }
 
