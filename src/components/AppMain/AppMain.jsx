@@ -7,6 +7,7 @@ import * as settingsActions from '../../actions/settingsActions';
 import * as flowActions from '../../actions/flowActions';
 import * as userActions from '../../actions/userActions';
 import SidebarWrapper from '../SidebarWrapper';
+import SideMenu from '../SideMenu';
 import AppFooter from '../AppFooter';
 import HeaderNav from '../HeaderNav';
 import Home from '../Home';
@@ -48,15 +49,18 @@ export class AppMain extends Component {
 
 		return (
 			<Layout style={{ minHeight: '100vh' }}>
-				<SidebarWrapper
+				{isMobile ? <SidebarWrapper
                     activeFlows={ this.props.flows.filter((flow) => flow.flowStatus === 'ACTIVE')}
 					toggle={this.toggleCollapse}
 					collapsed={this.state.collapsed}
-					isMobile={isMobile}
 					{...this.props}
-				/>
+				/> : null }
 				<StyledLayout>
 					<HeaderNav toggle={this.toggleCollapse} collapsed={this.state.collapsed} {...this.props} />
+
+                    { !isMobile ? <SideMenu activeFlows={ this.props.flows.filter((flow) => flow.flowStatus === 'ACTIVE')}
+					{...this.props} /> : null }
+
 					<Route exact path="/app" component={() => <Home flows={this.props.flows} />} />
                     <Route exact path="/app/flows/:id" component={() => <Home flows={this.props.flows} />} />
 					<Route exact path="/app/tags" component={Tags} />

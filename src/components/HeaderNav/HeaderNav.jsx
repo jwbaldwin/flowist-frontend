@@ -13,7 +13,31 @@ const StyledHeader = styled(Header)`
     color: ${({ theme }) => theme.textColor};
     background: ${({ theme }) => theme.backgroundColor};
     transiton: ${({ theme }) => theme.transiton};
+    height: 45px;
+    box-shadow: ${({ theme }) => theme.boxShadow};
 `;
+
+const StyledSearch = styled(Search)`
+    transiton: ${({ theme }) => theme.transiton};
+    width: 50% !important;
+
+   .ant-input {
+        height: 34px;
+        border-radius: 100px !important;
+        color: ${({ theme }) => theme.textColor};
+        background-color: ${({ theme }) => theme.contentBackgroundColor};
+        border: 1px solid ${({ theme }) => theme.secondaryContentBackgroundColor};
+   }
+
+   .ant-input-search-icon {
+       color: ${({ theme }) => theme.textColor};
+   }
+`;
+
+const LogoText = styled.h1`
+    color: ${({ theme }) => theme.textColor};
+`
+
 
 export class HeaderNav extends Component {
     state = {
@@ -29,11 +53,15 @@ export class HeaderNav extends Component {
 
     render() {
         return (
-            <StyledHeader style={{ paddingLeft: '16px' }}>
+            <StyledHeader style={{ paddingLeft: '5%' }}>
                 <div className="header-left">
                     <div id="app-headernav-logo-div">
                         <Link to="/app">
                             <img src={logo} id="app-headernav-logo" alt="Flowist Logo" />
+                            <LogoText id="app-header-logo-title">
+                                {' '}
+                                flowist
+						    </LogoText>
                         </Link>
                     </div>
                 </div>
@@ -43,10 +71,9 @@ export class HeaderNav extends Component {
                     onClick={this.props.toggle}
                 />
                 <div className='searchbar'>
-                    <Search
-                        placeholder="search your flows..."
+                    <StyledSearch
+                        placeholder="Search"
                         onSearch={value => console.log(value)}
-                        style={{ width: '40%', margin: '0 18px', background: 'unset' }}
                     />
                 </div>
                 <div className="header-right">

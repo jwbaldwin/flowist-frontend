@@ -8,15 +8,9 @@ import logoWhite from '../../assets/images/flowist-white.png';
 import logoTeal from '../../assets/images/flowist-teal.png';
 import ThemeSwitch from '../ThemeSwitch';
 import styled from 'styled-components';
-import './Sidebar.scss';
+import './SideMenu.scss';
 
-const { Sider } = Layout;
-
-const StyledSider = styled(Sider)`
-    color: ${({ theme }) => theme.textColor};
-    background: ${({ theme }) => theme.backgroundColor};
-    transiton: ${({ theme }) => theme.transiton};
-`;
+const { Content } = Layout;
 
 const StyledMenu = styled(Menu)`
     color: ${({ theme }) => theme.textColor};
@@ -32,7 +26,7 @@ const LogoText = styled.h1`
     color: ${({ theme }) => theme.textColor};
 `
 
-class Sidebar extends Component {
+class SideMenu extends Component {
     constructor(props) {
         super(props);
 
@@ -57,76 +51,53 @@ class Sidebar extends Component {
 
     render() {
         return (
-            <StyledSider
-				trigger={null}
-				breakpoint="md"
-				collapsedWidth={this.state.width}
-				collapsible
-				onCollapse={this.props.toggle}
-				collapsed={this.props.collapsed}
-				onBreakpoint={this.onBreakpoint}
-                width={256}>
-                <div id="app-sidebar-logo-div">
-                    <Link to="/app">
-                        <img src={logoTeal} id="app-sidebar-logo" alt="Flowist Logo" />
-                        <LogoText id="app-sidebar-logo-title">
-                            {' '}
-                            flowist
-						</LogoText>
-                    </Link>
-                </div>
-                <StyledMenu
-                    theme={this.props.settings.theme}
-                    defaultSelectedKeys={[this.props.location.pathname]}
-                    mode="inline"
-                >
+            <Content Col xs={4} sm={4} md={4} lg={4} xl={4} style={{marginTop: '1vh', marginBottom: '1vh'}}>
                     {this.props.activeFlows.length > 0
                         ? (this.props.activeFlows.map((flow) =>
-                            <Menu.Item key={"/app/flows/" + flow.id}>
+                            <div key={"/app/flows/" + flow.id}>
                                 <Link to={"/app/flows/" + flow.id}>
                                     <Icon type={mapIcon(flow.activity)} />
                                     <span>{flow.title.replace(/^(.{15}[^\s]*).*/, "$1 ...")}</span>
                                 </Link>
-                            </Menu.Item>
+                            </div>
                         ))
                         : (
-                            <Menu.Item>
+                            <div>
                                 Add one!
-                            </Menu.Item>
+                            </div>
                         )
                     }
                     <ThemeDivider />
-					<Menu.Item key="/app">
+					<div key="/app">
 						<Link to="/app">
 							<Icon type="coffee" />
 							<span>#flows</span>
 						</Link>
-					</Menu.Item>
-                    <Menu.Item key="/app/archive">
+					</div>
+                    <div key="/app/archive">
 						<Link to="/app/archive">
 							<Icon type="inbox" />
 							<span>#archive</span>
 						</Link>
-					</Menu.Item>
-					<Menu.Item key="/app/tags" disabled>
+					</div>
+					<div key="/app/tags" disabled>
 						<Link to="/app/tags">
 							<Icon type="tags" />
 							<span>#tags (beta)</span>
 						</Link>
-					</Menu.Item>
-					<Menu.Item key="/app/settings" disabled>
+					</div>
+					<div key="/app/settings" disabled>
 						<Link to="/app/settings">
 							<Icon type="share-alt" />
 							<span>#insights (beta)</span>
 						</Link>
-					</Menu.Item>
-                    <Menu.ItemGroup>
+					</div>
+                    <divGroup>
                        <ThemeSwitch updateTheme={this.updateTheme} theme={this.props.settings.theme}/>
-                    </Menu.ItemGroup>
-				</StyledMenu>
-</StyledSider>
+                    </divGroup>
+            </Content>
         );
     }
 }
 
-export default withRouter(Sidebar);
+export default withRouter(SideMenu);

@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 import { Drawer } from 'antd';
 import Sidebar from '../Sidebar';
+import SideMenu from '../SideMenu';
 import '../Sidebar/Sidebar.scss';
 
 export class SidebarWrapper extends Component {
     render() {
-        const { isMobile, collapsed, toggle } = this.props;
+        const { collapsed, toggle } = this.props;
         return (
-            isMobile ? (
             <Drawer
             visible={!collapsed}
             placement="left"
@@ -19,10 +19,7 @@ export class SidebarWrapper extends Component {
             >
                 <Sidebar toggle={toggle} collapsed={collapsed} {...this.props} />
             </Drawer>
-        ) : (
-            <Sidebar toggle={toggle} collapsed={collapsed} {...this.props} />
-        )
-    )};
+        )};
 }
 
 export default SidebarWrapper;
