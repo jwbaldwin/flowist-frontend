@@ -31,14 +31,15 @@
 }
 
 .ant-avatar {
-	border: 1px solid rgb(246, 246, 246);
+    height: 30px;
+    padding: 5px;
+	border: 2px solid rgb(246, 246, 246);
     border-radius: 100px;
-    transition: all 0.2sprimary
 }
 
 .ant-layout-header {
 	padding: 0;
-    line-height: 40px;
+    line-height: 30px;
     // display: flex;           /* default value; can be omitted */
     // justify-content: space-between; /* switched from default (flex-start, see below) */
 }

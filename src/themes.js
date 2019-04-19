@@ -35,7 +35,7 @@ const dark = {
 
 
     // TEXT COLORS
-    brightText: "#b9bfca !important",
+    brightText: "#d0d6e2 !important",
     defaultText: "#acb2be !important",
 
     // SHADOW & TRANSITION

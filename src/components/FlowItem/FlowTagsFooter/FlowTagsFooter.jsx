@@ -7,7 +7,7 @@ export default class FlowTagsFooter extends Component {
 	render() {
 		return (
 			<Layout id='flow-tags-footer'>
-				<Icon type='tags' id='tags-icon'/>
+				<Icon type='tags' id='tags-icon' theme="filled"/>
 				{this.props.tags.map((tag, index) => (
 					<Tag key={index} color={mapStringToColor(tag)}>
 						{tag}

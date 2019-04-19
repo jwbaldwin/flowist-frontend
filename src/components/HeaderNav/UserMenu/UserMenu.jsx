@@ -56,8 +56,13 @@ export class UserMenu extends Component {
             </Menu>
 		return (
             <Dropdown id="profile-dropdown" trigger={['click' ]} overlay={menuItems} placement="bottomRight">
-                <span className="ant-dropdown-link" style={{display: 'inline-block'}}>
-                  <Avatar icon='user'/> {username}
+                <span className="ant-dropdown-link" 
+                    style={{display: 'inline-block',
+                            padding: '5px 0',
+                            height: '40px',
+                            textAlign: 'right',
+                            textRendering: 'optimizelegibility'}}>
+                  <Avatar icon='user' size='30'/> {username}
                 </span>
 			</Dropdown>
 		);

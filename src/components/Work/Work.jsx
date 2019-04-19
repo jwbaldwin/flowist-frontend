@@ -4,8 +4,6 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import * as logActions from '../../actions/logActions';
 import { Layout, Col, Card, Comment, Avatar, Form, Button, List, Input, Spin, Icon } from 'antd';
-import WorkTimeline from './WorkTimeline';
-import WorkInput from './WorkInput';
 import styled, { withTheme } from 'styled-components';
 import moment from 'moment';
 

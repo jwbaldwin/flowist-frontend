@@ -49,53 +49,33 @@ const ThemeDivider = styled(Menu.Divider)`
     margin-bottom: 1vh;
 `;
 
-const LogoText = styled.h1`
-    color: ${({ theme }) => theme.defaultText};
-`
-
 class SideMenu extends Component {
     render() {
         return (
-            <Content style={{marginTop: '50%'}}>
+            <Content>
                 <StyledMenu style={{ width: 256 }} mode="vertical" theme={this.props.settings.theme} defaultSelectedKeys={[this.props.location.pathname]}>
-                    {this.props.activeFlows.length > 0
-                        ? (this.props.activeFlows.map((flow) =>
-                            <StyledItem className='menu-item' key={"/app/flows/" + flow.id}>
-                                <Link to={"/app/flows/" + flow.id}>
-                                    <Icon type={mapIcon(flow.activity)} />
-                                    <span>{flow.title.replace(/^(.{15}[^\s]*).*/, "$1 ...")}</span>
-                                </Link>
-                            </StyledItem>
-                        ))
-                        : (
-                            <StyledItem className='menu-item'>
-                                Add one!
-                            </StyledItem>
-                        )
-                    }
-                    <ThemeDivider />
 					<StyledItem className='menu-item' key="/app">
 						<Link to="/app">
 							<Icon type="rest" theme="filled"/>
-							<span>flows</span>
+							<span>Flows</span>
 						</Link>
 					</StyledItem>
                     <StyledItem className='menu-item' key="/app/archive">
 						<Link to="/app/archive">
 							<Icon type="hdd" theme="filled"/>
-							<span>archive</span>
+							<span>Archive</span>
 						</Link>
 					</StyledItem>
 					<StyledItem className='menu-item' key="/app/tags" disabled>
 						<Link to="/app/tags">
 							<Icon type="tags" theme="filled"/>
-							<span>tags (beta)</span>
+							<span>Tags (beta)</span>
 						</Link>
 					</StyledItem>
 					<StyledItem className='menu-item' key="/app/settings" disabled>
 						<Link to="/app/settings">
 							<Icon type="share-alt" />
-							<span>insights (beta)</span>
+							<span>Insights (beta)</span>
 						</Link>
 					</StyledItem>
                 </StyledMenu>

@@ -45,6 +45,29 @@ const timestampStyle = {
     justify: 'bottom',
 };
 
+const FlowCard = styled(Card)`
+    color: ${({ theme }) => theme.defaultText};
+    background: ${({ theme }) => theme.content};
+    box-shadow: ${({ theme }) => theme.boxShadow};
+
+    #content {
+        border-left: 3px solid ${({ theme }) => theme.defaultText};
+        border-radius: 4px !important;
+        cursor: text;
+        padding: 16px;
+        background: ${({ theme }) => theme.contentOther};
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        color: ${({ theme }) => theme.brightText};
+    }
+`;
+
+const TitleText = styled.h1`
+    color: ${({ theme }) => theme.brightText};
+    font-weight: 600 !important;
+`
+
 
 class FlowItem extends Component {
     state = {
@@ -114,16 +137,18 @@ class FlowItem extends Component {
         return (
             <div>
                 <FlowModal visible={this.state.visible} flow={flow} type="update"/>
-                <Card
+                <FlowCard
                     bordered={false}
                     actions={[
                         <Dropdown trigger={['click']} overlay={optionsMenu(flow.id)} placement="topCenter">
-                            <Icon type="more" style={{ fontSize: 18 }} />
+                            <Icon type="more" style={{ fontSize: 18, color: this.props.theme.brightText }} />
                         </Dropdown>,
-                        <Icon type="check-circle" onClick={() => this.completeItem(flow.id)} theme="twoTone" twoToneColor={this.props.theme.successColor} style={{ fontSize: 18 }} />
+                        <Icon type="check-circle" onClick={() => this.completeItem(flow.id)} 
+                              fill={ this.props.theme.background }
+                              style={{ fontSize: 18, color: this.props.theme.successColor }} />
                     ]}
                     extra={<Badge status={mapFlowStatusToBadge(flow.flowStatus)} />}
-                    title={<span><Icon type={mapIcon(flow.activity)} id="flow-activity-icon" /> {flow.title} </span>}
+                    title={<TitleText><Icon type={mapIcon(flow.activity)} id="flow-activity-icon" /> {flow.title} </TitleText>}
                 >
                     <Card.Grid style={contentStyle} className="flow-card-content">
                         <div id='content'>
@@ -142,7 +167,7 @@ class FlowItem extends Component {
                     <Card.Grid style={timestampStyle} className="flow-card-timestamp">
                         {created.toDateString().toLocaleLowerCase()}
                     </Card.Grid>
-                </Card>
+                </FlowCard>
             </div>
         );
     }

@@ -99,25 +99,25 @@ class Sidebar extends Component {
 					<Menu.Item key="/app">
 						<Link to="/app">
 							<Icon type="rest" theme="filled"/>
-							<span>flows</span>
+							<span>Flows</span>
 						</Link>
 					</Menu.Item>
                     <Menu.Item key="/app/archive">
 						<Link to="/app/archive">
 							<Icon type="hdd" theme="filled"/>
-							<span>archive</span>
+							<span>Archive</span>
 						</Link>
 					</Menu.Item>
 					<Menu.Item key="/app/tags" disabled>
 						<Link to="/app/tags">
-							<Icon type="tags" />
-							<span>tags (beta)</span>
+							<Icon type="tags" theme="filled"/>
+							<span>Tags (beta)</span>
 						</Link>
 					</Menu.Item>
 					<Menu.Item key="/app/settings" disabled>
 						<Link to="/app/settings">
 							<Icon type="share-alt" />
-							<span>insights (beta)</span>
+							<span>Insights (beta)</span>
 						</Link>
 					</Menu.Item>
                     <Menu.ItemGroup>

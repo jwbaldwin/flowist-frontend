@@ -15,6 +15,11 @@ const StyledHeader = styled(Header)`
     transiton: ${({ theme }) => theme.transiton};
     height: 40px;
     box-shadow: ${({ theme }) => theme.boxShadow};
+
+    .nav-header-item:hover {
+        background: ${({theme}) => theme.background};
+    }
+
 `;
 
 const StyledSearch = styled(Search)`
@@ -34,7 +39,7 @@ const StyledSearch = styled(Search)`
    }
 `;
 
-const LogoText = styled.h1`color: ${({ theme }) => theme.defaultText};`;
+const LogoText = styled.h1`color: ${({ theme }) => theme.brightText};`;
 
 export class HeaderNav extends Component {
 	state = {
@@ -52,30 +57,31 @@ export class HeaderNav extends Component {
 		return (
 			<StyledHeader>
 				<Row gutter={24}>
-					<Col xs={0} sm={0} md={1} lg={1} xl={1} />
-					<Col xs={0} sm={0} md={6} lg={6} xl={6}>
-						<div id="app-headernav-logo-div">
-							<Link to="/app">
-								<img src={logo} id="app-headernav-logo" alt="Flowist Logo" />
-								<LogoText id="app-header-logo-title"> flowist</LogoText>
-							</Link>
-						</div>
-						<Icon
+					<Col span={1} />
+					<Col span={6} className="nav-header-item">
+                    	<Icon
 							className="header-trigger"
 							type={this.props.collapsed ? 'menu-unfold' : 'menu-fold'}
 							onClick={this.props.toggle}
 						/>
+						<div id="app-headernav-logo-div">
+							<Link to="/app">
+								<img src={logo} id="app-headernav-logo" alt="Flowist Logo" />
+								<LogoText id="app-header-logo-title"> Flowist</LogoText>
+							</Link>
+						</div>
 					</Col>
-					<Col xs={24} sm={24} md={12} lg={12} xl={12} >
+					<Col span={12}>
 						<StyledSearch placeholder="Search" onSearch={(value) => console.log(value)} />
 					</Col>
-                    <Col xs={0} sm={0} md={2} lg={2} xl={2}/>
-					<Col xs={0} sm={0} md={3} lg={3} xl={3}>
+                    <Col span={2}/>
+					<Col span={3} className="nav-header-item">
 					{' '}
 						<Suspense fallback={<Spin />}>
 							<UserMenu {...this.props} />
 						</Suspense>
 					</Col>
+                    <Col span={2}/>
 				</Row>
 			</StyledHeader>
 		);
