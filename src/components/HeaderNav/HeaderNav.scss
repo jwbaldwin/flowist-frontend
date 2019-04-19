@@ -1,8 +1,8 @@
 @import '../../App.scss';
 
 .header-trigger {
-	height: 40px;
-	padding: 13px;
+	height: 30px;
+	padding: 5px;
 	font-size: 20px;
 	cursor: pointer;
 	transition: all .3s, padding 0s;
@@ -10,14 +10,15 @@
 
 #app-headernav-logo-div {
 	position: relative;
-	height: 45px;
-	line-height: 45px;
+    margin: 5px 0;
+	height: 30px;
+	line-height: 30px;
 	transition: all .3s;
 }
 
 #app-headernav-logo {
 	display: inline-block;
-	height: 45px;
+	height: 30px;
 	vertical-align: middle;
 }
 
@@ -37,7 +38,7 @@
 
 .ant-layout-header {
 	padding: 0;
-    line-height: 45px;
+    line-height: 40px;
     // display: flex;           /* default value; can be omitted */
     // justify-content: space-between; /* switched from default (flex-start, see below) */
 }

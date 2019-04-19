@@ -14,7 +14,7 @@ const light = {
     boxShadow: "rgba(0,0,0,.04) 0 2px 6px 1px !important",
 
     // LINES
-    border: "1px solid #3c424e",
+    border: "1px solid #f2f2f2 !important",
 
     // THEME COLORS
     primaryColor: "#40a9ff !important",

@@ -13,7 +13,7 @@ const StyledHeader = styled(Header)`
     color: ${({ theme }) => theme.defaultText};
     background: ${({ theme }) => theme.header};
     transiton: ${({ theme }) => theme.transiton};
-    height: 45px;
+    height: 40px;
     box-shadow: ${({ theme }) => theme.boxShadow};
 `;
 
@@ -21,11 +21,12 @@ const StyledSearch = styled(Search)`
     transiton: ${({ theme }) => theme.transiton};
 
    .ant-input {
-        height: 34px;
-        border-radius: 100px !important;
+        height: 30px;
+        margin: 5px 0;
+        border-radius: 15px !important;
         color: ${({ theme }) => theme.defaultText};
-        background-color: ${({ theme }) => theme.content};
-        border: 1px solid ${({ theme }) => theme.background};
+        background-color: ${({ theme }) => theme.contentOther};
+        border: ${({ theme }) => theme.border};
    }
 
    .ant-input-search-icon {

@@ -38,10 +38,12 @@ const StyledMenu = styled(Menu)`
     background: transparent !important;
     transiton: ${({ theme }) => theme.transitonFaster};
     font-weight: bolder !important;
+    border: none;
 `;
 
 const ThemeDivider = styled(Menu.Divider)`
     background-color: ${({ theme }) => theme.content};
+    height: 2px !important;
     width:  90%;
     margin-bottom: 1vh;
 `;

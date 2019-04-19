@@ -25,11 +25,12 @@ const Logs = styled(List)`
     transiton: ${({ theme }) => theme.transiton};
     text-align: left;
     .ant-comment-content-author-name {
-         color: ${({ theme }) => theme.defaultText};
+         color: ${({ theme }) => theme.brightText};
+         font-weight: 600 !important;
     }
 
     .ant-comment-content-author-time{
-        color: ${({ theme }) => theme.header};
+        color: ${({ theme }) => theme.defaultText};
     }
 
     .ant-comment-inner {
@@ -117,7 +118,7 @@ export class Work extends Component {
                                         author={props.author}
                                         avatar={props.avatar}
                                         content={props.content}
-                                        datetime={moment().to(props.created)} />}
+                                        datetime={moment().from(props.created)} />}
             />
         );
 
