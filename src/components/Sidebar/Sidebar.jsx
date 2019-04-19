@@ -98,26 +98,26 @@ class Sidebar extends Component {
                     <ThemeDivider />
 					<Menu.Item key="/app">
 						<Link to="/app">
-							<Icon type="coffee" />
-							<span>#flows</span>
+							<Icon type="rest" theme="filled"/>
+							<span>flows</span>
 						</Link>
 					</Menu.Item>
                     <Menu.Item key="/app/archive">
 						<Link to="/app/archive">
-							<Icon type="inbox" />
-							<span>#archive</span>
+							<Icon type="hdd" theme="filled"/>
+							<span>archive</span>
 						</Link>
 					</Menu.Item>
 					<Menu.Item key="/app/tags" disabled>
 						<Link to="/app/tags">
 							<Icon type="tags" />
-							<span>#tags (beta)</span>
+							<span>tags (beta)</span>
 						</Link>
 					</Menu.Item>
 					<Menu.Item key="/app/settings" disabled>
 						<Link to="/app/settings">
 							<Icon type="share-alt" />
-							<span>#insights (beta)</span>
+							<span>insights (beta)</span>
 						</Link>
 					</Menu.Item>
                     <Menu.ItemGroup>

@@ -17,8 +17,8 @@ module.exports = override(
 			'@layout-header-background': '#1e272c',
 			'@success-color': '#52c41a',                        // success state color
 			'@warning-color': '#FFE060',                      	// warning state color
-			'@error-color': '#F25F5C'                           // error state color
-
+			'@error-color': '#F25F5C',                           // error state color
+            '@border-radius-base': '8px',
 		},
 	}),
 );
