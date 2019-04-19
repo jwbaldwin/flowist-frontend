@@ -13,23 +13,23 @@ const { Content } = Layout;
 const TextArea = Input.TextArea;
 
 const WorkCard = styled(Card)`
-    color: ${({ theme }) => theme.textColor};
-    background: ${({ theme }) => theme.backgroundColor};
+    color: ${({ theme }) => theme.defaultText};
+    background: ${({ theme }) => theme.content};
     transiton: ${({ theme }) => theme.transiton};
     margin-top: 1em !important;
 `;
 
 const Logs = styled(List)`
-    color: ${({ theme }) => theme.textColor};
-    background: ${({ theme }) => theme.backgroundColor};
+    color: ${({ theme }) => theme.defaultText};
+    background: ${({ theme }) => theme.content};
     transiton: ${({ theme }) => theme.transiton};
     text-align: left;
     .ant-comment-content-author-name {
-         color: ${({ theme }) => theme.textColor};
+         color: ${({ theme }) => theme.defaultText};
     }
 
     .ant-comment-content-author-time{
-        color: ${({ theme }) => theme.secondaryContentBackgroundColor};
+        color: ${({ theme }) => theme.header};
     }
 
     .ant-comment-inner {
@@ -45,8 +45,8 @@ const Logs = styled(List)`
 `;
 
 const WorkLogger = styled(TextArea)`
-    color: ${({ theme }) => theme.textColor};
-    background: ${({ theme }) => theme.contentBackgroundColor};
+    color: ${({ theme }) => theme.defaultText};
+    background: ${({ theme }) => theme.background};
     transiton: ${({ theme }) => theme.transiton};
 `;
 

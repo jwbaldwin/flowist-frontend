@@ -1,11 +1,23 @@
 const light = {
-    backgroundColor: "#fff !important",
-    contentBackgroundColor: "#f0f2f5 !important",
-    secondaryContentBackgroundColor: "#dadada !important",
-    textColor: "rgba(0, 0, 0, 0.64) !important",
+    // BASIC LAYOUT COLORS
+    header: "#fff !important",
+    background: "no-repeat fixed #f8f9fb !important",
+    content: "#fff !important",
+    contentOther: "#fafafa !important",
+
+    // TEXT COLORS
+    brightText: "#666 !important",
+    defaultText: "#666 !important",
+
+    // SHADOW & TRANSITION
     transition: "all .5s !important",
-    boxShadow: "0 2px 4px 0 rgba(62,80,104,0.32) !important",
-    primaryColor: "#35BFC1",
+    boxShadow: "rgba(0,0,0,.04) 0 2px 6px 1px !important",
+
+    // LINES
+    border: "1px solid #3c424e",
+
+    // THEME COLORS
+    primaryColor: "#40a9ff !important",
     secondaryColor: "#F33F47",
     primaryColorHover: "#3ED9DC",
     infoColor: "#1890ff",                           // info state color
@@ -15,13 +27,27 @@ const light = {
 };
 
 const dark = {
-    backgroundColor: "#1e272c !important",
-    contentBackgroundColor: "#263238 !important",
-    secondaryContentBackgroundColor: "#626262 !important",
-    textColor: "#eff2f3 !important",
+    // BASIC LAYOUT COLORS
+    header: "#202938 !important",
+    background: "no-repeat fixed #1b212b !important",
+    content: "#242a35 !important",
+    contentOther: "#2a303c !important",
+
+
+    // TEXT COLORS
+    brightText: "#b9bfca !important",
+    defaultText: "#acb2be !important",
+
+    // SHADOW & TRANSITION
     transition: "all .03s !important",
-    boxShadow: "0px 0px 9px 3px rgba(17, 19, 24, 0.8); !important",
-    primaryColor: "#35BFC1",
+    transitionFaster: "all 0s !important",
+    boxShadow: "rgba(0,0,0,.2) 0 2px 8px 1px !important",
+
+    // LINES
+    border: "1px solid #3c424e",
+
+    // THEME COLORS
+    primaryColor: "#40a9ff !important",
     secondaryColor: "#F33F47",
     primaryColorHover: "#3ED9DC",
     infoColor: "#1890ff",                           // info state color

@@ -2,9 +2,15 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Icon, Menu, message, Avatar, Dropdown } from 'antd';
 import { Auth } from "aws-amplify";
+import ThemeSwitch from '../../ThemeSwitch';
 import '../HeaderNav.scss';
 
 export class UserMenu extends Component {
+    updateTheme = () => {
+        this.props.settingsActions.updateSettings(
+            Object.assign({}, this.props.settings, { theme: this.props.settings.theme === 'light' ? 'dark' : 'light' })
+        );
+    };
 
     handleLogout = async () => {
         try {
@@ -38,8 +44,11 @@ export class UserMenu extends Component {
                         <Icon type="setting" /> User Settings
                     </Link>
                 </Menu.Item>
-                <Menu.Divider />
                 <Menu.Item key="2">
+                    <ThemeSwitch updateTheme={this.updateTheme} theme={this.props.settings.theme}/>
+                </Menu.Item>
+                <Menu.Divider />
+                <Menu.Item key="3">
                     <Link to="/user" onClick={this.handleLogout}>
                         <Icon type="logout" /> Log out
                     </Link>

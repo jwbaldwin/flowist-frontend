@@ -4,17 +4,17 @@ import styled, { withTheme } from 'styled-components';
 import moment from "moment"
 
 const StyledTimeline = styled(Timeline)`
-    color: ${({ theme }) => theme.textColor};
+    color: ${({ theme }) => theme.defaultText};
     margin: 2em !important;
     text-align: left;
     .ant-timeline-item-head-custom {
-        background-color: ${({ theme }) => theme.contentBackgroundColor};
+        background-color: ${({ theme }) => theme.content};
     }
     .ant-timeline-item-head {
-        background-color: ${({ theme }) => theme.contentBackgroundColor};
+        background-color: ${({ theme }) => theme.content};
     }
     .ant-timeline-item-tail {
-        border-left: 2px solid ${({ theme }) => theme.secondaryContentBackgroundColor};
+        border-left: 2px solid ${({ theme }) => theme.header};
     }
 `
 
@@ -25,7 +25,7 @@ export class WorkTimeline extends Component {
             case 'update':
                 return this.props.theme.infoColor;
             case 'info':
-                return this.props.theme.secondaryContentBackgroundColor;
+                return this.props.theme.header;
             case 'complete':
                 return this.props.theme.successColor;
             case 'error':
@@ -42,7 +42,7 @@ export class WorkTimeline extends Component {
             <StyledTimeline>
                 {this.props.logs.map((log, key) =>
                     <Timeline.Item key={key} color={this.getColor(log.type)}>
-                     {log.data} - {<span style={{color: this.props.theme.secondaryContentBackgroundColor}}>{moment().to(log.created)}</span>}
+                     {log.data} - {<span style={{color: this.props.theme.header}}>{moment().to(log.created)}</span>}
                     </Timeline.Item>
                 )}
             </StyledTimeline>

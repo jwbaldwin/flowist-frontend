@@ -13,23 +13,23 @@ import './Sidebar.scss';
 const { Sider } = Layout;
 
 const StyledSider = styled(Sider)`
-    color: ${({ theme }) => theme.textColor};
-    background: ${({ theme }) => theme.backgroundColor};
+    color: ${({ theme }) => theme.defaultText};
+    background: ${({ theme }) => theme.background};
     transiton: ${({ theme }) => theme.transiton};
 `;
 
 const StyledMenu = styled(Menu)`
-    color: ${({ theme }) => theme.textColor};
-    background: ${({ theme }) => theme.backgroundColor};
+    color: ${({ theme }) => theme.defaultText};
+    background: ${({ theme }) => theme.background};
     transiton: ${({ theme }) => theme.transiton};
 `;
 
 const ThemeDivider = styled(Menu.Divider)`
-    background-color: ${({ theme }) => theme.contentBackgroundColor} !important;
+    background-color: ${({ theme }) => theme.content} !important;
 `;
 
 const LogoText = styled.h1`
-    color: ${({ theme }) => theme.textColor};
+    color: ${({ theme }) => theme.defaultText};
 `
 
 class Sidebar extends Component {

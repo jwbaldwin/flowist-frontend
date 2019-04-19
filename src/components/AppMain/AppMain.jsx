@@ -21,8 +21,8 @@ import styled from 'styled-components';
 
 
 const StyledLayout = styled(Layout)`
-    color: ${({ theme }) => theme.textColor};
-    background: ${({ theme }) => theme.contentBackgroundColor};
+    color: ${({ theme }) => theme.defaultText};
+    background: ${({ theme }) => theme.background};
 `;
 
 
@@ -60,7 +60,7 @@ export class AppMain extends Component {
 					<Row gutter={24} type="flex" justify="space-around">
 						<Col xs={0} sm={0} md={1} lg={1} xl={1}/>
 						{ !isMobile ? <Col xs={0} sm={0} md={6} lg={6} xl={6}>
-										<SideMenu activeFlows={ this.props.flows.filter((flow) => flow.flowStatus === 'ACTIVE')}{...this.props} /> 
+										<SideMenu activeFlows={ this.props.flows.filter((flow) => flow.flowStatus === 'ACTIVE')}{...this.props} />
 									</Col>  : null }
 						<Col xs={24} sm={24} md={12} lg={12} xl={12}>
 							<Route exact path="/app" component={() => <Home flows={this.props.flows} />} />

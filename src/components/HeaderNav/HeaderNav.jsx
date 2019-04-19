@@ -10,8 +10,8 @@ const { Header } = Layout;
 const Search = Input.Search;
 
 const StyledHeader = styled(Header)`
-    color: ${({ theme }) => theme.textColor};
-    background: ${({ theme }) => theme.backgroundColor};
+    color: ${({ theme }) => theme.defaultText};
+    background: ${({ theme }) => theme.header};
     transiton: ${({ theme }) => theme.transiton};
     height: 45px;
     box-shadow: ${({ theme }) => theme.boxShadow};
@@ -23,17 +23,17 @@ const StyledSearch = styled(Search)`
    .ant-input {
         height: 34px;
         border-radius: 100px !important;
-        color: ${({ theme }) => theme.textColor};
-        background-color: ${({ theme }) => theme.contentBackgroundColor};
-        border: 1px solid ${({ theme }) => theme.secondaryContentBackgroundColor};
+        color: ${({ theme }) => theme.defaultText};
+        background-color: ${({ theme }) => theme.content};
+        border: 1px solid ${({ theme }) => theme.background};
    }
 
    .ant-input-search-icon {
-       color: ${({ theme }) => theme.textColor};
+       color: ${({ theme }) => theme.defaultText};
    }
 `;
 
-const LogoText = styled.h1`color: ${({ theme }) => theme.textColor};`;
+const LogoText = styled.h1`color: ${({ theme }) => theme.defaultText};`;
 
 export class HeaderNav extends Component {
 	state = {

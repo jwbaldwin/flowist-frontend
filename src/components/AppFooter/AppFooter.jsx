@@ -6,8 +6,8 @@ import styled from 'styled-components';
 const { Footer } = Layout;
 
 const StyledFooter = styled(Footer)`
-    color: ${({ theme }) => theme.textColor};
-    background: ${({ theme }) => theme.contentBackgroundColor};
+    color: ${({ theme }) => theme.defaultText};
+    background: ${({ theme }) => theme.background};
 `;
 
 const githubLink = "https://github.com/jwbaldwin/flowist";
