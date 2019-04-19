@@ -14,7 +14,7 @@ export class Archive extends Component {
 		const archivedFlows = this.props.flows.filter((flow) => flow.flowStatus === 'COMPLETED')
 
 		return (
-			<Content style={{ padding: 24 }}>
+			<Content>
 				{this.props.isLoading ? (
 					<Spin className='centered' size="large" />
 				) : archivedFlows.length > 0 ? (

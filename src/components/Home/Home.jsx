@@ -14,7 +14,6 @@ class Home extends Component {
 		return (
 			<Content
 				className="home"
-				style={{ padding: 24 }}
 				onKeyPress={() => this.handleKeyPress}
 			>
 				{this.props.isLoading ?

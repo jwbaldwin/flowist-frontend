@@ -15,7 +15,7 @@ import Tags from '../Tags';
 import Archive from '../Archive';
 import Settings from '../Settings';
 import Profile from '../Profile';
-import { Layout } from 'antd';
+import { Layout, Col, Row } from 'antd';
 import { isMobile } from 'react-device-detect';
 import styled from 'styled-components';
 
@@ -57,20 +57,25 @@ export class AppMain extends Component {
 				/> : null }
 				<StyledLayout>
 					<HeaderNav toggle={this.toggleCollapse} collapsed={this.state.collapsed} {...this.props} />
-
-                    { !isMobile ? <SideMenu activeFlows={ this.props.flows.filter((flow) => flow.flowStatus === 'ACTIVE')}
-					{...this.props} /> : null }
-
-					<Route exact path="/app" component={() => <Home flows={this.props.flows} />} />
-                    <Route exact path="/app/flows/:id" component={() => <Home flows={this.props.flows} />} />
-					<Route exact path="/app/tags" component={Tags} />
-					<Route exact path="/app/archive" component={() => <Archive flows={this.props.flows} />} />
-					<Route exact path="/app/settings" component={Settings} />
-					<Route
-						exact
-						path="/app/profile"
-						component={() => <Profile flows={this.props.flows} user={this.props.user.user} />}
-					/>
+					<Row gutter={24} type="flex" justify="space-around">
+						<Col xs={0} sm={0} md={1} lg={1} xl={1}/>
+						{ !isMobile ? <Col xs={0} sm={0} md={6} lg={6} xl={6}>
+										<SideMenu activeFlows={ this.props.flows.filter((flow) => flow.flowStatus === 'ACTIVE')}{...this.props} /> 
+									</Col>  : null }
+						<Col xs={24} sm={24} md={12} lg={12} xl={12}>
+							<Route exact path="/app" component={() => <Home flows={this.props.flows} />} />
+							<Route exact path="/app/flows/:id" component={() => <Home flows={this.props.flows} />} />
+							<Route exact path="/app/tags" component={Tags} />
+							<Route exact path="/app/archive" component={() => <Archive flows={this.props.flows} />} />
+							<Route exact path="/app/settings" component={Settings} />
+							<Route
+								exact
+								path="/app/profile"
+								component={() => <Profile flows={this.props.flows} user={this.props.user.user} />}
+							/>
+						</Col>
+						<Col xs={0} sm={0} md={5} lg={5} xl={5}/>
+					</Row>
 					<AppFooter />
 				</StyledLayout>
 			</Layout>

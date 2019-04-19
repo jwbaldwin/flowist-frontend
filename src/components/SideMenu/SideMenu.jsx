@@ -14,12 +14,23 @@ const { Content } = Layout;
 
 const StyledMenu = styled(Menu)`
     color: ${({ theme }) => theme.textColor};
-    background: ${({ theme }) => theme.backgroundColor};
+    background: transparent !important;
     transiton: ${({ theme }) => theme.transiton};
+    font-weight: bolder !important;
+`;
+
+const StyledItem = styled(Menu.Item)`
+    border: 1px solid ${({ theme }) => theme.contentBackgroundColor};
+    border-radius: 8px;
+
+    .ant-menu.ant-menu-dark .ant-menu-item-selected, .ant-menu-submenu-popup.ant-menu-dark .ant-menu-item-selected {
+        background-color: ${({ theme }) => theme.secondaryContentBackgroundColor};
+    }
 `;
 
 const ThemeDivider = styled(Menu.Divider)`
-    background-color: ${({ theme }) => theme.contentBackgroundColor} !important;
+    background-color: ${({ theme }) => theme.backgroundColor};
+    width:  90%;
 `;
 
 const LogoText = styled.h1`
@@ -51,50 +62,52 @@ class SideMenu extends Component {
 
     render() {
         return (
-            <Content Col xs={4} sm={4} md={4} lg={4} xl={4} style={{marginTop: '1vh', marginBottom: '1vh'}}>
+            <Content style={{marginTop: '50%'}}>
+                <StyledMenu style={{ width: 256 }} mode="vertical" theme={this.props.settings.theme}>
                     {this.props.activeFlows.length > 0
                         ? (this.props.activeFlows.map((flow) =>
-                            <div key={"/app/flows/" + flow.id}>
+                            <StyledItem key={"/app/flows/" + flow.id}>
                                 <Link to={"/app/flows/" + flow.id}>
                                     <Icon type={mapIcon(flow.activity)} />
                                     <span>{flow.title.replace(/^(.{15}[^\s]*).*/, "$1 ...")}</span>
                                 </Link>
-                            </div>
+                            </StyledItem>
                         ))
                         : (
-                            <div>
+                            <StyledItem>
                                 Add one!
-                            </div>
+                            </StyledItem>
                         )
                     }
                     <ThemeDivider />
-					<div key="/app">
+					<StyledItem key="/app">
 						<Link to="/app">
 							<Icon type="coffee" />
 							<span>#flows</span>
 						</Link>
-					</div>
-                    <div key="/app/archive">
+					</StyledItem>
+                    <StyledItem key="/app/archive">
 						<Link to="/app/archive">
 							<Icon type="inbox" />
 							<span>#archive</span>
 						</Link>
-					</div>
-					<div key="/app/tags" disabled>
+					</StyledItem>
+					<StyledItem key="/app/tags" disabled>
 						<Link to="/app/tags">
-							<Icon type="tags" />
+							<Icon type="tags" theme="filled"/>
 							<span>#tags (beta)</span>
 						</Link>
-					</div>
-					<div key="/app/settings" disabled>
+					</StyledItem>
+					<StyledItem key="/app/settings" disabled>
 						<Link to="/app/settings">
 							<Icon type="share-alt" />
 							<span>#insights (beta)</span>
 						</Link>
-					</div>
+					</StyledItem>
                     <divGroup>
                        <ThemeSwitch updateTheme={this.updateTheme} theme={this.props.settings.theme}/>
                     </divGroup>
+                </StyledMenu>
             </Content>
         );
     }

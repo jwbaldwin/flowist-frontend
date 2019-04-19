@@ -6,7 +6,7 @@ const { Content } = Layout;
 export class Tags extends Component {
 	render() {
 		return (
-			<Content style={{ padding: 24 }}>
+			<Content>
 				<div>This is tags content.</div>
 			</Content>
 		);

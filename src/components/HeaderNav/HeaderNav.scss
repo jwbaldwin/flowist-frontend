@@ -35,25 +35,11 @@
     transition: all 0.2sprimary
 }
 
-.searchbar {
-    width: 100%;
-    text-align: center;
-}
-
-.header-left {
-    width: 20%;
-}
-
-.header-right {
-    width: 65px;
-	margin-left: auto;
-}
-
 .ant-layout-header {
-	padding-right: 10%;
+	padding: 0;
     line-height: 45px;
-    display: flex;           /* default value; can be omitted */
-    justify-content: space-between; /* switched from default (flex-start, see below) */
+    // display: flex;           /* default value; can be omitted */
+    // justify-content: space-between; /* switched from default (flex-start, see below) */
 }
 
 
