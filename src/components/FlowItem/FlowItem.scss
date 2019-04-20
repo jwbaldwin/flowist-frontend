@@ -1,34 +1,36 @@
+div  h1, h2, h3, h4, h5, h6 {
+    color: unset;
+}
+
 div.ant-card {
-    border-radius:4px;
-    padding: 6px;
-    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.20);
+    border-radius: 8px;
 }
 
 .ant-card-actions {
     border-bottom-right-radius: 4px;
     border-bottom-left-radius: 4px;
+    color: unset;
     background: none;
+    border: none !important;
 }
 
 .ant-card-actions > li {
-    margin: 9px 0 4px 0;
+    color: unset;
+    border: none !important;
 }
 
 div.ant-card-head {
     text-align: left;
     font-weight: bold;
-    padding: 0 8px;
+    border: none !important;
 }
 
 div.ant-card-body {
-    padding: 0;
-    padding-bottom: 4px;
 }
 
 div.ant-card-grid {
     box-shadow: none;
     border: none;
-    padding: 8px;
 }
 
 
@@ -57,20 +59,11 @@ div.ant-card-grid:hover {
     padding-top: 5% !important;
     padding-bottom: 0 !important;
     font-weight: 200;
-    font-size: 8pt;
+    font-size: 9pt;
 }
 
 div.ant-skeleton-header, div.ant-skeleton-content {
     padding: 24px 24px 20px 24px;
-}
-
-#content {
-    border-left: 3px solid #e1e1e1;
-    cursor: text;
-    padding: 8px;
-    margin-top: 1em;
-    margin-bottom: 1em;
-    background: #fefefe;
 }
 
 @media all and (max-width: 667px) {

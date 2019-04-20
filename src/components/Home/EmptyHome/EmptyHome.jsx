@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Icon, Empty } from 'antd';
+import { Button, Icon, Empty, Tag } from 'antd';
 import FlowModal from '../../FlowModal';
 import './EmptyHome.scss';
 
@@ -7,6 +7,23 @@ export class EmptyHome extends Component {
 	state = {
 		visible: false
 	};
+
+    componentWillMount() {
+		document.addEventListener('keydown', this.handleKeyPress.bind(this));
+	}
+
+	componentWillUnmount() {
+		document.removeEventListener('keydown', this.handleKeyPress.bind(this));
+	}
+
+	handleKeyPress = (event) => {
+        event.preventDefault();
+        if(event.key === 'f') {
+            this.showModal();
+        } else if (event.ctrlKey && event.key === 's') {
+            this.showModal();
+        }
+    };
 
 	showModal = () => {
 		this.setState({ visible: !this.state.visible });
@@ -23,7 +40,7 @@ export class EmptyHome extends Component {
 							No active flows. Add one here!
 							<span>
 								<br />
-								<Icon type="bulb" /> Tip: use `⌘ + S`
+								<Icon type="bulb" /> <strong>Tip:</strong> use <Tag>⌘ + s</Tag> or simply <Tag>f</Tag> to save a flow
 							</span>
 						</span>
 					}

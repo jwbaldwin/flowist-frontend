@@ -23,8 +23,8 @@ export class Github extends Component {
 
 	render() {
 		return (
-            <Button type="default" block href={GITHUB_GET_URL}>
-				<Icon type="github" />Login with Github
+            <Button href={GITHUB_GET_URL} type="default" block size="large" icon='github' style={{background: '#3a3a3a', borderColor: '#3a3a3a', color: 'rgba(255,255,255,0.95)'}}>
+				Github
 			</Button>
 		);
 	}

@@ -11,7 +11,7 @@ export class ProfileHeader extends Component {
 
 
         return (
-            <Content style={{ padding: 24 }}>
+            <Content>
                 <div className="header-item">
                     <Avatar size={90} icon="user" />
                 </div>

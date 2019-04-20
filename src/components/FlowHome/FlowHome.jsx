@@ -17,9 +17,9 @@ export class Settings extends Component {
                 <Row type="flex" justify="space-around" align="middle">
                     { this.props.flows
                         .map((flow, key) =>
-                            <Col xs={24} sm={24} md={20} lg={20} xl={20} style={{marginTop: '1vh', marginBottom: '1vh'}} key={key}>
+                            <Col xs={24} sm={24} md={24} lg={24} xl={24} style={{marginTop: '4px'}} key={key}>
                                 <FlowItem flow={flow} key={key} />
-                                <Work />
+                                <Work flow_id={flow.id}/>
                             </Col>
                         )
                     }

@@ -1,52 +1,53 @@
 import React, { Component } from 'react';
-import { Layout, Icon, Col, Empty, Card, Comment, Avatar, Form, Button, List, Input, } from 'antd';
-import WorkTimeline from './WorkTimeline';
-import WorkInput from './WorkInput';
-import styled from 'styled-components';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import PropTypes from 'prop-types';
+import * as logActions from '../../actions/logActions';
+import { Layout, Col, Card, Comment, Avatar, Form, Button, List, Input, Spin, Icon } from 'antd';
+import styled, { withTheme } from 'styled-components';
 import moment from 'moment';
 
 const { Content } = Layout;
 const TextArea = Input.TextArea;
 
 const WorkCard = styled(Card)`
-    color: ${({ theme }) => theme.textColor};
-    background: ${({ theme }) => theme.backgroundColor};
+    color: ${({ theme }) => theme.defaultText};
+    background: ${({ theme }) => theme.content};
     transiton: ${({ theme }) => theme.transiton};
     margin-top: 1em !important;
 `;
 
 const Logs = styled(List)`
-    color: ${({ theme }) => theme.textColor};
-    background: ${({ theme }) => theme.backgroundColor};
+    color: ${({ theme }) => theme.defaultText};
+    background: ${({ theme }) => theme.content};
     transiton: ${({ theme }) => theme.transiton};
     text-align: left;
     .ant-comment-content-author-name {
-         color: ${({ theme }) => theme.textColor};
+         color: ${({ theme }) => theme.brightText};
+         font-weight: 600 !important;
     }
 
     .ant-comment-content-author-time{
-        color: ${({ theme }) => theme.secondaryContentBackgroundColor};
+        color: ${({ theme }) => theme.defaultText};
     }
 
     .ant-comment-inner {
         padding: 8px 0px !important;
     }
+
+    .ant-comment-actions {
+        float: right;
+    }
+    .ant-comment-actions > li{
+        margin: 0 6px;
+    }
 `;
 
 const WorkLogger = styled(TextArea)`
-    color: ${({ theme }) => theme.textColor};
-    background: ${({ theme }) => theme.contentBackgroundColor};
+    color: ${({ theme }) => theme.defaultText};
+    background: ${({ theme }) => theme.background};
     transiton: ${({ theme }) => theme.transiton};
 `;
-
-const LogsList = ({ logs }) => (
-    <Logs
-        dataSource={logs}
-        header={`${logs.length} ${logs.length > 1 ? 'entries' : 'entry'}`}
-        itemLayout="horizontal"
-        renderItem={props => <Comment {...props} />}
-    />
-);
 
 const Editor = ({
     onChange, onSubmit, submitting, value,
@@ -61,7 +62,7 @@ const Editor = ({
                     loading={submitting}
                     onClick={onSubmit}
                     type="primary"
-                    icon="double-right"
+                    icon="read"
                     block
                 >
                     Log
@@ -72,32 +73,27 @@ const Editor = ({
 
 export class Work extends Component {
     state = {
-        logs: [],
-        submitting: false,
-        value: ''
+        value: '',
+        submitting: false
     }
 
+    componentDidMount() {
+		this.props.logActions.fetchLogs(this.props.flow_id);
+	}
+
     handleSubmit = () => {
-        if (!this.state.value) {
+        if (!this.state.value || this.state.value.length === 0) {
             return;
         }
-         this.setState({
-            submitting: true,
-        });
-
-        this.setState({
-            submitting: false,
-            value: '',
-            logs: [
-                ...this.state.logs,
-                {
+        this.setState({submitting: true})
+        this.props.logActions.addLog({
                     author: 'Han Solo',
                     avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
-                    content: <p>{this.state.value}</p>,
-                    datetime: moment().fromNow(),
-                }
-            ],
-        });
+                    content: this.state.value,
+                    created: moment().now()})
+        this.setState({
+            submitting: false,
+            value: ''});
     }
 
     handleChange = (e) => {
@@ -106,19 +102,29 @@ export class Work extends Component {
         });
     }
 
-    logWork = (work) => {
-        work.created = moment.now();
-        this.setState({
-            logs: [...this.state.logs, work]
-        })
-    }
-
     render() {
-        const { logs, submitting, value } = this.state;
+        const { logs, isLoading } = this.props;
+        const { value, submitting } = this.state;
+        const LogsList = ({ logs }) => (
+            <Logs
+                dataSource={logs}
+                header={<span>{logs.length} <Icon type="book"/></span> }
+                itemLayout="horizontal"
+                renderItem={props => <Comment
+                                        actions={[<Icon type="edit" style={{color: this.props.theme.warningColor, fontSize: 16}}/>,
+                                                <Icon type="delete" style={{color: this.props.theme.errorColor, fontSize: 16}}/>]}
+                                        author={props.author}
+                                        avatar={props.avatar}
+                                        content={props.content}
+                                        datetime={moment().from(props.created)} />}
+            />
+        );
 
         return (
             <Content className="centered">
                 <Col span={24}>
+                    { isLoading ?
+                    <Spin size="small" /> :
                     <WorkCard
                         bordered={false}>
                         {logs.length > 0 && <LogsList logs={logs} />}
@@ -138,15 +144,29 @@ export class Work extends Component {
                                 />
                             )}
                         />
-                    </WorkCard>
+                    </WorkCard>}
                 </Col>
             </Content>
         );
     }
 }
 
-export default Work;
+Work.propTypes = {
+	logs: PropTypes.array,
+    isLoading: PropTypes.bool
+};
 
+function mapStateToProps(state) {
+	return {
+		logs: state.logs.data,
+        isLoading: state.logs.isLoading
+	};
+}
 
-                        // <WorkTimeline logs={this.state.logs} />
-                        // <WorkInput log={this.logWork}/>
+function mapDispatchToProps(dispatch) {
+	return {
+		logActions: bindActionCreators(logActions, dispatch),
+	};
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(withTheme(Work));

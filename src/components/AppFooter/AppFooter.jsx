@@ -6,8 +6,13 @@ import styled from 'styled-components';
 const { Footer } = Layout;
 
 const StyledFooter = styled(Footer)`
-    color: ${({ theme }) => theme.textColor};
-    background: ${({ theme }) => theme.contentBackgroundColor};
+    color: ${({ theme }) => theme.defaultText};
+    background: ${({ theme }) => theme.background};
+    text-align: center;
+    height: 90px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
 `;
 
 const githubLink = "https://github.com/jwbaldwin/flowist";
@@ -16,7 +21,7 @@ export class AppFooter extends Component {
 
 	render() {
 		return (
-		 <StyledFooter style={{ textAlign: 'center'}}>
+		 <StyledFooter>
             <div>
                 <a href={githubLink} style={{color: 'inherit'}}>
                     <Icon type='github' />
