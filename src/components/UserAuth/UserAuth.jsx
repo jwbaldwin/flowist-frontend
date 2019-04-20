@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { Tabs, Col, Divider, Button, Icon } from 'antd';
+import { Tabs, Col, Divider } from 'antd';
 import LoginForm from './LoginForm';
 import SignUpForm from './SignUpForm';
 import { Github } from '../SocialLogin';
 import './UserAuth.scss';
 import '../AppMain/AppMain.scss';
-import logo from '../../assets/images/flowist-teal.png';
+import logo from '../../assets/images/flowist-main-light.png';
 
 const TabPane = Tabs.TabPane;
 

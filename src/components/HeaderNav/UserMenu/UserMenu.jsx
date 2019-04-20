@@ -1,69 +1,81 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Icon, Menu, message, Avatar, Dropdown } from 'antd';
-import { Auth } from "aws-amplify";
+import { Auth } from 'aws-amplify';
 import ThemeSwitch from '../../ThemeSwitch';
 import '../HeaderNav.scss';
 
 export class UserMenu extends Component {
-    updateTheme = () => {
-        this.props.settingsActions.updateSettings(
-            Object.assign({}, this.props.settings, { theme: this.props.settings.theme === 'light' ? 'dark' : 'light' })
-        );
-    };
+	updateTheme = () => {
+		this.props.settingsActions.updateSettings(
+			Object.assign({}, this.props.settings, { theme: this.props.settings.theme === 'light' ? 'dark' : 'light' })
+		);
+	};
 
-    handleLogout = async () => {
-        try {
-            await Auth.signOut();
+	handleLogout = async () => {
+		try {
+			await Auth.signOut();
 
-            this.props.userActions.updateUser({...this.props.user, isAuthenticated: false});
-            message.success("Logged out successfully!");
-        } catch (e) {
-            message.error("Uhoh :( Failed to log out successfully...");
-        }
-    }
+			this.props.userActions.updateUser({ ...this.props.user, isAuthenticated: false });
+			message.success('Logged out successfully!');
+		} catch (e) {
+			message.error('Uhoh :( Failed to log out successfully...');
+		}
+	};
 
 	render() {
-        const username = this.props.user.user.attributes.name + " " + this.props.user.user.attributes.family_name;
+		const username = this.props.user.user.attributes.name + ' ' + this.props.user.user.attributes.family_name;
 
-        const menuItems =
-            <Menu style={{ width: '200px'}}>
-                <Menu.Item key="0">
-                    <span style={{fontWeight: 600}}>{username}</span>
-                    <br/>
-                    <span style={{fontWeight: 300, fontSize: 12, color: '#777'}}>{this.props.user.user.attributes.email}</span>
-                </Menu.Item>
-                <Menu.Divider />
-                <Menu.Item key="0">
-                    <Link to="/app/profile">
-                        <Icon type="user" /> Profile
-                    </Link>
-                </Menu.Item>
-                <Menu.Item key="1">
-                    <Link to="/app/settings">
-                        <Icon type="setting" /> User Settings
-                    </Link>
-                </Menu.Item>
-                <Menu.Item key="2">
-                    <ThemeSwitch updateTheme={this.updateTheme} theme={this.props.settings.theme}/>
-                </Menu.Item>
-                <Menu.Divider />
-                <Menu.Item key="3">
-                    <Link to="/user" onClick={this.handleLogout}>
-                        <Icon type="logout" /> Log out
-                    </Link>
-                </Menu.Item>
-            </Menu>
+		const menuItems = (
+			<Menu>
+				<Menu.Item key="0">
+					<span style={{ fontWeight: 600 }}>{username}</span>
+					<br />
+					<span style={{ fontWeight: 300, fontSize: 12, color: '#777' }}>
+						{this.props.user.user.attributes.email}
+					</span>
+				</Menu.Item>
+				<Menu.Divider />
+				<Menu.Item key="0">
+					<Link to="/app/profile">
+						<Icon type="user" /> Profile
+					</Link>
+				</Menu.Item>
+				<Menu.Item key="1">
+					<Link to="/app/settings">
+						<Icon type="setting" /> User Settings
+					</Link>
+				</Menu.Item>
+				<Menu.Item key="2">
+					<ThemeSwitch updateTheme={this.updateTheme} theme={this.props.settings.theme} />
+				</Menu.Item>
+				<Menu.Divider />
+				<Menu.Item key="3">
+					<Link to="/user" onClick={this.handleLogout}>
+						<Icon type="logout" /> Log out
+					</Link>
+				</Menu.Item>
+			</Menu>
+		);
 		return (
-            <Dropdown id="profile-dropdown" trigger={['click' ]} overlay={menuItems} placement="bottomRight">
-                <span className="ant-dropdown-link" 
-                    style={{display: 'inline-block',
-                            padding: '5px 0',
-                            height: '40px',
-                            textAlign: 'right',
-                            textRendering: 'optimizelegibility'}}>
-                  <Avatar icon='user' size='30'/> {username}
-                </span>
+			<Dropdown id="profile-dropdown" trigger={[ 'click' ]} overlay={menuItems} placement="bottomRight">
+				<span
+					className="ant-dropdown-link"
+					style={{
+						display: 'inline-block',
+						height: '40px',
+						padding: '5px',
+						textRendering: 'optimizelegibility'
+					}}
+				>
+					<Avatar icon="user" size="30" />
+					<span
+						style={{ padding: '0 5px'}}
+						id="username"
+					>
+						{username}
+					</span>
+				</span>
 			</Dropdown>
 		);
 	}

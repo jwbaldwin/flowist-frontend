@@ -2,36 +2,23 @@
 
 .header-trigger {
 	height: 30px;
-	padding: 5px;
+    padding: 5px 5px 5px 0;
+    margin: 5px 0;
 	font-size: 20px;
 	cursor: pointer;
 	transition: all .3s, padding 0s;
 }
 
-#app-headernav-logo-div {
-	position: relative;
-    margin: 5px 0;
-	height: 30px;
-	line-height: 30px;
-	transition: all .3s;
-}
-
-#app-headernav-logo {
-	display: inline-block;
-	height: 30px;
+#app-headernav-logo, #app-headernav-logo-main {
+    height: 30px;
+    padding: 4px;
+    margin:  5px;
 	vertical-align: middle;
-}
-
-#app-header-logo-title {
-    display: inline-block;
-    margin: 0;
-    font-weight: 800;
-    font-size: 24px;
-    vertical-align: middle;
 }
 
 .ant-avatar {
     height: 30px;
+    line-height: 40px;
     padding: 5px;
 	border: 2px solid rgb(246, 246, 246);
     border-radius: 100px;
@@ -49,6 +36,11 @@
     .header-trigger {
         display: none !important
     }
+
+    #app-headernav-logo {
+        display: none !important
+    }
+
 }
 
 @media all and (max-width: 768px) {
@@ -60,7 +52,12 @@
         border-radius: 0 !important;
     }
 
-    #app-header-logo-title {
+    #app-headernav-logo-main {
 		display: none !important;
-	}
+    }
+
+    #username {
+        display: none !important
+    }
+
 }

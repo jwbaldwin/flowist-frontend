@@ -12,7 +12,7 @@ const TitleBar = styled(Col)`
 
 const TitleText = styled.h1`
     color: ${({ theme }) => theme.brightText};
-    padding: 0 8px;
+    padding: 0;
     font-weight: 600 !important;
     font-size: 24px;
 `
@@ -32,7 +32,7 @@ export class TitleContainer extends Component {
         const location = this.parseLocation(this.props.location.pathname)
 		return (
 			<Col span={24}>
-				<TitleBar xs={{ span: 24, offset: 0 }} lg={{ span: 17, offset: 7 }}>
+				<TitleBar xs={{ span: 22, offset: 1 }} md={{ span: 18, offset: 6 }} lg={{ span: 18, offset: 6 }}>
                     <TitleText>{location}</TitleText>
                 </TitleBar>
 			</Col>

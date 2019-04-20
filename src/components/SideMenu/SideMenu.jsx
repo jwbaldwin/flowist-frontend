@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router';
 import { Link } from 'react-router-dom';
-import { Layout, Menu, Icon, Button } from 'antd';
-import { mapIcon } from '../../common';
-import logo from '../../assets/images/flowist.png';
-import logoWhite from '../../assets/images/flowist-white.png';
-import logoTeal from '../../assets/images/flowist-teal.png';
+import { Layout, Menu, Icon } from 'antd';
 import styled from 'styled-components';
 import './SideMenu.scss';
 
@@ -53,7 +49,7 @@ class SideMenu extends Component {
     render() {
         return (
             <Content>
-                <StyledMenu style={{ width: 256 }} mode="vertical" theme={this.props.settings.theme} defaultSelectedKeys={[this.props.location.pathname]}>
+                <StyledMenu style={{ width: '100% !important' }} mode="vertical" theme={this.props.settings.theme} defaultSelectedKeys={[this.props.location.pathname]}>
 					<StyledItem className='menu-item' key="/app">
 						<Link to="/app">
 							<Icon type="rest" theme="filled"/>

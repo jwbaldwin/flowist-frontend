@@ -4,8 +4,6 @@ import { Link } from 'react-router-dom';
 import { Layout, Menu, Icon, Button } from 'antd';
 import { mapIcon } from '../../common';
 import logo from '../../assets/images/flowist.png';
-import logoWhite from '../../assets/images/flowist-white.png';
-import logoTeal from '../../assets/images/flowist-teal.png';
 import ThemeSwitch from '../ThemeSwitch';
 import styled from 'styled-components';
 import './Sidebar.scss';
@@ -68,7 +66,7 @@ class Sidebar extends Component {
                 width={256}>
                 <div id="app-sidebar-logo-div">
                     <Link to="/app">
-                        <img src={logoTeal} id="app-sidebar-logo" alt="Flowist Logo" />
+                        <img src={logo} id="app-sidebar-logo" alt="Flowist Logo" />
                         <LogoText id="app-sidebar-logo-title">
                             {' '}
                             flowist

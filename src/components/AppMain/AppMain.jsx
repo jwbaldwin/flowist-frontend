@@ -10,20 +10,23 @@ import SidebarWrapper from '../SidebarWrapper';
 import SideMenu from '../SideMenu';
 import AppFooter from '../AppFooter';
 import HeaderNav from '../HeaderNav';
+import AppFloatingButtons from '../AppFloatingButtons';
 import TitleContainer from '../TitleContainer';
 import Home from '../Home';
 import Tags from '../Tags';
 import Archive from '../Archive';
 import Settings from '../Settings';
 import Profile from '../Profile';
-import { Layout, Col, Row, Breadcrumb } from 'antd';
+import { Layout, Col, Row } from 'antd';
 import { isMobile } from 'react-device-detect';
 import styled from 'styled-components';
 
 
 const StyledLayout = styled(Layout)`
     color: ${({ theme }) => theme.defaultText};
-    background: ${({ theme }) => theme.background};
+	background: ${({ theme }) => theme.background};
+	min-height: 100%;
+	position: relative;
 `;
 
 
@@ -57,17 +60,19 @@ export class AppMain extends Component {
 					{...this.props}
 				/> : null }
 				<StyledLayout>
-					<HeaderNav toggle={this.toggleCollapse} collapsed={this.state.collapsed} {...this.props} />
+					<HeaderNav toggle={this.toggleCollapse} collapsed={this.state.collapsed} {...this.props} 
+						theme={this.props.settings.theme}/>
                     <Row>
                         <TitleContainer/>
                     </Row>
-					<Row gutter={24} type="flex" justify="space-around">
-						<Col xs={0} sm={0} md={1} lg={1} xl={1}/>
+					<Row type="flex" justify="space-around" style={{paddingBottom: 90}}>
+						<Col span={1}/>
 						{ !isMobile ? 
-                        <Col xs={0} sm={0} md={6} lg={6} xl={6}>
+                        <Col xs={0} sm={0} md={4} lg={4} xl={4}>
 							<SideMenu activeFlows={ this.props.flows.filter((flow) => flow.flowStatus === 'ACTIVE')}{...this.props} />
 						</Col>  : null }
-						<Col xs={24} sm={24} md={12} lg={12} xl={12}>
+						<Col xs={0} sm={0} md={1} lg={1} xl={1}/>
+						<Col xs={22} sm={22} md={10} lg={10} xl={10}>
 							<Route exact path="/app" component={() => <Home flows={this.props.flows} />} />
 							<Route exact path="/app/flows/:id" component={() => <Home flows={this.props.flows} />} />
 							<Route exact path="/app/tags" component={Tags} />
@@ -79,8 +84,11 @@ export class AppMain extends Component {
 								component={() => <Profile flows={this.props.flows} user={this.props.user.user} />}
 							/>
 						</Col>
-						<Col xs={0} sm={0} md={5} lg={5} xl={5}/>
+						<Col xs={0} sm={0} md={3} lg={3} xl={3}/>
+						<Col xs={0} sm={0} md={4} lg={4} xl={4}/>
+						<Col span={1}/>
 					</Row>
+					<AppFloatingButtons />
 					<AppFooter />
 				</StyledLayout>
 			</Layout>
