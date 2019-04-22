@@ -38,12 +38,12 @@ export class UserMenu extends Component {
 				<Menu.Divider />
 				<Menu.Item key="0">
 					<Link to="/app/profile">
-						<Icon type="user" /> Profile
+						<icon class="fas fa-user" style={{marginRight: 'unset'}}/> Profile
 					</Link>
 				</Menu.Item>
 				<Menu.Item key="1">
 					<Link to="/app/settings">
-						<Icon type="setting" /> User Settings
+						<Icon type="setting" theme="filled"/> User Settings
 					</Link>
 				</Menu.Item>
 				<Menu.Item key="2">

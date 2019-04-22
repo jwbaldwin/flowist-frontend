@@ -19,6 +19,10 @@ export class SignUpFormNormal extends Component {
         autoCompleteResult: [],
     };
 
+    componentDidMount() {
+        document.title = "Sign Up | Flowist";
+    }
+
     handleSubmit = async (e) => {
         e.preventDefault();
         this.props.form.validateFieldsAndScroll(async (err, values) => {
@@ -34,7 +38,7 @@ export class SignUpFormNormal extends Component {
                         }});
                     this.props.userActions.updateUser({...this.props.user, data: user});
                     this.setState({email: values.email, password: values.password, isLoading: false })
-                    notification.success({ 
+                    notification.success({
                         "message": "Check your email!",
                         "description": "We just sent a verification code to your email!"
                     });

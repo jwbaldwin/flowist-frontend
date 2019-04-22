@@ -8,6 +8,10 @@ import './Home.scss';
 const { Content } = Layout;
 
 class Home extends Component {
+    componentDidMount() {
+        document.title = this.props.title + " |  Flowist";
+    }
+
 	render() {
 		const activeFlows =  this.props.flows.filter((flow) => flow.flowStatus === 'ACTIVE')
 

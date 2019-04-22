@@ -96,13 +96,13 @@ class Sidebar extends Component {
                     <ThemeDivider />
 					<Menu.Item key="/app">
 						<Link to="/app">
-							<Icon type="rest" theme="filled"/>
+							<icon class="fas fa-coffee" />
 							<span>Flows</span>
 						</Link>
 					</Menu.Item>
                     <Menu.Item key="/app/archive">
 						<Link to="/app/archive">
-							<Icon type="hdd" theme="filled"/>
+							<icon class="fas fa-box-open" />
 							<span>Archive</span>
 						</Link>
 					</Menu.Item>

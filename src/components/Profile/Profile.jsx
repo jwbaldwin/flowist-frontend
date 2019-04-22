@@ -9,6 +9,10 @@ const { Content } = Layout;
 const TabPane = Tabs.TabPane;
 
 export class Profile extends Component {
+    componentDidMount() {
+        document.title = this.props.title + " |  Flowist";
+    }
+
     render() {
         const user = this.props.user.attributes;
         const flows = this.props.flows;

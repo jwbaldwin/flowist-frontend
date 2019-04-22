@@ -10,6 +10,10 @@ import ArchiveEmpty from './ArchiveEmpty';
 const { Content } = Layout;
 
 export class Archive extends Component {
+    componentDidMount() {
+        document.title = this.props.title + " |  Flowist";
+    }
+
 	render() {
 		const archivedFlows = this.props.flows.filter((flow) => flow.flowStatus === 'COMPLETED')
 
