@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import * as logActions from '../../actions/logActions';
 import { Layout, Col, Card, Comment, Avatar, Form, Button, List, Input, Spin, Icon } from 'antd';
-import styled, { withTheme } from 'styled-components';
+import styled from 'styled-components';
 import moment from 'moment';
 
 const { Content } = Layout;
@@ -39,6 +39,7 @@ const Logs = styled(List)`
         float: right;
     }
     .ant-comment-actions > li{
+        color: ${({ theme }) => theme.brightText};
         margin: 0 6px;
     }
 `;
@@ -111,8 +112,8 @@ export class Work extends Component {
                 header={<span>{logs.length} <Icon type="book"/></span> }
                 itemLayout="horizontal"
                 renderItem={props => <Comment
-                                        actions={[<Icon type="edit" style={{color: this.props.theme.warningColor, fontSize: 16}}/>,
-                                                <Icon type="delete" style={{color: this.props.theme.errorColor, fontSize: 16}}/>]}
+                                        actions={[<Icon type="edit" style={{fontSize: 16}}/>,
+                                                <Icon type="delete" style={{fontSize: 16}}/>]}
                                         author={props.author}
                                         avatar={props.avatar}
                                         content={props.content}
@@ -169,4 +170,4 @@ function mapDispatchToProps(dispatch) {
 	};
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(withTheme(Work));
+export default connect(mapStateToProps, mapDispatchToProps)(Work);

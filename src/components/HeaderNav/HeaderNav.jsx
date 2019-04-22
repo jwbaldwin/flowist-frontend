@@ -18,7 +18,7 @@ const StyledHeader = styled(Header)`
     height: 40px;
     box-shadow: ${({ theme }) => theme.boxShadow};
 
-    .nav-header-item:hover {
+    .nav-header-item  > span:hover, .nav-header-item img:hover {
         background: ${({theme}) => theme.background};
     }
 

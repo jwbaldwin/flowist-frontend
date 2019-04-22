@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Icon, Menu, message, Avatar, Dropdown } from 'antd';
 import { Auth } from 'aws-amplify';
+import styled from 'styled-components';
 import ThemeSwitch from '../../ThemeSwitch';
 import '../HeaderNav.scss';
 
@@ -68,9 +69,9 @@ export class UserMenu extends Component {
 						textRendering: 'optimizelegibility'
 					}}
 				>
-					<Avatar icon="user" size="30" />
+					<Avatar icon="user" size={30} />
 					<span
-						style={{ padding: '0 5px'}}
+						style={{ padding: '0 5px', fontWeight: '600'}}
 						id="username"
 					>
 						{username}

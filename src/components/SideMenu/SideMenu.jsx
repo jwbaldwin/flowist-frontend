@@ -38,7 +38,7 @@ const StyledMenu = styled(Menu)`
     border: none;
 `;
 
-const ThemeDivider = styled(Menu.Divider)`
+const StyledDivider = styled(Menu.Divider)`
     background-color: ${({ theme }) => theme.content};
     height: 2px !important;
     width:  90%;
