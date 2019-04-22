@@ -19,10 +19,6 @@ export class SignUpFormNormal extends Component {
         autoCompleteResult: [],
     };
 
-    componentDidMount() {
-        document.title = "Sign Up | Flowist";
-    }
-
     handleSubmit = async (e) => {
         e.preventDefault();
         this.props.form.validateFieldsAndScroll(async (err, values) => {
@@ -40,7 +36,7 @@ export class SignUpFormNormal extends Component {
                     this.setState({email: values.email, password: values.password, isLoading: false })
                     notification.success({
                         "message": "Check your email!",
-                        "description": "We just sent a verification code to your email!"
+                        "description": "We just sent a verification code to you!"
                     });
                 } catch (e) {
                     this.props.showSignUpError(e.message);
@@ -54,7 +50,6 @@ export class SignUpFormNormal extends Component {
         e.preventDefault();
         this.props.form.validateFieldsAndScroll(async (err, values) => {
             if (!err) {
-                console.log('Received values of form confirmation: ', values);
                 try {
                     await Auth.confirmSignUp(this.state.email, values.confirmationCode);
                     await Auth.signIn(this.state.email, this.state.password);
@@ -138,11 +133,11 @@ export class SignUpFormNormal extends Component {
                         rules: [
                             {
                                 type: 'email',
-                                message: 'The input is not valid E-mail'
+                                message: 'The input is not a valid e-mail'
                             },
                             {
                                 required: true,
-                                message: 'Please input your E-mail'
+                                message: 'Please input your e-mail'
                             }
                         ]
                     })(<Input size='large'/>)}
@@ -215,7 +210,7 @@ export class SignUpFormNormal extends Component {
                             {
                                 required: true,
                                 min: 4,
-                                message: 'Input the confirmation code found in the email.'
+                                message: 'Input the confirmation code found in your email.'
                             }
                         ]
                     })(<Input size='large'

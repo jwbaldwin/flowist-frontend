@@ -25,10 +25,6 @@ export class LoginFormNormal extends Component {
         }
     }
 
-    componentDidMount() {
-        document.title = "Log In |  Flowist";
-    }
-
 	handleSubmit = async (event) => {
 		event.preventDefault();
 		this.props.form.validateFields(async (err, values) => {
