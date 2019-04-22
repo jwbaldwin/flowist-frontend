@@ -32,3 +32,21 @@
 		font-size: 16px !important;
 	}
 }
+
+
+// GLOBAL BORDER-RADIUS
+.ant-btn-circle {
+    border-radius: 50% !important;
+}
+
+.ant-input, .ant-select-selection, .ant-btn {
+    border-radius: 4px;
+}
+
+// FONT-ICON MATCH TO ANT
+.fas {
+    min-width: 14px;
+    margin-right: 10px;
+    font-size: 14px;
+    transition: font-size 0.15s cubic-bezier(0.215, 0.61, 0.355, 1), margin 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+}

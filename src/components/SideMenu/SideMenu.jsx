@@ -38,7 +38,7 @@ const StyledMenu = styled(Menu)`
     border: none;
 `;
 
-const ThemeDivider = styled(Menu.Divider)`
+const StyledDivider = styled(Menu.Divider)`
     background-color: ${({ theme }) => theme.content};
     height: 2px !important;
     width:  90%;
@@ -52,13 +52,13 @@ class SideMenu extends Component {
                 <StyledMenu style={{ width: '100% !important' }} mode="vertical" theme={this.props.settings.theme} defaultSelectedKeys={[this.props.location.pathname]}>
 					<StyledItem className='menu-item' key="/app">
 						<Link to="/app">
-							<Icon type="rest" theme="filled"/>
+							<icon class="fas fa-coffee" />
 							<span>Flows</span>
 						</Link>
 					</StyledItem>
                     <StyledItem className='menu-item' key="/app/archive">
 						<Link to="/app/archive">
-							<Icon type="hdd" theme="filled"/>
+							<icon class="fas fa-box-open" />
 							<span>Archive</span>
 						</Link>
 					</StyledItem>

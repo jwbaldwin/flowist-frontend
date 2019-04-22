@@ -2,19 +2,41 @@ import React, { Component } from 'react';
 import { Layout, List, Icon, Skeleton, Typography, Tag, Badge, Drawer, Button } from 'antd';
 import { mapIcon, mapFlowStatusToBadge, mapStringToColor } from '../../../common';
 import FlowItem from '../../FlowItem';
-import { withTheme } from 'styled-components';
+import styled, { withTheme } from 'styled-components';
 import moment from "moment";
 import './ArchiveContent.scss';
 
 const { Content } = Layout;
 const { Text } = Typography;
 
-const IconText = ({ type, text, color }) => (
+const IconText = ({ type, text }) => (
     <span>
-        <Icon type={type} style={{ marginRight: 8, color: color }} />
+        <Icon type={type} style={{ marginRight: 8 }} />
         {text}
     </span>
 );
+
+const StyledList = styled(List)`
+    color: ${({ theme }) => theme.defaultText};
+    background: ${({ theme }) => theme.content};
+    border: 1px solid ${({ theme }) => theme.content};
+    box-shadow: ${({ theme }) => theme.boxShadow};
+    padding: 24px;
+    border-radius: 8px;
+
+    &.ant-list-bordered .ant-list-item, &.ant-list-split .ant-list-header {
+        border-bottom: none;
+    }
+
+    .ant-badge-dot {
+        box-shadow: 0 0 0 1px ${({ theme }) => theme.content};
+    }
+`;
+
+const TitleText = styled.h4`
+    color: ${({ theme }) => theme.brightText};
+    font-weight: 600 !important;
+`
 
 export class ArchiveContent extends Component {
     state = {
@@ -34,17 +56,15 @@ export class ArchiveContent extends Component {
     render() {
         return (
             <Content>
-                <List
+                <StyledList
                     bordered
-                    header={"Archived Flows"}
                     className="archive-list"
                     loading={this.props.isLoading}
                     itemLayout="horizontal"
                     loadMore=''
-                    style={{ background: '#fff' }}
                     dataSource={this.props.flows}
                     renderItem={(item) => (
-                        <List.Item actions={[<Button onClick={() => this.showItem(item.id)}><IconText type="plus-circle" text="more" color={this.props.theme.successColor} /></Button>,]}
+                        <List.Item actions={[<Button type="primary" onClick={() => this.showItem(item.id)}><IconText type="plus-circle" text="more" /></Button>,]}
                                     extra={<span>{moment().to(item.created)}</span>}>
                             <Skeleton avatar title={false} loading={this.props.isLoading} active>
                                 <List.Item.Meta
@@ -53,7 +73,7 @@ export class ArchiveContent extends Component {
                                             <Icon type={mapIcon(item.activity)} style={{ fontSize: '24px' }} />
                                         </Badge>
                                     }
-                                    title={<Text strong>{item.title}</Text>}
+                                    title={<TitleText>{item.title}</TitleText>}
                                     description={item.tags.map(tag => <Tag color={mapStringToColor(tag)}>{tag}</Tag>)}
                                 />
                             </Skeleton>

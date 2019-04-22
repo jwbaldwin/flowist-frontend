@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Tabs, Col, Divider } from 'antd';
+import { Tabs, Col, Divider, Alert } from 'antd';
 import LoginForm from './LoginForm';
 import SignUpForm from './SignUpForm';
 import { Github } from '../SocialLogin';
@@ -14,7 +14,37 @@ function callback(key) {
 }
 
 export class UserAuth extends Component {
+    state = {
+		errorShow: false,
+		error: ''
+	};
+
+	handleClose = () => {
+		this.setState({ errorShow: false });
+	};
+
+	showError = (message) => {
+		this.setState({ errorShow: true, error: message });
+	};
+
+    componentDidMount() {
+        document.title = "Log In or Sign Up |  Flowist";
+    }
+
+
 	render() {
+        const errorAlert = (
+			<Alert
+				style={{ marginBottom: 16, textAlign: 'left' }}
+				message="Error"
+				description={this.state.error}
+				showIcon
+				type="error"
+				closable
+				afterClose={this.handleClose}
+			/>
+		);
+
 		return (
 			<div id="main-panel" className="centered">
 				<Col xs={2} sm={7} md={8} lg={8} xl={9} />
@@ -24,14 +54,16 @@ export class UserAuth extends Component {
 							<img src={logo} id="app-logo" alt="Flowist Logo" />
 						</div>
 						<Tabs onChange={callback} type="card" style={{ textAlign: 'left' }}>
-							<TabPane tab="Login" key="1">
+							<TabPane tab="Log In" key="1">
 								<div className="gutter-box">
-									<LoginForm />
+									{this.state.errorShow ? errorAlert : null}
+									<LoginForm showLoginError={this.showError} />
 								</div>
 							</TabPane>
 							<TabPane tab="Sign Up" key="2">
 								<div className="gutter-box">
-									<SignUpForm />
+									{this.state.errorShow ? errorAlert : null}
+									<SignUpForm showSignUpError={this.showError} />
 								</div>
 							</TabPane>
 						</Tabs>

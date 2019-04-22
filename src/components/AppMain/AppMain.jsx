@@ -60,28 +60,28 @@ export class AppMain extends Component {
 					{...this.props}
 				/> : null }
 				<StyledLayout>
-					<HeaderNav toggle={this.toggleCollapse} collapsed={this.state.collapsed} {...this.props} 
+					<HeaderNav toggle={this.toggleCollapse} collapsed={this.state.collapsed} {...this.props}
 						theme={this.props.settings.theme}/>
                     <Row>
                         <TitleContainer/>
                     </Row>
 					<Row type="flex" justify="space-around" style={{paddingBottom: 90}}>
 						<Col span={1}/>
-						{ !isMobile ? 
+						{ !isMobile ?
                         <Col xs={0} sm={0} md={4} lg={4} xl={4}>
 							<SideMenu activeFlows={ this.props.flows.filter((flow) => flow.flowStatus === 'ACTIVE')}{...this.props} />
 						</Col>  : null }
 						<Col xs={0} sm={0} md={1} lg={1} xl={1}/>
 						<Col xs={22} sm={22} md={10} lg={10} xl={10}>
-							<Route exact path="/app" component={() => <Home flows={this.props.flows} />} />
+							<Route exact path="/app" component={() => <Home flows={this.props.flows} title="Home" />} />
 							<Route exact path="/app/flows/:id" component={() => <Home flows={this.props.flows} />} />
-							<Route exact path="/app/tags" component={Tags} />
-							<Route exact path="/app/archive" component={() => <Archive flows={this.props.flows} />} />
-							<Route exact path="/app/settings" component={Settings} />
+							<Route exact path="/app/tags" component={Tags} title="Tags" />
+							<Route exact path="/app/archive" component={() => <Archive flows={this.props.flows}  title="Archive" />} />
+							<Route exact path="/app/settings" component={Settings}  title="Settings" />
 							<Route
 								exact
 								path="/app/profile"
-								component={() => <Profile flows={this.props.flows} user={this.props.user.user} />}
+								component={() => <Profile flows={this.props.flows} user={this.props.user.user}  title="Profile" />}
 							/>
 						</Col>
 						<Col xs={0} sm={0} md={3} lg={3} xl={3}/>

@@ -26,7 +26,7 @@ class App extends Component {
 			await Auth.currentSession();
 			const userDetails = await Auth.currentAuthenticatedUser();
 			this.props.userActions.updateUser({ ...this.props.user, user: userDetails, isAuthenticated: true });
-		    this.props.settingsActions.fetchSettings();         
+		    this.props.settingsActions.fetchSettings();
 		} catch (e) {
 			console.error(e);
 		}
@@ -49,9 +49,9 @@ class App extends Component {
                                     </Suspense>
                                 )}
                             />
-                            <ProtectedRoute path="/app" authed={this.props.user.isAuthenticated} component={AppMain} />
-                            <Route exact path="/" component={ComingSoon} />
-                            <Route component={NotFound} />
+                            <ProtectedRoute path="/app" authed={this.props.user.isAuthenticated} component={AppMain} title="Home" />
+                            <Route exact path="/" component={ComingSoon} title="Stay in the flow" />
+                            <Route component={NotFound} title="404 Not Found"/>
                         </Switch>
                     </BrowserRouter>
                 </ThemeProvider>

@@ -22,7 +22,7 @@ const StyledMenu = styled(Menu)`
     transiton: ${({ theme }) => theme.transiton};
 `;
 
-const ThemeDivider = styled(Menu.Divider)`
+const StyledDivider = styled(Menu.Divider)`
     background-color: ${({ theme }) => theme.content} !important;
 `;
 
@@ -93,16 +93,16 @@ class Sidebar extends Component {
                             </Menu.Item>
                         )
                     }
-                    <ThemeDivider />
+                    <StyledDivider />
 					<Menu.Item key="/app">
 						<Link to="/app">
-							<Icon type="rest" theme="filled"/>
+							<icon class="fas fa-coffee" />
 							<span>Flows</span>
 						</Link>
 					</Menu.Item>
                     <Menu.Item key="/app/archive">
 						<Link to="/app/archive">
-							<Icon type="hdd" theme="filled"/>
+							<icon class="fas fa-box-open" />
 							<span>Archive</span>
 						</Link>
 					</Menu.Item>

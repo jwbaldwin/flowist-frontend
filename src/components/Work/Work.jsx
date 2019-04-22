@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import * as logActions from '../../actions/logActions';
 import { Layout, Col, Card, Comment, Avatar, Form, Button, List, Input, Spin, Icon } from 'antd';
-import styled, { withTheme } from 'styled-components';
+import styled from 'styled-components';
 import moment from 'moment';
 
 const { Content } = Layout;
@@ -31,38 +31,40 @@ const Logs = styled(List)`
         color: ${({ theme }) => theme.defaultText};
     }
 
-    .ant-comment-inner {
-        padding: 8px 0px !important;
-    }
-
     .ant-comment-actions {
         float: right;
     }
     .ant-comment-actions > li{
+        color: ${({ theme }) => theme.brightText};
         margin: 0 6px;
+    }
+
+    &.ant-list-split .ant-list-header {
+        border: none;
     }
 `;
 
 const WorkLogger = styled(TextArea)`
     color: ${({ theme }) => theme.defaultText};
-    background: ${({ theme }) => theme.background};
+    background: ${({ theme }) => theme.contentOther};
     transiton: ${({ theme }) => theme.transiton};
+    border: ${({ theme }) => theme.border} !important;
 `;
 
 const Editor = ({
     onChange, onSubmit, submitting, value,
 }) => (
         <div>
-            <Form.Item>
+            <Form.Item style={{margin: 2}}>
                 <WorkLogger rows={2} onChange={onChange} value={value} />
             </Form.Item>
-            <Form.Item>
+            <Form.Item style={{margin: 0}}>
                 <Button
                     htmlType="submit"
                     loading={submitting}
                     onClick={onSubmit}
                     type="primary"
-                    icon="read"
+                    icon="rocket"
                     block
                 >
                     Log
@@ -111,8 +113,8 @@ export class Work extends Component {
                 header={<span>{logs.length} <Icon type="book"/></span> }
                 itemLayout="horizontal"
                 renderItem={props => <Comment
-                                        actions={[<Icon type="edit" style={{color: this.props.theme.warningColor, fontSize: 16}}/>,
-                                                <Icon type="delete" style={{color: this.props.theme.errorColor, fontSize: 16}}/>]}
+                                        actions={[<Icon type="edit" style={{fontSize: 16}}/>,
+                                                <Icon type="delete" style={{fontSize: 16}}/>]}
                                         author={props.author}
                                         avatar={props.avatar}
                                         content={props.content}
@@ -169,4 +171,4 @@ function mapDispatchToProps(dispatch) {
 	};
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(withTheme(Work));
+export default connect(mapStateToProps, mapDispatchToProps)(Work);

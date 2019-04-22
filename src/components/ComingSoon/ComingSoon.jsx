@@ -6,7 +6,7 @@ const { Content } = Layout;
 
 const mainStyle = {
     height: '100vh',
-    background: 'linear-gradient(-45deg, #F33F47, #F33F47, #F33F47)',
+    background: 'linear-gradient(-45deg, #40a9ff, #40a9ff, #40a9ff)',
 }
 
 export class ComingSoon extends Component {
