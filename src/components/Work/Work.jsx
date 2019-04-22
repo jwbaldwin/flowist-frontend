@@ -31,10 +31,6 @@ const Logs = styled(List)`
         color: ${({ theme }) => theme.defaultText};
     }
 
-    .ant-comment-inner {
-        padding: 8px 0px !important;
-    }
-
     .ant-comment-actions {
         float: right;
     }
@@ -42,28 +38,33 @@ const Logs = styled(List)`
         color: ${({ theme }) => theme.brightText};
         margin: 0 6px;
     }
+
+    &.ant-list-split .ant-list-header {
+        border: none;
+    }
 `;
 
 const WorkLogger = styled(TextArea)`
     color: ${({ theme }) => theme.defaultText};
-    background: ${({ theme }) => theme.background};
+    background: ${({ theme }) => theme.contentOther};
     transiton: ${({ theme }) => theme.transiton};
+    border: ${({ theme }) => theme.border} !important;
 `;
 
 const Editor = ({
     onChange, onSubmit, submitting, value,
 }) => (
         <div>
-            <Form.Item>
+            <Form.Item style={{margin: 2}}>
                 <WorkLogger rows={2} onChange={onChange} value={value} />
             </Form.Item>
-            <Form.Item>
+            <Form.Item style={{margin: 0}}>
                 <Button
                     htmlType="submit"
                     loading={submitting}
                     onClick={onSubmit}
                     type="primary"
-                    icon="read"
+                    icon="rocket"
                     block
                 >
                     Log

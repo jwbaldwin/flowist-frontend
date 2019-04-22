@@ -17,10 +17,10 @@ export class Overview extends Component {
         return (
             <Content>
                 <Row type="flex" justify="center">
-                    <Col xs={24} sm={24} md={3} lg={3}>
+                    <Col span={11}>
                         <Statistic title="Total Flows" value={flows.length} prefix={<Icon type="coffee" />} />
                     </Col>
-                    <Col xs={24} sm={24} md={3} lg={3}>
+                    <Col span={11}>
                         <Statistic title="Active" value={active} prefix={<Icon type="thunderbolt" />} />
                     </Col>
                 </Row>
