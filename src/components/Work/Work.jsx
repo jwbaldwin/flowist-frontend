@@ -92,7 +92,7 @@ export class Work extends Component {
                     author: 'Han Solo',
                     avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
                     content: this.state.value,
-                    created: moment().now()})
+                    created: moment()})
         this.setState({
             submitting: false,
             value: ''});
