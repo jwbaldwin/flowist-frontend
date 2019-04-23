@@ -4,6 +4,10 @@ import { Layout } from 'antd';
 const { Content } = Layout;
 
 export class Settings extends Component {
+    componentDidMount() {
+        document.title = this.props.title + " |  Flowist";
+    }
+
 	render() {
 		return (
 			<Content>

@@ -10,9 +10,9 @@
 }
 
 #app-headernav-logo, #app-headernav-logo-main {
-    height: 30px;
+    height: 40px;
     padding: 4px;
-    margin:  5px;
+    margin-left: 8px;
 	vertical-align: middle;
 }
 
@@ -39,6 +39,10 @@
 
     #app-headernav-logo {
         display: none !important
+    }
+
+    .ant-dropdown {
+        width: 200px;
     }
 
 }

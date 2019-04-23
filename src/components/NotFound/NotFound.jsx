@@ -5,6 +5,10 @@ import './NotFound.scss';
 const { Content } = Layout;
 
 export class NotFound extends Component {
+    componentDidMount() {
+        document.title = this.props.title + " |  Flowist";
+    }
+
     render() {
         return (
             <Content className="centered not-found" style={{ padding: 24}}>
