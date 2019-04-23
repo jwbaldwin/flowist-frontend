@@ -55,6 +55,7 @@ export class FlowModal extends Component {
 		this.setState({
 			visible: false
 		});
+        this.props.addKeybindListener();
 	};
 
 	handleChange = (input) => (event) => {
