@@ -1,13 +1,14 @@
 const PREFIX = '#';
 
-export function extractTags(items) {
-    // Take props and derive tags from their text
-    const { activity, title, content } = items.flowData;
+export function extractTags(currentActivity) {
     const extractedTags = [];
 
-    if(activity !== '') {
-        extractedTags.push(extractFromActivity(activity));
+    if(currentActivity !== '' && currentActivity !== undefined) {
+        extractedTags.push(extractFromActivity(currentActivity));
+    } else if ( currentActivity === undefined ) {
+        return [];
     }
+
     return extractedTags;
 }
 

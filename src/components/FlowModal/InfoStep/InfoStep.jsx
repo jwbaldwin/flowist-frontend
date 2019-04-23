@@ -15,8 +15,9 @@ export class InfoStep extends Component {
                         id="activity-group"
                         showSearch
                         style={{ width: '100%'}}
-                        placeholder="Drinking coffee..."
-                        value={this.props.flowData.activity}
+                        value={this.props.flowData.activity === '' ?
+                            <span style={{color: '#bfbfbf'}}>Drinking coffee...</span>
+                            : this.props.flowData.activity}
                         optionFilterProp="children"
                         allowClear={true}
                         onChange={this.props.handleChange('activity')}
