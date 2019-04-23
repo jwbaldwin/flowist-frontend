@@ -9,11 +9,7 @@ export class EmptyHome extends Component {
 	};
 
     componentWillMount() {
-		document.addEventListener('keydown', this.handleKeyPress.bind(this));
-	}
-
-	componentWillUnmount() {
-		document.removeEventListener('keydown', this.handleKeyPress.bind(this));
+		this.addKeybindListener();
 	}
 
 	handleKeyPress = (event) => {
@@ -26,13 +22,18 @@ export class EmptyHome extends Component {
     };
 
 	showModal = () => {
+        document.removeEventListener('keydown', this.handleKeyPress);
 		this.setState({ visible: !this.state.visible });
 	};
+
+    addKeybindListener = () => {
+        document.addEventListener('keydown', this.handleKeyPress);
+    }
 
 	render() {
 		return (
 			<div>
-				<FlowModal visible={this.state.visible} type="create"/>
+				<FlowModal visible={this.state.visible} type="create" addKeybindListener={this.addKeybindListener}/>
 				<Empty
                     image={<Icon type="coffee" style={{fontSize: 64, color: "#ccc"}}/>}
 					description={
