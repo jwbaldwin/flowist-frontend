@@ -6,8 +6,7 @@ RUN yarn global add react-scripts@1.1.1 --silent
 RUN yarn run build
 
 FROM mhart/alpine-node
-RUN yarn global add react-scripts@1.1.1
+RUN yarn global add serve
 WORKDIR /app
 COPY --from=builder /app/build .
-EXPOSE 3000
-CMD ["yarn", "start"]
+CMD ["serve", "-p", "3000", "-s", "."] 
