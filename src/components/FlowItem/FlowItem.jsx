@@ -11,6 +11,7 @@ import createLinkifyPlugin from 'draft-js-linkify-plugin';
 import createMarkdownShortcutsPlugin from 'draft-js-markdown-shortcuts-plugin';
 import { stateFromMarkdown } from "draft-js-import-markdown";
 import { mapIcon, mapFlowStatusToBadge } from '../../common';
+import moment from 'moment';
 import FlowTagsFooter from './FlowTagsFooter';
 import FlowModal from '../FlowModal';
 import styled, { withTheme } from 'styled-components';

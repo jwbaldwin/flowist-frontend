@@ -59,10 +59,10 @@ export class HeaderNav extends Component {
 				<Row>
 					<Col span={1} />
 					<Col span={5} className="nav-header-item">
-						<Row type="flex" justify="left">
+						<Row type="flex" justify="start">
 							<Icon
 								className="header-trigger"
-								type={this.props.collapsed ? 'menu-fold' : 'menu-unfold'}
+								type={this.props.collapsed ? 'menu-unfold' : 'menu-fold'}
 								onClick={this.props.toggle}
 							/>
 							<Link to="/app">

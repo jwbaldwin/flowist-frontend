@@ -88,7 +88,8 @@ export class Work extends Component {
             return;
         }
         this.setState({submitting: true})
-        this.props.logActions.addLog({
+        this.props.logActions.addLog(this.props.flow_id,
+                    {
                     author: 'Han Solo',
                     avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
                     content: this.state.value,

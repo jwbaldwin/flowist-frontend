@@ -17,7 +17,7 @@ export class FlowModal extends Component {
 			activity: '',
 			title: '',
 			content: '',
-			tags: []
+			tags: [],
 		}
 	};
 
@@ -55,7 +55,9 @@ export class FlowModal extends Component {
 		this.setState({
 			visible: false
 		});
-        this.props.addKeybindListener();
+		try {
+			this.props.addKeybindListener();			
+		} catch (e) {}
 	};
 
 	handleChange = (input) => (event) => {

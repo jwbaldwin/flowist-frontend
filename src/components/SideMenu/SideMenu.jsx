@@ -52,13 +52,13 @@ class SideMenu extends Component {
                 <StyledMenu style={{ width: '100% !important' }} mode="vertical" theme={this.props.settings.theme} defaultSelectedKeys={[this.props.location.pathname]}>
 					<StyledItem className='menu-item' key="/app">
 						<Link to="/app">
-							<icon class="fas fa-coffee" />
+							<i className="fas fa-coffee" />
 							<span>Flows</span>
 						</Link>
 					</StyledItem>
                     <StyledItem className='menu-item' key="/app/archive">
 						<Link to="/app/archive">
-							<icon class="fas fa-box-open" />
+							<i className="fas fa-box-open" />
 							<span>Archive</span>
 						</Link>
 					</StyledItem>

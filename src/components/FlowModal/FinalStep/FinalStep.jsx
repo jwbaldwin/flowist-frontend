@@ -8,7 +8,6 @@ export class FinalStep extends Component {
 		super(props)
 
 		this.state = {
-            extractedTags: [],
 			tags: [],
 			inputVisible: false,
 			inputValue: ''
@@ -16,7 +15,10 @@ export class FinalStep extends Component {
 	}
 
 	static getDerivedStateFromProps(nextProps, prevState){
-		  return { extractedTags: extractTags(nextProps.flowData.activity)};
+		if(nextProps.flowData.tags !== prevState.tags){
+		  return { tags: nextProps.flowData.tags};
+	   }
+	   else return null;
 	 }
 
 	handleClose = (removedTag) => {
@@ -52,7 +54,7 @@ export class FinalStep extends Component {
 	saveInputRef = (input) => (this.input = input);
 
 	render() {
-		const { tags, inputVisible, inputValue, extractedTags } = this.state;
+		const { tags, inputVisible, inputValue } = this.state;
 
 		return (
             <div>
@@ -61,16 +63,9 @@ export class FinalStep extends Component {
                 </Tooltip>
                 <label htmlFor='tags'><Icon type='tags'/> Tag your flow!</label>
                 <div className="tags">
-                    {extractedTags.map((tag, index) => {
-                        return (
-                            <Tag color={mapStringToColor(tag)} key={tag}>
-                                {tag}
-                            </Tag>
-                        );
-                    })}
                     {tags.map((tag, index) => {
                         return (
-                            <Tag closable color={mapStringToColor(tag)} key={tag} afterClose={() => this.handleClose(tag)}>
+                            <Tag closable color={mapStringToColor(tag)} key={tag} onClose={() => this.handleClose(tag)}>
                                 {tag}
                             </Tag>
                         );

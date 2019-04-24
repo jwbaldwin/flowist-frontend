@@ -22,10 +22,6 @@ const StyledMenu = styled(Menu)`
     transiton: ${({ theme }) => theme.transiton};
 `;
 
-const StyledDivider = styled(Menu.Divider)`
-    background-color: ${({ theme }) => theme.content} !important;
-`;
-
 const LogoText = styled.h1`
     color: ${({ theme }) => theme.defaultText};
 `
@@ -78,31 +74,15 @@ class Sidebar extends Component {
                     defaultSelectedKeys={[this.props.location.pathname]}
                     mode="inline"
                 >
-                    {this.props.activeFlows.length > 0
-                        ? (this.props.activeFlows.map((flow) =>
-                            <Menu.Item key={"/app/flows/" + flow.id}>
-                                <Link to={"/app/flows/" + flow.id}>
-                                    <Icon type={mapIcon(flow.activity)} />
-                                    <span>{flow.title.replace(/^(.{15}[^\s]*).*/, "$1 ...")}</span>
-                                </Link>
-                            </Menu.Item>
-                        ))
-                        : (
-                            <Menu.Item>
-                                Add one!
-                            </Menu.Item>
-                        )
-                    }
-                    <StyledDivider />
 					<Menu.Item key="/app">
 						<Link to="/app">
-							<icon class="fas fa-coffee" />
+							<i className="fas fa-coffee" />
 							<span>Flows</span>
 						</Link>
 					</Menu.Item>
                     <Menu.Item key="/app/archive">
 						<Link to="/app/archive">
-							<icon class="fas fa-box-open" />
+							<i className="fas fa-box-open" />
 							<span>Archive</span>
 						</Link>
 					</Menu.Item>
@@ -118,11 +98,8 @@ class Sidebar extends Component {
 							<span>Insights (beta)</span>
 						</Link>
 					</Menu.Item>
-                    <Menu.ItemGroup>
-                       <ThemeSwitch updateTheme={this.updateTheme} theme={this.props.settings.theme}/>
-                    </Menu.ItemGroup>
 				</StyledMenu>
-</StyledSider>
+            </StyledSider>
         );
     }
 }
