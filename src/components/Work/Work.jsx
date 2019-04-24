@@ -13,6 +13,7 @@ const TextArea = Input.TextArea;
 const WorkCard = styled(Card)`
     color: ${({ theme }) => theme.defaultText};
     background: ${({ theme }) => theme.content};
+    box-shadow: ${({ theme }) => theme.boxShadow};
     transiton: ${({ theme }) => theme.transiton};
     margin-top: 1em !important;
 `;
@@ -22,6 +23,11 @@ const Logs = styled(List)`
     background: ${({ theme }) => theme.content};
     transiton: ${({ theme }) => theme.transiton};
     text-align: left;
+
+    .ant-comment-inner {
+        padding: 0 !important;
+    }
+
     .ant-comment-content-author-name {
          color: ${({ theme }) => theme.brightText};
          font-weight: 600 !important;
@@ -32,6 +38,7 @@ const Logs = styled(List)`
     }
 
     .ant-comment-actions {
+        margin-top: 0;
         float: right;
     }
     .ant-comment-actions > li{

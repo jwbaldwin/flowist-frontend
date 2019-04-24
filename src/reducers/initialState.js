@@ -41,6 +41,12 @@ export default {
             "avatar": 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
             "content": "This is a testing log that will be #used to #test edits and deletes and so on",
             "datetime": "2019-02-25T03:57:38.244Z",
+           },
+           {
+            "author": 'Luke Skywalker',
+            "avatar": 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
+            "content": "This is a second testing log that will be #used to #test edits and deletes and spacing",
+            "datetime": "2019-02-25T12:57:38.244Z",
            }],
         isLoading: true
     },
