@@ -19,7 +19,7 @@ const light = {
 
     // THEME COLORS
     primaryColor: "#40a9ff !important",
-    secondaryColor: "#eff7ff",
+    secondaryColor: "#eff7ff !important",
     primaryColorHover: "#3ED9DC",
     infoColor: "#1890ff",                           // info state color
     successColor: "#52c41a",                        // success state color

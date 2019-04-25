@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import * as logActions from '../../actions/logActions';
-import { Layout, Col, Card, Comment, Button, List, Input, Spin, Icon, Menu, Dropdown, Modal } from 'antd';
+import WorkList from './WorkList';
+import { Layout, Col, Card, Button, Input, Spin, Modal } from 'antd';
 import styled, { withTheme } from 'styled-components';
-import MicrolinkCard from '@microlink/react'
 import moment from 'moment';
 
 const { Content } = Layout;
@@ -24,53 +24,6 @@ const WorkCard = styled(Card)`
         border: none;
     }
 `;
-
-const Logs = styled(List)`
-    color: ${({ theme }) => theme.defaultText};
-    background: ${({ theme }) => theme.content};
-    transiton: ${({ theme }) => theme.transiton};
-    line-height: 1.25 !important;
-    text-align: left;
-
-    .ant-comment-inner {
-        padding: 0 !important;
-    }
-
-    .ant-comment-content-author-name {
-         color: ${({ theme }) => theme.brightText};
-         font-weight: 600 !important;
-    }
-
-    .ant-comment-content-author-time{
-        color: ${({ theme }) => theme.defaultText};
-    }
-
-    .ant-comment-content-detail {
-
-    }
-
-    .ant-comment-actions {
-        margin-top: 0;
-        float: right;
-    }
-    .ant-comment-actions > li{
-        color: ${({ theme }) => theme.brightText};
-        margin: 4px;
-    }
-
-    .ant-comment-actions > li:hover{
-        color: ${({ theme }) => theme.primaryColor};
-    }
-
-    &.ant-list-split .ant-list-header {
-        border: none;
-    }
-`;
-
-const StyledMicroLink = styled(MicrolinkCard)`
-  width: 100%;
-  border-radius: 8px;
-`
 
 const WorkLogger = styled(TextArea)`
     color: ${({ theme }) => theme.defaultText};
@@ -160,30 +113,6 @@ export class Work extends Component {
         const { user, logs, isLoading } = this.props;
         const { value, submitting } = this.state;
 
-        const optionsMenu = (flow_id, log_id) => (
-            <Menu>
-                <Menu.Item key="0" onClick={() => this.showDeleteConfirm(flow_id, log_id, this.deleteItem)}>
-                    <Icon type="delete" style={{ fontSize: 16 }} onClick={() => this.showDeleteConfirm(flow_id, log_id, this.deleteItem)} /> Delete
-                </Menu.Item>
-            </Menu>
-        );
-
-        const LogsList = ({ logs }) => (
-            <Logs
-                dataSource={logs}
-                header={<span>{logs.length} <Icon type="book" /></span>}
-                itemLayout="horizontal"
-                renderItem={log => <Comment
-                    actions={[<Dropdown trigger={['click']} overlay={optionsMenu(this.props.flow_id, log.id)} placement="topCenter">
-                        <Icon type="more" style={{ fontSize: 16 }} />
-                    </Dropdown>]}
-                    author={log.author}
-                    avatar={log.avatar}
-                    content={log.type === 'link' ? <StyledMicroLink url={log.content} /> : log.content}
-                    datetime={moment().to(log.created)} />}
-            />
-        );
-
         return (
             <Content className="centered">
                 <Col span={24}>
@@ -191,7 +120,7 @@ export class Work extends Component {
                         <Spin size="small" /> :
                         <WorkCard
                             bordered={false}>
-                            {logs.length > 0 && <LogsList logs={logs} />}
+                            {logs.length > 0 && <WorkList logs={logs} flow_id={this.props.flow_id}  showDeleteConfirm={this.showDeleteConfirm} deleteItem={this.deleteItem}/>}
                         </WorkCard>}
                     <WorkCard bordered={false}>
                         <div style={{textAlign: 'left', paddingBottom: '8px'}}>
