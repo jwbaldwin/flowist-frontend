@@ -19,7 +19,7 @@ const light = {
 
     // THEME COLORS
     primaryColor: "#40a9ff !important",
-    secondaryColor: "#F33F47",
+    secondaryColor: "#eff7ff",
     primaryColorHover: "#3ED9DC",
     infoColor: "#1890ff",                           // info state color
     successColor: "#52c41a",                        // success state color
@@ -50,7 +50,7 @@ const dark = {
 
     // THEME COLORS
     primaryColor: "#40a9ff !important",
-    secondaryColor: "#F33F47",
+    secondaryColor: "#2e384e !important",
     primaryColorHover: "#3ED9DC",
     infoColor: "#1890ff",                           // info state color
     successColor: "#52c41a",                        // success state color

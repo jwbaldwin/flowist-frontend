@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
 import { Row, Col, Layout } from 'antd';
-// import {
-//   CSSTransition,
-//   TransitionGroup,
-// } from 'react-transition-group';
 import FlowItem from '../FlowItem';
 import Work from '../Work';
 import './FlowHome.scss';

@@ -38,6 +38,7 @@ export default {
     logsDebug: {
         data: [{
             "id":"8f170426-8ab8-439f-97bc-577d9016cc16",
+            "type": "log",
             "author": 'James Baldwin',
             "avatar": 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
             "content": "This is a testing log that will be #used to #test edits and deletes and so on",
@@ -45,9 +46,18 @@ export default {
            },
            {
             "id":"8f170426-8fb8-439f-97bc-577d9016cc16",
+            "type": "log",
             "author": 'James Baldwin',
             "avatar": 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
             "content": "This is a second testing log that will be #used to #test edits and deletes and spacing",
+            "datetime": "2019-02-25T12:57:38.244Z",
+           },
+           {
+            "id":"8f170426-8fb8-439f-97bc-577d9016cc16",
+            "type": "link",
+            "author": 'James Baldwin',
+            "avatar": 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
+            "content": "https://www.theverge.com/tldr/2018/2/7/16984284/tesla-space-falcon-heavy-launch-elon-musk",
             "datetime": "2019-02-25T12:57:38.244Z",
            }],
         isLoading: true

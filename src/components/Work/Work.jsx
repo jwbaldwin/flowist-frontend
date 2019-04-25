@@ -3,12 +3,14 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import * as logActions from '../../actions/logActions';
-import { Layout, Col, Card, Comment, Avatar, Form, Button, List, Input, Spin, Icon, Menu, Dropdown, Modal } from 'antd';
-import styled from 'styled-components';
+import { Layout, Col, Card, Comment, Avatar, Form, Button, List, Input, Spin, Icon, Menu, Dropdown, Modal, Tabs } from 'antd';
+import styled, { withTheme } from 'styled-components';
+import MicrolinkCard from '@microlink/react'
 import moment from 'moment';
 
 const { Content } = Layout;
 const TextArea = Input.TextArea;
+const TabPane = Tabs.TabPane;
 const confirm = Modal.confirm;
 
 const WorkCard = styled(Card)`
@@ -17,7 +19,15 @@ const WorkCard = styled(Card)`
     box-shadow: ${({ theme }) => theme.boxShadow};
     transiton: ${({ theme }) => theme.transiton};
     margin-top: 1em !important;
+
+    .ant-btn-unselected {
+        background: transparent !important;
+        border: none;
+    }
 `;
+
+const WorkTabs = styled(Tabs)`
+`
 
 const Logs = styled(List)`
     color: ${({ theme }) => theme.defaultText};
@@ -49,13 +59,22 @@ const Logs = styled(List)`
     }
     .ant-comment-actions > li{
         color: ${({ theme }) => theme.brightText};
-        margin: 0 6px;
+        margin: 4px;
+    }
+
+    .ant-comment-actions > li:hover{
+        color: ${({ theme }) => theme.primaryColor};
     }
 
     &.ant-list-split .ant-list-header {
         border: none;
     }
 `;
+
+const StyledMicroLink = styled(MicrolinkCard)`
+  width: 100%;
+  border-radius: 8px;
+`
 
 const WorkLogger = styled(TextArea)`
     color: ${({ theme }) => theme.defaultText};
@@ -64,14 +83,28 @@ const WorkLogger = styled(TextArea)`
     border: ${({ theme }) => theme.border} !important;
 `;
 
+const LinkLogger = styled(Input)`
+    color: ${({ theme }) => theme.defaultText};
+    background: ${({ theme }) => theme.contentOther};
+    transiton: ${({ theme }) => theme.transiton};
+    border: ${({ theme }) => theme.border} !important;
+`;
+
+const WorkTypeButton = styled(Button)`
+    margin-right: 8px
+    color: ${({ theme }) => theme.primaryColor};
+    background: ${({ theme }) => theme.secondaryColor};
+    border: none !important;
+`
+
 const Editor = ({
     onChange, onSubmit, submitting, value,
 }) => (
         <div>
-            <Form.Item style={{margin: 2}}>
+            <Form.Item style={{ margin: 2 }}>
                 <WorkLogger rows={2} onChange={onChange} value={value} />
             </Form.Item>
-            <Form.Item style={{margin: 0}}>
+            <Form.Item style={{ margin: 0 }}>
                 <Button
                     htmlType="submit"
                     loading={submitting}
@@ -88,14 +121,15 @@ const Editor = ({
 
 export class Work extends Component {
     state = {
+        type: 'log',
         value: '',
         submitting: false,
         editVisible: false,
     }
 
     componentDidMount() {
-		this.props.logActions.fetchLogs(this.props.flow_id);
-	}
+        this.props.logActions.fetchLogs(this.props.flow_id);
+    }
 
     handleChange = (e) => {
         this.setState({
@@ -103,24 +137,33 @@ export class Work extends Component {
         });
     }
 
+    handleType = (type) => {
+        this.setState({
+            type: type,
+        });
+    }
+
     handleSubmit = () => {
         if (!this.state.value || this.state.value.length === 0) {
             return;
         }
-        this.setState({submitting: true})
+        this.setState({ submitting: true })
         this.props.logActions.addLog(this.props.flow_id,
-                    {
-                    author: this.props.user.user.attributes.name + ' ' + this.props.user.user.attributes.family_name,
-                    avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
-                    content: this.state.value,
-                    created: moment()})
+            {
+                author: this.props.user.user.attributes.name + ' ' + this.props.user.user.attributes.family_name,
+                type: this.state.type,
+                avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
+                content: this.state.value,
+                created: moment()
+            })
         this.setState({
             submitting: false,
-            value: ''});
+            value: ''
+        });
     }
 
     deleteItem = (flow_id, log_id) => {
-         this.props.logActions.deleteLog(flow_id, log_id);
+        this.props.logActions.deleteLog(flow_id, log_id);
     }
 
     showDeleteConfirm = (flow_id, log_id, callback) => {
@@ -146,7 +189,7 @@ export class Work extends Component {
         const optionsMenu = (flow_id, log_id) => (
             <Menu>
                 <Menu.Item key="0" onClick={() => this.showDeleteConfirm(flow_id, log_id, this.deleteItem)}>
-                    <Icon type="delete" style={{fontSize: 16}} onClick={() => this.showDeleteConfirm(flow_id, log_id, this.deleteItem)}/> Delete
+                    <Icon type="delete" style={{ fontSize: 16 }} onClick={() => this.showDeleteConfirm(flow_id, log_id, this.deleteItem)} /> Delete
                 </Menu.Item>
             </Menu>
         );
@@ -154,44 +197,54 @@ export class Work extends Component {
         const LogsList = ({ logs }) => (
             <Logs
                 dataSource={logs}
-                header={<span>{logs.length} <Icon type="book"/></span> }
+                header={<span>{logs.length} <Icon type="book" /></span>}
                 itemLayout="horizontal"
                 renderItem={log => <Comment
-                                        actions={[  <Dropdown trigger={['click']} overlay={optionsMenu(this.props.flow_id, log.id)} placement="topCenter">
-                                                        <Icon type="more" style={{ fontSize: 16 }} />
-                                                    </Dropdown>]}
-                                        author={log.author}
-                                        avatar={log.avatar}
-                                        content={log.content}
-                                        datetime={moment().from(log.created)}/>}
+                    actions={[<Dropdown trigger={['click']} overlay={optionsMenu(this.props.flow_id, log.id)} placement="topCenter">
+                        <Icon type="more" style={{ fontSize: 16 }} />
+                    </Dropdown>]}
+                    author={log.author}
+                    avatar={log.avatar}
+                    content={log.type === 'link' ? <StyledMicroLink url={log.content} /> : log.content}
+                    datetime={moment().from(log.created)} />}
             />
         );
 
         return (
             <Content className="centered">
                 <Col span={24}>
-                    { isLoading ?
-                    <Spin size="small" /> :
-                    <WorkCard
-                        bordered={false}>
-                        {logs.length > 0 && <LogsList logs={logs} />}
-                        <Comment
-                            avatar={(
-                                <Avatar
-                                    src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
-                                    alt="Han Solo"
-                                />
-                            )}
-                            content={(
-                                <Editor
-                                    onChange={this.handleChange}
-                                    onSubmit={this.handleSubmit}
-                                    submitting={submitting}
-                                    value={value}
-                                />
-                            )}
-                        />
-                    </WorkCard>}
+                    {isLoading ?
+                        <Spin size="small" /> :
+                        <WorkCard
+                            bordered={false}>
+                            {logs.length > 0 && <LogsList logs={logs} />}
+                        </WorkCard>}
+                    <WorkCard bordered={false}>
+                        <div style={{textAlign: 'left', paddingBottom: '8px'}}>
+                            <WorkTypeButton
+                                type={this.state.type === 'log' ? "primary" : "unselected"}
+                                icon="rocket"
+                                onClick={() => this.handleType('log')}>Log</WorkTypeButton>
+                            <WorkTypeButton
+                                type={this.state.type === 'link' ? "primary" : "unselected"}
+                                icon="link"
+                                onClick={() => this.handleType('link')}>Link</WorkTypeButton>
+                        </div>
+                        {this.state.type === 'log' ?
+                            <WorkLogger placeholder="What's new?" rows={2} onChange={this.handleChange} value={value} onPressEnter={this.handleSubmit} />
+                            :
+                            <LinkLogger placeholder="Paste the link!" onChange={this.handleChange} value={value} onPressEnter={this.handleSubmit}/>
+                        }
+                        <div style={{textAlign: 'right', paddingTop: '8px'}}>
+                            <Button
+                                loading={submitting}
+                                onClick={this.handleSubmit}
+                                type="primary"
+                            >
+                                {"Add " + this.state.type}
+                            </Button>
+                        </div>
+                    </WorkCard>
                 </Col>
             </Content>
         );
@@ -199,23 +252,23 @@ export class Work extends Component {
 }
 
 Work.propTypes = {
-	logs: PropTypes.array,
+    logs: PropTypes.array,
     user: PropTypes.object,
     isLoading: PropTypes.bool
 };
 
 function mapStateToProps(state) {
-	return {
+    return {
         user: state.user,
-		logs: state.logs.data,
+        logs: state.logs.data,
         isLoading: state.logs.isLoading
-	};
+    };
 }
 
 function mapDispatchToProps(dispatch) {
-	return {
-		logActions: bindActionCreators(logActions, dispatch),
-	};
+    return {
+        logActions: bindActionCreators(logActions, dispatch),
+    };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Work);
+export default connect(mapStateToProps, mapDispatchToProps)(withTheme(Work));
