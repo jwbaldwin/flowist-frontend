@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import * as logActions from '../../actions/logActions';
-import { Layout, Col, Card, Comment, Avatar, Form, Button, List, Input, Spin, Icon, Menu, Dropdown, Modal } from 'antd';
+import { Layout, Col, Card, Comment, Button, List, Input, Spin, Icon, Menu, Dropdown, Modal } from 'antd';
 import styled, { withTheme } from 'styled-components';
 import MicrolinkCard from '@microlink/react'
 import moment from 'moment';
@@ -180,7 +180,7 @@ export class Work extends Component {
                     author={log.author}
                     avatar={log.avatar}
                     content={log.type === 'link' ? <StyledMicroLink url={log.content} /> : log.content}
-                    datetime={moment().from(log.created)} />}
+                    datetime={moment().to(log.created)} />}
             />
         );
 
