@@ -110,7 +110,7 @@ export class Work extends Component {
         this.setState({submitting: true})
         this.props.logActions.addLog(this.props.flow_id,
                     {
-                    author: 'Han Solo',
+                    author: this.props.user.user.attributes.name + ' ' + this.props.user.user.attributes.family_name,
                     avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
                     content: this.state.value,
                     created: moment()})
@@ -140,7 +140,7 @@ export class Work extends Component {
     }
 
     render() {
-        const { logs, isLoading } = this.props;
+        const { user, logs, isLoading } = this.props;
         const { value, submitting } = this.state;
 
         const optionsMenu = (flow_id, log_id) => (
@@ -200,11 +200,13 @@ export class Work extends Component {
 
 Work.propTypes = {
 	logs: PropTypes.array,
+    user: PropTypes.object,
     isLoading: PropTypes.bool
 };
 
 function mapStateToProps(state) {
 	return {
+        user: state.user,
 		logs: state.logs.data,
         isLoading: state.logs.isLoading
 	};
