@@ -3,12 +3,13 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import * as logActions from '../../actions/logActions';
-import { Layout, Col, Card, Comment, Avatar, Form, Button, List, Input, Spin, Icon } from 'antd';
+import { Layout, Col, Card, Comment, Avatar, Form, Button, List, Input, Spin, Icon, Menu, Dropdown, Modal } from 'antd';
 import styled from 'styled-components';
 import moment from 'moment';
 
 const { Content } = Layout;
 const TextArea = Input.TextArea;
+const confirm = Modal.confirm;
 
 const WorkCard = styled(Card)`
     color: ${({ theme }) => theme.defaultText};
@@ -22,6 +23,7 @@ const Logs = styled(List)`
     color: ${({ theme }) => theme.defaultText};
     background: ${({ theme }) => theme.content};
     transiton: ${({ theme }) => theme.transiton};
+    line-height: 1.25 !important;
     text-align: left;
 
     .ant-comment-inner {
@@ -35,6 +37,10 @@ const Logs = styled(List)`
 
     .ant-comment-content-author-time{
         color: ${({ theme }) => theme.defaultText};
+    }
+
+    .ant-comment-content-detail {
+
     }
 
     .ant-comment-actions {
@@ -83,12 +89,19 @@ const Editor = ({
 export class Work extends Component {
     state = {
         value: '',
-        submitting: false
+        submitting: false,
+        editVisible: false,
     }
 
     componentDidMount() {
 		this.props.logActions.fetchLogs(this.props.flow_id);
 	}
+
+    handleChange = (e) => {
+        this.setState({
+            value: e.target.value,
+        });
+    }
 
     handleSubmit = () => {
         if (!this.state.value || this.state.value.length === 0) {
@@ -106,27 +119,51 @@ export class Work extends Component {
             value: ''});
     }
 
-    handleChange = (e) => {
-        this.setState({
-            value: e.target.value,
+    deleteItem = (flow_id, log_id) => {
+         this.props.logActions.deleteLog(flow_id, log_id);
+    }
+
+    showDeleteConfirm = (flow_id, log_id, callback) => {
+        confirm({
+            title: 'Are you sure you want to delete this log',
+            content: "This can't be undone.",
+            okText: 'Yes',
+            okType: 'danger',
+            cancelText: 'No',
+            onOk() {
+                callback(flow_id, log_id)
+            },
+            onCancel() {
+                console.log('Cancel');
+            },
         });
     }
 
     render() {
         const { logs, isLoading } = this.props;
         const { value, submitting } = this.state;
+
+        const optionsMenu = (flow_id, log_id) => (
+            <Menu>
+                <Menu.Item key="0" onClick={() => this.showDeleteConfirm(flow_id, log_id, this.deleteItem)}>
+                    <Icon type="delete" style={{fontSize: 16}} onClick={() => this.showDeleteConfirm(flow_id, log_id, this.deleteItem)}/> Delete
+                </Menu.Item>
+            </Menu>
+        );
+
         const LogsList = ({ logs }) => (
             <Logs
                 dataSource={logs}
                 header={<span>{logs.length} <Icon type="book"/></span> }
                 itemLayout="horizontal"
-                renderItem={props => <Comment
-                                        actions={[<Icon type="edit" style={{fontSize: 16}}/>,
-                                                <Icon type="delete" style={{fontSize: 16}}/>]}
-                                        author={props.author}
-                                        avatar={props.avatar}
-                                        content={props.content}
-                                        datetime={moment().from(props.created)} />}
+                renderItem={log => <Comment
+                                        actions={[  <Dropdown trigger={['click']} overlay={optionsMenu(this.props.flow_id, log.id)} placement="topCenter">
+                                                        <Icon type="more" style={{ fontSize: 16 }} />
+                                                    </Dropdown>]}
+                                        author={log.author}
+                                        avatar={log.avatar}
+                                        content={log.content}
+                                        datetime={moment().from(log.created)}/>}
             />
         );
 

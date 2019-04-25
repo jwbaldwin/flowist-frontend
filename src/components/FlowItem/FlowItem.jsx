@@ -42,8 +42,7 @@ const tagsFooterStyle = {
 
 const timestampStyle = {
     width: '20%',
-    textAlign: 'right',
-    justify: 'bottom',
+    textAlign: 'right'
 };
 
 const FlowCard = styled(Card)`
@@ -55,7 +54,7 @@ const FlowCard = styled(Card)`
         border-left: 3px solid ${({ theme }) => theme.defaultText};
         border-radius: 4px !important;
         cursor: text;
-        padding: 16px;
+        padding: 8px;
         background: ${({ theme }) => theme.contentOther};
     }
 
@@ -144,7 +143,7 @@ class FlowItem extends Component {
                         <Dropdown trigger={['click']} overlay={optionsMenu(flow.id)} placement="topCenter">
                             <Icon type="more" style={{ fontSize: 18, color: this.props.theme.brightText }} />
                         </Dropdown>,
-                        <Icon type="check-circle" onClick={() => this.completeItem(flow.id)} 
+                        <Icon type="check-circle" onClick={() => this.completeItem(flow.id)}
                               fill={ this.props.theme.background }
                               style={{ fontSize: 18, color: this.props.theme.successColor }} />
                     ]}

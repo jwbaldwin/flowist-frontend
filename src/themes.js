@@ -4,6 +4,7 @@ const light = {
     background: "no-repeat fixed #f8f9fb !important",
     content: "#fff !important",
     contentOther: "#fafafa !important",
+    contentRaised: "#f2f2f2 !important",
 
     // TEXT COLORS
     brightText: "#666 !important",
@@ -32,6 +33,7 @@ const dark = {
     background: "no-repeat fixed #1b212b !important",
     content: "#242a35 !important",
     contentOther: "#2a303c !important",
+    contentRaised: "#3c424e !important",
 
 
     // TEXT COLORS
