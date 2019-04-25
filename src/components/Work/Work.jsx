@@ -3,14 +3,13 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import * as logActions from '../../actions/logActions';
-import { Layout, Col, Card, Comment, Avatar, Form, Button, List, Input, Spin, Icon, Menu, Dropdown, Modal, Tabs } from 'antd';
+import { Layout, Col, Card, Comment, Avatar, Form, Button, List, Input, Spin, Icon, Menu, Dropdown, Modal } from 'antd';
 import styled, { withTheme } from 'styled-components';
 import MicrolinkCard from '@microlink/react'
 import moment from 'moment';
 
 const { Content } = Layout;
 const TextArea = Input.TextArea;
-const TabPane = Tabs.TabPane;
 const confirm = Modal.confirm;
 
 const WorkCard = styled(Card)`
@@ -25,9 +24,6 @@ const WorkCard = styled(Card)`
         border: none;
     }
 `;
-
-const WorkTabs = styled(Tabs)`
-`
 
 const Logs = styled(List)`
     color: ${({ theme }) => theme.defaultText};
@@ -96,28 +92,6 @@ const WorkTypeButton = styled(Button)`
     background: ${({ theme }) => theme.secondaryColor};
     border: none !important;
 `
-
-const Editor = ({
-    onChange, onSubmit, submitting, value,
-}) => (
-        <div>
-            <Form.Item style={{ margin: 2 }}>
-                <WorkLogger rows={2} onChange={onChange} value={value} />
-            </Form.Item>
-            <Form.Item style={{ margin: 0 }}>
-                <Button
-                    htmlType="submit"
-                    loading={submitting}
-                    onClick={onSubmit}
-                    type="primary"
-                    icon="rocket"
-                    block
-                >
-                    Log
-                </Button>
-            </Form.Item>
-        </div>
-    );
 
 export class Work extends Component {
     state = {
