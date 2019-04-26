@@ -2,23 +2,20 @@ import React, { Component } from 'react';
 import { Icon, Tooltip } from 'antd';
 import { EditorState } from 'draft-js';
 import Editor from 'draft-js-plugins-editor';
-import createHashtagPlugin from 'draft-js-hashtag-plugin';
-import createLinkifyPlugin from 'draft-js-linkify-plugin';
+import Prism from 'prismjs';
+import createPrismPlugin from 'draft-js-prism-plugin';
 import createMarkdownShortcutsPlugin from 'draft-js-markdown-shortcuts-plugin';
 import { stateToMarkdown } from "draft-js-export-markdown";
 import { stateFromMarkdown } from "draft-js-import-markdown";
 import './MainStep.scss';
-import 'draft-js-hashtag-plugin/lib/plugin.css';
 
 const tooltipHelpText = "Enter any extra information about what you're working on! Supports: Inline markdown, tags, and links!";
 
-const hashtagPlugin = createHashtagPlugin();
-const linkifyPlugin = createLinkifyPlugin();
+const prismPlugin = createPrismPlugin({prism: Prism});
 const markdownPlugin = createMarkdownShortcutsPlugin();
 
 const plugins = [
-    linkifyPlugin,
-    hashtagPlugin,
+    prismPlugin,
     markdownPlugin,
 ];
 

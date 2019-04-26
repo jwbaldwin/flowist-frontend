@@ -6,8 +6,6 @@ import * as flowActions from '../../actions/flowActions';
 import { Badge, Card, Icon, Dropdown, Menu, Modal } from 'antd';
 import { EditorState } from 'draft-js';
 import Editor from 'draft-js-plugins-editor';
-import createHashtagPlugin from 'draft-js-hashtag-plugin';
-import createLinkifyPlugin from 'draft-js-linkify-plugin';
 import createMarkdownShortcutsPlugin from 'draft-js-markdown-shortcuts-plugin';
 import { stateFromMarkdown } from "draft-js-import-markdown";
 import { mapIcon, mapFlowStatusToBadge } from '../../common';
@@ -15,18 +13,13 @@ import moment from 'moment';
 import FlowTagsFooter from './FlowTagsFooter';
 import FlowModal from '../FlowModal';
 import styled, { withTheme } from 'styled-components';
-import 'draft-js-hashtag-plugin/lib/plugin.css';
 import './FlowItem.scss';
 
 const confirm = Modal.confirm;
 
-const hashtagPlugin = createHashtagPlugin();
-const linkifyPlugin = createLinkifyPlugin();
 const markdownPlugin = createMarkdownShortcutsPlugin();
 
 const plugins = [
-    linkifyPlugin,
-    hashtagPlugin,
     markdownPlugin,
 ];
 

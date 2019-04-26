@@ -116,7 +116,8 @@ export class WorkList extends Component {
         );
 
         const logsHeader = (
-            <span>{this.state.filtered_logs.length} <Icon type="book" />
+            <div style={{width: '100%', margin: '4px 0'}}>
+                {this.state.filtered_logs.length} <Icon type="book" />
                 <WorkFilter
                     style={{ width: 100, float: 'right' }}
                     value={this.state.filter}
@@ -128,7 +129,7 @@ export class WorkList extends Component {
                     <Option value="log"><Icon type="rocket" /> Logs</Option>
                     <Option value="link"><Icon type="link" /> Links</Option>
                 </WorkFilter>
-            </span>
+            </div>
         );
 
         return (
@@ -137,14 +138,17 @@ export class WorkList extends Component {
                 header={logsHeader}
                 itemLayout="horizontal"
                 renderItem={
-                    log => <Comment
-                        actions={[<Dropdown trigger={['click']} overlay={optionsMenu(this.props.flow_id, log.id, this.props.showDeleteConfirm, this.props.deleteItem)} placement="topCenter">
-                            <Icon type="more" style={{ fontSize: 16 }} />
-                        </Dropdown>]}
-                        author={log.author}
-                        avatar={log.avatar}
-                        content={log.type === 'link' ? <StyledMicroLink url={log.content} /> : log.content}
-                        datetime={moment().to(log.created)} />}
+                    log =>
+                    <Skeleton avatar title={false} loading={this.props.isLoading} active>
+                        <Comment
+                            actions={[<Dropdown trigger={['click']} overlay={optionsMenu(this.props.flow_id, log.id, this.props.showDeleteConfirm, this.props.deleteItem)} placement="topCenter">
+                                <Icon type="more" style={{ fontSize: 16 }} />
+                            </Dropdown>]}
+                            author={log.author}
+                            avatar={log.avatar}
+                            content={log.type === 'link' ? <StyledMicroLink url={log.content} /> : log.content}
+                            datetime={moment().to(log.created)} />
+                    </Skeleton>}
             />
         );
     }

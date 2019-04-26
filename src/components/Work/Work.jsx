@@ -116,12 +116,9 @@ export class Work extends Component {
         return (
             <Content className="centered">
                 <Col span={24}>
-                    {isLoading ?
-                        <Spin size="small" /> :
-                        <WorkCard
-                            bordered={false}>
-                            {logs.length > 0 && <WorkList logs={logs} flow_id={this.props.flow_id}  showDeleteConfirm={this.showDeleteConfirm} deleteItem={this.deleteItem}/>}
-                        </WorkCard>}
+                    <WorkCard bordered={false}>
+                        {logs.length > 0 && <WorkList logs={logs} flow_id={this.props.flow_id}  showDeleteConfirm={this.showDeleteConfirm} deleteItem={this.deleteItem} isLoading={isLoading}/>}
+                    </WorkCard>
                     <WorkCard bordered={false}>
                         <div style={{textAlign: 'left', paddingBottom: '8px'}}>
                             <WorkTypeButton
