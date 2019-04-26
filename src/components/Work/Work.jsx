@@ -3,43 +3,24 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import * as logActions from '../../actions/logActions';
-import { Layout, Col, Card, Comment, Avatar, Form, Button, List, Input, Spin, Icon } from 'antd';
-import styled from 'styled-components';
+import WorkList from './WorkList';
+import { Layout, Col, Card, Button, Input, Spin, Modal } from 'antd';
+import styled, { withTheme } from 'styled-components';
 import moment from 'moment';
 
 const { Content } = Layout;
 const TextArea = Input.TextArea;
+const confirm = Modal.confirm;
 
 const WorkCard = styled(Card)`
     color: ${({ theme }) => theme.defaultText};
     background: ${({ theme }) => theme.content};
+    box-shadow: ${({ theme }) => theme.boxShadow};
     transiton: ${({ theme }) => theme.transiton};
     margin-top: 1em !important;
-`;
 
-const Logs = styled(List)`
-    color: ${({ theme }) => theme.defaultText};
-    background: ${({ theme }) => theme.content};
-    transiton: ${({ theme }) => theme.transiton};
-    text-align: left;
-    .ant-comment-content-author-name {
-         color: ${({ theme }) => theme.brightText};
-         font-weight: 600 !important;
-    }
-
-    .ant-comment-content-author-time{
-        color: ${({ theme }) => theme.defaultText};
-    }
-
-    .ant-comment-actions {
-        float: right;
-    }
-    .ant-comment-actions > li{
-        color: ${({ theme }) => theme.brightText};
-        margin: 0 6px;
-    }
-
-    &.ant-list-split .ant-list-header {
+    .ant-btn-unselected {
+        background: transparent !important;
         border: none;
     }
 `;
@@ -51,52 +32,30 @@ const WorkLogger = styled(TextArea)`
     border: ${({ theme }) => theme.border} !important;
 `;
 
-const Editor = ({
-    onChange, onSubmit, submitting, value,
-}) => (
-        <div>
-            <Form.Item style={{margin: 2}}>
-                <WorkLogger rows={2} onChange={onChange} value={value} />
-            </Form.Item>
-            <Form.Item style={{margin: 0}}>
-                <Button
-                    htmlType="submit"
-                    loading={submitting}
-                    onClick={onSubmit}
-                    type="primary"
-                    icon="rocket"
-                    block
-                >
-                    Log
-                </Button>
-            </Form.Item>
-        </div>
-    );
+const LinkLogger = styled(Input)`
+    color: ${({ theme }) => theme.defaultText};
+    background: ${({ theme }) => theme.contentOther};
+    transiton: ${({ theme }) => theme.transiton};
+    border: ${({ theme }) => theme.border} !important;
+`;
+
+const WorkTypeButton = styled(Button)`
+    margin-right: 8px
+    color: ${({ theme }) => theme.primaryColor};
+    background: ${({ theme }) => theme.secondaryColor};
+    border: none !important;
+`
 
 export class Work extends Component {
     state = {
+        type: 'log',
         value: '',
-        submitting: false
+        submitting: false,
+        editVisible: false,
     }
 
     componentDidMount() {
-		this.props.logActions.fetchLogs(this.props.flow_id);
-	}
-
-    handleSubmit = () => {
-        if (!this.state.value || this.state.value.length === 0) {
-            return;
-        }
-        this.setState({submitting: true})
-        this.props.logActions.addLog(this.props.flow_id,
-                    {
-                    author: 'Han Solo',
-                    avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
-                    content: this.state.value,
-                    created: moment()})
-        this.setState({
-            submitting: false,
-            value: ''});
+        this.props.logActions.fetchLogs(this.props.flow_id);
     }
 
     handleChange = (e) => {
@@ -105,49 +64,87 @@ export class Work extends Component {
         });
     }
 
+    handleType = (type) => {
+        this.setState({
+            type: type,
+        });
+    }
+
+    handleSubmit = () => {
+        if (!this.state.value || this.state.value.length === 0) {
+            return;
+        }
+        this.setState({ submitting: true })
+        this.props.logActions.addLog(this.props.flow_id,
+            {
+                author: this.props.user.user.attributes.name + ' ' + this.props.user.user.attributes.family_name,
+                type: this.state.type,
+                avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
+                content: this.state.value,
+                created: moment()
+            })
+        this.setState({
+            submitting: false,
+            value: ''
+        });
+    }
+
+    deleteItem = (flow_id, log_id) => {
+        this.props.logActions.deleteLog(flow_id, log_id);
+    }
+
+    showDeleteConfirm = (flow_id, log_id, callback) => {
+        confirm({
+            title: 'Are you sure you want to delete this log',
+            content: "This can't be undone.",
+            okText: 'Yes',
+            okType: 'danger',
+            cancelText: 'No',
+            onOk() {
+                callback(flow_id, log_id)
+            },
+            onCancel() {
+                console.log('Cancel');
+            },
+        });
+    }
+
     render() {
-        const { logs, isLoading } = this.props;
+        const { user, logs, isLoading } = this.props;
         const { value, submitting } = this.state;
-        const LogsList = ({ logs }) => (
-            <Logs
-                dataSource={logs}
-                header={<span>{logs.length} <Icon type="book"/></span> }
-                itemLayout="horizontal"
-                renderItem={props => <Comment
-                                        actions={[<Icon type="edit" style={{fontSize: 16}}/>,
-                                                <Icon type="delete" style={{fontSize: 16}}/>]}
-                                        author={props.author}
-                                        avatar={props.avatar}
-                                        content={props.content}
-                                        datetime={moment().from(props.created)} />}
-            />
-        );
 
         return (
             <Content className="centered">
                 <Col span={24}>
-                    { isLoading ?
-                    <Spin size="small" /> :
-                    <WorkCard
-                        bordered={false}>
-                        {logs.length > 0 && <LogsList logs={logs} />}
-                        <Comment
-                            avatar={(
-                                <Avatar
-                                    src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
-                                    alt="Han Solo"
-                                />
-                            )}
-                            content={(
-                                <Editor
-                                    onChange={this.handleChange}
-                                    onSubmit={this.handleSubmit}
-                                    submitting={submitting}
-                                    value={value}
-                                />
-                            )}
-                        />
-                    </WorkCard>}
+                    <WorkCard bordered={false}>
+                        {logs.length > 0 && <WorkList logs={logs} flow_id={this.props.flow_id}  showDeleteConfirm={this.showDeleteConfirm} deleteItem={this.deleteItem} isLoading={isLoading}/>}
+                    </WorkCard>
+                    <WorkCard bordered={false}>
+                        <div style={{textAlign: 'left', paddingBottom: '8px'}}>
+                            <WorkTypeButton
+                                type={this.state.type === 'log' ? "primary" : "unselected"}
+                                icon="rocket"
+                                onClick={() => this.handleType('log')}>Log</WorkTypeButton>
+                            <WorkTypeButton
+                                type={this.state.type === 'link' ? "primary" : "unselected"}
+                                icon="link"
+                                onClick={() => this.handleType('link')}>Link</WorkTypeButton>
+                        </div>
+                        {this.state.type === 'log' ?
+                            <WorkLogger placeholder="What's new?" rows={2} onChange={this.handleChange} value={value} onPressEnter={this.handleSubmit} />
+                            :
+                            <LinkLogger placeholder="Paste the link!" onChange={this.handleChange} value={value} onPressEnter={this.handleSubmit}/>
+                        }
+                        <div style={{textAlign: 'right', paddingTop: '8px'}}>
+                            <Button
+                                loading={submitting}
+                                onClick={this.handleSubmit}
+                                type="primary"
+                            >
+                                {"Add " + this.state.type}
+                            </Button>
+                        </div>
+                    </WorkCard>
                 </Col>
             </Content>
         );
@@ -155,21 +152,23 @@ export class Work extends Component {
 }
 
 Work.propTypes = {
-	logs: PropTypes.array,
+    logs: PropTypes.array,
+    user: PropTypes.object,
     isLoading: PropTypes.bool
 };
 
 function mapStateToProps(state) {
-	return {
-		logs: state.logs.data,
+    return {
+        user: state.user,
+        logs: state.logs.data,
         isLoading: state.logs.isLoading
-	};
+    };
 }
 
 function mapDispatchToProps(dispatch) {
-	return {
-		logActions: bindActionCreators(logActions, dispatch),
-	};
+    return {
+        logActions: bindActionCreators(logActions, dispatch),
+    };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Work);
+export default connect(mapStateToProps, mapDispatchToProps)(withTheme(Work));

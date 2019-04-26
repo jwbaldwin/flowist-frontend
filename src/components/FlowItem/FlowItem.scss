@@ -20,15 +20,18 @@ div.ant-card {
 }
 
 div.ant-card-head {
+    padding: 0 24px;
     text-align: left;
     font-weight: bold;
     border: none !important;
 }
 
-div.ant-card-body {
+div.ant-card-head-title {
+    padding: 20px 0 8px 0;
 }
 
 div.ant-card-grid {
+    padding: 8px 24px;
     box-shadow: none;
     border: none;
 }
@@ -56,8 +59,6 @@ div.ant-card-grid:hover {
 }
 
 .flow-card-timestamp  {
-    padding-top: 5% !important;
-    padding-bottom: 0 !important;
     font-weight: 200;
     font-size: 9pt;
 }

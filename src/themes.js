@@ -4,6 +4,7 @@ const light = {
     background: "no-repeat fixed #f8f9fb !important",
     content: "#fff !important",
     contentOther: "#fafafa !important",
+    contentRaised: "#f2f2f2 !important",
 
     // TEXT COLORS
     brightText: "#666 !important",
@@ -18,7 +19,7 @@ const light = {
 
     // THEME COLORS
     primaryColor: "#40a9ff !important",
-    secondaryColor: "#F33F47",
+    secondaryColor: "#eff7ff !important",
     primaryColorHover: "#3ED9DC",
     infoColor: "#1890ff",                           // info state color
     successColor: "#52c41a",                        // success state color
@@ -32,6 +33,7 @@ const dark = {
     background: "no-repeat fixed #1b212b !important",
     content: "#242a35 !important",
     contentOther: "#2a303c !important",
+    contentRaised: "#3c424e !important",
 
 
     // TEXT COLORS
@@ -48,7 +50,7 @@ const dark = {
 
     // THEME COLORS
     primaryColor: "#40a9ff !important",
-    secondaryColor: "#F33F47",
+    secondaryColor: "#2e384e !important",
     primaryColorHover: "#3ED9DC",
     infoColor: "#1890ff",                           // info state color
     successColor: "#52c41a",                        // success state color

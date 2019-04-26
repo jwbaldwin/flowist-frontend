@@ -6,8 +6,6 @@ import * as flowActions from '../../actions/flowActions';
 import { Badge, Card, Icon, Dropdown, Menu, Modal } from 'antd';
 import { EditorState } from 'draft-js';
 import Editor from 'draft-js-plugins-editor';
-import createHashtagPlugin from 'draft-js-hashtag-plugin';
-import createLinkifyPlugin from 'draft-js-linkify-plugin';
 import createMarkdownShortcutsPlugin from 'draft-js-markdown-shortcuts-plugin';
 import { stateFromMarkdown } from "draft-js-import-markdown";
 import { mapIcon, mapFlowStatusToBadge } from '../../common';
@@ -15,18 +13,13 @@ import moment from 'moment';
 import FlowTagsFooter from './FlowTagsFooter';
 import FlowModal from '../FlowModal';
 import styled, { withTheme } from 'styled-components';
-import 'draft-js-hashtag-plugin/lib/plugin.css';
 import './FlowItem.scss';
 
 const confirm = Modal.confirm;
 
-const hashtagPlugin = createHashtagPlugin();
-const linkifyPlugin = createLinkifyPlugin();
 const markdownPlugin = createMarkdownShortcutsPlugin();
 
 const plugins = [
-    linkifyPlugin,
-    hashtagPlugin,
     markdownPlugin,
 ];
 
@@ -42,8 +35,7 @@ const tagsFooterStyle = {
 
 const timestampStyle = {
     width: '20%',
-    textAlign: 'right',
-    justify: 'bottom',
+    textAlign: 'right'
 };
 
 const FlowCard = styled(Card)`
@@ -55,7 +47,7 @@ const FlowCard = styled(Card)`
         border-left: 3px solid ${({ theme }) => theme.defaultText};
         border-radius: 4px !important;
         cursor: text;
-        padding: 16px;
+        padding: 8px;
         background: ${({ theme }) => theme.contentOther};
     }
 
@@ -144,7 +136,7 @@ class FlowItem extends Component {
                         <Dropdown trigger={['click']} overlay={optionsMenu(flow.id)} placement="topCenter">
                             <Icon type="more" style={{ fontSize: 18, color: this.props.theme.brightText }} />
                         </Dropdown>,
-                        <Icon type="check-circle" onClick={() => this.completeItem(flow.id)} 
+                        <Icon type="check-circle" onClick={() => this.completeItem(flow.id)}
                               fill={ this.props.theme.background }
                               style={{ fontSize: 18, color: this.props.theme.successColor }} />
                     ]}
