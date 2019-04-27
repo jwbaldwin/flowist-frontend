@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Tabs, Col, Divider, Alert } from 'antd';
 import LoginForm from './LoginForm';
 import SignUpForm from './SignUpForm';
-import { Github } from '../SocialLogin';
+import { Github } from './SocialLogin';
 import './UserAuth.scss';
 import '../AppMain/AppMain.scss';
 import logo from '../../assets/images/flowist-main-light.png';

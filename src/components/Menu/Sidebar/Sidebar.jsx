@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router';
 import { Link } from 'react-router-dom';
-import { Layout, Menu, Icon, Button } from 'antd';
-import { mapIcon } from '../../common';
-import logo from '../../assets/images/flowist.png';
-import ThemeSwitch from '../ThemeSwitch';
+import { Layout, Menu, Icon } from 'antd';
+import logo from '../../../assets/images/flowist.png';
 import styled from 'styled-components';
 import './Sidebar.scss';
 

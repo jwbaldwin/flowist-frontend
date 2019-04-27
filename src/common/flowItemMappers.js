@@ -1,6 +1,6 @@
 const iconMap = {
     'planning': 'project',
-    'programming': 'laptop',
+    'coding': 'laptop',
     'debugging': 'alert',
     'researching': 'search'
 }

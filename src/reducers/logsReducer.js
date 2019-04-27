@@ -14,7 +14,7 @@ import {
 	DELETE_LOG_ERROR
 } from '../actions/actionTypes';
 
-export default function logs(state = initialState.logsDebug, action) {
+export default function logs(state = initialState.logs, action) {
 	switch (action.type) {
 		case ADD_LOG:
             console.log(action.type)

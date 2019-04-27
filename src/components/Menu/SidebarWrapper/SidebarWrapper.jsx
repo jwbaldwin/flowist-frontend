@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import { Drawer } from 'antd';
 import Sidebar from '../Sidebar';
-import SideMenu from '../SideMenu';
 import '../Sidebar/Sidebar.scss';
 
 export class SidebarWrapper extends Component {

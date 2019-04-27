@@ -7,7 +7,6 @@ import moment from "moment";
 import './ArchiveContent.scss';
 
 const { Content } = Layout;
-const { Text } = Typography;
 
 const IconText = ({ type, text }) => (
     <span>
@@ -30,6 +29,12 @@ const StyledList = styled(List)`
 
     .ant-badge-dot {
         box-shadow: 0 0 0 1px ${({ theme }) => theme.content};
+    }
+`;
+
+const StyledDrawer = styled(Drawer)`
+    .ant-drawer-content {
+        background: ${({ theme }) => theme.content};  
     }
 `;
 
@@ -64,8 +69,8 @@ export class ArchiveContent extends Component {
                     loadMore=''
                     dataSource={this.props.flows}
                     renderItem={(item) => (
-                        <List.Item actions={[<Button type="primary" onClick={() => this.showItem(item.id)}><IconText type="plus-circle" text="more" /></Button>,]}
-                                    extra={<span>{moment().to(item.created)}</span>}>
+                        <List.Item key={item.id} actions={[<Button type="primary" onClick={() => this.showItem(item.id)}><IconText type="plus-circle" text="more" /></Button>,]}
+                                    extra={<span>{moment().from(item.created)}</span>}>
                             <Skeleton avatar title={false} loading={this.props.isLoading} active>
                                 <List.Item.Meta
                                     avatar={
@@ -81,7 +86,7 @@ export class ArchiveContent extends Component {
                     )}
                 />
 
-                <Drawer
+                <StyledDrawer
                     placement="bottom"
                     onClose={() => this.handleClose()}
                     visible={this.state.visible}
@@ -90,7 +95,7 @@ export class ArchiveContent extends Component {
                             flow={this.props.flows.filter(flow => flow.id === this.state.drawerContentId)[0]}
                             key={this.drawerContentId}
                             />
-                </Drawer>
+                </StyledDrawer>
             </Content>
         );
     }

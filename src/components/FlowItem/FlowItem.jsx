@@ -75,10 +75,6 @@ class FlowItem extends Component {
         this.props.flowActions.updateFlow({ ...this.props.flow, flowStatus: 'COMPLETED' });
     }
 
-    editItem = (id) => {
-        console.log(id)
-    }
-
     onChange = () => {return null;}
 
     showDeleteConfirm = (id, callback) => {

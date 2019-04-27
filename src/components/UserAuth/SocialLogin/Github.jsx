@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Icon } from 'antd';
-import environment from "../../environment";
+import environment from "../../../environment";
 
 const CLIENT_ID = environment.github.CLIENT_ID;
 const GITHUB_GET_URL = "https://github.com/login/oauth/authorize?&client_id=" + CLIENT_ID;

@@ -9,7 +9,7 @@ import { stateToMarkdown } from "draft-js-export-markdown";
 import { stateFromMarkdown } from "draft-js-import-markdown";
 import './MainStep.scss';
 
-const tooltipHelpText = "Enter any extra information about what you're working on! Supports: Inline markdown, tags, and links!";
+const tooltipHelpText = "Enter any extra information about what you're working on! Supports inline markdown!";
 
 const prismPlugin = createPrismPlugin({prism: Prism});
 const markdownPlugin = createMarkdownShortcutsPlugin();
@@ -20,20 +20,23 @@ const plugins = [
 ];
 
 export class MainStep extends Component {
-    state = {
-        editorState: EditorState.createEmpty(),
-    }
-
-    componentDidMount = () => {
+    constructor(props) {
+        super(props); 
         if (this.props.flowData.content.length !== 0) {
-            this.setState({ editorState: EditorState.createWithContent(stateFromMarkdown(this.props.flowData.content)) });
+            this.state = { 
+                editorState: EditorState.createWithContent(stateFromMarkdown(this.props.flowData.content)) 
+            };
+        } else {
+            this.state = { 
+                editorState: EditorState.createEmpty(),
+            }
         }
     }
 
     onChange = (editorState) => {
         this.props.handleContentChange(stateToMarkdown(editorState.getCurrentContent()))
         this.setState({
-        editorState,
+            editorState,
         });
     };
 
