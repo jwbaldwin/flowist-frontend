@@ -77,11 +77,8 @@ export class Work extends Component {
         this.setState({ submitting: true })
         this.props.logActions.addLog(this.props.flow_id,
             {
-                author: this.props.user.user.attributes.name + ' ' + this.props.user.user.attributes.family_name,
                 type: this.state.type,
-                avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
-                content: this.state.value,
-                created: moment()
+                content: this.state.value
             })
         this.setState({
             submitting: false,

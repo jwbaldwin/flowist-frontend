@@ -54,7 +54,6 @@ export class AppMain extends Component {
 		return (
 			<Layout style={{ minHeight: '100vh' }}>
 				{isMobile ? <SidebarWrapper
-                    activeFlows={ this.props.flows.filter((flow) => flow.flowStatus === 'ACTIVE')}
 					toggle={this.toggleCollapse}
 					collapsed={this.state.collapsed}
 					{...this.props}
@@ -69,7 +68,7 @@ export class AppMain extends Component {
 						<Col span={1}/>
 						{ !isMobile ?
                         <Col xs={0} sm={0} md={4} lg={4} xl={4}>
-							<SideMenu activeFlows={ this.props.flows.filter((flow) => flow.flowStatus === 'ACTIVE')}{...this.props} />
+							<SideMenu {...this.props} />
 						</Col>  : null }
 						<Col xs={0} sm={0} md={1} lg={1} xl={1}/>
 						<Col xs={22} sm={22} md={10} lg={10} xl={10}>

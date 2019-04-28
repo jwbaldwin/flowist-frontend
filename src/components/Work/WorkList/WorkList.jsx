@@ -106,7 +106,7 @@ export class WorkList extends Component {
 
     render() {
         const { flow_id, logs } = this.props;
-
+        console.log(this.state.logs)
         const optionsMenu = (flow_id, log_id, showDeleteConfirm, deleteItem) => (
             <Menu>
                 <Menu.Item key="0" onClick={() => showDeleteConfirm(flow_id, log_id, deleteItem)}>
